@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://r-nmt000.github.io/sitemap.xml 
