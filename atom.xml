@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2013-12-01T22:00:29+09:00</updated>
+  <updated>2013-12-01T22:10:57+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[Ryusuke Nomoto]]></name>
@@ -21,6 +21,9 @@
     <content type="html"><![CDATA[<h2>買いました！</h2>
 
 <p><img src="http://r-nmt000.github.com/images/th_IMG_0172.jpg" alt="kindle1" /></p>
+
+<!-- more -->
+
 
 <h2>開封！</h2>
 
@@ -48,6 +51,9 @@
 <p>アウトプットの練習として、ブログを始めることにしました。
 色んなブログサービスがありますがエンジニア向けということで<a href="octopress.org">Octopress</a>を使ってみることに。
 設定は以下のサイトを参考にしました。</p>
+
+<!-- more -->
+
 
 <ul>
 <li><p><a href="http://www.miukoba.net/blog/2013/01/05/start-octopress/">Octopressはじめました</a></p></li>

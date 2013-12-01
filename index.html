@@ -9,8 +9,7 @@
   <meta name="author" content="Ryusuke Nomoto">
 
   
-  <meta name="description" content="買いました！ 開封！ 裏面はこんな感じ。 起動した！かっこいい！ これでたくさん本が読めますね＼(^o^)／
-">
+  <meta name="description" content="買いました！ ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,21 +97,12 @@
 
 <p><img src="http://r-nmt000.github.com/images/th_IMG_0172.jpg" alt="kindle1" /></p>
 
-<h2>開封！</h2>
-
-<p><img src="http://r-nmt000.github.com/images/th_IMG_0173.jpg" alt="kindle2" /></p>
-
-<h2>裏面はこんな感じ。</h2>
-
-<p><img src="http://r-nmt000.github.com/images/th_IMG_0174.jpg" alt="kindle3" /></p>
-
-<h2>起動した！かっこいい！</h2>
-
-<p><img src="http://r-nmt000.github.com/images/th_IMG_0175.jpg" alt="kindle4" /></p>
-
-<p>これでたくさん本が読めますね＼(^o^)／</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/12/01/kindle/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -152,95 +142,12 @@
 色んなブログサービスがありますがエンジニア向けということで<a href="octopress.org">Octopress</a>を使ってみることに。
 設定は以下のサイトを参考にしました。</p>
 
-<ul>
-<li><p><a href="http://www.miukoba.net/blog/2013/01/05/start-octopress/">Octopressはじめました</a></p></li>
-<li><p><a href="http://morizyun.github.io/blog/octopress-gitpage-minimum-install-guide/">OctopressでGitHub無料ブログ。sourceをBitbucket管理。簡単ガイド！</a></p></li>
-</ul>
-
-
-<p>大まかな手順は次の通りです。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>GitHubでOctopress用のリポジトリ作成
-</span><span class='line'>Octopressからソースコード取得
-</span><span class='line'>GitHubへのdeploy設定
-</span><span class='line'>ブログの細かな設定
-</span><span class='line'>ブログテーマの変更
-</span><span class='line'>記事を作成、アップ</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上記の手順を１から丁寧に書いてもいいんですが、Octopressの設定については多くの方が分かりやすくまとめてらっしゃるのでここでは自分がつまづいたところをかいつまんで説明していこうと思います。</p>
-
-<hr />
-
-<h2>rake install [&lsquo;theme-name&rsquo;]がうまくいかない</h2>
-
-<p>ブログテーマを設定する箇所です。なぜかinstallが上手くいきません。なんでかなーとググってみると
-<a href="http://tantant.jp/blog/Octopress/installing-octopress/">Markdownで書いてGitで管理するブログ「Octopress」の始め方</a>
-にある通り、zshを使っていると<em>[ ]</em>が式として認識されてしまうらしいです。
-対応策としては<code>rake install \['theme-name'\]</code>のように括弧をバックスラッシュでエスケープする、もしくは.zshrcに以下の設定を追記しましょう。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>setopt nonomatch</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>alias rake="noglob rake"</code>を追記する方法もありますが、これだと後述する<code>bundle exec</code>と組み合わさった時上手く動きませんでした。</p>
-
-<hr />
-
-<h2>rake generateがうまくいかない</h2>
-
-<p>次のエラーが吐かれてrakeが止まります。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake aborted!
-</span><span class='line'>You have already activated rake 10.1.0, but your Gemfile requires rake 0.9.6. Using bundle exec may solve this.
-</span><span class='line'>/Users/nomoto/repos/r-nmt000.github.io/Rakefile:2:in `&lt;top (required)&gt;'
-</span><span class='line'>(See full trace by running task with --trace)</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://d.hatena.ne.jp/yamanetoshi/20131102/1383355220">Octopress:/var/log/messages</a>によると<code>bundle exec rake generate</code>で上手く動くらしいのですが、動かない&hellip;</p>
-
-<p>更に調べると<a href="http://kozy4324.github.io/blog/2013/03/02/exec-rake-with-version/">バージョンを指定してRakeを実行する</a>ということができるらしいので試してみました。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake _0.9.6_ generate
-</span><span class='line'>(in /Users/nomoto/repos/r-nmt000.github.io)
-</span><span class='line'>## Generating Site with Jekyll
-</span><span class='line'>unchanged sass/screen.scss
-</span><span class='line'>Configuration from /Users/nomoto/repos/r-nmt000.github.io/_config.yml
-</span><span class='line'>Building site: source -&gt; public
-</span><span class='line'>Successfully generated site: source -&gt; public
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>できた！</p>
-
-<p>その後、なぜか<code>bundle exec rake</code>でも実行できるようになりました。なぜだ&hellip;</p>
-
-<p>しかしいちいちbundle execを頭につけるのは面倒臭い&hellip;多分回避策はあるんだろうけど、見つからなかったのでとりあえず現状はこれでよしとしよう。</p>
-
-<hr />
-
-<p>僕がつまづいたのはこんなところです。</p>
-
-<p>独自ドメインをあてたり、Bitbucketを使ったりはまだしてないですが、おいおいやっていこうと思います。</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/12/01/new-octopress/">Read on &rarr;</a>
+    </footer>
   
 
 
