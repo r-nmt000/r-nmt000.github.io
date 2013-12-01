@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: lifelog | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/categories/lifelog/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2013-12-01T19:38:08+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[Ryusuke Nomoto]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Kindle paperwhite]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/01/kindle/"/>
+    <updated>2013-12-01T18:29:48+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/01/kindle</id>
+    <content type="html"><![CDATA[<h2>買いました！</h2>
+
+<p><img src="http://r-nmt000.github.com/images/th_IMG_0172.jpg" alt="kindle1" /></p>
+
+<h2>開封！</h2>
+
+<p><img src="http://r-nmt000.github.com/images/th_IMG_0173.jpg" alt="kindle2" /></p>
+
+<h2>裏面はこんな感じ。</h2>
+
+<p><img src="http://r-nmt000.github.com/images/th_IMG_0174.jpg" alt="kindle3" /></p>
+
+<h2>起動した！かっこいい！</h2>
+
+<p><img src="http://r-nmt000.github.com/images/th_IMG_0175.jpg" alt="kindle4" /></p>
+
+<p>これでたくさん本が読めますね＼(^o^)／</p>
+]]></content>
+  </entry>
+  
+</feed>
