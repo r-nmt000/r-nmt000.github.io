@@ -2,11 +2,15 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://r-nmt000.github.io/blog/2013/12/01/new-octopress/</loc>
-        <lastmod>2013-12-01T22:30:48+09:00</lastmod>
+        <lastmod>2013-12-04T01:37:52+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/blog/2013/12/01/kindle/</loc>
-        <lastmod>2013-12-01T22:30:48+09:00</lastmod>
+        <lastmod>2013-12-04T01:56:38+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud/</loc>
+        <lastmod>2013-12-04T20:39:06+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/assets/bootstrap/about.html</loc>
@@ -30,7 +34,7 @@
     </url>
     <url>
         <loc>http://r-nmt000.github.io/assets/bootstrap/</loc>
-        <lastmod>2013-12-01T22:10:45+09:00</lastmod>
+        <lastmod>2013-12-04T20:39:06+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/assets/bootstrap/javascript.html</loc>
@@ -38,11 +42,11 @@
     </url>
     <url>
         <loc>http://r-nmt000.github.io/blog/archives/</loc>
-        <lastmod>2013-12-01T22:30:48+09:00</lastmod>
+        <lastmod>2013-12-04T20:39:06+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/</loc>
-        <lastmod>2013-12-01T22:30:48+09:00</lastmod>
+        <lastmod>2013-12-04T20:39:06+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/robots.txt</loc>
