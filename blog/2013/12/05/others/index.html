@@ -5,14 +5,23 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Start your blog with Octopress - NomoLog</title>
+  <title>Last Starbucks - NomoLog</title>
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="Octopressで始めるギークなブログ アウトプットの練習として、ブログを始めることにしました。
-色んなブログサービスがありますがエンジニア向けということでOctopressを使ってみることに。
-設定は以下のサイトを参考にしました。 Octopressはじめました &hellip;">
-  
+  <meta name="description" content="前回までのあらすじ スタバにめっちゃアプライしまくった
+受からない
+友人の助けを経てラストチャンスに挑む
+そして結果が返ってきた 遂にメールが届いた&hellip;同じメールを何通受け取ったことだろうか&hellip; 今から地獄の門を開くぜ&hellip; 1
+2
+3
+4
+5
+6
+7
+8
+9 &hellip;">
+  <meta name="keywords" content="Others">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +29,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://r-nmt000.github.io/blog/2013/12/01/new-octopress/">
+  <link rel="canonical" href="http://r-nmt000.github.io/blog/2013/12/05/others/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -71,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">Start Your Blog With Octopress</h1>
+      <h1 class="entry-title">Last Starbucks</h1>
     
     
       <p class="meta">
@@ -87,13 +96,13 @@
   
 
 
-<time datetime="2013-12-01T13:51:44+09:00" pubdate data-updated="true">Dec 1<span>st</span>, 2013</time>
+<time datetime="2013-12-05T16:09:40+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2013</time>
 			
 
 <span class="categories">
 	Posted in
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/others/'>Others</a>
   
 </span>
 
@@ -114,73 +123,24 @@
   </header>
 
 
-<div class="entry-content"><h1>Octopressで始めるギークなブログ</h1>
+<div class="entry-content"><h2>前回までのあらすじ</h2>
 
-<p>アウトプットの練習として、ブログを始めることにしました。
-色んなブログサービスがありますがエンジニア向けということで<a href="octopress.org">Octopress</a>を使ってみることに。
-設定は以下のサイトを参考にしました。</p>
+<ul>
+<li>スタバにめっちゃアプライしまくった</li>
+<li>受からない</li>
+<li>友人の助けを経てラストチャンスに挑む</li>
+<li>そして結果が返ってきた</li>
+</ul>
+
 
 <!-- more -->
 
 
-<ul>
-<li><p><a href="http://www.miukoba.net/blog/2013/01/05/start-octopress/">Octopressはじめました</a></p></li>
-<li><p><a href="http://morizyun.github.io/blog/octopress-gitpage-minimum-install-guide/">OctopressでGitHub無料ブログ。sourceをBitbucket管理。簡単ガイド！</a></p></li>
-</ul>
+<h3>遂にメールが届いた&hellip;同じメールを何通受け取ったことだろうか&hellip;</h3>
 
+<p><img src="/images/posts/mailtitle.jpg" alt="mailtitle" /></p>
 
-<p>大まかな手順は次の通りです。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>GitHubでOctopress用のリポジトリ作成
-</span><span class='line'>Octopressからソースコード取得
-</span><span class='line'>GitHubへのdeploy設定
-</span><span class='line'>ブログの細かな設定
-</span><span class='line'>ブログテーマの変更
-</span><span class='line'>記事を作成、アップ</span></code></pre></td></tr></table></div></figure>
-
-
-<p>上記の手順を１から丁寧に書いてもいいんですが、Octopressの設定については多くの方が分かりやすくまとめてらっしゃるのでここでは自分がつまづいたところをかいつまんで説明していこうと思います。</p>
-
-<hr />
-
-<h2>rake install [&lsquo;theme-name&rsquo;]がうまくいかない</h2>
-
-<p>ブログテーマを設定する箇所です。なぜかinstallが上手くいきません。なんでかなーとググってみると
-<a href="http://tantant.jp/blog/Octopress/installing-octopress/">Markdownで書いてGitで管理するブログ「Octopress」の始め方</a>
-にある通り、zshを使っていると<em>[ ]</em>が式として認識されてしまうらしいです。
-対応策としては<code>rake install \['theme-name'\]</code>のように括弧をバックスラッシュでエスケープする、もしくは.zshrcに以下の設定を追記しましょう。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>setopt nonomatch</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>alias rake="noglob rake"</code>を追記する方法もありますが、これだと後述する<code>bundle exec</code>と組み合わさった時上手く動きませんでした。</p>
-
-<hr />
-
-<h2>rake generateがうまくいかない</h2>
-
-<p>次のエラーが吐かれてrakeが止まります。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake aborted!
-</span><span class='line'>You have already activated rake 10.1.0, but your Gemfile requires rake 0.9.6. Using bundle exec may solve this.
-</span><span class='line'>/Users/nomoto/repos/r-nmt000.github.io/Rakefile:2:in `&lt;top (required)&gt;'
-</span><span class='line'>(See full trace by running task with --trace)</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://d.hatena.ne.jp/yamanetoshi/20131102/1383355220">Octopress:/var/log/messages</a>によると<code>bundle exec rake generate</code>で上手く動くらしいのですが、動かない&hellip;</p>
-
-<p>更に調べると<a href="http://kozy4324.github.io/blog/2013/03/02/exec-rake-with-version/">バージョンを指定してRakeを実行する</a>ということができるらしいので試してみました。</p>
+<h3>今から地獄の門を開くぜ&hellip;</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -189,27 +149,73 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake _0.9.6_ generate
-</span><span class='line'>(in /Users/nomoto/repos/r-nmt000.github.io)
-</span><span class='line'>## Generating Site with Jekyll
-</span><span class='line'>unchanged sass/screen.scss
-</span><span class='line'>Configuration from /Users/nomoto/repos/r-nmt000.github.io/_config.yml
-</span><span class='line'>Building site: source -&gt; public
-</span><span class='line'>Successfully generated site: source -&gt; public
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>　     　　　　＿＿＿＿＿ 
+</span><span class='line'>　  　　 　／　＼　 　 ／＼ 
+</span><span class='line'>　　  　／ し （＞） 　（＜）＼　　頼む受かっててくれ！　
+</span><span class='line'>　　　　|　∪　  （__人__）　J |  　＿＿＿＿＿＿＿_ 
+</span><span class='line'>　 　　 ＼　u　　 ｀⌒´　  　／　  | |　　　　　　　| 
+</span><span class='line'>　　　　ノ　　　　 　　  　　＼ 　　| |　　　　　　　|　 
+</span><span class='line'>　    ／´　　　　　　　　　　　   | |　　 　　 　　| 
+</span><span class='line'>　   |　　　　ｌ　　　　　　    　| |　　 　　 　　| 
+</span><span class='line'>               　　　　　 　　　＿＿＿_ 
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>             ＿＿＿＿
+</span><span class='line'>　　　　　／　　 　u　＼ 
+</span><span class='line'>　　 　／　　＼ 　  　 ─＼　　　チラッ 
+</span><span class='line'>　　　／し （＞）  　（●）＼ 
+</span><span class='line'>　　　|　∪　  （__人__） J|  ＿＿＿＿＿＿＿_ 
+</span><span class='line'>　　 ＼　　u　　 ｀⌒´　 　／ | | 　　　　　　　| 
+</span><span class='line'>　　　　ノ　　　　　 　　　＼ | |　 　　　　　　|　 
+</span><span class='line'>　 ／´　　　　　 　　　 　　 | |　　　　 　　　|　 
+</span><span class='line'>　|　　　　ｌ　 　  　　　　　| | 　　　　　　　|                     </span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="/images/posts/mailcontents.jpg" alt="mailcontents" /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>　　　　　　／￣￣￣￣￣＼ 
+</span><span class='line'>　　　　　/;::　　　　 　;ヽ 
+</span><span class='line'>　　　　　|;:: ｨ●ｧ　　ｨ●ｧ::| 
+</span><span class='line'>　　　　　|;::　　 　　　:;| 
+</span><span class='line'>　　　　　|;:: 　c{　っ　:;|　　　 
+</span><span class='line'>　　　　  |;::　　＿＿　:;;| 
+</span><span class='line'>　　　 　 ヽ;::　　ー　::;／ 
+</span><span class='line'>　　　　　　＼;;:　　:;;／ 
+</span><span class='line'>　　　　　　 |;::　 ::;| 
+</span><span class='line'>　　　　　　 |;::　 ::;| 
+</span><span class='line'>　　　／￣￣￣　　　　 ￣￣￣＼ 
+</span><span class='line'>　　　|;;::　　　　　　　　::;;| 
+</span><span class='line'>　　　|;;::　　　　　　　　::;;| 
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>できた！</p>
-
-<p>その後、なぜか<code>bundle exec rake</code>でも実行できるようになりました。なぜだ&hellip;</p>
-
-<p>しかしいちいちbundle execを頭につけるのは面倒臭い&hellip;多分回避策はあるんだろうけど、見つからなかったのでとりあえず現状はこれでよしとしよう。</p>
-
-<hr />
-
-<p>僕がつまづいたのはこんなところです。</p>
-
-<p>独自ドメインをあてたり、Bitbucketを使ったりはまだしてないですが、おいおいやっていこうと思います。</p>
 </div>
 
 
@@ -232,13 +238,13 @@
   
 
 
-<time datetime="2013-12-01T13:51:44+09:00" pubdate data-updated="true">Dec 1<span>st</span>, 2013</time>
+<time datetime="2013-12-05T16:09:40+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2013</time>
 			
 
 <span class="categories">
 	Posted in
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/others/'>Others</a>
   
 </span>
 
@@ -257,7 +263,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2013/12/01/new-octopress/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2013/12/01/new-octopress/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2013/12/05/others/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2013/12/05/others/" >Tweet</a>
   
   
   
@@ -268,8 +274,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/12/04/eclipse-tips/" title="Previous Post: Eclipse keybind's setting">&laquo; Eclipse keybind's setting</a>
       
-        <a class="basic-alignment right" href="/blog/2013/12/01/kindle/" title="Next Post: Kindle paperwhite">Kindle paperwhite &raquo;</a>
       
 		</p>
 		
