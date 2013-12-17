@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2013-12-06T11:03:50+09:00</updated>
+  <updated>2013-12-17T11:26:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,122 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Android with Scala]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/"/>
+    <updated>2013-12-17T11:20:42+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala</id>
+    <content type="html"><![CDATA[<h1>ScalaでAndroid</h1>
+
+<p>こちらを参考にしました！
+<a href="http://shogogg.hatenablog.jp/entry/2013/12/06/000039">Scala + sbt-android + IntelliJ で快適Androidアプリ開発</a></p>
+
+<p>以下に僕が詰まったところをまとめました！</p>
+
+<!-- more -->
+
+
+<h2>詰まったところ</h2>
+
+<ol>
+<li>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</li>
+<li>ensime関連のエラーが出る</li>
+<li>OutOfMemoryのエラーが出る</li>
+</ol>
+
+
+<h3>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</h3>
+
+<p>参考にしたサイトの手順に沿ってソースをコンパイルしようとすると</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+</span><span class='line'>[warn]      ::          UNRESOLVED DEPENDENCIES         ::
+</span><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+</span><span class='line'>[warn]      :: android.support#compatibility-v4;19: not found
+</span><span class='line'>[warn]      :: android.support#compatibility-v7-appcompat;19: not found
+</span><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::</span></code></pre></td></tr></table></div></figure>
+
+
+<p>となってコンパイルできません。</p>
+
+<p>自分の環境では&lt;project_dir>/project/build.scalaの</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// ======================================================================                                                                                                                             
+</span><span class='line'>34   // 依存関係
+</span><span class='line'>35   // ======================================================================
+</span><span class='line'>36   val libraryDependencies = Seq(
+</span><span class='line'>37
+</span><span class='line'>38     // Android Support Library v4 (jar)
+</span><span class='line'>39     "android.support" % "compatibility-v4" % "19",
+</span><span class='line'>40
+</span><span class='line'>41     // Android Support Library v7 (jar & apklib)
+</span><span class='line'>42     "android.support" % "compatibility-v7-appcompat" % "19",
+</span><span class='line'>43     apklib("android.support" % "compatibility-v7-appcompat" % "19")
+</span><span class='line'>44
+</span><span class='line'>45   )</span></code></pre></td></tr></table></div></figure>
+
+
+<p>の&#8221;19&#8221;の部分を&#8221;19.0.0&#8221;に変更したらうまくいきました。</p>
+
+<h3>ensime関連のエラーが出る</h3>
+
+<p>上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
+これに関しては調べても解決策が見つからず、恐らく以前に入れたensimeがなにか悪さをしてるんだろーなーと思い
+sbtとscalaをインストールし直したところ直りました。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew uninstall sbt
+</span><span class='line'>brew uninstall scala
+</span><span class='line'>rm -rf ~/.sbt
+</span><span class='line'>rm -rf ~/.ivy2
+</span><span class='line'>brew install sbt
+</span><span class='line'>brew instalo scala</span></code></pre></td></tr></table></div></figure>
+
+
+<p>わけわからなくなったら全部入れ替えちゃうのも手ですね。</p>
+
+<h3>OutOfMemoryのエラーが出る</h3>
+
+<p>これはeclipseでjavaやってたときもみたことあるエラーでした。
+eclipseのときはeclipse.iniにメモリサイズを明示することで解決しましたがscalaでは~/.sbtconfigに</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SBT_OPTS="-Dfile.encoding=UTF-8 -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。</p>
+
+<h3>まとめ</h3>
+
+<p>僕が詰まったのはこんなところです。
+みなさん素晴らしいscalaライフを!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ASR/TTS API for smartphone]]></title>

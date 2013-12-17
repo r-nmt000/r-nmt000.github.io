@@ -5,23 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Last Starbucks - NomoLog</title>
+  <title>Android with Scala - NomoLog</title>
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="前回までのあらすじ スタバにめっちゃアプライしまくった
-受からない
-友人の助けを経てラストチャンスに挑む
-そして結果が返ってきた 遂にメールが届いた&hellip;同じメールを何通受け取ったことだろうか&hellip; 今から地獄の門を開くぜ&hellip; 1
-2
-3
-4
-5
-6
-7
-8
-9 &hellip;">
-  <meta name="keywords" content="Others">
+  <meta name="description" content="ScalaでAndroid こちらを参考にしました！
+Scala + sbt-android + IntelliJ で快適Androidアプリ開発 以下に僕が詰まったところをまとめました！ 詰まったところ compatibility-v4とcompatibility-v7- &hellip;">
+  <meta name="keywords" content="Scala, Android, Scala">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -29,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://r-nmt000.github.io/blog/2013/12/05/others/">
+  <link rel="canonical" href="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -80,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">Last Starbucks</h1>
+      <h1 class="entry-title">Android With Scala</h1>
     
     
       <p class="meta">
@@ -96,13 +86,13 @@
   
 
 
-<time datetime="2013-12-05T16:09:40+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2013</time>
+<time datetime="2013-12-17T11:20:42+09:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
 			
 
 <span class="categories">
 	Posted in
   
-    <a class='category' href='/blog/categories/others/'>Others</a>
+    <a class='category' href='/blog/categories/scala/'>Scala</a>
   
 </span>
 
@@ -112,7 +102,7 @@
 <span class="tags">
 	Tagged as
   
-    
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/scala/'>Scala</a>
   
 </span>
 
@@ -123,24 +113,46 @@
   </header>
 
 
-<div class="entry-content"><h2>前回までのあらすじ</h2>
+<div class="entry-content"><h1>ScalaでAndroid</h1>
 
-<ul>
-<li>スタバにめっちゃアプライしまくった</li>
-<li>受からない</li>
-<li>友人の助けを経てラストチャンスに挑む</li>
-<li>そして結果が返ってきた</li>
-</ul>
+<p>こちらを参考にしました！
+<a href="http://shogogg.hatenablog.jp/entry/2013/12/06/000039">Scala + sbt-android + IntelliJ で快適Androidアプリ開発</a></p>
 
+<p>以下に僕が詰まったところをまとめました！</p>
 
 <!-- more -->
 
 
-<h3>遂にメールが届いた&hellip;同じメールを何通受け取ったことだろうか&hellip;</h3>
+<h2>詰まったところ</h2>
 
-<p><img src="/images/posts/mailtitle.jpg" alt="mailtitle" /></p>
+<ol>
+<li>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</li>
+<li>ensime関連のエラーが出る</li>
+<li>OutOfMemoryのエラーが出る</li>
+</ol>
 
-<h3>今から地獄の門を開くぜ&hellip;</h3>
+
+<h3>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</h3>
+
+<p>参考にしたサイトの手順に沿ってソースをコンパイルしようとすると</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+</span><span class='line'>[warn]      ::          UNRESOLVED DEPENDENCIES         ::
+</span><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+</span><span class='line'>[warn]      :: android.support#compatibility-v4;19: not found
+</span><span class='line'>[warn]      :: android.support#compatibility-v7-appcompat;19: not found
+</span><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::</span></code></pre></td></tr></table></div></figure>
+
+
+<p>となってコンパイルできません。</p>
+
+<p>自分の環境では&lt;project_dir>/project/build.scalaの</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -155,36 +167,28 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>　     　　　　＿＿＿＿＿ 
-</span><span class='line'>　  　　 　／　＼　 　 ／＼ 
-</span><span class='line'>　　  　／ し （＞） 　（＜）＼　　頼む受かっててくれ！　
-</span><span class='line'>　　　　|　∪　  （__人__）　J |  　＿＿＿＿＿＿＿_ 
-</span><span class='line'>　 　　 ＼　u　　 ｀⌒´　  　／　  | |　　　　　　　| 
-</span><span class='line'>　　　　ノ　　　　 　　  　　＼ 　　| |　　　　　　　|　 
-</span><span class='line'>　    ／´　　　　　　　　　　　   | |　　 　　 　　| 
-</span><span class='line'>　   |　　　　ｌ　　　　　　    　| |　　 　　 　　| 
-</span><span class='line'>               　　　　　 　　　＿＿＿_ 
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>             ＿＿＿＿
-</span><span class='line'>　　　　　／　　 　u　＼ 
-</span><span class='line'>　　 　／　　＼ 　  　 ─＼　　　チラッ 
-</span><span class='line'>　　　／し （＞）  　（●）＼ 
-</span><span class='line'>　　　|　∪　  （__人__） J|  ＿＿＿＿＿＿＿_ 
-</span><span class='line'>　　 ＼　　u　　 ｀⌒´　 　／ | | 　　　　　　　| 
-</span><span class='line'>　　　　ノ　　　　　 　　　＼ | |　 　　　　　　|　 
-</span><span class='line'>　 ／´　　　　　 　　　 　　 | |　　　　 　　　|　 
-</span><span class='line'>　|　　　　ｌ　 　  　　　　　| | 　　　　　　　|                     </span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// ======================================================================                                                                                                                             
+</span><span class='line'>34   // 依存関係
+</span><span class='line'>35   // ======================================================================
+</span><span class='line'>36   val libraryDependencies = Seq(
+</span><span class='line'>37
+</span><span class='line'>38     // Android Support Library v4 (jar)
+</span><span class='line'>39     "android.support" % "compatibility-v4" % "19",
+</span><span class='line'>40
+</span><span class='line'>41     // Android Support Library v7 (jar & apklib)
+</span><span class='line'>42     "android.support" % "compatibility-v7-appcompat" % "19",
+</span><span class='line'>43     apklib("android.support" % "compatibility-v7-appcompat" % "19")
+</span><span class='line'>44
+</span><span class='line'>45   )</span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="/images/posts/mailcontents.jpg" alt="mailcontents" /></p>
+<p>の&#8221;19&#8221;の部分を&#8221;19.0.0&#8221;に変更したらうまくいきました。</p>
+
+<h3>ensime関連のエラーが出る</h3>
+
+<p>上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
+これに関しては調べても解決策が見つからず、恐らく以前に入れたensimeがなにか悪さをしてるんだろーなーと思い
+sbtとscalaをインストールし直したところ直りました。</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -192,30 +196,31 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>　　　　　　／￣￣￣￣￣＼ 
-</span><span class='line'>　　　　　/;::　　　　 　;ヽ 
-</span><span class='line'>　　　　　|;:: ｨ●ｧ　　ｨ●ｧ::| 
-</span><span class='line'>　　　　　|;::　　 　　　:;| 
-</span><span class='line'>　　　　　|;:: 　c{　っ　:;|　　　 
-</span><span class='line'>　　　　  |;::　　＿＿　:;;| 
-</span><span class='line'>　　　 　 ヽ;::　　ー　::;／ 
-</span><span class='line'>　　　　　　＼;;:　　:;;／ 
-</span><span class='line'>　　　　　　 |;::　 ::;| 
-</span><span class='line'>　　　　　　 |;::　 ::;| 
-</span><span class='line'>　　　／￣￣￣　　　　 ￣￣￣＼ 
-</span><span class='line'>　　　|;;::　　　　　　　　::;;| 
-</span><span class='line'>　　　|;;::　　　　　　　　::;;| 
-</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew uninstall sbt
+</span><span class='line'>brew uninstall scala
+</span><span class='line'>rm -rf ~/.sbt
+</span><span class='line'>rm -rf ~/.ivy2
+</span><span class='line'>brew install sbt
+</span><span class='line'>brew instalo scala</span></code></pre></td></tr></table></div></figure>
 
+
+<p>わけわからなくなったら全部入れ替えちゃうのも手ですね。</p>
+
+<h3>OutOfMemoryのエラーが出る</h3>
+
+<p>これはeclipseでjavaやってたときもみたことあるエラーでした。
+eclipseのときはeclipse.iniにメモリサイズを明示することで解決しましたがscalaでは~/.sbtconfigに</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SBT_OPTS="-Dfile.encoding=UTF-8 -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。</p>
+
+<h3>まとめ</h3>
+
+<p>僕が詰まったのはこんなところです。
+みなさん素晴らしいscalaライフを!</p>
 </div>
 
 
@@ -238,13 +243,13 @@
   
 
 
-<time datetime="2013-12-05T16:09:40+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2013</time>
+<time datetime="2013-12-17T11:20:42+09:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
 			
 
 <span class="categories">
 	Posted in
   
-    <a class='category' href='/blog/categories/others/'>Others</a>
+    <a class='category' href='/blog/categories/scala/'>Scala</a>
   
 </span>
 
@@ -254,7 +259,7 @@
 <span class="tags">
 	Tagged as
   
-    
+    <a class='tag' href='/blog/tags/android/'>Android</a>, <a class='tag' href='/blog/tags/scala/'>Scala</a>
   
 </span>
 
@@ -263,7 +268,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2013/12/05/others/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2013/12/05/others/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/" >Tweet</a>
   
   
   
@@ -274,10 +279,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/12/04/eclipse-tips/" title="Previous Post: Eclipse keybind's setting">&laquo; Eclipse keybind's setting</a>
+        <a class="basic-alignment left" href="/blog/2013/12/06/smartphone-speechrecognition/" title="Previous Post: ASR/TTS API for smartphone">&laquo; ASR/TTS API for smartphone</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/12/06/smartphone-speechrecognition/" title="Next Post: ASR/TTS API for smartphone">ASR/TTS API for smartphone &raquo;</a>
       
 		</p>
 		

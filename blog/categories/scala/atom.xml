@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Scala | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/categories/scala/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2013-12-17T11:26:36+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Android with Scala]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/"/>
+    <updated>2013-12-17T11:20:42+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala</id>
+    <content type="html"><![CDATA[<h1>ScalaでAndroid</h1>
+
+<p>こちらを参考にしました！
+<a href="http://shogogg.hatenablog.jp/entry/2013/12/06/000039">Scala + sbt-android + IntelliJ で快適Androidアプリ開発</a></p>
+
+<p>以下に僕が詰まったところをまとめました！</p>
+
+<!-- more -->
+
+
+<h2>詰まったところ</h2>
+
+<ol>
+<li>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</li>
+<li>ensime関連のエラーが出る</li>
+<li>OutOfMemoryのエラーが出る</li>
+</ol>
+
+
+<h3>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</h3>
+
+<p>参考にしたサイトの手順に沿ってソースをコンパイルしようとすると
+<code>
+[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+[warn]      ::          UNRESOLVED DEPENDENCIES         ::
+[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+[warn]      :: android.support#compatibility-v4;19: not found
+[warn]      :: android.support#compatibility-v7-appcompat;19: not found
+[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+</code>
+となってコンパイルできません。</p>
+
+<p>自分の環境では&lt;project_dir>/project/build.scalaの
+<code>
+// ======================================================================                                                                                                                             
+34   // 依存関係
+35   // ======================================================================
+36   val libraryDependencies = Seq(
+37
+38     // Android Support Library v4 (jar)
+39     "android.support" % "compatibility-v4" % "19",
+40
+41     // Android Support Library v7 (jar &amp; apklib)
+42     "android.support" % "compatibility-v7-appcompat" % "19",
+43     apklib("android.support" % "compatibility-v7-appcompat" % "19")
+44
+45   )
+</code>
+の"19"の部分を"19.0.0"に変更したらうまくいきました。</p>
+
+<h3>ensime関連のエラーが出る</h3>
+
+<p>上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
+これに関しては調べても解決策が見つからず、恐らく以前に入れたensimeがなにか悪さをしてるんだろーなーと思い
+sbtとscalaをインストールし直したところ直りました。
+<code>
+brew uninstall sbt
+brew uninstall scala
+rm -rf ~/.sbt
+rm -rf ~/.ivy2
+brew install sbt
+brew instalo scala
+</code>
+わけわからなくなったら全部入れ替えちゃうのも手ですね。</p>
+
+<h3>OutOfMemoryのエラーが出る</h3>
+
+<p>これはeclipseでjavaやってたときもみたことあるエラーでした。
+eclipseのときはeclipse.iniにメモリサイズを明示することで解決しましたがscalaでは~/.sbtconfigに
+<code>
+SBT_OPTS="-Dfile.encoding=UTF-8 -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"  
+</code>
+とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。</p>
+
+<h3>まとめ</h3>
+
+<p>僕が詰まったのはこんなところです。
+みなさん素晴らしいscalaライフを!</p>
+]]></content>
+  </entry>
+  
+</feed>
