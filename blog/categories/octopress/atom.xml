@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2013-12-20T14:58:00+09:00</updated>
+  <updated>2013-12-20T15:04:33+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -132,6 +132,19 @@ Successfully generated site: source &ndash;> public</p>
 <p>その後、なぜか<code>bundle exec rake</code>でも実行できるようになりました。なぜだ&hellip;</p>
 
 <p>しかしいちいちbundle execを頭につけるのは面倒臭い&hellip;多分回避策はあるんだろうけど、見つからなかったのでとりあえず現状はこれでよしとしよう。</p>
+
+<hr />
+
+<h2>disqusによるコメント欄追加</h2>
+
+<p>_config.ymlに
+<code>
+disqus_short_name: &lt;blog_name&gt;
+disqus_show_comment_count: false
+</code>
+と追加するだけ！簡単！</p>
+
+<p>と思いきや、disqus_short_nameにはブログ名を指定しなければいけないのですが僕はdisqusのユーザIDを指定してしまいうまく動きませんでした^^;</p>
 
 <hr />
 
