@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-01-25T16:44:20+09:00</updated>
+  <updated>2014-04-02T02:55:00+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,394 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Scala + akka]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/04/02/scala-akka/"/>
+    <updated>2014-04-02T01:10:16+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/04/02/scala-akka</id>
+    <content type="html"><![CDATA[<h1>Scalaのakkaを試してみた</h1>
+
+<p><img src="http://r-nmt000.github.io/images/akka.jpg" alt="akka" /></p>
+
+<p>そういやScala始めてしばらくになるけどakka触ったことなかったなあこれはやばいなあということでちょっと勉強してみました。</p>
+
+<!-- more -->
+
+
+<h2>akkaって？</h2>
+
+<p>Scala2.10から公式に標準装備された並列分散処理のためのScala, Java用フレームワークだそうです。</p>
+
+<p><a href="http://akka.io/">akka公式サイト</a></p>
+
+<h2>じゃあ使ってみよう</h2>
+
+<p><a href="http://akka.io/docs/">akka公式サイト</a>によると最新バージョンは2.3.1だそうな、ふむふむ&hellip;さっそく<a href="http://doc.akka.io/docs/akka/2.3.1/intro/getting-started.html">Gettinng Started</a>をやってみるか</p>
+
+<p>Akka 「Akkaを勉強する一番いい方法はTypesafe Activatorをダウンロードしてテンプレートを試すことだよ^^ 」</p>
+
+<p>ぼく 「あ、そうなの？じゃあそれ試してみよう」</p>
+
+<p>一時間後&hellip;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>　　　　　　　 ＿＿＿_
+</span><span class='line'>　　　　　　／　　 　 　＼　
+</span><span class='line'>　　　　 ／　　─　 　 ─   ＼  全然わからねえ...
+</span><span class='line'>　　　／ 　　 （○） 　（○） ＼
+</span><span class='line'>　 　 |　 　　 　 （__人__） |　　 ＿＿＿＿＿＿＿＿＿__
+</span><span class='line'>　　　＼　　　 　 ｀ ⌒´　　,／　.| |　　　　　　　 　　|
+</span><span class='line'>　　　ノ　　　　　　　　　　　＼ .| |　　　　　　　 　　|
+</span><span class='line'>.　／´　　　　　　　　 　 　 　  | |　　　　    　  　 |
+</span><span class='line'>　|　　　　ｌ　　　　　　　　　   | |　　　　　　　 　　|
+</span><span class='line'>　ヽ　　　 -一ー_~､⌒)^),-､　　  .|_|_＿＿＿＿_＿＿＿＿_|
+</span><span class='line'>　　ヽ ＿＿＿＿,ノγ⌒ヽ)ニニニニ　   　 ＿|_|＿_|＿</span></code></pre></td></tr></table></div></figure>
+
+
+<p>なんだよソースだけ渡されてもわかんねーよ！！もっと言葉で伝えてくれなきゃわかんねーよオレを誰だと思ってんだ！！ヾ(<em>｀Д´</em>)ﾉ&#8221;</p>
+
+<p>てな感じで悪戦苦闘してググるも、なかなかよい情報が見つからず&hellip;</p>
+
+<p>で、よくよくみたら<a href="http://doc.akka.io/docs/akka/2.0.2/intro/getting-started-first-scala.html">akka 2.0.2</a>ではπを求める計算をサンプルに非常に丁寧に説明されていた&hellip;このチュートリアルでいいじゃん&hellip;なんでTypesafe Activatorとかいうのインストールさせたんだよクソが&hellip;</p>
+
+<p>とか思いつつバージョンが微妙に古いので上手く行かなかったりで適宜書き換えつつ、サンプルを使ってお勉強しました。なるほど、大まかな流れはつかめたぞ！</p>
+
+<p>個人的にポイントだなと感じたのは以下の点です！<a href="http://doc.akka.io/docs/akka/2.0.2/intro/getting-started-first-scala.html">akka 2.0.2</a>を読みながら(むしろそちらメインで)読んでいただくと非常にわかりやすいかと！</p>
+
+<ol>
+<li>Actor</li>
+<li>メッセージパッシング</li>
+<li>ルータ</li>
+</ol>
+
+
+<h2>Actor</h2>
+
+<p>akkaの並列処理では<code>Actor</code>というものを使うそうです。Actorとは、Javaの並列処理というで使うスレッドをイメージしてもらえればオッケーかと思います。ただしActorを特徴づけるのが、Actorがお互いにメッセージのやりとりをして処理を進めていく点です。</p>
+
+<h2>メッセージパッシング</h2>
+
+<p>Actorはメッセージのやりとりをして処理を進めていくと書きましたが、そのための仕組みがメッセージパッシングです。ちょっとサンプルソースを見てみましょう。(今気づいたけどPiApproximationはPiMessage継承してないけどいいのかな&hellip;一応動いちゃいるけども)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">object</span> <span class="nc">Calculate</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">Work</span><span class="o">(</span><span class="n">start</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">Result</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">Double</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">PiApproximation</span><span class="o">(</span><span class="n">pi</span><span class="k">:</span> <span class="kt">Double</span><span class="o">,</span> <span class="n">duration</span><span class="k">:</span> <span class="kt">Duration</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記ではπの計算に使うメッセージを定義しています。パターンマッチで使うので<code>case class</code>で宣言しているようです。
+それぞれのメッセージはそれぞれ次のActor間で使用されます。</p>
+
+<table>
+<thead>
+<tr>
+<th> </th>
+<th> Actor        </th>
+<th align="center"> 役割           </th>
+<th> </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> </td>
+<td> Worker      </td>
+<td align="center"> 実際に計算を行なう</td>
+<td></td>
+</tr>
+<tr>
+<td> </td>
+<td> Master      </td>
+<td align="center"> 処理の起点、Workerの計算結果をまとめる</td>
+<td>  </td>
+</tr>
+<tr>
+<td> </td>
+<td> Listener    </td>
+<td align="center"> 結果をprintする      </td>
+<td>  </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>こちらがActorの定義です。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">class</span> <span class="nc">Worker</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="n">calculatePiFor</span><span class="o">(</span><span class="n">start</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span><span class="k">:</span><span class="kt">Double</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>   <span class="k">var</span> <span class="n">acc</span> <span class="k">=</span> <span class="mf">0.0</span>
+</span><span class='line'>   <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="n">start</span> <span class="n">until</span> <span class="o">(</span><span class="n">start</span><span class="o">+</span><span class="n">nrOfElements</span><span class="o">))</span>
+</span><span class='line'>     <span class="n">acc</span> <span class="o">+=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="o">(</span><span class="mi">1</span><span class="o">-</span> <span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">)</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+</span><span class='line'>   <span class="n">acc</span>
+</span><span class='line'> <span class="o">}</span>
+</span><span class='line'> <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="nc">Work</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>   <span class="n">sender</span> <span class="o">!</span> <span class="nc">Result</span><span class="o">(</span><span class="n">calculatePiFor</span><span class="o">(</span><span class="n">start</span><span class="o">,</span><span class="n">nrOfElements</span><span class="o">))</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>各ActorはActorクラスを継承して定義します。
+注目して欲しいのがreceiveメソッドです。receiveメソッドはそのActorがなんらかのメッセージを受け取った時に呼ばれるメソッドです。パターンマッチを使用でき、
+メッセージの種類に応じて処理を変えることができます。</p>
+
+<p>メッセージの送信は、<code>!</code>を使って</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">master</span> <span class="o">!</span> <span class="n">culculate</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>のように行います。master Actorにculculateメッセージを送るという意味です。</p>
+
+<p>メッセージを受け取ってから処理を送信者へ返す場合は<code>sender</code>が予約されているのでそれを使いましょう。</p>
+
+<p>ちなみにメッセージは無理に定義しなくてもIntとかStringとかも使えるようです。</p>
+
+<h2>ルータ</h2>
+
+<p>Master内でこのルータを宣言しています。ルータはそれぞれのWorkerに等しい量のタスクを振り分けるのに使われているようです。</p>
+
+<p>この辺はもうちょっと勉強がいりますが、要はMasterがWorkerを作り各Workerに処理を振り分けているということだと思います。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">class</span> <span class="nc">Master</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfMessages</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">listener</span><span class="k">:</span> <span class="kt">ActorRef</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">var</span> <span class="n">pi</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="k">_</span>
+</span><span class='line'>  <span class="k">var</span> <span class="n">nrOfResults</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="k">_</span>
+</span><span class='line'>  <span class="k">val</span> <span class="n">start</span><span class="k">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="k">val</span> <span class="n">workerRouter</span> <span class="k">=</span> <span class="n">context</span><span class="o">.</span><span class="n">actorOf</span><span class="o">(</span><span class="nc">Props</span><span class="o">[</span><span class="kt">Worker</span><span class="o">].</span><span class="n">withRouter</span><span class="o">(</span><span class="nc">RoundRobinRouter</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="o">)),</span> <span class="n">name</span> <span class="k">=</span> <span class="s">&quot;workerRouter&quot;</span><span class="o">)</span>
+</span><span class='line'>              
+</span><span class='line'>  <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// handle messages ...</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>                                  
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>全体の流れ</h2>
+
+<p>全体の流れはこんな感じです。</p>
+
+<ol>
+<li>処理に必要なActorを定義する(今回はMaster,Worker,Listener)</li>
+<li>Actor間のやりとりに必要なメッセージを定義する</li>
+<li>Masterが処理の起点、各Workerの処理を割り振る</li>
+<li>Workerの処理が全て終わったら結果をマージ、Listenerへ投げる</li>
+<li>Listenerで結果表示(Listenerってなんでいるんだろう&hellip;?）</li>
+</ol>
+
+
+<p>以下が全ソースコードです。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">akka.actor._</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">akka.routing._</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">object</span> <span class="nc">Calculate</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">Work</span><span class="o">(</span><span class="n">start</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">Result</span><span class="o">(</span><span class="n">value</span><span class="k">:</span><span class="kt">Double</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">PiApproximation</span><span class="o">(</span><span class="n">pi</span><span class="k">:</span><span class="kt">Double</span><span class="o">,</span> <span class="n">duration</span><span class="k">:</span><span class="kt">Long</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Worker</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">calculatePiFor</span><span class="o">(</span><span class="n">start</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span><span class="k">:</span><span class="kt">Double</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">var</span> <span class="n">acc</span> <span class="k">=</span> <span class="mf">0.0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="n">start</span> <span class="n">until</span> <span class="o">(</span><span class="n">start</span><span class="o">+</span><span class="n">nrOfElements</span><span class="o">))</span>
+</span><span class='line'>      <span class="n">acc</span> <span class="o">+=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="o">(</span><span class="mi">1</span><span class="o">-</span> <span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">)</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+</span><span class='line'>    <span class="n">acc</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">case</span> <span class="nc">Work</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>      <span class="n">sender</span> <span class="o">!</span> <span class="nc">Result</span><span class="o">(</span><span class="n">calculatePiFor</span><span class="o">(</span><span class="n">start</span><span class="o">,</span><span class="n">nrOfElements</span><span class="o">))</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Master</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="n">nrOfMessages</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="nc">Listener</span><span class="k">:</span><span class="kt">ActorRef</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">var</span> <span class="n">pi</span><span class="k">:</span><span class="kt">Double</span> <span class="o">=</span> <span class="k">_</span>
+</span><span class='line'>  <span class="k">var</span> <span class="n">nrOfResults</span><span class="k">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="k">_</span>
+</span><span class='line'>  <span class="k">val</span> <span class="n">start</span><span class="k">:</span><span class="kt">Long</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">val</span> <span class="n">workersRouter</span> <span class="k">=</span> <span class="n">context</span><span class="o">.</span><span class="n">actorOf</span><span class="o">(</span><span class="nc">Props</span><span class="o">[</span><span class="kt">Worker</span><span class="o">].</span><span class="n">withRouter</span><span class="o">(</span><span class="nc">RoundRobinRouter</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="o">)),</span> <span class="n">name</span> <span class="k">=</span> <span class="s">&quot;workersRouter&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">case</span> <span class="nc">Calculate</span> <span class="k">=&gt;</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="mi">0</span> <span class="n">until</span> <span class="n">nrOfMessages</span><span class="o">)</span> <span class="n">workersRouter</span> <span class="o">!</span> <span class="nc">Work</span><span class="o">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">nrOfElements</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">case</span> <span class="nc">Result</span><span class="o">(</span><span class="n">value</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>      <span class="n">pi</span> <span class="o">+=</span> <span class="n">value</span>
+</span><span class='line'>      <span class="n">nrOfResults</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">nrOfResults</span> <span class="o">==</span> <span class="n">nrOfMessages</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="nc">Listener</span> <span class="o">!</span> <span class="nc">PiApproximation</span><span class="o">(</span><span class="n">pi</span><span class="o">,</span> <span class="n">duration</span> <span class="k">=</span> <span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span><span class="o">-</span> <span class="n">start</span><span class="o">))</span>
+</span><span class='line'>        <span class="n">context</span><span class="o">.</span><span class="n">stop</span><span class="o">(</span><span class="n">self</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Listener</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">case</span> <span class="nc">PiApproximation</span><span class="o">(</span><span class="n">pi</span><span class="o">,</span> <span class="n">duration</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;Pi approximation: %s\nCalculation time: %s&quot;</span><span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="n">pi</span><span class="o">,</span><span class="n">duration</span><span class="o">))</span>
+</span><span class='line'>      <span class="n">context</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">shutdown</span><span class="o">()</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">object</span> <span class="nc">AkkatestApp</span><span class="o">{</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span><span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span><span class="kt">Unit</span>  <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">val</span> <span class="n">input</span> <span class="k">=</span> <span class="n">readLine</span><span class="o">(</span><span class="s">&quot;1:sequence 2:parallel\n&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">input</span> <span class="o">==</span> <span class="s">&quot;1&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="n">calculate</span><span class="o">(</span><span class="n">nrOfWorkers</span> <span class="k">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">nrOfElements</span> <span class="k">=</span> <span class="mi">10000</span><span class="o">,</span> <span class="n">nrOfMessages</span> <span class="k">=</span> <span class="mi">10000</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">input</span> <span class="o">==</span> <span class="s">&quot;2&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="n">calculate</span><span class="o">(</span><span class="n">nrOfWorkers</span> <span class="k">=</span> <span class="mi">4</span><span class="o">,</span> <span class="n">nrOfElements</span> <span class="k">=</span> <span class="mi">10000</span><span class="o">,</span> <span class="n">nrOfMessages</span> <span class="k">=</span> <span class="mi">10000</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;wrong num&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">calculate</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfMessages</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">val</span> <span class="n">system</span> <span class="k">=</span> <span class="nc">ActorSystem</span><span class="o">(</span><span class="s">&quot;PiSystem&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">val</span> <span class="n">listener</span> <span class="k">=</span> <span class="n">system</span><span class="o">.</span><span class="n">actorOf</span><span class="o">(</span><span class="nc">Props</span><span class="o">[</span><span class="kt">Listener</span><span class="o">],</span> <span class="n">name</span> <span class="k">=</span> <span class="s">&quot;listener&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">val</span> <span class="n">master</span> <span class="k">=</span> <span class="n">system</span><span class="o">.</span><span class="n">actorOf</span><span class="o">(</span><span class="nc">Props</span><span class="o">(</span><span class="k">new</span> <span class="nc">Master</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="o">,</span> <span class="n">nrOfMessages</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="o">,</span> <span class="n">listener</span><span class="o">)),</span> <span class="n">name</span> <span class="k">=</span> <span class="s">&quot;master&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">master</span> <span class="o">!</span> <span class="nc">Calculate</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>まとめ</h2>
+
+<p>こちらが今回参考にさせていただいたサイトです。</p>
+
+<p><a href="http://labs.enrapt.jp/2013/03/scalaakka.html">SclaのAkka入門</a></p>
+
+<p><a href="http://www.atmarkit.co.jp/ait/articles/1209/06/news134.html">Scalaの並行処理とアクター、並列コレクション</a></p>
+
+<p><a href="http://www.atmarkit.co.jp/ait/articles/1209/06/news134.html">Scala + akka で簡単なチャットサーバを書いてみたので開設してみるよ</a></p>
+
+<p><a href="http://tuvistavie.com/posts/6-getting-started-with-scala-akka-actors?locale=ja">Scalaのakka actorsを使いはじめる</a></p>
+
+<p>まだまだakkaの入り口に立った程度ですがこの程度のことでも情報がなくてかなり時間がかかってしまった&hellip;</p>
+
+<p>もっと頑張って勉強します！！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[未来を感じるインタフェースを作るスタートアップ7つ]]></title>
