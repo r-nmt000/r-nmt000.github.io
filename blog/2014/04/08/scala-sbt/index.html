@@ -5,13 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Eclipse keybind's setting - NomoLog</title>
+  <title>SBT Libraries and Plugins - NomoLog</title>
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="Eclipseでキーバインドの設定をインポート、エクスポートする Eclipseの嫌いな機能のひとつ、キーバインドがワークスペースと結びつく機能
-こいつのせいでワークスペース切り替えるたびにいちいちキーバインドの設定をインポートしなくちゃいけない。 How to File-> &hellip;">
-  <meta name="keywords" content="Eclipse, Tips">
+  <meta name="description" content="ある日のぼく ぼくはSBTのプラグインを入れようとしていました。 ぼく「sbteclipse-plugin入れたいなあ^^ なになに、project/plugins.sbtに 1
+2
+3
+resolvers += Classpaths.typesafeResolver addSbtPlugin(" &hellip;">
+  <meta name="keywords" content="Scala, SBT">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -19,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips/">
+  <link rel="canonical" href="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -82,7 +84,7 @@
   
   <header>
     
-      <h1 class="entry-title">Eclipse Keybind's Setting</h1>
+      <h1 class="entry-title">SBT Libraries and Plugins</h1>
     
     
       <p class="meta">
@@ -98,13 +100,13 @@
   
 
 
-<time datetime="2013-12-04T23:56:20+09:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time>
+<time datetime="2014-04-08T00:10:53+09:00" pubdate data-updated="true">Apr 8<span>th</span>, 2014</time>
 			
 
 <span class="categories">
 	Posted in
   
-    <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>
+    <a class='category' href='/blog/categories/scala/'>Scala</a>
   
 </span>
 
@@ -114,7 +116,7 @@
 <span class="tags">
 	Tagged as
   
-    <a class='tag' href='/blog/tags/tips/'>Tips</a>
+    <a class='tag' href='/blog/tags/sbt/'>SBT</a>
   
 </span>
 
@@ -125,26 +127,104 @@
   </header>
 
 
-<div class="entry-content"><h2>Eclipseでキーバインドの設定をインポート、エクスポートする</h2>
+<div class="entry-content"><h1>ある日のぼく</h1>
 
-<p>Eclipseの嫌いな機能のひとつ、キーバインドがワークスペースと結びつく機能
-こいつのせいでワークスペース切り替えるたびにいちいちキーバインドの設定をインポートしなくちゃいけない。</p>
+<p><strong>ぼくはSBTのプラグインを入れようとしていました。</strong></p>
+
+<p>ぼく「sbteclipse-plugin入れたいなあ^^ なになに、<code>project/plugins.sbt</code>に</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>resolvers += Classpaths.typesafeResolver
+</span><span class='line'>
+</span><span class='line'>addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>って書けばいいのかなるほど！」</p>
+
+<p>ぼく「でも<code>"com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</code>って<code>project/Build.scala</code>の<code>LibraryDependencies</code>と同じ書式だけどこっちに書いちゃダメなのかなあ。書いてみよう！」←動かず</p>
+
+<p>ぼく「てかそもそも<code>project/plugins.sbt</code>とか<code>project/Build.scala</code>とか<code>Build.sbt</code>とかなんなんだっけ？どういう関係だっけ？調べてみよう！」</p>
 
 <!-- more -->
 
 
-<h1>How to</h1>
+<h2><a href="http://scalajp.github.io/sbt-getting-started-guide-ja/">ここ</a>に全て書いてあるけど自分なりにまとめたよ！</h2>
 
-<ol>
-<li>File->ExportからPreferenceを選択し、Nextボタン押下</li>
-<li>Keys Preferencesを選択、To preference fileから出先を指定</li>
-<li>Finish</li>
-</ol>
+<p>SBTのビルド定義やらライブラリの依存性やら何度勉強しても忘れるのでここで一発まとめちゃおうと思います！！</p>
+
+<p>今回は以下のディレクトリ構造を想定します。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hello/
+</span><span class='line'> build.sbt
+</span><span class='line'>
+</span><span class='line'> project/
+</span><span class='line'>  Build.scala
+</span><span class='line'>  plugins.sbt</span></code></pre></td></tr></table></div></figure>
 
 
-<p>できたepfファイルを他のワークスペースでインポートすれば使えます。
-この設定ファイルはよく使うと思うのでクラウドにでもあげとくといいかも。
-僕は設定ファイルの類はgithubに置いといて違う環境に移った時にすぐ使えるようにしています。</p>
+<h3>ライブラリ？プラグイン？</h3>
+
+<p>そもそも今回の問題は自分の中でライブラリとプラグインの定義が曖昧だったことが始まりでした。SBTで言うところのプラグインの追加とは、</p>
+
+<blockquote><p><strong>ビルド定義にライブラリ依存性を追加することを意味する。</strong></p></blockquote>
+
+<p>らしいです。</p>
+
+<p>SBTではプロジェクト(上記のhelloとします)のビルド定義は<code>build.sbt</code>と<code>project/Build.scala</code>に記述します。各ファイルにプロジェクト名やScalaのバージョンやビルドスルために必要なライブラリを書いてあげることをビルド定義と呼ぶわけです。</p>
+
+<p>そしてプラグインとはこのビルド定義の拡張に他なりません。他ならないそうです。</p>
+
+<p>ですので、<strong>このビルド定義に対してまたビルド定義</strong>してあげることがプラグインの追加になるそうです。</p>
+
+<h2>SBTの再帰構造</h2>
+
+<p>SBTではビルド定義自体をまたプロジェクトとして扱うことができます。つまり、</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hello/
+</span><span class='line'> build.sbt
+</span><span class='line'>
+</span><span class='line'> project/
+</span><span class='line'>  Build.scala
+</span><span class='line'>  plugins.sbt
+</span><span class='line'>  project/
+</span><span class='line'>   Build.scala
+</span><span class='line'>   plugins.sbt   
+</span><span class='line'>   project/
+</span><span class='line'>    Build.scala
+</span><span class='line'>    plugins.sbt   
+</span><span class='line'>      ...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>な感じでビルド定義のビルド定義のビルド定義の&hellip;みたいなことができちゃうわけです。</p>
+
+<p>ようは<code>build.sbt</code>と<code>plugins.sbt</code>は役割的には同じなわけです。ただ、対象とするプロジェクトが異なりますということです。</p>
+
+<h2>まとめ</h2>
+
+<p>書いてたら眠くなったのでこの辺にしときます！</p>
+
+<p>SBTプロジェクト内のファイル関係はこれである程度頭に入ったはず！！</p>
 </div>
 
 
@@ -167,13 +247,13 @@
   
 
 
-<time datetime="2013-12-04T23:56:20+09:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time>
+<time datetime="2014-04-08T00:10:53+09:00" pubdate data-updated="true">Apr 8<span>th</span>, 2014</time>
 			
 
 <span class="categories">
 	Posted in
   
-    <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>
+    <a class='category' href='/blog/categories/scala/'>Scala</a>
   
 </span>
 
@@ -183,7 +263,7 @@
 <span class="tags">
 	Tagged as
   
-    <a class='tag' href='/blog/tags/tips/'>Tips</a>
+    <a class='tag' href='/blog/tags/sbt/'>SBT</a>
   
 </span>
 
@@ -192,7 +272,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/" >Tweet</a>
   
   
   
@@ -203,10 +283,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/12/04/octopress-tagcloud/" title="Previous Post: TagCloud">&laquo; TagCloud</a>
+        <a class="basic-alignment left" href="/blog/2014/04/02/scala-akka/" title="Previous Post: Scala + akka">&laquo; Scala + akka</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/12/05/others/" title="Next Post: Last Starbucks">Last Starbucks &raquo;</a>
       
 		</p>
 		
@@ -322,8 +400,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips/';
-        var disqus_url = 'http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips/';
+        var disqus_identifier = 'http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/';
+        var disqus_url = 'http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/';
         var disqus_script = 'embed.js';
       
     (function () {

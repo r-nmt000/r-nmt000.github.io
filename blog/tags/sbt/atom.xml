@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: SBT | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/tags/sbt/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-04-08T00:59:36+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SBT Libraries and Plugins]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/"/>
+    <updated>2014-04-08T00:10:53+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/04/08/scala-sbt</id>
+    <content type="html"><![CDATA[<h1>ある日のぼく</h1>
+
+<p><strong>ぼくはSBTのプラグインを入れようとしていました。</strong></p>
+
+<p>ぼく「sbteclipse-plugin入れたいなあ^^ なになに、<code>project/plugins.sbt</code>に</p>
+
+<p>```
+resolvers += Classpaths.typesafeResolver</p>
+
+<p>addSbtPlugin(&ldquo;com.typesafe.sbteclipse&rdquo; % &ldquo;sbteclipse-plugin&rdquo; % &ldquo;2.4.0&rdquo;
+```</p>
+
+<p>って書けばいいのかなるほど！」</p>
+
+<p>ぼく「でも<code>"com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</code>って<code>project/Build.scala</code>の<code>LibraryDependencies</code>と同じ書式だけどこっちに書いちゃダメなのかなあ。書いてみよう！」←動かず</p>
+
+<p>ぼく「てかそもそも<code>project/plugins.sbt</code>とか<code>project/Build.scala</code>とか<code>Build.sbt</code>とかなんなんだっけ？どういう関係だっけ？調べてみよう！」</p>
+
+<!-- more -->
+
+
+<h2><a href="http://scalajp.github.io/sbt-getting-started-guide-ja/">ここ</a>に全て書いてあるけど自分なりにまとめたよ！</h2>
+
+<p>SBTのビルド定義やらライブラリの依存性やら何度勉強しても忘れるのでここで一発まとめちゃおうと思います！！</p>
+
+<p>今回は以下のディレクトリ構造を想定します。</p>
+
+<p>```
+hello/
+ build.sbt</p>
+
+<p> project/
+  Build.scala</p>
+
+<pre><code>plugins.sbt
+</code></pre>
+
+<p>```</p>
+
+<h3>ライブラリ？プラグイン？</h3>
+
+<p>そもそも今回の問題は自分の中でライブラリとプラグインの定義が曖昧だったことが始まりでした。SBTで言うところのプラグインの追加とは、</p>
+
+<blockquote><p><strong>ビルド定義にライブラリ依存性を追加することを意味する。</strong></p></blockquote>
+
+<p>らしいです。</p>
+
+<p>SBTではプロジェクト(上記のhelloとします)のビルド定義は<code>build.sbt</code>と<code>project/Build.scala</code>に記述します。各ファイルにプロジェクト名やScalaのバージョンやビルドスルために必要なライブラリを書いてあげることをビルド定義と呼ぶわけです。</p>
+
+<p>そしてプラグインとはこのビルド定義の拡張に他なりません。他ならないそうです。</p>
+
+<p>ですので、<strong>このビルド定義に対してまたビルド定義</strong>してあげることがプラグインの追加になるそうです。</p>
+
+<h2>SBTの再帰構造</h2>
+
+<p>SBTではビルド定義自体をまたプロジェクトとして扱うことができます。つまり、</p>
+
+<p>```
+hello/
+ build.sbt</p>
+
+<p> project/
+  Build.scala</p>
+
+<pre><code>plugins.sbt
+</code></pre>
+
+<p>  project/
+   Build.scala</p>
+
+<pre><code> plugins.sbt   
+</code></pre>
+
+<p>   project/</p>
+
+<pre><code>Build.scala
+  plugins.sbt   
+    ...
+</code></pre>
+
+<p>```</p>
+
+<p>な感じでビルド定義のビルド定義のビルド定義の&hellip;みたいなことができちゃうわけです。</p>
+
+<p>ようは<code>build.sbt</code>と<code>plugins.sbt</code>は役割的には同じなわけです。ただ、対象とするプロジェクトが異なりますということです。</p>
+
+<h2>まとめ</h2>
+
+<p>書いてたら眠くなったのでこの辺にしときます！</p>
+
+<p>SBTプロジェクト内のファイル関係はこれである程度頭に入ったはず！！</p>
+]]></content>
+  </entry>
+  
+</feed>
