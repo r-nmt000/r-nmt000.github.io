@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Octopress | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/tags/octopress/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-07T01:22:16+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopressで謎のLiquid Exception]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/07/octopress/"/>
+    <updated>2014-06-07T01:13:24+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/07/octopress</id>
+    <content type="html"><![CDATA[<p>久しぶりにブログ書いて<code>rake generate</code>したら
+<code>
+Liquid Exception: undefined method `sort!' for nil:NilClass in ...
+</code></p>
+
+<p>なるエラーで怒られた。</p>
+
+<!-- more -->
+
+
+<p>ググると<a href="http://daisukekobayashi.com/blog/escape-liquid-template-tags-in-octopress">Liquidタグをエスケープする</a>という記事があったけどそんなタグ使った覚えがない。</p>
+
+<p>なんでだろうとよくよく調べると前回書きかけの記事のマークダウンファイルを、通常は<code>source/_post</code>以下に置くところを<code>source/tmp</code>フォルダを作ってそこに避けて置いたのを見つけた。で、これを外に除けたらエラーが消えた。</p>
+
+<p>なんかよくわからんけど、よかったよかった(<em>^^</em>)</p>
+]]></content>
+  </entry>
+  
+</feed>
