@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-04-10T15:29:46+09:00</updated>
+  <updated>2014-06-07T01:01:38+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My favorite mottoes]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/07/others/"/>
+    <updated>2014-06-07T00:39:14+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/07/others</id>
+    <content type="html"><![CDATA[<h1>座右の銘</h1>
+
+<p>エンジニアとして、いつも心に留めておこうと思う言葉。</p>
+
+<!-- more -->
+
+
+<blockquote><p>It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.</p>
+
+<p>生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。</p>
+
+<p>(Charles Robert Darwin)</p></blockquote>
+
+<p>そして、</p>
+
+<blockquote><p>Shut the fxxk up and write some code.</p>
+
+<p>ぐだぐだ言ってないでコードを書けよ、ハゲ。</p>
+
+<p>(ゆーすけべー)</p></blockquote>
+
+<p>どっちも大切なことだね。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[TerminalからiTerm2に乗り換えたらVimの色表示が狂った話]]></title>
@@ -541,6 +571,213 @@ vimでは反映されず代わりに<code>Black</code>で指定されている�
 <p>まだまだakkaの入り口に立った程度ですがこの程度のことでも情報がなくてかなり時間がかかってしまった&hellip;</p>
 
 <p>もっと頑張って勉強します！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The most efficient way of learning English]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/03/24/english/"/>
+    <updated>2014-03-24T10:53:53+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/03/24/english</id>
+    <content type="html"><![CDATA[<h1>ぼくのかんがえるさいきょうのえいごがくしゅうほう(｀･ω･´)ゞ</h1>
+
+<p>最近気になる２つの記事を見つけました。</p>
+
+<p><a href="http://hatebu.mekepo.com/item/328777">子どもの中学入学祝いに敢えて高校生用電子辞書を買ったら教師から電子辞書禁止の通達ががが</a></p>
+
+<p><a href="http://lrandcom.com/facebook_former_executive_learning_programming_guarantee_life_time_work">Facebook元役員「プログラミングを学ぶのなら、生涯仕事に困らないことを私が保証しよう。」</a></p>
+
+<!-- more -->
+
+
+<p>前者はタイトル通り電子辞書を子供にプレゼントしたら英語教師から”電子辞書使うな！紙の辞書を推奨する！”って言われましたよーって話。</p>
+
+<p>後者は色々な著名人がプログラミングの有用性を説いていますって話です。</p>
+
+<p>一見関係ない２つの記事ですが、僕はこの２つの記事から感じたことがありました。</p>
+
+<p>まず１つ目の記事ですが。自分が中学、高校生の時にも紙の辞書の有用性を説く大人はいました。彼ら曰く紙の辞書は</p>
+
+<ol>
+<li>書き込める。メモを残しておけるので復習に役立つ</li>
+<li>目的の単語の前後にある単語も目に入るので、より多くの単語を学べる</li>
+<li>紙をめくり苦労してその単語にたどり着くことでその単語が記憶により定着する</li>
+</ol>
+
+
+<p>といったメリットがあるそうです。多分他にもメリットはあるんでしょう。上記の英語教師の主張も似たようなとこじゃないでしょうか。</p>
+
+<p>声を大にして言いたい。もうね、アホかと。</p>
+
+<p>1番目のメリットに関して言えばまあ確かに電子辞書じゃメモ残すのは難しいかもしれないけど（メモ機能がついてる電子辞書もあるらしいですが）2番目に関して言えば電子辞書でもできるし、3番目に関しては何を根拠にそんなことを主張しているんだという感じですよね。</p>
+
+<p>基本的に物事を覚えるってことは復習、繰り返しがものを言うんです。記憶したことを如何に多く復習するか、如何に適切なタイミングで復習するかが記憶への定着の鍵となります。</p>
+
+<p>参考までに。
+<a href="http://ja.wikipedia.org/wiki/%E5%BF%98%E5%8D%B4%E6%9B%B2%E7%B7%9A">エビングハウスの忘却曲線</a></p>
+
+<p>だから、10秒かけて1単語調べるなら3秒で3回その単語を調べた方がいいに決まってるんです！</p>
+
+<p>で、まあ僕はデジタル人間なのでアナログ派に思いっきり喧嘩売りますけど紙で覚える！とか言ってる奴はオワコンですよ！今すぐそれまでの人生を悔い改めデジタルへの以降を検討したほうがいいです。（いや僕も紙はもちろん使いますけどね、それだけじゃ絶対ダメだと思うんです）</p>
+
+<p>かといってじゃあ電子辞書でいいのかと言えばそうでもなくて、まだ足りない。紙よりはいいけどもっといい方法はある。今は色んなwebサービスがありますし、スマートフォンアプリもありますし、<strong>プログラミング</strong>もできますし。</p>
+
+<p>この辺から2つ目の記事につながっていくわけですが。</p>
+
+<p>2つ目の記事では様々な人が様々な視点から様々なプログラミングができることの有用性を説いています。</p>
+
+<ol>
+<li>将来あなたはオタクの下で働くんだからオタクには優しくしておくべき</li>
+<li>プログラミングを学ぶことは、あなたの未来でなくアメリカの未来がかかっている</li>
+<li>プログラマは不足しており、優秀なプログラマは好待遇で受け入れられる</li>
+<li>プログラマでなかったとしても、システムがどう動いているかを知らない人間は雇われないだろう</li>
+<li>プログラミングを学ぶことは法律を学ぶようなものだ。情報工学は一般教養だ</li>
+</ol>
+
+
+<p>こんなとこです。プログラミングマンセーって話です。</p>
+
+<h2>早く最強の英語学習法教えろよ</h2>
+
+<p>そうです。ここまでタイトルと全然関係ないことを書いてきました。いきなり話が飛びますがここで僕が実践していた英語学習法をご紹介したいと思います。</p>
+
+<p>僕は英単語と日常会話で使うショートフレーズの学習をITの力で最適化しました。使うのは次のサービスです。</p>
+
+<h3>Real英会話</h3>
+
+<iframe src="http://spsns.net/tools/app.php?url=https://itunes.apple.com/jp/app/real-ying-hui-hua/id373563219?mt=8" width="450" height="250" frameborder="0"></iframe>
+
+
+<p>まずは英フレーズから。ご存知の方も多いかもしれません、<strong>Real英会話</strong>です！！
+このアプリ、何が素晴らしいって実際にネイティブが日常会話でよく使うフレーズを、どういうシチュエーションで使うかまでを学習できるのです！！
+例えば&#8221;That&rsquo;s all I could do. &ldquo;というフレーズだったら、</p>
+
+<p>&ldquo;Hey, this is only half done. Where&rsquo;s the rest?&rdquo;</p>
+
+<p>&ldquo;Sorry, I had no time. That&rsquo;s all I could do&rdquo;</p>
+
+<p>このように、短い会話の中でどのようにそのフレーズを使うかを学習できます！
+しかも、さらに凄いのが毎日新しいフレーズが更新されるので終わりなく学習を続けることができるのです！2014年３月現在で恐らく4000近いフレーズを学習できます！もう最高です！
+ただひとつ残念なのが、アプリが非常に<strong>復習しづらい</strong>作りになっている点です。コンテンツが素晴らしいだけに非常に残念です&hellip;</p>
+
+<h3>Weblio</h3>
+
+<p><img src="http://r-nmt000.github.io/images/weblio.jpg" alt="weblio" /></p>
+
+<p>Weblioは最強のオンライン辞書です。何が素晴らしいって、&#8221;単語の意味を調べる&#8221;ってことへの負担を極限まで減らしたオンライン辞書になっている点です。</p>
+
+<ul>
+<li><a href="http://english-hacker.jp/weblio">英語学習者必見！超便利な無料オンライン辞書『Weblio』をフル活用する5つの機能</a></li>
+<li><a href="http://yuma-z.com/blog/2013/03/weblio/">英語を学ぶなら電子辞書なんて捨ててWeblioの「マイ単語帳」を使おう！</a></li>
+</ul>
+
+
+<p>ChromeのExtensionやAdobe Readerのプラグインを使えばわからない単語を選択するだけでポップアップで単語の意味を調べることができます！
+更にWeblioには単語帳作成機能があり、調べた単語を単語帳に登録することができます！そうすることで自分のわからない単語だけを選んだオリジナルの単語帳を作ることができます！
+ただやはり、<strong>その単語帳の復習が若干残念&hellip;</strong> 出題順がランダムか登録順でしか選べないのです&hellip;</p>
+
+<h3>Anki</h3>
+
+<iframe src="http://spsns.net/tools/app.php?url=https://itunes.apple.com/jp/app/ankimobile-flashcards/id373493387?mt=8" width="450" height="250" frameborder="0"></iframe>
+
+
+<p>上記２サービスが抱える問題&hellip; それは復習がしづらいという点です。その問題を解決するため、このAnkiというサービスを使います。
+AnkiはiPhone,Android,PCに対応したフラッシュカード作成サービスです。ざっくりメリットを書くと</p>
+
+<ul>
+<li>最強のフラッシュカード作成アプリ</li>
+<li>エビングハウスの忘却曲線に添って適切なタイミングで問題を出題してくれる</li>
+<li>CSV形式でのインポート・エクスポートが可能</li>
+<li>画像・音声にも対応</li>
+<li>スマホ、PCで学習でき、クラウドでフラッシュカードや学習進捗を同期できる</li>
+</ul>
+
+
+<p>と言ったところです。詳細については<a href="http://ankisrs.net/">オフィシャルサイト</a>や<a href="http://matome.naver.jp/odai/2134774118539693701">まとめサイト</a>をチェックしてください。</p>
+
+<h2>どう組み合わせるの？</h2>
+
+<p>ここからはこれらのサービスをどう組み合わせるのかをご説明します。各サービスの使い方は既知のものとします。まずは簡単なWeblio+Ankiから。</p>
+
+<h3>STEP1 Weblioの単語帳ページへ行く</h3>
+
+<p>まずはWeblioのアカウントを作り、以下の画像のようにある程度単語を自分の単語帳ページに登録しましょう。</p>
+
+<p><img src="http://r-nmt000.github.io/images/weblio_words.jpg" alt="weblio" /></p>
+
+<p>この単語帳は宝の山です。なぜなら自分のわからない単語だけをまとめてある上に、発音、発音記号、訳、例文といろんな情報が１つにまとまっているからです。
+これがAnkiで勉強できたらどんなに幸せでしょうか。<strong>やりましょう!!!</strong></p>
+
+<h3>STEP2 Bookmarkletを発動する</h3>
+
+<p>は？ブックマークレットってなんだよ？って方は<a href="http://www.lifehacker.jp/2013/04/130402bookmarklet_matome.html">こちら</a></p>
+
+<p>上記の単語帳ページで、以下のブックマークレットを発動します。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>  <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;table.tngMainT tr&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>    <span class="kd">var</span> <span class="nx">line</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>    <span class="kd">var</span> <span class="nx">pronanciation</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>    <span class="kd">var</span> <span class="nx">translation</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>    <span class="kd">var</span> <span class="nx">Esentence</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>    <span class="kd">var</span> <span class="nx">Jsentence</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;th,td&#39;</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>      <span class="kd">var</span> <span class="nx">cn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">);</span>      <span class="k">return</span><span class="o">!</span><span class="nx">cn</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/tngMain[TH](VC|SH|SS|TS|CL|MK|CK|DT|LV|TG)/i</span><span class="p">);</span>    <span class="p">}).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>      <span class="kd">var</span> <span class="nx">cn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">);</span>      <span class="k">if</span><span class="p">(</span><span class="nx">cn</span> <span class="o">==</span> <span class="s2">&quot;tngMainTSR&quot;</span><span class="p">){</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.tngMainTSRH&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>        <span class="nx">line</span> <span class="o">+=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;</span><span class="nx">line</span> <span class="o">+=</span> <span class="nx">pronanciation</span><span class="o">+</span><span class="nx">translation</span><span class="p">;});</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.tngMainTSRFL&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>  <span class="nx">line</span> <span class="o">+=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;});}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">cn</span> <span class="o">==</span> <span class="s1">&#39;tngMainTHT&#39;</span><span class="p">){</span>          <span class="nx">pronanciation</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">cn</span> <span class="o">==</span> <span class="s1">&#39;tngMainTIM&#39;</span><span class="p">){</span>          <span class="nx">translation</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;}</span>     <span class="p">});</span>     <span class="nx">text</span> <span class="o">+=</span> <span class="nx">line</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/,$/</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;\r\n&#39;</span><span class="p">;</span>  <span class="p">});</span>  <span class="k">if</span><span class="p">(</span><span class="nx">text</span><span class="p">){</span>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#csv&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;&lt;textarea id=&quot;csv&quot;style=&quot;width:100%;height:10em;&quot;&gt;&lt;/textarea&gt;&#39;</span><span class="p">);</span>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#csv&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>  <span class="p">}})()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>すると！！！</p>
+
+<p>ページ上部にCSV形式の単語列が現れます！！(単語列は僕好みの配列なので、変更したければ上記javascriptを自由に書き換えて下さい^^)</p>
+
+<p><img src="http://r-nmt000.github.io/images/weblio_words2.jpg" alt="weblio" /></p>
+
+<h3>STEP3 CSVファイルをインポートする</h3>
+
+<p>あとは上記の単語列をテキストファイルにコピペしてCSVファイルを作り、Ankiのインポート機能を使ってインポートすれば完成です！！簡単！！</p>
+
+<hr />
+
+<p>次はReal英会話＋Ankiです。</p>
+
+<p>こいつは少し複雑かつ、注意してほしいことがあります。</p>
+
+<p>それは、ツールを使ってアプリ内の音声データと文言データを抜き取るため、Appleの定める規約に違反する可能性があります。一応バックアップという大義名分はあるようですが、グレーなのは間違いないのでくれぐれも<strong>自己責任</strong>でお願いしますm(<em> </em>)m</p>
+
+<h3>STEP1 iFunBoxで音声データとplistファイルをPCにコピーする</h3>
+
+<p>iFunBoxの使い方は<a href="http://note.chiebukuro.yahoo.co.jp/detail/n79814">このへん</a>を参考にしてください。</p>
+
+<p>何はともあれ、iFunBoxでReal英会話内の全音声データ(cafファイル)とUserPhraseDictionary.plistをコピーしてきましょう。</p>
+
+<p>EnglishGardenIkashitaEigo フォルダにはデフォルトで入っているReal英会話のフレーズ音声データが入っています。また、Documentsフォルダには追加で更新されるフレーズの音声データが入っています。</p>
+
+<p><img src="http://r-nmt000.github.io/images/ifunbox1.jpg" alt="ifunbox" /></p>
+
+<p>UserPhraseDictionary.plistはDocumentsフォルダ以下に入っています</p>
+
+<p><img src="http://r-nmt000.github.io/images/ifunbox2.jpg" alt="ifunbox" /></p>
+
+<h3>STEP2 Java実行環境を用意し、jarファイルを実行する</h3>
+
+<p>Javaってなんだよ！って方は<a href="http://sunjava.seesaa.net/category/3496255-1.html">こちら</a></p>
+
+<p>このあたりを参考にしつつ、シェルから</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">java</span> <span class="o">-</span><span class="nx">jar</span> <span class="nx">real_anki</span><span class="p">.</span><span class="nx">jar</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>が実行できる環境を整えて下さい。</p>
+
+<p>jarファイルは<a href="http://r-nmt000.github.io/download/real_anki.jar">こちら</a>に置いてあります。</p>
+
+<p>このreal_anki.jarと同じ階層に先ほどのUserPhraseDictionary.plistを置き、上記のコマンドを実行すると
+plistをパースしてcsv形式でファイルを作ってくれます。</p>
+
+<p>ソースは<a href="https://github.com/r-nmt000/real_anki">こちら</a>に置いてあります。</p>
+
+<h3>STEP3 音声ファイル(cafファイル)をmp3形式に変更する</h3>
+
+<p>Real英会話内で使われている音声ファイルは全てcaf形式です。残念ながらこの形式のファイルをAnkiで再生することはできません。これをまるごとmp3形式に変換してしまいましょう！</p>
+
+<p><strong>(注意)</strong></p>
+
+<p>これから紹介する方法はMacでのみ有効な方法です。</p>
 ]]></content>
   </entry>
   
