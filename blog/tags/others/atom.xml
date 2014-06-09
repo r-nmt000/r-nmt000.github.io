@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Others | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/tags/others/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,28 +18,31 @@
     <link href="http://r-nmt000.github.io/blog/2014/06/07/others/"/>
     <updated>2014-06-07T00:39:14+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2014/06/07/others</id>
-    <content type="html"><![CDATA[<h1>座右の銘</h1>
+    <content type="html"><![CDATA[# 座右の銘
 
-<p>エンジニアとして、いつも心に留めておこうと思う言葉。</p>
+エンジニアとして、いつも心に留めておこうと思う言葉。
 
 <!-- more -->
 
+> It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.
 
-<blockquote><p>It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.</p>
+> 生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。
 
-<p>生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。</p>
+> (Charles Robert Darwin)
 
-<p>(Charles Robert Darwin)</p></blockquote>
+そして、
 
-<p>そして、</p>
 
-<blockquote><p>Shut the fxxk up and write some code.</p>
 
-<p>ぐだぐだ言ってないでコードを書けよ、ハゲ。</p>
 
-<p>(ゆーすけべー)</p></blockquote>
+> Shut the fxxk up and write some code.
 
-<p>どっちも大切なことだね。</p>
+> ぐだぐだ言ってないでコードを書けよ、ハゲ。
+
+> (ゆーすけべー)
+
+どっちも大切なことだね。
+
 ]]></content>
   </entry>
   

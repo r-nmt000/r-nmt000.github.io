@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,21 +18,24 @@
     <link href="http://r-nmt000.github.io/blog/2014/06/07/octopress/"/>
     <updated>2014-06-07T01:13:24+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2014/06/07/octopress</id>
-    <content type="html"><![CDATA[<p>久しぶりにブログ書いて<code>rake generate</code>したら
-<code>
-Liquid Exception: undefined method `sort!' for nil:NilClass in ...
-</code></p>
+    <content type="html"><![CDATA[久しぶりにブログ書いて`rake generate`したら
+```
+Liquid Exception: undefined method `sort!' for nil:NilClass in ... 
+```
 
-<p>なるエラーで怒られた。</p>
+なるエラーで怒られた。
 
 <!-- more -->
 
 
-<p>ググると<a href="http://daisukekobayashi.com/blog/escape-liquid-template-tags-in-octopress">Liquidタグをエスケープする</a>という記事があったけどそんなタグ使った覚えがない。</p>
+ググると[Liquidタグをエスケープする](http://daisukekobayashi.com/blog/escape-liquid-template-tags-in-octopress)という記事があったけどそんなタグ使った覚えがない。
 
-<p>なんでだろうとよくよく調べると前回書きかけの記事のマークダウンファイルを、通常は<code>source/_post</code>以下に置くところを<code>source/tmp</code>フォルダを作ってそこに避けて置いたのを見つけた。で、これを外に除けたらエラーが消えた。</p>
+なんでだろうとよくよく調べると前回書きかけの記事のマークダウンファイルを、通常は`source/_post`以下に置くところを`source/tmp`フォルダを作ってそこに避けて置いたのを見つけた。で、これを外に除けたらエラーが消えた。
 
-<p>なんかよくわからんけど、よかったよかった(<em>^^</em>)</p>
+なんかよくわからんけど、よかったよかった(*^^*)
+
+
+
 ]]></content>
   </entry>
   
@@ -41,40 +44,32 @@ Liquid Exception: undefined method `sort!' for nil:NilClass in ...
     <link href="http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud/"/>
     <updated>2013-12-04T20:18:00+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud</id>
-    <content type="html"><![CDATA[<h2>タグクラウド導入してみました。</h2>
+    <content type="html"><![CDATA[##タグクラウド導入してみました。
+参考にしたサイトはこちら
 
-<p>参考にしたサイトはこちら</p>
+ - [Octopressでのタグの運用](http://rcmdnk.github.io/blog/2013/04/12/blog-octopress/)
 
-<ul>
-<li><p><a href="http://rcmdnk.github.io/blog/2013/04/12/blog-octopress/">Octopressでのタグの運用</a></p></li>
-<li><p><a href="http://blog.digital-bot.com/blog/2013/09/03/octopress-tips/">Octopressのカスタマイズ</a></p></li>
-</ul>
+ - [Octopressのカスタマイズ](http://blog.digital-bot.com/blog/2013/09/03/octopress-tips/)
 
-
-<p>ありがとうございました。</p>
-
+ありがとうございました。
 <!-- more -->
 
+##タグクラウドって？
 
-<h2>タグクラウドって？</h2>
+ - 各記事の内容を端的に表す"タグ"
+ - そのタグのリストを**おされ**(重要)に表示したもの(主観)
+ - 昔はSEO対策で意味あったっぽい。
+ - 今は対策されて意味ないっぽい。
 
-<ul>
-<li>各記事の内容を端的に表す"タグ"</li>
-<li>そのタグのリストを<strong>おされ</strong>(重要)に表示したもの(主観)</li>
-<li>昔はSEO対策で意味あったっぽい。</li>
-<li>今は対策されて意味ないっぽい。</li>
-</ul>
+##導入
+上記サイトの手順をそのまま実行するだけでおっけーでした。
+なので僕がここに書くことはありません笑
 
+ただ、自分のRubyの知識不足とファイルの置換ミスで割と手間取ってしまったので、
+結果として結構時間がかかってしまいました。変更箇所は割と多いので細かくブランチを切って作業することをおすすめします。
 
-<h2>導入</h2>
+Ruby勉強しなきゃなあ...
 
-<p>上記サイトの手順をそのまま実行するだけでおっけーでした。
-なので僕がここに書くことはありません笑</p>
-
-<p>ただ、自分のRubyの知識不足とファイルの置換ミスで割と手間取ってしまったので、
-結果として結構時間がかかってしまいました。変更箇所は割と多いので細かくブランチを切って作業することをおすすめします。</p>
-
-<p>Ruby勉強しなきゃなあ&hellip;</p>
 ]]></content>
   </entry>
   
@@ -83,97 +78,87 @@ Liquid Exception: undefined method `sort!' for nil:NilClass in ...
     <link href="http://r-nmt000.github.io/blog/2013/12/01/new-octopress/"/>
     <updated>2013-12-01T13:51:44+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2013/12/01/new-octopress</id>
-    <content type="html"><![CDATA[<h1>Octopressで始めるギークなブログ</h1>
-
-<p>アウトプットの練習として、ブログを始めることにしました。
-色んなブログサービスがありますがエンジニア向けということで<a href="octopress.org">Octopress</a>を使ってみることに。
-設定は以下のサイトを参考にしました。</p>
+    <content type="html"><![CDATA[#Octopressで始めるギークなブログ
+アウトプットの練習として、ブログを始めることにしました。
+色んなブログサービスがありますがエンジニア向けということで[Octopress](octopress.org)を使ってみることに。
+設定は以下のサイトを参考にしました。
 
 <!-- more -->
+ - [Octopressはじめました](http://www.miukoba.net/blog/2013/01/05/start-octopress/)
 
+ - [OctopressでGitHub無料ブログ。sourceをBitbucket管理。簡単ガイド！](http://morizyun.github.io/blog/octopress-gitpage-minimum-install-guide/)
 
-<ul>
-<li><p><a href="http://www.miukoba.net/blog/2013/01/05/start-octopress/">Octopressはじめました</a></p></li>
-<li><p><a href="http://morizyun.github.io/blog/octopress-gitpage-minimum-install-guide/">OctopressでGitHub無料ブログ。sourceをBitbucket管理。簡単ガイド！</a></p></li>
-</ul>
-
-
-<p>大まかな手順は次の通りです。
-<code>
+大まかな手順は次の通りです。
+```
 GitHubでOctopress用のリポジトリ作成
 Octopressからソースコード取得
 GitHubへのdeploy設定
 ブログの細かな設定
 ブログテーマの変更
 記事を作成、アップ
-</code></p>
+```
 
-<p>上記の手順を１から丁寧に書いてもいいんですが、Octopressの設定については多くの方が分かりやすくまとめてらっしゃるのでここでは自分がつまづいたところをかいつまんで説明していこうと思います。</p>
+上記の手順を１から丁寧に書いてもいいんですが、Octopressの設定については多くの方が分かりやすくまとめてらっしゃるのでここでは自分がつまづいたところをかいつまんで説明していこうと思います。
 
-<hr />
+---
 
-<h2>rake install [&lsquo;theme-name&rsquo;]がうまくいかない</h2>
-
-<p>ブログテーマを設定する箇所です。なぜかinstallが上手くいきません。なんでかなーとググってみると
-<a href="http://tantant.jp/blog/Octopress/installing-octopress/">Markdownで書いてGitで管理するブログ「Octopress」の始め方</a>
-にある通り、zshを使っていると<em>[ ]</em>が式として認識されてしまうらしいです。
-対応策としては<code>rake install \['theme-name'\]</code>のように括弧をバックスラッシュでエスケープする、もしくは.zshrcに以下の設定を追記しましょう。
-<code>
+##rake install ['theme-name']がうまくいかない
+ブログテーマを設定する箇所です。なぜかinstallが上手くいきません。なんでかなーとググってみると
+[Markdownで書いてGitで管理するブログ「Octopress」の始め方](http://tantant.jp/blog/Octopress/installing-octopress/)
+にある通り、zshを使っていると*[ ]*が式として認識されてしまうらしいです。
+対応策としては`rake install \['theme-name'\]`のように括弧をバックスラッシュでエスケープする、もしくは.zshrcに以下の設定を追記しましょう。
+```
 setopt nonomatch
-</code>
-<code>alias rake="noglob rake"</code>を追記する方法もありますが、これだと後述する<code>bundle exec</code>と組み合わさった時上手く動きませんでした。</p>
+```
+`alias rake="noglob rake"`を追記する方法もありますが、これだと後述する`bundle exec`と組み合わさった時上手く動きませんでした。
 
-<hr />
+---
 
-<h2>rake generateがうまくいかない</h2>
-
-<p>次のエラーが吐かれてrakeが止まります。
-<code>
+##rake generateがうまくいかない
+次のエラーが吐かれてrakeが止まります。
+```
 rake aborted!
 You have already activated rake 10.1.0, but your Gemfile requires rake 0.9.6. Using bundle exec may solve this.
-/Users/nomoto/repos/r-nmt000.github.io/Rakefile:2:in `&lt;top (required)&gt;'
+/Users/nomoto/repos/r-nmt000.github.io/Rakefile:2:in `<top (required)>'
 (See full trace by running task with --trace)
-</code>
-<a href="http://d.hatena.ne.jp/yamanetoshi/20131102/1383355220">Octopress:/var/log/messages</a>によると<code>bundle exec rake generate</code>で上手く動くらしいのですが、動かない&hellip;</p>
-
-<p>更に調べると<a href="http://kozy4324.github.io/blog/2013/03/02/exec-rake-with-version/">バージョンを指定してRakeを実行する</a>ということができるらしいので試してみました。
 ```
-rake <em>0.9.6</em> generate
-(in /Users/nomoto/repos/r-nmt000.github.io)</p>
+[Octopress:/var/log/messages](http://d.hatena.ne.jp/yamanetoshi/20131102/1383355220)によると`bundle exec rake generate`で上手く動くらしいのですが、動かない...
 
-<h2>Generating Site with Jekyll</h2>
-
-<p>unchanged sass/screen.scss
+更に調べると[バージョンを指定してRakeを実行する](http://kozy4324.github.io/blog/2013/03/02/exec-rake-with-version/)ということができるらしいので試してみました。
+```
+rake _0.9.6_ generate
+(in /Users/nomoto/repos/r-nmt000.github.io)
+## Generating Site with Jekyll
+unchanged sass/screen.scss
 Configuration from /Users/nomoto/repos/r-nmt000.github.io/_config.yml
-Building site: source &ndash;> public
-Successfully generated site: source &ndash;> public</p>
+Building site: source -> public
+Successfully generated site: source -> public
 
-<p>```</p>
+```
 
-<p>できた！</p>
+できた！
 
-<p>その後、なぜか<code>bundle exec rake</code>でも実行できるようになりました。なぜだ&hellip;</p>
+その後、なぜか`bundle exec rake`でも実行できるようになりました。なぜだ...
 
-<p>しかしいちいちbundle execを頭につけるのは面倒臭い&hellip;多分回避策はあるんだろうけど、見つからなかったのでとりあえず現状はこれでよしとしよう。</p>
+しかしいちいちbundle execを頭につけるのは面倒臭い...多分回避策はあるんだろうけど、見つからなかったのでとりあえず現状はこれでよしとしよう。
 
-<hr />
-
-<h2>disqusによるコメント欄追加</h2>
-
-<p>_config.ymlに
-<code>
-disqus_short_name: &lt;blog_name&gt;
+---
+##disqusによるコメント欄追加
+_config.ymlに
+```
+disqus_short_name: <blog_name>
 disqus_show_comment_count: false
-</code>
-と追加するだけ！簡単！</p>
+```
+と追加するだけ！簡単！
 
-<p>と思いきや、disqus_short_nameにはブログ名を指定しなければいけないのですが僕はdisqusのユーザIDを指定してしまいうまく動きませんでした^^;</p>
+と思いきや、disqus_short_nameにはブログ名を指定しなければいけないのですが僕はdisqusのユーザIDを指定してしまいうまく動きませんでした^^;
 
-<hr />
+---
 
-<p>僕がつまづいたのはこんなところです。</p>
+僕がつまづいたのはこんなところです。
 
-<p>独自ドメインをあてたり、Bitbucketを使ったりはまだしてないですが、おいおいやっていこうと思います。</p>
+独自ドメインをあてたり、Bitbucketを使ったりはまだしてないですが、おいおいやっていこうと思います。
+
 ]]></content>
   </entry>
   

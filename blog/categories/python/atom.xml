@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-09T23:48:36+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[俺的Python気になった所まとめ3]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/09/python3/"/>
+    <updated>2014-06-09T22:27:37+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/09/python3</id>
+    <content type="html"><![CDATA[<img class="center" src="http://r-nmt000.github.io/images/python.png">
+
+[ 俺的Python気になった所まとめ2の続きです。 ](/blog/2014/06/09/python3/)
+
+<!-- more -->
+
+
+
+##with文
+ファイル入出力のときはとりあえずこいつ使っとけって感じらしい。
+
+```python
+with open('/tmp/workfile/, 'r') as f:
+  read_data = f.read()
+  ...
+```
+
+with文中で例外が発生してもf.closeしてくれる。try-except-finallyより簡単に書ける。
+
+##pickleモジュール
+複雑なpythonのデータ型(リスト、辞書、クラスのインスタンス)を文字列表現に直してファイルへリード・ライトしてくれるいかしたモジュール
+
+```python
+pickle.dump(x, f)
+
+x = pickle.load(f)
+```
+みたいに使う。
+
+##プライベート変数
+Pythonでは定義されていない。しかし、アンダースコアで始まる名前(ex. _spam)はプライベートな変数、関数、メソッドとして扱う慣習があるらしい。
+
+
+##pythonのイテレータ
+リストや辞書など複数のデータがひとまとめにするデータ構造に対して、for文などで各要素にアクセスできる仕組み。こんな感じ。
+
+```python
+for element in [1, 2, 3]:
+  print element
+for element in (1, 2, 3):
+  print element
+for key in {'one':1, 'two':2}:
+  print key
+for char in "123":
+  print char
+for line in open("myfile.txt"):
+  print line
+```
+
+クラスに対して独自にイテレータを実装してみる。PersonクラスをまとめるGroupクラスを作り、for文で各Personクラスにアクセスできるようにする。
+```python
+
+class Person:
+  def __init__(self,nm):
+    self.name = nm
+
+class Group:
+  index = 0
+  def __init__(self):
+    self.persons = []
+  def add(self,person):
+    self.index += 1
+    self.persons.append(person)
+
+  def __iter__(self):
+    return self
+  
+  def next(self):
+    if self.index == 0:
+      raise StopIteration
+    self.index = self.index -1
+    return self.persons[self.index]
+
+group = Group()
+person1 = Person("a")
+person2 = Person("b")
+person3 = Person("c")
+group.add(person1)
+group.add(person2)
+group.add(person3)
+
+for i in group:
+  print i.name 
+```
+出力は以下
+```python
+>> c
+>> b
+>> a  
+```
+
+##pythonのgenerator
+generatorを使うことで上記のiteratorを簡単に実装できる。
+
+以下のソースは上記iteratorの実装と同値
+```python
+
+class Person:
+  def __init__(self,nm):
+    self.name = nm
+
+class Group:
+  index = 0
+  def __init__(self):
+    self.persons = []
+  def add(self,person):
+    self.index += 1
+    self.persons.append(person)
+
+  def iter(self):
+    for person in self.persons:
+      yield person
+group = Group()
+person1 = Person("a")
+person2 = Person("b")
+person3 = Person("c")
+group.add(person1)
+group.add(person2)
+group.add(person3)
+
+for i in group.iter():
+  print i.name 
+``` 
+return文のかわりにyieldを使うとgenerator関数になるらしい。
+
+##python仮想実行環境の構築
+古い記事を見てえらい目にあった。
+とりあえずこの辺を入れればいいらしい。
+
+1. Setuptools(Pythonのパッケージ管理ツール)
+1. pip(これまたパッケージ管理ツール)
+
+pipが公式推奨らしいけどpipがSetuptoolsに依存しているので入れなきゃダメらしい。
+SetupToolsの導入に関しては[公式](https://pypi.python.org/pypi/setuptools#unix-including-mac-os-x-curl)を参照しよう。
+
+setuptoolsが入ったら
+```
+easy_install pip
+```
+でpipを入れる。easy_installはuninstallコマンドが無いらしくpipがパッケージ管理ツールとして推奨されているらしい。
+
+(*Python3.4以降ではpipを自動インストールするためのensurepipという公式ライブラリがあるらしい。これ使えばよかった。くそう。[ensurepip](https://docs.python.org/3/library/ensurepip.html))
+
+次に
+```
+pip virtualenv virtualenvwrapper
+```
+
+でvirtualenvとvirtualenvwrapperを入れる。
+
+virtualenvwrapperはvirtualenvを使いやすくするためのツール。
+
+こちらに従って導入
+```
+1. Create a directory to hold the virtual environments.
+ (mkdir $HOME/.virtualenvs).
+2. Add a line like "export WORKON_HOME=$HOME/.virtualenvs"
+     to your .bashrc.
+3. Add a line like "source /path/to/this/file/virtualenvwrapper.sh"
+ to your .bashrc.
+4. Run: source ~/.bashrc
+5. Run: workon
+6. A list of environments, empty, is printed.
+7. Run: mkvirtualenv temp
+8. Run: workon
+9. This time, the "temp" environment is included.
+10. Run: workon temp
+11. The virtual environment is activated.
+```
+
+基本的には`mkvirtualenv <env_name>`
+で新しい仮想環境が構築される。
+`workon`で現在使用できるpython環境を一覧表示、
+`workon <env_name>`で環境の切り替えができる。
+`mkvirtualenv <env_name> -p path/to/python`
+でどのpythonを仮想環境で使うか指定できる。
+
+python3.3以降ではvenvっていうvirtualenv的なものが公式でサポートされたみたいだけど、virtualenvwrapperがある分まだvirtualenvのが使いやすそうな印象を受けた。
+
+Pythonのバージョン管理でPythonzってのがあるらしいけど、今のところはバージョン管理必要ないのでHomeBrewで元環境に直接2系と3系入れてそれをvirtualenvで指定して使うことにする。
+
+
+##終わりに
+
+こんな感じです！！これからPythonistとして精進していきます！！
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[俺的Python気になった所まとめ2]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/09/python2/"/>
+    <updated>2014-06-09T21:59:30+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/09/python2</id>
+    <content type="html"><![CDATA[<p>
+<img class="center" src="http://r-nmt000.github.io/images/python.png">
+</p>
+
+[ 俺的Python気になった所まとめ1の続き ](/blog/2014/06/09/python1/)
+
+<!-- more -->
+
+
+
+## リストの内包表記
+
+forとかifとかを使ってぴゃっ！とリストが作れるっぽい。
+こんな感じ
+
+```python
+vec = [2,4,6]
+[3*x for x in vec if x > 3]
+> [12,18]
+
+[[x,x**2] for x in vec]
+> [[2,4],[4,16][6,36]]
+
+vec1 = [2,4,6]
+vec2 = [4,3,-9]
+[x*y for x in vec1 for y in vec2]
+[8,6,-18,16,12,-36,24,18,-54]
+```
+
+さらにネストしたリストの内包表記なんてのもある。
+
+```python
+mat = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+  ]
+
+print [[row[i] for row in mat] for i [0,1,2]]
+[[1,4,7],[2,5,8],[3,6,9]]
+```
+
+これはこのコードと同値らしい
+
+```python
+for i in [0,1,2]:
+  for row in mat:
+    print row[i],
+  print
+```
+
+
+
+## 集合型
+ - 重複する要素がない、順序づけられてない要素の集まり
+ - 結合(Union), 交差(Intersection), 差分(Difference), 対称差(Symmetric difference)といった演算をサポート
+
+```python
+basket = [ "apple", "orange", "apple", "pear", "orange", "banana"]
+fruit = set(basket)
+> set(["orange", "pear", "apple", "banana"])
+'orange' in fruit                 # 高速なメンバシップテスト
+> True
+ 'crabgrass' in fruit
+ False
+```
+
+
+二つの単語の文字を例にした集合間の演算
+
+```python
+a = set('abracadabra')
+b = set('alacazam')
+a                                  # a 内の一意な文字
+>set(['a', 'r', 'b', 'c', 'd'])
+a - b                              # a にあって b にない文字
+>set(['r', 'd', 'b'])
+a | b                              # a か b にある文字
+set(['a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'])
+a & b                              # a と b の双方にある文字
+set(['a', 'c'])
+a ^ b                              # a または b の片方だけにある文字
+set(['r', 'd', 'b', 'm', 'z', 'l'])
+```
+
+##辞書
+おなじみkey-value型。keyは変更不可能な型になる。
+
+```python
+tel = {'jack': 4098, 'sape': 4139}
+tel['guido'] = 4127
+tel
+> {'sape': 4139, 'guido': 4127, 'jack': 4098}
+tel['jack']
+> 4098
+del tel['sape']
+tel['irv'] = 4127
+tel
+> {'guido': 4127, 'irv': 4127, 'jack': 4098}
+tel.keys()
+> ['guido', 'irv', 'jack']
+'guido' in tel
+> True
+```
+
+##論理和論理積
+ &, | とand, or が使える
+
+##.pycファイル
+バイトコンパイルされたpythonファイル
+
+##パッケージ
+sysモジュールのpath内に記述されているサブディレクトリをパッケージと呼ぶらしい。
+ただし、ただpath内にディレクトリを置くだけではパッケージとしては認識されず、
+各ディレクトリに__init__.py(空でよい)を置いておく必要がある。
+
+以下パッケージのディレクトリ構造例
+```
+sound/
+	 effects/
+	   echo.py 
+```
+
+次のようにimportし、使う
+```python
+import sound.effects.echo
+sound.effects.echo.echofilter(input, output, delay=0.7,atten=4)
+```
+
+もしくは
+```python
+from sound.effects import echo
+echo.echofilter(input, output, delay=0.7, atten=4)
+```
+もしくは
+```python
+from sound.effects.echo import echofilter
+echofilter(input, output, delay=0.7, atten=4)
+```
+
+##モジュール、パッケージのインポート
+
+```python
+from package import module
+```
+の形式で行える。が、
+
+```python
+./
+  main.py
+  sub1.py
+  dir1
+    dir2
+      sub2.py
+```
+のようなディレクトリ構造のときに
+`sub1.py`はmain.pyに
+
+```python
+import sub1
+```
+と記述することででインポートできるが`sub2.py`は
+
+```python
+from dir1.dir2 import sub2
+```
+
+としてもインポートできない。なんでだろう...
+
+
+一応`sys.path.append('dir1/dir2')`としたり`PYTHONPATH`に`dir1/dir2/`を追加することで対応できたけど、いちいちそんなことするのめんどくさすぎる。
+
+なにか他に解決策はないものか...
+
+
+## if__name__=="__main__"
+そのpythonファイルがメインで実行された時、`if__name__=="__main__"`以下が実行される。
+そのpythonファイルがモジュールとして他のモジュールに取り込まれた時は実行されない。
+
+
+`if__name__=="__main__"`以下をみればその関数をどのように動かせばよいかわかるので注釈としても便利
+
+---
+
+[俺的Python気になった所まとめ3](/blog/2014/06/09/python3/)へ続く...
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[俺的Python気になった所まとめ1]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/09/python1/"/>
+    <updated>2014-06-09T21:26:47+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/09/python1</id>
+    <content type="html"><![CDATA[<p>
+<img class="center" src="http://r-nmt000.github.io/images/python.png" >
+</p>
+Python Tutoria(2.7)を終えて個人的に気になった、つまったところまとめ。
+<!-- more -->
+
+##Pythonという言葉
+
+ニシキヘビを英語でPythonというらしい。知らなかった。
+
+##２系と３系
+
+3系は後方互換を持っていない。2系と少し使用が異なる点がある。
+
+2系は元々Macに入ってる。
+3系は
+```
+brew instal python3
+```
+で入れられる。
+
+
+```
+pyhton test.py
+python3 test.py
+```
+
+でそれぞれ実行
+
+今回は2系を勉強した。
+
+##タブとスペース
+pythonではブロックの区切りにかっこでなくインデントを使うため、タブとスペースが混じると
+IndentationErrorになってしまう。エディタでオートインデントをオンにして、オートインデントではタブ、手動インデントではスペースみたいな状況になってると悲惨なことになるので注意。
+
+##フォーマット指定
+
+input("input something %d: " % i)
+
+##for文
+`for i in object` の形式のみ
+
+range関数と組み合わせて使う事が多い
+
+```python
+for i in range(len(a)):
+	print i, a[i]
+...
+```
+また、for, whileループはelse節を持つことができる。
+
+```python
+for n in range(2,10):
+	for x in range(2,n):
+		if n % x == 0:
+			print n, 'equals', x, '*', n/x
+			break
+	else:
+    #因数が見つからずにループが終了
+		print n, 'is a prime number'
+```
+
+ループが終了した時にelse節を実行する。breakした時は実行されない。
+
+##pass文
+pass文はなにもしない。処理をからっぽの関数とかクラスとかを書く必要があるときに使う
+
+##タプル
+タプルは値を変更できないリスト
+
+##関数の引数のデフォルト値
+関数の引数にデフォルト値を設定できる。
+
+```python
+idef ask_ok(prompt, retries=4, complaint='Yes or no, please!'):
+while True:
+  ok = raw_input(prompt)
+  if ok in ('y', 'ye', 'yes'):
+    return True
+  if ok in ('n', 'no', 'nop', 'nope'):
+    return False
+  retries = retries - 1
+  if retries < 0:
+    raise IOError('refusenik user')
+  print complaint
+```
+注意する点は、リストや辞書のような変更可能なオブジェクトの時に影響が出ること。
+
+```python
+def f(a, L=[]):
+  L.append(a)
+  return L
+print f(1)
+print f(2)
+print f(3)
+```
+
+実行結果
+
+```python
+[1]
+[1, 2]
+[1, 2, 3]
+```
+
+## ` (グレーブアクセント)
+名前初めて知った。数字型の変数に対して使うとString型に変換してくれるっぽい。
+ググったけど使い方が見つからなかった。そもそも記号はググりにくい。
+
+```python
+num = 10
+str = "10"
+print num + int(str)
+print `num` + str
+```
+
+実行結果
+```
+20
+1010
+```
+##リストをキューとして扱う
+標準のリストでも実現できるけど、collections.dequeを使ったほうがいいらしい。
+
+```python
+from collecitons import deque
+queue = deque(["Eric", "john", "Michel"])
+queue.append("Terry")
+queur.append("Graham")
+queue.popleft() -> "Eric"
+queue.popleft() -> "John"
+```
+
+## 累乗
+**を使う
+
+```python
+2**3
+> 8
+```
+
+## 末尾のカンマ
+要素をひとつ持つタプルを表現しているらしい
+
+```python
+singleton = "hello", 
+> ("hello",)
+```
+---
+
+ちょっと長くなるので記事を区切る。
+
+[俺的Python気になった所まとめ2](/blog/2014/06/09/python2/)へ
+
+
+]]></content>
+  </entry>
+  
+</feed>

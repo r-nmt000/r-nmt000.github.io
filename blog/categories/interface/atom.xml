@@ -4,7 +4,7 @@
   <title><![CDATA[Category: interface | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/categories/interface/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,152 +18,146 @@
     <link href="http://r-nmt000.github.io/blog/2014/01/25/interface-startup/"/>
     <updated>2014-01-25T13:45:19+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2014/01/25/interface-startup</id>
-    <content type="html"><![CDATA[<p><img src="/images/future.jpg" alt="future" /></p>
+    <content type="html"><![CDATA[![future](/images/future.jpg)
 
-<p>近年はwebだけでなく実際にデバイスを作っているスタートアップも増えています。
-ここではそうしたスタートアップの中でも未来を感じるインタフェースで世界を変えようとしているスタートアップを紹介します。</p>
+近年はwebだけでなく実際にデバイスを作っているスタートアップも増えています。
+ここではそうしたスタートアップの中でも未来を感じるインタフェースで世界を変えようとしているスタートアップを紹介します。
+
+
 
 <!-- more -->
 
 
-<h2>ジェスチャー</h2>
-
-<h3>Ring</h3>
-
-<p><img src="/images/ring.jpg" alt="Ring" /></p>
-
-<iframe src="http://r-nmt000.github.io//player.vimeo.com/video/74626545" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+##ジェスチャー
 
 
-<p> <p><a href="http://vimeo.com/74626545">Ring -Shorcut Everything-</a> from <a href="http://vimeo.com/user7740853">Logbar</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p>
+###Ring
 
-<p>&ldquo;Shortcut Everything"を表題にジェスチャーで全てを操作しようというデバイスがRing。
+
+
+![Ring](/images/ring.jpg)
+
+<iframe src="http://r-nmt000.github.io//player.vimeo.com/video/74626545" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/74626545">Ring -Shorcut Everything-</a> from <a href="http://vimeo.com/user7740853">Logbar</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
+
+"Shortcut Everything"を表題にジェスチャーで全てを操作しようというデバイスがRing。
 日本発のベンチャーでスタートアップの祭典SF JapanNightで優勝しました。
-動画を見ていただければわかりますが、すごい&hellip; カーテン、テレビ、音楽のボリューム、連絡先の交換までショートカットしてしまっています。
-この動画の未来が訪れたらと考えるだけでワクワクしますね！</p>
+動画を見ていただければわかりますが、すごい... カーテン、テレビ、音楽のボリューム、連絡先の交換までショートカットしてしまっています。
+この動画の未来が訪れたらと考えるだけでワクワクしますね！
 
-<ul>
-<li>コンセプトムービー <a href="http://vimeo.com/74626545">http://vimeo.com/74626545</a></li>
-</ul>
+- コンセプトムービー http://vimeo.com/74626545
 
 
-<h3>MYO</h3>
+###MYO
 
-<p><img src="/images/myo.jpg" alt="MYO" /></p>
+
+![MYO](/images/myo.jpg)
 
 <iframe src="http://player.vimeo.com/video/37562944" width="560" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
 
 
-<p>MYOは指ではなく、腕に取り付けるタイプのジェスチャーデバイスです。
+
+
+MYOは指ではなく、腕に取り付けるタイプのジェスチャーデバイスです。
 筋肉の動きを読み取ることでジェスチャーを認識しています。
 Ringと決定的に違うのは、Ringがショートカットコマンドと対応する動きを覚える必要があるのに対し、
 MYOは筋肉の動きを読み取っているのでより柔軟なジェスチャー操作が可能という点です。
-FPSにおける銃の上げ下ろしといった操作をナチュラルに再現することができます。</p>
+FPSにおける銃の上げ下ろしといった操作をナチュラルに再現することができます。
 
-<ul>
-<li>公式サイト <a href="https://www.thalmic.com/en/myo/">https://www.thalmic.com/en/myo/</a></li>
-</ul>
+- 公式サイト https://www.thalmic.com/en/myo/
+ 
 
 
-<h3>mycestro</h3>
+###mycestro
 
-<p><img src="/images/mycestro.jpg" alt="mycestro" /></p>
+
+![mycestro](/images/mycestro.jpg)
 
 <iframe width="480" height="360" src="https://www.kickstarter.com/projects/mycestro/mycestrotm-the-next-generation-3d-mouse/widget/video.html" frameborder="0" scrolling="no"> </iframe>
 
-
-<p>キーボードとマウスの移動が煩わしいと思ったことはありませんか？
+キーボードとマウスの移動が煩わしいと思ったことはありませんか？
 mycestroはあなたのそんな悩みを解決します。
 指につけるタイプのこのデバイスは、空中でまるで指揮者のように手を振るだけでカーソルを操作することができます。
-できることはカーソルの操作に限られているので、上記2つと比べると夢がないかもしれませんが実用性は抜群だと思います。</p>
+できることはカーソルの操作に限られているので、上記2つと比べると夢がないかもしれませんが実用性は抜群だと思います。
 
-<ul>
-<li>公式サイト <a href="http://www.mycestro.com/">http://www.mycestro.com/</a></li>
-</ul>
+- 公式サイト http://www.mycestro.com/
 
 
-<h2>脳波</h2>
+##脳波
 
-<h3>Muse</h3>
 
-<p><img src="/images/muse.jpg" alt="muse" /></p>
+###Muse
+
+
+![muse](/images/muse.jpg)
 
 <iframe src="http://player.vimeo.com/video/37562944" width="560" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
 
-
-<p>museはなんとユーザの脳をセンシングすることができるデバイスです。
+museはなんとユーザの脳をセンシングすることができるデバイスです。
 ヘッドバンドタイプのこのデバイスは脳の活動を読み取り、集中度や興奮度を計測してスマホからそれらを確認することができます。
 更に将来は脳内で思考するだけでスマホや家電といったデバイスを操作することも目指しているそうです。
-もしそんなことが可能になったらかなり捗りますね&hellip; 現状音声やジェスチャーが最先端のインタフェースと言えそうですが、これが実現すればもはや身体を動かす必要すらないわけです。
-個人的にはmuseを使ってテレパシーの様に人と人のコミュニケーションができたらなあ&hellip; と思っています。</p>
+もしそんなことが可能になったらかなり捗りますね... 現状音声やジェスチャーが最先端のインタフェースと言えそうですが、これが実現すればもはや身体を動かす必要すらないわけです。
+個人的にはmuseを使ってテレパシーの様に人と人のコミュニケーションができたらなあ... と思っています。
 
-<ul>
-<li>公式サイト <a href="http://www.interaxon.ca/">http://www.interaxon.ca/</a></li>
-</ul>
+- 公式サイト http://www.interaxon.ca/
+
+##ホログラム
+
+###Displair
 
 
-<h2>ホログラム</h2>
-
-<h3>Displair</h3>
-
-<p><img src="/images/displair.jpg" alt="displair" /></p>
+![displair](/images/displair.jpg)
 
 <iframe width="560" height="315" src="http://r-nmt000.github.io//www.youtube.com/embed/yEP7JewA2C8" frameborder="0" allowfullscreen></iframe>
 
 
-<p>SFのように空中に浮かんだ仮想オブジェクトを操作することは人類の(少なくとも僕の)夢ですが、displairの登場で人類はその夢に一歩近づきました。
+SFのように空中に浮かんだ仮想オブジェクトを操作することは人類の(少なくとも僕の)夢ですが、displairの登場で人類はその夢に一歩近づきました。
 空気中に散出した蒸気に対して映像を照射することで仮想オブジェクトを表示し、手の動きをセンシングすることであたかも仮想オブジェクトを触って動かしているような操作感を実現しています。
 動画を見てみるとかなりの精度のようです。
-ホログラム系のデバイスは手へのフィードバック(実際に触った感覚)が現状課題となっているので、それを解決できればより素晴らしい製品になると思います。</p>
-
-<ul>
-<li>公式サイト<a href="http://displair.com/">http://displair.com/</a></li>
-</ul>
+ホログラム系のデバイスは手へのフィードバック(実際に触った感覚)が現状課題となっているので、それを解決できればより素晴らしい製品になると思います。
 
 
-<h2>その他</h2>
+- 公式サイトhttp://displair.com/
 
-<h3>Oculus Rift</h3>
+##その他
 
-<p><img src="/images/oculus.jpg" alt="oculus" /></p>
+###Oculus Rift 
+
+![oculus](/images/oculus.jpg)
 
 <iframe width="560" height="315" src="http://r-nmt000.github.io//www.youtube.com/embed/GoQ0OXJCbaE" frameborder="0" allowfullscreen></iframe>
 
 
-<p>Oculus Riftは没入感が半端ないHMDです。
+Oculus Riftは没入感が半端ないHMDです。
 視野角110度(通常のHMDは30~45度), 3D映像, 頭の動きとVR内の視点が連動して動くことでまさに仮想世界にいるような錯覚に陥ります。
-僕もOculusでジェットコースターのVRを体験したことがありますが、普通に怖いです。ジェットコースターが下降しているときは本当に落ちているかのような錯覚に陥ります。</p>
+僕もOculusでジェットコースターのVRを体験したことがありますが、普通に怖いです。ジェットコースターが下降しているときは本当に落ちているかのような錯覚に陥ります。
 
-<ul>
-<li><a href="http://www.oculusvr.com/">http://www.oculusvr.com/</a></li>
-</ul>
+- http://www.oculusvr.com/ 
 
+###ARヘルメット
 
-<h3>ARヘルメット</h3>
+![helmet](/images/helmet.jpg)
 
-<p><img src="/images/helmet.jpg" alt="helmet" /></p>
 
 <iframe src='http://player.cnevids.com/embed/525d923b4ffb60655000000b/5176e89e68f9daff42000013' width='560' height='390' frameBorder='0' allowfullscreen webkitallowfullscreen mozallowfullscreen allowtransparency='true'></iframe>
 
+ARヘルメットはバイカーのための道案内ARヘルメットです。
+ヘルメットのシールド部分に道案内の標識が表示されます。
 
-<p>ARヘルメットはバイカーのための道案内ARヘルメットです。
-ヘルメットのシールド部分に道案内の標識が表示されます。</p>
+- 公式サイト http://nilmo.net/news/2_gadjet/2013/20130701_1.html
 
-<ul>
-<li>公式サイト <a href="http://nilmo.net/news/2_gadjet/2013/20130701_1.html">http://nilmo.net/news/2_gadjet/2013/20130701_1.html</a></li>
-</ul>
+##近未来のコミュニケーション
 
-
-<h2>近未来のコミュニケーション</h2>
-
-<p>どのスタートアップも非常に未来的ですね。
+どのスタートアップも非常に未来的ですね。
 ここでは6例紹介しましたが、市場に出ているデバイスはDisplairだけです。
-こうした未来的デバイスが今後市場に出てくることにより、これから更に大きなムーブメントとなっていくことでしょう。</p>
+こうした未来的デバイスが今後市場に出てくることにより、これから更に大きなムーブメントとなっていくことでしょう。
 
-<p>そして、デバイスが魅力的なことはもちろんですが、こうした製品を作っているスタートアップの方達は20代の方が多いです。
-技術がなくても、面白いアイデアを持ち、実現させる情熱があればあなたにもこうした未来を作れるかもしれません。</p>
+そして、デバイスが魅力的なことはもちろんですが、こうした製品を作っているスタートアップの方達は20代の方が多いです。
+技術がなくても、面白いアイデアを持ち、実現させる情熱があればあなたにもこうした未来を作れるかもしれません。
 
-<p>あなたも新しい未来を作ってみませんか？</p>
+あなたも新しい未来を作ってみませんか？
+
+
 ]]></content>
   </entry>
   

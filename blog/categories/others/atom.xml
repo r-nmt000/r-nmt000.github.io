@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Others | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,28 +18,31 @@
     <link href="http://r-nmt000.github.io/blog/2014/06/07/others/"/>
     <updated>2014-06-07T00:39:14+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2014/06/07/others</id>
-    <content type="html"><![CDATA[<h1>座右の銘</h1>
+    <content type="html"><![CDATA[# 座右の銘
 
-<p>エンジニアとして、いつも心に留めておこうと思う言葉。</p>
+エンジニアとして、いつも心に留めておこうと思う言葉。
 
 <!-- more -->
 
+> It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.
 
-<blockquote><p>It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.</p>
+> 生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。
 
-<p>生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。</p>
+> (Charles Robert Darwin)
 
-<p>(Charles Robert Darwin)</p></blockquote>
+そして、
 
-<p>そして、</p>
 
-<blockquote><p>Shut the fxxk up and write some code.</p>
 
-<p>ぐだぐだ言ってないでコードを書けよ、ハゲ。</p>
 
-<p>(ゆーすけべー)</p></blockquote>
+> Shut the fxxk up and write some code.
 
-<p>どっちも大切なことだね。</p>
+> ぐだぐだ言ってないでコードを書けよ、ハゲ。
+
+> (ゆーすけべー)
+
+どっちも大切なことだね。
+
 ]]></content>
   </entry>
   
@@ -48,70 +51,64 @@
     <link href="http://r-nmt000.github.io/blog/2013/12/05/others/"/>
     <updated>2013-12-05T16:09:40+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2013/12/05/others</id>
-    <content type="html"><![CDATA[<h2>前回までのあらすじ</h2>
-
-<ul>
-<li>スタバにめっちゃアプライしまくった</li>
-<li>受からない</li>
-<li>友人の助けを経てラストチャンスに挑む</li>
-<li>そして結果が返ってきた</li>
-</ul>
-
-
+    <content type="html"><![CDATA[##前回までのあらすじ
+ - スタバにめっちゃアプライしまくった
+ - 受からない
+ - 友人の助けを経てラストチャンスに挑む
+ - そして結果が返ってきた
 <!-- more -->
 
+###遂にメールが届いた...同じメールを何通受け取ったことだろうか...
 
-<h3>遂にメールが届いた&hellip;同じメールを何通受け取ったことだろうか&hellip;</h3>
+![mailtitle](/images/posts/mailtitle.jpg)
 
-<p><img src="/images/posts/mailtitle.jpg" alt="mailtitle" /></p>
+###今から地獄の門を開くぜ...
 
-<h3>今から地獄の門を開くぜ&hellip;</h3>
 
-<p>```
-　     　　　　＿＿＿＿＿
-　  　　 　／　＼　 　 ／＼
+```
+　     　　　　＿＿＿＿＿ 
+　  　　 　／　＼　 　 ／＼ 
 　　  　／ し （＞） 　（＜）＼　　頼む受かっててくれ！　
-　　　　|　∪　  （<strong>人</strong>）　J |  　＿＿＿＿＿＿＿_
-　 　　 ＼　u　　 ｀⌒´　  　／　  | |　　　　　　　|
-　　　　ノ　　　　 　　  　　＼ 　　| |　　　　　　　|　
-　    ／´　　　　　　　　　　　   | |　　 　　 　　|
-　   |　　　　ｌ　　　　　　    　| |　　 　　 　　|</p>
+　　　　|　∪　  （__人__）　J |  　＿＿＿＿＿＿＿_ 
+　 　　 ＼　u　　 ｀⌒´　  　／　  | |　　　　　　　| 
+　　　　ノ　　　　 　　  　　＼ 　　| |　　　　　　　|　 
+　    ／´　　　　　　　　　　　   | |　　 　　 　　| 
+　   |　　　　ｌ　　　　　　    　| |　　 　　 　　| 
+				 　　　　　 　　　＿＿＿_ 
 
-<pre><code>             　　　　　 　　　＿＿＿_ 
+
+             ＿＿＿＿
+　　　　　／　　 　u　＼ 
+　　 　／　　＼ 　  　 ─＼　　　チラッ 
+　　　／し （＞）  　（●）＼ 
+　　　|　∪　  （__人__） J|  ＿＿＿＿＿＿＿_ 
+　　 ＼　　u　　 ｀⌒´　 　／ | | 　　　　　　　| 
+　　　　ノ　　　　　 　　　＼ | |　 　　　　　　|　 
+　 ／´　　　　　 　　　 　　 | |　　　　 　　　|　 
+　|　　　　ｌ　 　  　　　　　| | 　　　　　　　| 					
+```
 
 
-         ＿＿＿＿
-</code></pre>
+![mailcontents](/images/posts/mailcontents.jpg)
 
-<p>　　　　　／　　 　u　＼
-　　 　／　　＼ 　  　 ─＼　　　チラッ
-　　　／し （＞）  　（●）＼
-　　　|　∪　  （<strong>人</strong>） J|  ＿＿＿＿＿＿＿_
-　　 ＼　　u　　 ｀⌒´　 　／ | | 　　　　　　　|
-　　　　ノ　　　　　 　　　＼ | |　 　　　　　　|　
-　 ／´　　　　　 　　　 　　 | |　　　　 　　　|　
-　|　　　　ｌ　 　  　　　　　| | 　　　　　　　|                 <br/>
-```</p>
 
-<p><img src="/images/posts/mailcontents.jpg" alt="mailcontents" /></p>
+```
 
-<p>```</p>
+　　　　　　／￣￣￣￣￣＼ 
+　　　　　/;::　　　　 　;ヽ 
+　　　　　|;:: ｨ●ｧ　　ｨ●ｧ::| 
+　　　　　|;::　　 　　　:;| 
+　　　　　|;:: 　c{　っ　:;|　　　 
+　　　　  |;::　　＿＿　:;;| 
+　　　 　 ヽ;::　　ー　::;／ 
+　　　　　　＼;;:　　:;;／ 
+　　　　　　 |;::　 ::;| 
+　　　　　　 |;::　 ::;| 
+　　　／￣￣￣　　　　 ￣￣￣＼ 
+　　　|;;::　　　　　　　　::;;| 
+　　　|;;::　　　　　　　　::;;| 
 
-<p>　　　　　　／￣￣￣￣￣＼
-　　　　　/;::　　　　 　;ヽ
-　　　　　|;:: ｨ●ｧ　　ｨ●ｧ::|
-　　　　　|;::　　 　　　:;|
-　　　　　|;:: 　c{　っ　:;|　　　
-　　　　  |;::　　＿＿　:;;|
-　　　 　 ヽ;::　　ー　::;／
-　　　　　　＼;;:　　:;;／
-　　　　　　 |;::　 ::;|
-　　　　　　 |;::　 ::;|
-　　　／￣￣￣　　　　 ￣￣￣＼
-　　　|;;::　　　　　　　　::;;|
-　　　|;;::　　　　　　　　::;;|</p>
-
-<p>```</p>
+```
 ]]></content>
   </entry>
   

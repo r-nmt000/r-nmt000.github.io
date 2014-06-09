@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Android | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/tags/android/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,40 +18,34 @@
     <link href="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/"/>
     <updated>2013-12-17T11:20:42+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala</id>
-    <content type="html"><![CDATA[<h1>ScalaでAndroid</h1>
+    <content type="html"><![CDATA[#ScalaでAndroid
+こちらを参考にしました！
+[Scala + sbt-android + IntelliJ で快適Androidアプリ開発](http://shogogg.hatenablog.jp/entry/2013/12/06/000039)
 
-<p>こちらを参考にしました！
-<a href="http://shogogg.hatenablog.jp/entry/2013/12/06/000039">Scala + sbt-android + IntelliJ で快適Androidアプリ開発</a></p>
-
-<p>以下に僕が詰まったところをまとめました！</p>
-
+以下に僕が詰まったところをまとめました！
 <!-- more -->
 
+ 
+##詰まったところ
 
-<h2>詰まったところ</h2>
+1. compatibility-v4とcompatibility-v7-appcompatでエラーが出る
+2. ensime関連のエラーが出る
+3. OutOfMemoryのエラーが出る
 
-<ol>
-<li>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</li>
-<li>ensime関連のエラーが出る</li>
-<li>OutOfMemoryのエラーが出る</li>
-</ol>
-
-
-<h3>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</h3>
-
-<p>参考にしたサイトの手順に沿ってソースをコンパイルしようとすると
-<code>
+###compatibility-v4とcompatibility-v7-appcompatでエラーが出る
+参考にしたサイトの手順に沿ってソースをコンパイルしようとすると
+```
 [warn]      ::::::::::::::::::::::::::::::::::::::::::::::
 [warn]      ::          UNRESOLVED DEPENDENCIES         ::
 [warn]      ::::::::::::::::::::::::::::::::::::::::::::::
 [warn]      :: android.support#compatibility-v4;19: not found
 [warn]      :: android.support#compatibility-v7-appcompat;19: not found
 [warn]      ::::::::::::::::::::::::::::::::::::::::::::::
-</code>
-となってコンパイルできません。</p>
+```
+となってコンパイルできません。
 
-<p>自分の環境では&lt;project_dir>/project/build.scalaの
-<code>
+自分の環境では<project_dir>/project/build.scalaの
+```
 // ======================================================================                                                                                                                             
 34   // 依存関係
 35   // ======================================================================
@@ -60,49 +54,45 @@
 38     // Android Support Library v4 (jar)
 39     "android.support" % "compatibility-v4" % "19",
 40
-41     // Android Support Library v7 (jar &amp; apklib)
+41     // Android Support Library v7 (jar & apklib)
 42     "android.support" % "compatibility-v7-appcompat" % "19",
 43     apklib("android.support" % "compatibility-v7-appcompat" % "19")
 44
 45   )
-</code>
-の"19"の部分を"19.0.0"に変更したらうまくいきました。</p>
+```
+の"19"の部分を"19.0.0"に変更したらうまくいきました。
 
-<h3>ensime関連のエラーが出る</h3>
 
-<p>上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
+###ensime関連のエラーが出る
+上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
 これに関しては調べても解決策が見つからず、恐らく以前に入れたensimeがなにか悪さをしてるんだろーなーと思い
 sbtとscalaをインストールし直したところ直りました。
-<code>
+```
 brew uninstall sbt
 brew uninstall scala
 rm -rf ~/.sbt
 rm -rf ~/.ivy2
 brew install sbt
 brew instalo scala
-</code>
-わけわからなくなったら全部入れ替えちゃうのも手ですね。</p>
+```
+わけわからなくなったら全部入れ替えちゃうのも手ですね。
 
-<h3>OutOfMemoryのエラーが出る</h3>
-
-<p>これはeclipseでjavaやってたときもみたことあるエラーでした。
+###OutOfMemoryのエラーが出る
+これはeclipseでjavaやってたときもみたことあるエラーでした。
 eclipseのときはeclipse.iniにメモリサイズを明示することで解決しましたがscalaでは~/.sbtconfigに
-<code>
+```
 SBT_OPTS="-Dfile.encoding=UTF-8 -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"  
-</code>
-とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。</p>
+```
+とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。 
 
-<h3>IntelliJ IDEA 13でandroid support libraryの解決がうまくいかない</h3>
+###IntelliJ IDEA 13でandroid support libraryの解決がうまくいかない
+参考にしたサイトではIntelliJ 12を使っているようですが最新が13なので僕は13を使いました。
 
-<p>参考にしたサイトではIntelliJ 12を使っているようですが最新が13なので僕は13を使いました。</p>
-
-<p>13はsbtのプロジェクトをそのままimportする機能があり<code>sbt gen-idea</code>する必要がないのですが、今回の構成に限ってはIntelliJの機能でimport
-するのではなく<code>sbt gen-idea</code>してからIntelliJでopenするのが無難です。</p>
-
-<h3>まとめ</h3>
-
-<p>僕が詰まったのはこんなところです。
-みなさん素晴らしいscalaライフを!</p>
+13はsbtのプロジェクトをそのままimportする機能があり`sbt gen-idea`する必要がないのですが、今回の構成に限ってはIntelliJの機能でimport
+するのではなく`sbt gen-idea`してからIntelliJでopenするのが無難です。
+###まとめ
+僕が詰まったのはこんなところです。
+みなさん素晴らしいscalaライフを!
 ]]></content>
   </entry>
   

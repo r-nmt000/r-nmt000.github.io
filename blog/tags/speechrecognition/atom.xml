@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: SpeechRecognition | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/tags/speechrecognition/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,93 +18,71 @@
     <link href="http://r-nmt000.github.io/blog/2013/12/06/smartphone-speechrecognition/"/>
     <updated>2013-12-06T08:55:59+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2013/12/06/smartphone-speechrecognition</id>
-    <content type="html"><![CDATA[<h2>スマートフォンで使える音声認識・合成APIまとめ(無料)(13年12月現在)</h2>
-
-<p>音声認識・合成機能が必要になったので調べました。
+    <content type="html"><![CDATA[##スマートフォンで使える音声認識・合成APIまとめ(無料)(13年12月現在)
+音声認識・合成機能が必要になったので調べました。
 さっと調査しただけなので間違ってたらごめんなさい。
-こんなのあるんだ！ってくらいに見ていただけるとありがたいです。</p>
+こんなのあるんだ！ってくらいに見ていただけるとありがたいです。
 
 <!-- more -->
+---
+ 
+
+###OpenEars
+ - iOS向け
+ - 日本語には対応してないっぽい...?(公式ページで対応言語が見つけられなかった)
+ - ASR/TTS対応 
+ - 使い方 : [フリーのiOS向け音声認識/音声合成ライブラリ"OpenEars"の使い方](http://d.hatena.ne.jp/shu223/20130810/1376105883)
+ - 公式 : [OpenEars](http://www.politepix.com/openears/)
 
 
-<hr />
-
-<h3>OpenEars</h3>
-
-<ul>
-<li>iOS向け</li>
-<li>日本語には対応してないっぽい&hellip;?(公式ページで対応言語が見つけられなかった)</li>
-<li>ASR/TTS対応</li>
-<li>使い方 : <a href="http://d.hatena.ne.jp/shu223/20130810/1376105883">フリーのiOS向け音声認識/音声合成ライブラリ"OpenEars"の使い方</a></li>
-<li>公式 : <a href="http://www.politepix.com/openears/">OpenEars</a></li>
-</ul>
+###UIDictationController
+ - iOS向け
+ - iOSの非公式クラス
+ - ASRのみ
+ - Siriの音声認識機能がそのまま使えるのは魅力
+ - でも非公式だからこれを使ってアプリ作っても公開できない
+ - 使い方 : [iOS5.1の音声入力を使ってアプリケーションを操作してみる](http://d.hatena.ne.jp/KishikawaKatsumi/20120310/1331335893)
 
 
-<h3>UIDictationController</h3>
 
-<ul>
-<li>iOS向け</li>
-<li>iOSの非公式クラス</li>
-<li>ASRのみ</li>
-<li>Siriの音声認識機能がそのまま使えるのは魅力</li>
-<li>でも非公式だからこれを使ってアプリ作っても公開できない</li>
-<li>使い方 : <a href="http://d.hatena.ne.jp/KishikawaKatsumi/20120310/1331335893">iOS5.1の音声入力を使ってアプリケーションを操作してみる</a></li>
-</ul>
+###Google 音声認識API
+ - Android向け
+ - 日本語対応(各種言語に対応)
+ - ASR/TTS対応(ただしTTSは日本語対応してないらしい)
+ - Google公式、Androidだけでいいならこれでいいかもしれない
 
-
-<h3>Google 音声認識API</h3>
-
-<ul>
-<li>Android向け</li>
-<li>日本語対応(各種言語に対応)</li>
-<li>ASR/TTS対応(ただしTTSは日本語対応してないらしい)</li>
-<li>Google公式、Androidだけでいいならこれでいいかもしれない</li>
-</ul>
+ 
+###iSpeech Mobile SDK
+ - iOS & Android & BlackBerry対応
+ - 日本語対応(各種言語に対応)
+ - ASR/TTS対応
+ - Google翻訳の読み上げ機能の内何言語かはiSpeechが使われているらしい
+ - webサービスに実装する場合は有料
+ - 公式 : [iSpeech](http://www.ispeech.org/)
 
 
-<h3>iSpeech Mobile SDK</h3>
+###Dragon Mobile SDK
+ - iOS & Android対応
+ - 日本語対応(各種言語に対応)
+ - ASR/TTS対応
+ - Dragon Dictationを出している会社のAPI
+ - 有料版もあり
+ - 公式 : [NDEV nuance mobile](http://dragonmobile.nuancemobiledeveloper.com/public/index.php?task=home)
+ 
+###Lexee
+ - iOS向け、Android対応予定
+ - (多分)英語のみ
+ - ASR/TTS対応
+ - まだベータ版
+ - Siriのような音声アシスタントを想定して作られているらしい
+ - 今のところ無料
+ - 今後の動向が気になる
+ - 公式 : [Lexee](http://www.angel.com/labs/lexee.php)
+  
+##まとめ
+色んなスマートフォン、色んな言語に対応するならiSpeechかDragonかなあという感じですね。
 
-<ul>
-<li>iOS &amp; Android &amp; BlackBerry対応</li>
-<li>日本語対応(各種言語に対応)</li>
-<li>ASR/TTS対応</li>
-<li>Google翻訳の読み上げ機能の内何言語かはiSpeechが使われているらしい</li>
-<li>webサービスに実装する場合は有料</li>
-<li>公式 : <a href="http://www.ispeech.org/">iSpeech</a></li>
-</ul>
-
-
-<h3>Dragon Mobile SDK</h3>
-
-<ul>
-<li>iOS &amp; Android対応</li>
-<li>日本語対応(各種言語に対応)</li>
-<li>ASR/TTS対応</li>
-<li>Dragon Dictationを出している会社のAPI</li>
-<li>有料版もあり</li>
-<li>公式 : <a href="http://dragonmobile.nuancemobiledeveloper.com/public/index.php?task=home">NDEV nuance mobile</a></li>
-</ul>
-
-
-<h3>Lexee</h3>
-
-<ul>
-<li>iOS向け、Android対応予定</li>
-<li>(多分)英語のみ</li>
-<li>ASR/TTS対応</li>
-<li>まだベータ版</li>
-<li>Siriのような音声アシスタントを想定して作られているらしい</li>
-<li>今のところ無料</li>
-<li>今後の動向が気になる</li>
-<li>公式 : <a href="http://www.angel.com/labs/lexee.php">Lexee</a></li>
-</ul>
-
-
-<h2>まとめ</h2>
-
-<p>色んなスマートフォン、色んな言語に対応するならiSpeechかDragonかなあという感じですね。</p>
-
-<p>細かくはまだ見てないので精度やライセンスその他諸々確認しつつ使いやつを決めたいです。</p>
+細かくはまだ見てないので精度やライセンスその他諸々確認しつつ使いやつを決めたいです。
 ]]></content>
   </entry>
   

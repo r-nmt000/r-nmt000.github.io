@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Scala | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/tags/scala/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,102 +18,48 @@
     <link href="http://r-nmt000.github.io/blog/2013/12/28/programming-scala-brainfuck/"/>
     <updated>2013-12-28T23:52:07+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2013/12/28/programming-scala-brainfuck</id>
-    <content type="html"><![CDATA[<p><img src="/images/woman.jpg" alt="woman" /></p>
+    <content type="html"><![CDATA[![woman](/images/woman.jpg)
 
-<h1>喘ぐプログラミング言語</h1>
 
-<p>喘いでプログラミングするための言語です。</p>
+#喘ぐプログラミング言語
+喘いでプログラミングするための言語です。
+
 
 <!-- more -->
+##言語仕様
+Brainfuckの派生言語です。
 
+命令は次のとおり
 
-<h2>言語仕様</h2>
+| 命令      |  Brainfuck | 説明 |
+| :-------: | :--------: | :------------- |
+| yeah!     |  >         | ポインタをインクリメントする                         
+| f**k!     |  <         | ポインタをデクリメントする                           
+| ah,       |  +         | ポインタが指す値をインクリメントする                 
+| oh,       |  -         | ポインタが指す値をデクリメントする                   
+| comeon!   |  .         | ポインタが指す値を出力する                           
+| mm...     |  ,         | 入力から1バイトポインタが指す先に読み込む            
+| ohmygod!  |  [         | ポインタが指す値が0なら対応する]の直後にジャンプ     
+| god!      |  ]         | ポインタが指す値が0でないなら対応する[の直後にジャンプ 
 
-<p>Brainfuckの派生言語です。</p>
+##喘ぎ方
 
-<p>命令は次のとおり</p>
+[こちら](/downloads/MPL.jar)からjarをダウンロードしてください。(重くてごめんなさい)
 
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center"> 命令      </th>
-<th align="center">  Brainfuck </th>
-<th align="left"> 説明 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center"> yeah!     </td>
-<td align="center">  >         </td>
-<td align="left"> ポインタをインクリメントする                         </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> f**k!     </td>
-<td align="center">  &lt;         </td>
-<td align="left"> ポインタをデクリメントする                           </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> ah,       </td>
-<td align="center">  +         </td>
-<td align="left"> ポインタが指す値をインクリメントする                 </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> oh,       </td>
-<td align="center">  &ndash;         </td>
-<td align="left"> ポインタが指す値をデクリメントする                   </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> comeon!   </td>
-<td align="center">  .         </td>
-<td align="left"> ポインタが指す値を出力する                           </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> mm&hellip;     </td>
-<td align="center">  ,         </td>
-<td align="left"> 入力から1バイトポインタが指す先に読み込む            </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> ohmygod!  </td>
-<td align="center">  [         </td>
-<td align="left"> ポインタが指す値が0なら対応する]の直後にジャンプ     </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> god!      </td>
-<td align="center">  ]         </td>
-<td align="left"> ポインタが指す値が0でないなら対応する[の直後にジャンプ </td>
-</tr>
-</tbody>
-</table>
+テキストファイルに喘ぎ声をプログラムし、以下のコマンドを実行してください。(Java実行環境が必要)
 
+```
+java -jar MPL.jar <filename>
+```
 
-<h2>喘ぎ方</h2>
+##hello world
 
-<p><a href="/downloads/MPL.jar">こちら</a>からjarをダウンロードしてください。(重くてごめんなさい)</p>
-
-<p>テキストファイルに喘ぎ声をプログラムし、以下のコマンドを実行してください。(Java実行環境が必要)</p>
-
-<p><code>
-java -jar MPL.jar &lt;filename&gt;
-</code></p>
-
-<h2>hello world</h2>
-
-<p><code>
+```
 ah,ah,ah,ah,ah,ah,ah,ah,ah,ohmygod!yeah!ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,f**k!f**k!f**k!oh,god!yeah!comeon!yeah!ah,ah,comeon!ah,ah,ah,ah,ah,ah,ah,comeon!comeon!ah,ah,ah,comeon!yeah!oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,comeon!f**k!ah,ah,ah,ah,ah,ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!yeah!ah,comeon!
-</code></p>
+```
 
-<h2>まとめ</h2>
-
-<p>もっといい喘ぎ方があったら教えて下さい。</p>
+##まとめ
+もっといい喘ぎ方があったら教えて下さい。
 ]]></content>
   </entry>
   
@@ -122,40 +68,34 @@ ah,ah,ah,ah,ah,ah,ah,ah,ah,ohmygod!yeah!ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah
     <link href="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/"/>
     <updated>2013-12-17T11:20:42+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala</id>
-    <content type="html"><![CDATA[<h1>ScalaでAndroid</h1>
+    <content type="html"><![CDATA[#ScalaでAndroid
+こちらを参考にしました！
+[Scala + sbt-android + IntelliJ で快適Androidアプリ開発](http://shogogg.hatenablog.jp/entry/2013/12/06/000039)
 
-<p>こちらを参考にしました！
-<a href="http://shogogg.hatenablog.jp/entry/2013/12/06/000039">Scala + sbt-android + IntelliJ で快適Androidアプリ開発</a></p>
-
-<p>以下に僕が詰まったところをまとめました！</p>
-
+以下に僕が詰まったところをまとめました！
 <!-- more -->
 
+ 
+##詰まったところ
 
-<h2>詰まったところ</h2>
+1. compatibility-v4とcompatibility-v7-appcompatでエラーが出る
+2. ensime関連のエラーが出る
+3. OutOfMemoryのエラーが出る
 
-<ol>
-<li>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</li>
-<li>ensime関連のエラーが出る</li>
-<li>OutOfMemoryのエラーが出る</li>
-</ol>
-
-
-<h3>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</h3>
-
-<p>参考にしたサイトの手順に沿ってソースをコンパイルしようとすると
-<code>
+###compatibility-v4とcompatibility-v7-appcompatでエラーが出る
+参考にしたサイトの手順に沿ってソースをコンパイルしようとすると
+```
 [warn]      ::::::::::::::::::::::::::::::::::::::::::::::
 [warn]      ::          UNRESOLVED DEPENDENCIES         ::
 [warn]      ::::::::::::::::::::::::::::::::::::::::::::::
 [warn]      :: android.support#compatibility-v4;19: not found
 [warn]      :: android.support#compatibility-v7-appcompat;19: not found
 [warn]      ::::::::::::::::::::::::::::::::::::::::::::::
-</code>
-となってコンパイルできません。</p>
+```
+となってコンパイルできません。
 
-<p>自分の環境では&lt;project_dir>/project/build.scalaの
-<code>
+自分の環境では<project_dir>/project/build.scalaの
+```
 // ======================================================================                                                                                                                             
 34   // 依存関係
 35   // ======================================================================
@@ -164,49 +104,45 @@ ah,ah,ah,ah,ah,ah,ah,ah,ah,ohmygod!yeah!ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah
 38     // Android Support Library v4 (jar)
 39     "android.support" % "compatibility-v4" % "19",
 40
-41     // Android Support Library v7 (jar &amp; apklib)
+41     // Android Support Library v7 (jar & apklib)
 42     "android.support" % "compatibility-v7-appcompat" % "19",
 43     apklib("android.support" % "compatibility-v7-appcompat" % "19")
 44
 45   )
-</code>
-の"19"の部分を"19.0.0"に変更したらうまくいきました。</p>
+```
+の"19"の部分を"19.0.0"に変更したらうまくいきました。
 
-<h3>ensime関連のエラーが出る</h3>
 
-<p>上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
+###ensime関連のエラーが出る
+上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
 これに関しては調べても解決策が見つからず、恐らく以前に入れたensimeがなにか悪さをしてるんだろーなーと思い
 sbtとscalaをインストールし直したところ直りました。
-<code>
+```
 brew uninstall sbt
 brew uninstall scala
 rm -rf ~/.sbt
 rm -rf ~/.ivy2
 brew install sbt
 brew instalo scala
-</code>
-わけわからなくなったら全部入れ替えちゃうのも手ですね。</p>
+```
+わけわからなくなったら全部入れ替えちゃうのも手ですね。
 
-<h3>OutOfMemoryのエラーが出る</h3>
-
-<p>これはeclipseでjavaやってたときもみたことあるエラーでした。
+###OutOfMemoryのエラーが出る
+これはeclipseでjavaやってたときもみたことあるエラーでした。
 eclipseのときはeclipse.iniにメモリサイズを明示することで解決しましたがscalaでは~/.sbtconfigに
-<code>
+```
 SBT_OPTS="-Dfile.encoding=UTF-8 -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"  
-</code>
-とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。</p>
+```
+とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。 
 
-<h3>IntelliJ IDEA 13でandroid support libraryの解決がうまくいかない</h3>
+###IntelliJ IDEA 13でandroid support libraryの解決がうまくいかない
+参考にしたサイトではIntelliJ 12を使っているようですが最新が13なので僕は13を使いました。
 
-<p>参考にしたサイトではIntelliJ 12を使っているようですが最新が13なので僕は13を使いました。</p>
-
-<p>13はsbtのプロジェクトをそのままimportする機能があり<code>sbt gen-idea</code>する必要がないのですが、今回の構成に限ってはIntelliJの機能でimport
-するのではなく<code>sbt gen-idea</code>してからIntelliJでopenするのが無難です。</p>
-
-<h3>まとめ</h3>
-
-<p>僕が詰まったのはこんなところです。
-みなさん素晴らしいscalaライフを!</p>
+13はsbtのプロジェクトをそのままimportする機能があり`sbt gen-idea`する必要がないのですが、今回の構成に限ってはIntelliJの機能でimport
+するのではなく`sbt gen-idea`してからIntelliJでopenするのが無難です。
+###まとめ
+僕が詰まったのはこんなところです。
+みなさん素晴らしいscalaライフを!
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: TagCloud | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/tags/tagcloud/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,40 +18,32 @@
     <link href="http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud/"/>
     <updated>2013-12-04T20:18:00+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud</id>
-    <content type="html"><![CDATA[<h2>タグクラウド導入してみました。</h2>
+    <content type="html"><![CDATA[##タグクラウド導入してみました。
+参考にしたサイトはこちら
 
-<p>参考にしたサイトはこちら</p>
+ - [Octopressでのタグの運用](http://rcmdnk.github.io/blog/2013/04/12/blog-octopress/)
 
-<ul>
-<li><p><a href="http://rcmdnk.github.io/blog/2013/04/12/blog-octopress/">Octopressでのタグの運用</a></p></li>
-<li><p><a href="http://blog.digital-bot.com/blog/2013/09/03/octopress-tips/">Octopressのカスタマイズ</a></p></li>
-</ul>
+ - [Octopressのカスタマイズ](http://blog.digital-bot.com/blog/2013/09/03/octopress-tips/)
 
-
-<p>ありがとうございました。</p>
-
+ありがとうございました。
 <!-- more -->
 
+##タグクラウドって？
 
-<h2>タグクラウドって？</h2>
+ - 各記事の内容を端的に表す"タグ"
+ - そのタグのリストを**おされ**(重要)に表示したもの(主観)
+ - 昔はSEO対策で意味あったっぽい。
+ - 今は対策されて意味ないっぽい。
 
-<ul>
-<li>各記事の内容を端的に表す"タグ"</li>
-<li>そのタグのリストを<strong>おされ</strong>(重要)に表示したもの(主観)</li>
-<li>昔はSEO対策で意味あったっぽい。</li>
-<li>今は対策されて意味ないっぽい。</li>
-</ul>
+##導入
+上記サイトの手順をそのまま実行するだけでおっけーでした。
+なので僕がここに書くことはありません笑
 
+ただ、自分のRubyの知識不足とファイルの置換ミスで割と手間取ってしまったので、
+結果として結構時間がかかってしまいました。変更箇所は割と多いので細かくブランチを切って作業することをおすすめします。
 
-<h2>導入</h2>
+Ruby勉強しなきゃなあ...
 
-<p>上記サイトの手順をそのまま実行するだけでおっけーでした。
-なので僕がここに書くことはありません笑</p>
-
-<p>ただ、自分のRubyの知識不足とファイルの置換ミスで割と手間取ってしまったので、
-結果として結構時間がかかってしまいました。変更箇所は割と多いので細かくブランチを切って作業することをおすすめします。</p>
-
-<p>Ruby勉強しなきゃなあ&hellip;</p>
 ]]></content>
   </entry>
   

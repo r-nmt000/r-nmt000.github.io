@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vim | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/categories/vim/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,35 +18,37 @@
     <link href="http://r-nmt000.github.io/blog/2014/04/10/vim/"/>
     <updated>2014-04-10T13:45:17+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2014/04/10/vim</id>
-    <content type="html"><![CDATA[<p><img src="/images/iterm2.jpg" alt="iterm2" /></p>
+    <content type="html"><![CDATA[![iterm2](/images/iterm2.jpg)
 
-<p>iTerm2は縦にウィンドウ分割できてアツい！って聞いたので乗り換えたところ
-Vimの背景が白っぽくなってすごい見づらくなってしまった問題を解決したときの備忘録です。</p>
+
+iTerm2は縦にウィンドウ分割できてアツい！って聞いたので乗り換えたところ
+Vimの背景が白っぽくなってすごい見づらくなってしまった問題を解決したときの備忘録です。
 
 <!-- more -->
 
+##問題発生までの流れ
 
-<h2>問題発生までの流れ</h2>
-
-<ol>
-<li>iTerm2を入れる</li>
-<li>iTerm2でカラースキームの設定ができることを知りやってみる</li>
-<li>zshが見やすくなってうはうは</li>
-<li>vimを開いたところ背景が白っぽくなり見づらい</li>
-<li>vimの設定を変更するも問題解決できず</li>
-</ol>
+1. iTerm2を入れる
+1. iTerm2でカラースキームの設定ができることを知りやってみる
+1. zshが見やすくなってうはうは
+1. vimを開いたところ背景が白っぽくなり見づらい
+1. vimの設定を変更するも問題解決できず
 
 
-<h2>解決方法</h2>
+##解決方法
 
-<p>iTerm2の<code>Preference</code>→<code>Colors</code>の画像の部分の色を調整することで修正できました。</p>
+iTerm2の`Preference`→`Colors`の画像の部分の色を調整することで修正できました。
 
-<p><img src="/images/iterm.jpg" alt="iTerm2" /></p>
+![iTerm2](/images/iterm.jpg)
 
-<p>普通だったら背景のところには<code>Background</code>に指定してある色がくるはずなのですが、
-vimでは反映されず代わりに<code>Black</code>で指定されている色が反映されているようでした。</p>
 
-<p>そのため僕がiTerm2で設定したカラースキームでは薄い黒が<code>Black</code>に指定されていたので、今回のようなことが起きたようです。</p>
+普通だったら背景のところには`Background`に指定してある色がくるはずなのですが、
+vimでは反映されず代わりに`Black`で指定されている色が反映されているようでした。
+
+そのため僕がiTerm2で設定したカラースキームでは薄い黒が`Black`に指定されていたので、今回のようなことが起きたようです。
+
+
+
 ]]></content>
   </entry>
   

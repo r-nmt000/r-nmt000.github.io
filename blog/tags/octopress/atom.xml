@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Octopress | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/tags/octopress/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-07T01:22:16+09:00</updated>
+  <updated>2014-06-09T23:48:36+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -18,21 +18,24 @@
     <link href="http://r-nmt000.github.io/blog/2014/06/07/octopress/"/>
     <updated>2014-06-07T01:13:24+09:00</updated>
     <id>http://r-nmt000.github.io/blog/2014/06/07/octopress</id>
-    <content type="html"><![CDATA[<p>久しぶりにブログ書いて<code>rake generate</code>したら
-<code>
-Liquid Exception: undefined method `sort!' for nil:NilClass in ...
-</code></p>
+    <content type="html"><![CDATA[久しぶりにブログ書いて`rake generate`したら
+```
+Liquid Exception: undefined method `sort!' for nil:NilClass in ... 
+```
 
-<p>なるエラーで怒られた。</p>
+なるエラーで怒られた。
 
 <!-- more -->
 
 
-<p>ググると<a href="http://daisukekobayashi.com/blog/escape-liquid-template-tags-in-octopress">Liquidタグをエスケープする</a>という記事があったけどそんなタグ使った覚えがない。</p>
+ググると[Liquidタグをエスケープする](http://daisukekobayashi.com/blog/escape-liquid-template-tags-in-octopress)という記事があったけどそんなタグ使った覚えがない。
 
-<p>なんでだろうとよくよく調べると前回書きかけの記事のマークダウンファイルを、通常は<code>source/_post</code>以下に置くところを<code>source/tmp</code>フォルダを作ってそこに避けて置いたのを見つけた。で、これを外に除けたらエラーが消えた。</p>
+なんでだろうとよくよく調べると前回書きかけの記事のマークダウンファイルを、通常は`source/_post`以下に置くところを`source/tmp`フォルダを作ってそこに避けて置いたのを見つけた。で、これを外に除けたらエラーが消えた。
 
-<p>なんかよくわからんけど、よかったよかった(<em>^^</em>)</p>
+なんかよくわからんけど、よかったよかった(*^^*)
+
+
+
 ]]></content>
   </entry>
   
