@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: Canada - NomoLog</title>
+  <title>post_urlでLiquid Exception - NomoLog</title>
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="Tag: Canada">
-  
+  <meta name="description" content="post_urlを導入したら、Liquid Exceptionしてしまった話 自分の投稿した記事へのリンクを簡単に貼れるpost_urlを導入した所、下記リンクと同じエラーが。
+対応策もかいてあるのですが、自分の環境では上手くいきませんでした。 post_url erroring with &hellip;">
+  <meta name="keywords" content="Octopress">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://r-nmt000.github.ioblog/tags/canada/">
+  <link rel="canonical" href="http://r-nmt000.github.io/blog/2014/06/10/octopress/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,43 +78,149 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Tag: Canada</h1>
+    
+      <h1 class="entry-title">post_urlでLiquid Exception</h1>
+    
+    
+      <p class="meta">
+			
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-10T00:20:34+09:00" pubdate data-updated="true">Jun 10<span>th</span>, 2014</time>
+			
+
+<span class="categories">
+	Posted in
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+			
+
+<span class="tags">
+	Tagged as
+  
+    <a class='tag' href='/blog/tags/octopress/'>Octopress</a>
+  
+</span>
+
+
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="tag">
 
 
+<div class="entry-content"><p><a href="http://www.drurly.com/blog/2012/06/01/octopress-linking-to-other-posts">post_url</a>を導入したら、Liquid Exceptionしてしまった話</p>
 
-  
-  <h2>2014</h2>
-
-<article>
-  
-<h1><a href="/blog/2014/01/14/english-canada/">Study abroad 1</a></h1>
-<time datetime="2014-01-14T02:08:59+09:00" pubdate><span class='month'>Jan</span> <span class='day'>14</span> <span class='year'>2014</span></time>
-
-<footer>
-
-<span class="categories">posted in <a class='category' href='/blog/categories/english/'>English</a></span>
+<!-- more -->
 
 
-    
-		    <span class="tags">, tagged as <a class='tag' href='/blog/tags/canada/'>Canada</a></span>
-				    
-										  
-</footer>
+<p>自分の投稿した記事へのリンクを簡単に貼れるpost_urlを導入した所、下記リンクと同じエラーが。
+対応策もかいてあるのですが、自分の環境では上手くいきませんでした。</p>
 
+<p><a href="https://github.com/davidfstr/rdiscount/issues/75">post_url erroring with rdiscount</a></p>
 
-</article>
+<p>しかし解決しました。リンク先ではcategory_feed.xmlに問題があったようですが、自分の場合はtag_feed.xmlに問題があったようです。</p>
 
+<p>一応category_feed.xmlもtag_feed.xmlも<code>markdownify</code>の箇所を<code>markdownize</code>に変更</p>
+
+<p>エラーが消えました＼(^o^)／</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">r-nmt000</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-10T00:20:34+09:00" pubdate data-updated="true">Jun 10<span>th</span>, 2014</time>
+			
+
+<span class="categories">
+	Posted in
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+			
+
+<span class="tags">
+	Tagged as
+  
+    <a class='tag' href='/blog/tags/octopress/'>Octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2014/06/10/octopress/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2014/06/10/octopress/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/09/python3/" title="Previous Post: 俺的Python気になった所まとめ3">&laquo; 俺的Python気になった所まとめ3</a>
+      
+      
+		</p>
+		
+		<div class="related_posts">
+<h3>You may also like...</h3>
+<ul>
+	
+	<li><a href="/blog/2014/06/07/octopress/;">Octopressで謎のLiquid Exception</a></li>
+	
+</ul>
+</div>
+
+		
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -209,7 +316,10 @@
       var disqus_shortname = 'nomolog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://r-nmt000.github.io/blog/2014/06/10/octopress/';
+        var disqus_url = 'http://r-nmt000.github.io/blog/2014/06/10/octopress/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
