@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Others | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/tags/others/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-14T21:19:19+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My favorite mottoes]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/07/others/"/>
+    <updated>2014-06-07T00:39:14+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/07/others</id>
+    <content type="html"><![CDATA[# 座右の銘
+
+エンジニアとして、いつも心に留めておこうと思う言葉。
+
+<!-- more -->
+
+> It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.
+
+> 生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。
+
+> (Charles Robert Darwin)
+
+そして、
+
+
+
+
+> Shut the fxxk up and write some code.
+
+> ぐだぐだ言ってないでコードを書けよ、ハゲ。
+
+> (ゆーすけべー)
+
+どっちも大切なことだね。
+
+]]></content>
+  </entry>
+  
+</feed>

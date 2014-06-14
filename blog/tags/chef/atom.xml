@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Chef | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/tags/chef/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-14T21:19:19+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant & Chef]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/11/vagrant-chef/"/>
+    <updated>2014-06-11T22:00:24+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/11/vagrant-chef</id>
+    <content type="html"><![CDATA[Vagrantを使う機会があったのでVagrant+Chef Soloでの開発環境構築をやってみました。
+
+その時の備忘録です。
+
+
+<!-- more -->
+
+参考にしたのはここ。
+
+* [今っぽい Vagrant + Chef Solo チュートリアル](http://qiita.com/taiki45/items/b46a2f32248720ec2bae)
+
+基本的には上記リンクの手順に従っていきます。
+
+で、個人的に詰まった所が以下。
+
+## 早速vagraant upが動かん...
+
+いきなりです。こんなことが許されるのでしょうか？
+
+元々以前にVagrantとChefは触ったことがあって、それからOSをMarvericsにアップグレードしたことが原因でした。
+
+解決策はこちら。
+
+```
+sudo launchctl load /Library/LaunchDaemons/org.virtualbox.startup.plist
+```
+
+[Mac OS X Mavericks で Vagrant がこける時の対処法](http://firegoby.jp/archives/5182)
+
+## Vagrant Cloud
+
+
+そんなのができたのかー！
+
+今までは[Vagrantbox.es](http://www.vagrantbox.es/)(下画像)とかから欲しいboxをリストから探して、URLをいちいちコピってきて
+
+![vagrantcloud](/images/vagrantcloud.png)
+
+```
+vagrant box add <box_name> <url>
+```
+
+って形式でBOXを追加してたのが、
+
+
+VagrantCouldから自分が欲しいBoxを検索(OS,VMWareかVirtualBoxか, Chefの有無など)して、
+
+```
+vagrant login <- cloudへ事前にログイン
+vagrant box add <box_name>
+```
+
+でBoxの追加ができる。
+
+気に入ったBoxをお気に入り登録したり、自分でBoxを作って公開もできる。
+
+これはなかなかナイスですね^^
+
+[vagrantのboxをvagrant cloudからもらってくる](http://kimikimi714.hatenablog.com/entry/2014/04/05/vagrant%E3%81%AEbox%E3%82%92vagrant_cloud%E3%81%8B%E3%82%89%E3%82%82%E3%82%89%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B)
+
+## cannot load such file -- hashie/hash_extensions
+
+なにやらBerskshelfなるものがアツいということでBerkshelfを入れて、必要な設定を書いて、設定を反映さえるために`vagrant up`したところ
+
+```
+Vagrant failed to initialize at a very early stage:
+
+The plugins failed to load properly. The error message given is
+shown below.
+
+cannot load such file -- hashie/hash_extensions
+```
+
+こんなエラーが。
+
+Berkshelfのバージョンが古いことが原因のようです。
+
+解決方法は[こちら](https://groups.google.com/forum/#!topic/vagrant-up/ZZRPWXwfvGE)にある通り
+
+```
+vagrant plugin install vagrant-berkshelf --plugin-version '>=2.0.1'
+```
+
+でvagrant-berkshelfを入れなおしたところうまくいきました。
+
+##Vagrantfileのv1.0系後方互換モード
+
+古い記事をそのまま参考にしててはまった。
+
+上記エラー解決して`vagrant up`!したところ
+
+```
+Warnings:
+* Unknown configuration section 'berkshelf'. If this section was part of
+* a Vagrant 1.0.x plugin, note that 1.0.x plugins are incompatible with 1.1+.
+* * Unknown configuration section 'omnibus'. If this section was part of
+* a Vagrant 1.0.x plugin, note that 1.0.x plugins are incompatible with 1.1+.
+```
+
+このようなエラーがでてしまいました。
+
+原因はVagrantfileで以下のように設定していたことです。
+
+```
+Vagrant::Config.run do |config|
+  以下設定...
+end
+```
+
+Vagrantのv.1.0系では上記のような書き方をしていましたが、これは古い書き方だそうです。
+後方互換のために残っているようです。1.0x系向けのプラグインを設定するときなど。
+
+正しくはこう。
+
+```
+Vagrant.configure("2") do |config|
+　以下設定...
+end
+```
+
+**Vagrant::Config.runの書き方は古いので注意！！**
+
+##まとめ
+
+すごい手間取ってしまいましたが一応きちんと動くところまではいきました。
+
+今度はChefをもっと使い倒してみたいです。
+]]></content>
+  </entry>
+  
+</feed>

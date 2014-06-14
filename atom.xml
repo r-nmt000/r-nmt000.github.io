@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-14T21:13:21+09:00</updated>
+  <updated>2014-06-14T21:19:19+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -69,6 +69,2501 @@ vimprocの<code>make</code>ができないかとやってみましたができ�
 <h2>まとめ</h2>
 
 <p>ひとまずこれでいろんな端末(Unix系)でいつものzsh, vimが使えるようになりました。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant & Chef]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/11/vagrant-chef/"/>
+    <updated>2014-06-11T22:00:24+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/11/vagrant-chef</id>
+    <content type="html"><![CDATA[<p>Vagrantを使う機会があったのでVagrant+Chef Soloでの開発環境構築をやってみました。</p>
+
+<p>その時の備忘録です。</p>
+
+<!-- more -->
+
+
+<p>参考にしたのはここ。</p>
+
+<ul>
+<li><a href="http://qiita.com/taiki45/items/b46a2f32248720ec2bae">今っぽい Vagrant + Chef Solo チュートリアル</a></li>
+</ul>
+
+
+<p>基本的には上記リンクの手順に従っていきます。</p>
+
+<p>で、個人的に詰まった所が以下。</p>
+
+<h2>早速vagraant upが動かん&hellip;</h2>
+
+<p>いきなりです。こんなことが許されるのでしょうか？</p>
+
+<p>元々以前にVagrantとChefは触ったことがあって、それからOSをMarvericsにアップグレードしたことが原因でした。</p>
+
+<p>解決策はこちら。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo launchctl load /Library/LaunchDaemons/org.virtualbox.startup.plist</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://firegoby.jp/archives/5182">Mac OS X Mavericks で Vagrant がこける時の対処法</a></p>
+
+<h2>Vagrant Cloud</h2>
+
+<p>そんなのができたのかー！</p>
+
+<p>今までは<a href="http://www.vagrantbox.es/">Vagrantbox.es</a>(下画像)とかから欲しいboxをリストから探して、URLをいちいちコピってきて</p>
+
+<p><img src="http://r-nmt000.github.io/images/vagrantcloud.png" alt="vagrantcloud" /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant box add &lt;box_name&gt; &lt;url&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>って形式でBOXを追加してたのが、</p>
+
+<p>VagrantCouldから自分が欲しいBoxを検索(OS,VMWareかVirtualBoxか, Chefの有無など)して、</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant login &lt;- cloudへ事前にログイン
+</span><span class='line'>vagrant box add &lt;box_name&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でBoxの追加ができる。</p>
+
+<p>気に入ったBoxをお気に入り登録したり、自分でBoxを作って公開もできる。</p>
+
+<p>これはなかなかナイスですね^^</p>
+
+<p><a href="http://kimikimi714.hatenablog.com/entry/2014/04/05/vagrant%E3%81%AEbox%E3%82%92vagrant_cloud%E3%81%8B%E3%82%89%E3%82%82%E3%82%89%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B">vagrantのboxをvagrant cloudからもらってくる</a></p>
+
+<h2>cannot load such file &mdash; hashie/hash_extensions</h2>
+
+<p>なにやらBerskshelfなるものがアツいということでBerkshelfを入れて、必要な設定を書いて、設定を反映さえるために<code>vagrant up</code>したところ</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Vagrant failed to initialize at a very early stage:
+</span><span class='line'>
+</span><span class='line'>The plugins failed to load properly. The error message given is
+</span><span class='line'>shown below.
+</span><span class='line'>
+</span><span class='line'>cannot load such file -- hashie/hash_extensions</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こんなエラーが。</p>
+
+<p>Berkshelfのバージョンが古いことが原因のようです。</p>
+
+<p>解決方法は<a href="https://groups.google.com/forum/#!topic/vagrant-up/ZZRPWXwfvGE">こちら</a>にある通り</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant plugin install vagrant-berkshelf --plugin-version '&gt;=2.0.1'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でvagrant-berkshelfを入れなおしたところうまくいきました。</p>
+
+<h2>Vagrantfileのv1.0系後方互換モード</h2>
+
+<p>古い記事をそのまま参考にしててはまった。</p>
+
+<p>上記エラー解決して<code>vagrant up</code>!したところ</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Warnings:
+</span><span class='line'>* Unknown configuration section 'berkshelf'. If this section was part of
+</span><span class='line'>* a Vagrant 1.0.x plugin, note that 1.0.x plugins are incompatible with 1.1+.
+</span><span class='line'>* * Unknown configuration section 'omnibus'. If this section was part of
+</span><span class='line'>* a Vagrant 1.0.x plugin, note that 1.0.x plugins are incompatible with 1.1+.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このようなエラーがでてしまいました。</p>
+
+<p>原因はVagrantfileで以下のように設定していたことです。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Vagrant::Config.run do |config|
+</span><span class='line'>  以下設定...
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Vagrantのv.1.0系では上記のような書き方をしていましたが、これは古い書き方だそうです。
+後方互換のために残っているようです。1.0x系向けのプラグインを設定するときなど。</p>
+
+<p>正しくはこう。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Vagrant.configure("2") do |config|
+</span><span class='line'>　以下設定...
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Vagrant::Config.runの書き方は古いので注意！！</strong></p>
+
+<h2>まとめ</h2>
+
+<p>すごい手間取ってしまいましたが一応きちんと動くところまではいきました。</p>
+
+<p>今度はChefをもっと使い倒してみたいです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[post_urlでLiquid Exception]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/10/octopress/"/>
+    <updated>2014-06-10T00:20:34+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/10/octopress</id>
+    <content type="html"><![CDATA[<p><a href="http://www.drurly.com/blog/2012/06/01/octopress-linking-to-other-posts">post_url</a>を導入したら、Liquid Exceptionしてしまった話</p>
+
+<!-- more -->
+
+
+<p>自分の投稿した記事へのリンクを簡単に貼れるpost_urlを導入した所、下記リンクと同じエラーが。
+対応策もかいてあるのですが、自分の環境では上手くいきませんでした。</p>
+
+<p><a href="https://github.com/davidfstr/rdiscount/issues/75">post_url erroring with rdiscount</a></p>
+
+<p>しかし解決しました。リンク先ではcategory_feed.xmlに問題があったようですが、自分の場合はtag_feed.xmlに問題があったようです。</p>
+
+<p>一応category_feed.xmlもtag_feed.xmlも<code>markdownify</code>の箇所を<code>markdownize</code>に変更</p>
+
+<p>エラーが消えました＼(^o^)／</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[俺的Python気になった所まとめ3]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/09/python3/"/>
+    <updated>2014-06-09T22:27:37+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/09/python3</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://r-nmt000.github.io/images/python.png"></p>
+
+<p><a href="http://r-nmt000.github.io/blog/2014/06/09/python3/"> 俺的Python気になった所まとめ2の続きです。 </a></p>
+
+<!-- more -->
+
+
+<h2>with文</h2>
+
+<p>ファイル入出力のときはとりあえずこいつ使っとけって感じらしい。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;/tmp/workfile/, &#39;r&#39;) as f:</span>
+</span><span class='line'>  <span class="n">read_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span class='line'>  <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with文中で例外が発生してもf.closeしてくれる。try-except-finallyより簡単に書ける。</p>
+
+<h2>pickleモジュール</h2>
+
+<p>複雑なpythonのデータ型(リスト、辞書、クラスのインスタンス)を文字列表現に直してファイルへリード・ライトしてくれるいかしたモジュール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>みたいに使う。</p>
+
+<h2>プライベート変数</h2>
+
+<p>Pythonでは定義されていない。しかし、アンダースコアで始まる名前(ex. _spam)はプライベートな変数、関数、メソッドとして扱う慣習があるらしい。</p>
+
+<h2>pythonのイテレータ</h2>
+
+<p>リストや辞書など複数のデータがひとまとめにするデータ構造に対して、for文などで各要素にアクセスできる仕組み。こんな感じ。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">element</span>
+</span><span class='line'><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">element</span>
+</span><span class='line'><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s">&#39;one&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">key</span>
+</span><span class='line'><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s">&quot;123&quot;</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">char</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;myfile.txt&quot;</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>クラスに対して独自にイテレータを実装してみる。PersonクラスをまとめるGroupクラスを作り、for文で各Personクラスにアクセスできるようにする。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nm</span><span class="p">):</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">nm</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Group</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">person</span><span class="p">):</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">return</span> <span class="bp">self</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">raise</span> <span class="ne">StopIteration</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
+</span><span class='line'><span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">person3</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>
+</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>
+</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person3</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>出力は以下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">c</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">b</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>pythonのgenerator</h2>
+
+<p>generatorを使うことで上記のiteratorを簡単に実装できる。</p>
+
+<p>以下のソースは上記iteratorの実装と同値</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nm</span><span class="p">):</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">nm</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Group</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">person</span><span class="p">):</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">yield</span> <span class="n">person</span>
+</span><span class='line'><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
+</span><span class='line'><span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">person3</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>
+</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>
+</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person3</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+return文のかわりにyieldを使うとgenerator関数になるらしい。</p>
+
+<h2>python仮想実行環境の構築</h2>
+
+<p>古い記事を見てえらい目にあった。
+とりあえずこの辺を入れればいいらしい。</p>
+
+<ol>
+<li>Setuptools(Pythonのパッケージ管理ツール)</li>
+<li>pip(これまたパッケージ管理ツール)</li>
+</ol>
+
+
+<p>pipが公式推奨らしいけどpipがSetuptoolsに依存しているので入れなきゃダメらしい。
+SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptools#unix-including-mac-os-x-curl">公式</a>を参照しよう。</p>
+
+<p>setuptoolsが入ったら</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">easy_install</span> <span class="n">pip</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でpipを入れる。easy_installはuninstallコマンドが無いらしくpipがパッケージ管理ツールとして推奨されているらしい。</p>
+
+<p>(*Python3.4以降ではpipを自動インストールするためのensurepipという公式ライブラリがあるらしい。これ使えばよかった。くそう。<a href="https://docs.python.org/3/library/ensurepip.html">ensurepip</a>)</p>
+
+<p>次に</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pip</span> <span class="n">virtualenv</span> <span class="n">virtualenvwrapper</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でvirtualenvとvirtualenvwrapperを入れる。</p>
+
+<p>virtualenvwrapperはvirtualenvを使いやすくするためのツール。</p>
+
+<p>こちらに従って導入</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="mf">1.</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">directory</span> <span class="n">to</span> <span class="n">hold</span> <span class="n">the</span> <span class="n">virtual</span> <span class="n">environments</span><span class="o">.</span>
+</span><span class='line'> <span class="p">(</span><span class="n">mkdir</span> <span class="err">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">virtualenvs</span><span class="p">)</span><span class="o">.</span>
+</span><span class='line'><span class="mf">2.</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">line</span> <span class="n">like</span> <span class="s">&quot;export WORKON_HOME=$HOME/.virtualenvs&quot;</span>
+</span><span class='line'>     <span class="n">to</span> <span class="n">your</span> <span class="o">.</span><span class="n">bashrc</span><span class="o">.</span>
+</span><span class='line'><span class="mf">3.</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">line</span> <span class="n">like</span> <span class="s">&quot;source /path/to/this/file/virtualenvwrapper.sh&quot;</span>
+</span><span class='line'> <span class="n">to</span> <span class="n">your</span> <span class="o">.</span><span class="n">bashrc</span><span class="o">.</span>
+</span><span class='line'><span class="mf">4.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</span><span class='line'><span class="mf">5.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span>
+</span><span class='line'><span class="mf">6.</span> <span class="n">A</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">environments</span><span class="p">,</span> <span class="n">empty</span><span class="p">,</span> <span class="ow">is</span> <span class="n">printed</span><span class="o">.</span>
+</span><span class='line'><span class="mf">7.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">mkvirtualenv</span> <span class="n">temp</span>
+</span><span class='line'><span class="mf">8.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span>
+</span><span class='line'><span class="mf">9.</span> <span class="n">This</span> <span class="n">time</span><span class="p">,</span> <span class="n">the</span> <span class="s">&quot;temp&quot;</span> <span class="n">environment</span> <span class="ow">is</span> <span class="n">included</span><span class="o">.</span>
+</span><span class='line'><span class="mf">10.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span> <span class="n">temp</span>
+</span><span class='line'><span class="mf">11.</span> <span class="n">The</span> <span class="n">virtual</span> <span class="n">environment</span> <span class="ow">is</span> <span class="n">activated</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>基本的には<code>mkvirtualenv &lt;env_name&gt;</code>
+で新しい仮想環境が構築される。
+<code>workon</code>で現在使用できるpython環境を一覧表示、
+<code>workon &lt;env_name&gt;</code>で環境の切り替えができる。
+<code>mkvirtualenv &lt;env_name&gt; -p path/to/python</code>
+でどのpythonを仮想環境で使うか指定できる。</p>
+
+<p>python3.3以降ではvenvっていうvirtualenv的なものが公式でサポートされたみたいだけど、virtualenvwrapperがある分まだvirtualenvのが使いやすそうな印象を受けた。</p>
+
+<p>Pythonのバージョン管理でPythonzってのがあるらしいけど、今のところはバージョン管理必要ないのでHomeBrewで元環境に直接2系と3系入れてそれをvirtualenvで指定して使うことにする。</p>
+
+<h2>終わりに</h2>
+
+<p>こんな感じです！！これからPythonistとして精進していきます！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[俺的Python気になった所まとめ2]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/09/python2/"/>
+    <updated>2014-06-09T21:59:30+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/09/python2</id>
+    <content type="html"><![CDATA[<p>
+<img class="center" src="http://r-nmt000.github.io/images/python.png">
+</p>
+
+
+<p><a href="http://r-nmt000.github.io/blog/2014/06/09/python1/"> 俺的Python気になった所まとめ1の続き </a></p>
+
+<!-- more -->
+
+
+<h2>リストの内包表記</h2>
+
+<p>forとかifとかを使ってぴゃっ！とリストが作れるっぽい。
+こんな感じ</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">vec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</span><span class='line'><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">]</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">[[</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">16</span><span class="p">][</span><span class="mi">6</span><span class="p">,</span><span class="mi">36</span><span class="p">]]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">vec1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</span><span class='line'><span class="n">vec2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span>
+</span><span class='line'><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec1</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">vec2</span><span class="p">]</span>
+</span><span class='line'><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mi">36</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="o">-</span><span class="mi">54</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>さらにネストしたリストの内包表記なんてのもある。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mat</span> <span class="o">=</span> <span class="p">[</span>
+</span><span class='line'>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+</span><span class='line'>    <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+</span><span class='line'>    <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+</span><span class='line'>  <span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">mat</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</span><span class='line'><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これはこのコードと同値らしい</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">mat</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+</span><span class='line'>  <span class="k">print</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>集合型</h2>
+
+<ul>
+<li>重複する要素がない、順序づけられてない要素の集まり</li>
+<li>結合(Union), 交差(Intersection), 差分(Difference), 対称差(Symmetric difference)といった演算をサポート</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">basket</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;pear&quot;</span><span class="p">,</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;banana&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">basket</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="nb">set</span><span class="p">([</span><span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;pear&quot;</span><span class="p">,</span> <span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;banana&quot;</span><span class="p">])</span>
+</span><span class='line'><span class="s">&#39;orange&#39;</span> <span class="ow">in</span> <span class="n">fruit</span>                 <span class="c"># 高速なメンバシップテスト</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="bp">True</span>
+</span><span class='line'> <span class="s">&#39;crabgrass&#39;</span> <span class="ow">in</span> <span class="n">fruit</span>
+</span><span class='line'> <span class="bp">False</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>二つの単語の文字を例にした集合間の演算</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s">&#39;abracadabra&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">b</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s">&#39;alacazam&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">a</span>                                  <span class="c"># a 内の一意な文字</span>
+</span><span class='line'><span class="o">&gt;</span><span class="nb">set</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">])</span>
+</span><span class='line'><span class="n">a</span> <span class="o">-</span> <span class="n">b</span>                              <span class="c"># a にあって b にない文字</span>
+</span><span class='line'><span class="o">&gt;</span><span class="nb">set</span><span class="p">([</span><span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">])</span>
+</span><span class='line'><span class="n">a</span> <span class="o">|</span> <span class="n">b</span>                              <span class="c"># a か b にある文字</span>
+</span><span class='line'><span class="nb">set</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="s">&#39;l&#39;</span><span class="p">])</span>
+</span><span class='line'><span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span>                              <span class="c"># a と b の双方にある文字</span>
+</span><span class='line'><span class="nb">set</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">])</span>
+</span><span class='line'><span class="n">a</span> <span class="o">^</span> <span class="n">b</span>                              <span class="c"># a または b の片方だけにある文字</span>
+</span><span class='line'><span class="nb">set</span><span class="p">([</span><span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="s">&#39;l&#39;</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>辞書</h2>
+
+<p>おなじみkey-value型。keyは変更不可能な型になる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">tel</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">,</span> <span class="s">&#39;sape&#39;</span><span class="p">:</span> <span class="mi">4139</span><span class="p">}</span>
+</span><span class='line'><span class="n">tel</span><span class="p">[</span><span class="s">&#39;guido&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span>
+</span><span class='line'><span class="n">tel</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="p">{</span><span class="s">&#39;sape&#39;</span><span class="p">:</span> <span class="mi">4139</span><span class="p">,</span> <span class="s">&#39;guido&#39;</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">}</span>
+</span><span class='line'><span class="n">tel</span><span class="p">[</span><span class="s">&#39;jack&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="mi">4098</span>
+</span><span class='line'><span class="k">del</span> <span class="n">tel</span><span class="p">[</span><span class="s">&#39;sape&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">tel</span><span class="p">[</span><span class="s">&#39;irv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span>
+</span><span class='line'><span class="n">tel</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="p">{</span><span class="s">&#39;guido&#39;</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">&#39;irv&#39;</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">}</span>
+</span><span class='line'><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="p">[</span><span class="s">&#39;guido&#39;</span><span class="p">,</span> <span class="s">&#39;irv&#39;</span><span class="p">,</span> <span class="s">&#39;jack&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="s">&#39;guido&#39;</span> <span class="ow">in</span> <span class="n">tel</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="bp">True</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>論理和論理積</h2>
+
+<p> &amp;, | とand, or が使える</p>
+
+<h2>.pycファイル</h2>
+
+<p>バイトコンパイルされたpythonファイル</p>
+
+<h2>パッケージ</h2>
+
+<p>sysモジュールのpath内に記述されているサブディレクトリをパッケージと呼ぶらしい。
+ただし、ただpath内にディレクトリを置くだけではパッケージとしては認識されず、
+各ディレクトリに<strong>init</strong>.py(空でよい)を置いておく必要がある。</p>
+
+<p>以下パッケージのディレクトリ構造例</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">sound</span><span class="o">/</span>
+</span><span class='line'>   <span class="n">effects</span><span class="o">/</span>
+</span><span class='line'>     <span class="n">echo</span><span class="o">.</span><span class="n">py</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>次のようにimportし、使う</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sound.effects.echo</span>
+</span><span class='line'><span class="n">sound</span><span class="o">.</span><span class="n">effects</span><span class="o">.</span><span class="n">echo</span><span class="o">.</span><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>もしくは</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sound.effects</span> <span class="kn">import</span> <span class="n">echo</span>
+</span><span class='line'><span class="n">echo</span><span class="o">.</span><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>もしくは</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sound.effects.echo</span> <span class="kn">import</span> <span class="n">echofilter</span>
+</span><span class='line'><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>モジュール、パッケージのインポート</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">package</span> <span class="kn">import</span> <span class="n">module</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>の形式で行える。が、</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">./</span>
+</span><span class='line'>  <span class="n">main</span><span class="o">.</span><span class="n">py</span>
+</span><span class='line'>  <span class="n">sub1</span><span class="o">.</span><span class="n">py</span>
+</span><span class='line'>  <span class="n">dir1</span>
+</span><span class='line'>    <span class="n">dir2</span>
+</span><span class='line'>      <span class="n">sub2</span><span class="o">.</span><span class="n">py</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>のようなディレクトリ構造のときに
+<code>sub1.py</code>はmain.pyに</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sub1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>と記述することででインポートできるが<code>sub2.py</code>は</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">dir1.dir2</span> <span class="kn">import</span> <span class="n">sub2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>としてもインポートできない。なんでだろう&hellip;</p>
+
+<p>一応<code>sys.path.append('dir1/dir2')</code>としたり<code>PYTHONPATH</code>に<code>dir1/dir2/</code>を追加することで対応できたけど、いちいちそんなことするのめんどくさすぎる。</p>
+
+<p>なにか他に解決策はないものか&hellip;</p>
+
+<h2>if<strong>name</strong>==&ldquo;<strong>main</strong>&rdquo;</h2>
+
+<p>そのpythonファイルがメインで実行された時、<code>if__name__=="__main__"</code>以下が実行される。
+そのpythonファイルがモジュールとして他のモジュールに取り込まれた時は実行されない。</p>
+
+<p><code>if__name__=="__main__"</code>以下をみればその関数をどのように動かせばよいかわかるので注釈としても便利</p>
+
+<hr />
+
+<p><a href="http://r-nmt000.github.io/blog/2014/06/09/python3/">俺的Python気になった所まとめ3</a>へ続く&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[俺的Python気になった所まとめ1]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/09/python1/"/>
+    <updated>2014-06-09T21:26:47+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/09/python1</id>
+    <content type="html"><![CDATA[<p>
+<img class="center" src="http://r-nmt000.github.io/images/python.png" >
+</p>
+
+
+<p>Python Tutoria(2.7)を終えて個人的に気になった、つまったところまとめ。</p>
+
+<!-- more -->
+
+
+<h2>Pythonという言葉</h2>
+
+<p>ニシキヘビを英語でPythonというらしい。知らなかった。</p>
+
+<h2>２系と３系</h2>
+
+<p>3系は後方互換を持っていない。2系と少し使用が異なる点がある。</p>
+
+<p>2系は元々Macに入ってる。
+3系は</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew instal python3</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で入れられる。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pyhton test.py
+</span><span class='line'>python3 test.py</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でそれぞれ実行</p>
+
+<p>今回は2系を勉強した。</p>
+
+<h2>タブとスペース</h2>
+
+<p>pythonではブロックの区切りにかっこでなくインデントを使うため、タブとスペースが混じると
+IndentationErrorになってしまう。エディタでオートインデントをオンにして、オートインデントではタブ、手動インデントではスペースみたいな状況になってると悲惨なことになるので注意。</p>
+
+<h2>フォーマット指定</h2>
+
+<p>input(&ldquo;input something %d: &rdquo; % i)</p>
+
+<h2>for文</h2>
+
+<p><code>for i in object</code> の形式のみ</p>
+
+<p>range関数と組み合わせて使う事が多い</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'><span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>また、for, whileループはelse節を持つことができる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">print</span> <span class="n">n</span><span class="p">,</span> <span class="s">&#39;equals&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">/</span><span class="n">x</span>
+</span><span class='line'>          <span class="k">break</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>    <span class="c">#因数が見つからずにループが終了</span>
+</span><span class='line'>      <span class="k">print</span> <span class="n">n</span><span class="p">,</span> <span class="s">&#39;is a prime number&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ループが終了した時にelse節を実行する。breakした時は実行されない。</p>
+
+<h2>pass文</h2>
+
+<p>pass文はなにもしない。処理をからっぽの関数とかクラスとかを書く必要があるときに使う</p>
+
+<h2>タプル</h2>
+
+<p>タプルは値を変更できないリスト</p>
+
+<h2>関数の引数のデフォルト値</h2>
+
+<p>関数の引数にデフォルト値を設定できる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">idef</span> <span class="n">ask_ok</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">retries</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">complaint</span><span class="o">=</span><span class="s">&#39;Yes or no, please!&#39;</span><span class="p">):</span>
+</span><span class='line'><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">ok</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">ok</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;ye&#39;</span><span class="p">,</span> <span class="s">&#39;yes&#39;</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">return</span> <span class="bp">True</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">ok</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="s">&#39;no&#39;</span><span class="p">,</span> <span class="s">&#39;nop&#39;</span><span class="p">,</span> <span class="s">&#39;nope&#39;</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">return</span> <span class="bp">False</span>
+</span><span class='line'>  <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">retries</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s">&#39;refusenik user&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">complaint</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意する点は、リストや辞書のような変更可能なオブジェクトの時に影響が出ること。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="p">[]):</span>
+</span><span class='line'>  <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">L</span>
+</span><span class='line'><span class="k">print</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実行結果</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</span><span class='line'><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>` (グレーブアクセント)</h2>
+
+<p>名前初めて知った。数字型の変数に対して使うとString型に変換してくれるっぽい。
+ググったけど使い方が見つからなかった。そもそも記号はググりにくい。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">num</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nb">str</span> <span class="o">=</span> <span class="s">&quot;10&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="n">num</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="sb">`num`</span> <span class="o">+</span> <span class="nb">str</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実行結果</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="mi">20</span>
+</span><span class='line'><span class="mi">1010</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>リストをキューとして扱う</h2>
+
+<p>標準のリストでも実現できるけど、collections.dequeを使ったほうがいいらしい。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collecitons</span> <span class="kn">import</span> <span class="n">deque</span>
+</span><span class='line'><span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="s">&quot;Eric&quot;</span><span class="p">,</span> <span class="s">&quot;john&quot;</span><span class="p">,</span> <span class="s">&quot;Michel&quot;</span><span class="p">])</span>
+</span><span class='line'><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;Terry&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">queur</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;Graham&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="s">&quot;Eric&quot;</span>
+</span><span class='line'><span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="s">&quot;John&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>累乗</h2>
+
+<p>**を使う</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="mi">2</span><span class="o">**</span><span class="mi">3</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="mi">8</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>末尾のカンマ</h2>
+
+<p>要素をひとつ持つタプルを表現しているらしい</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">singleton</span> <span class="o">=</span> <span class="s">&quot;hello&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>ちょっと長くなるので記事を区切る。</p>
+
+<p><a href="http://r-nmt000.github.io/blog/2014/06/09/python2/">俺的Python気になった所まとめ2</a>へ</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopressで謎のLiquid Exception]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/07/octopress/"/>
+    <updated>2014-06-07T01:13:24+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/07/octopress</id>
+    <content type="html"><![CDATA[<p>久しぶりにブログ書いて<code>rake generate</code>したら</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Liquid Exception: undefined method `sort!' for nil:NilClass in ... </span></code></pre></td></tr></table></div></figure>
+
+
+<p>なるエラーで怒られた。</p>
+
+<!-- more -->
+
+
+<p>ググると<a href="http://daisukekobayashi.com/blog/escape-liquid-template-tags-in-octopress">Liquidタグをエスケープする</a>という記事があったけどそんなタグ使った覚えがない。</p>
+
+<p>なんでだろうとよくよく調べると前回書きかけの記事のマークダウンファイルを、通常は<code>source/_post</code>以下に置くところを<code>source/tmp</code>フォルダを作ってそこに避けて置いたのを見つけた。で、これを外に除けたらエラーが消えた。</p>
+
+<p>なんかよくわからんけど、よかったよかった(<em>^^</em>)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My favorite mottoes]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/07/others/"/>
+    <updated>2014-06-07T00:39:14+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/07/others</id>
+    <content type="html"><![CDATA[<h1>座右の銘</h1>
+
+<p>エンジニアとして、いつも心に留めておこうと思う言葉。</p>
+
+<!-- more -->
+
+
+<blockquote><p>It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.</p>
+
+<p>生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。</p>
+
+<p>(Charles Robert Darwin)</p></blockquote>
+
+<p>そして、</p>
+
+<blockquote><p>Shut the fxxk up and write some code.</p>
+
+<p>ぐだぐだ言ってないでコードを書けよ、ハゲ。</p>
+
+<p>(ゆーすけべー)</p></blockquote>
+
+<p>どっちも大切なことだね。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[TerminalからiTerm2に乗り換えたらVimの色表示が狂った話]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/04/10/vim/"/>
+    <updated>2014-04-10T13:45:17+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/04/10/vim</id>
+    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/iterm2.jpg" alt="iterm2" /></p>
+
+<p>iTerm2は縦にウィンドウ分割できてアツい！って聞いたので乗り換えたところ
+Vimの背景が白っぽくなってすごい見づらくなってしまった問題を解決したときの備忘録です。</p>
+
+<!-- more -->
+
+
+<h2>問題発生までの流れ</h2>
+
+<ol>
+<li>iTerm2を入れる</li>
+<li>iTerm2でカラースキームの設定ができることを知りやってみる</li>
+<li>zshが見やすくなってうはうは</li>
+<li>vimを開いたところ背景が白っぽくなり見づらい</li>
+<li>vimの設定を変更するも問題解決できず</li>
+</ol>
+
+
+<h2>解決方法</h2>
+
+<p>iTerm2の<code>Preference</code>→<code>Colors</code>の画像の部分の色を調整することで修正できました。</p>
+
+<p><img src="http://r-nmt000.github.io/images/iterm.jpg" alt="iTerm2" /></p>
+
+<p>普通だったら背景のところには<code>Background</code>に指定してある色がくるはずなのですが、
+vimでは反映されず代わりに<code>Black</code>で指定されている色が反映されているようでした。</p>
+
+<p>そのため僕がiTerm2で設定したカラースキームでは薄い黒が<code>Black</code>に指定されていたので、今回のようなことが起きたようです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SBT Libraries and Plugins]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/"/>
+    <updated>2014-04-08T00:10:53+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/04/08/scala-sbt</id>
+    <content type="html"><![CDATA[<h1>ある日のぼく</h1>
+
+<p><strong>ぼくはSBTのプラグインを入れようとしていました。</strong></p>
+
+<p>ぼく「sbteclipse-plugin入れたいなあ^^ なになに、<code>project/plugins.sbt</code>に</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>resolvers += Classpaths.typesafeResolver
+</span><span class='line'>
+</span><span class='line'>addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>って書けばいいのかなるほど！」</p>
+
+<p>ぼく「でも<code>"com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</code>って<code>project/Build.scala</code>の<code>LibraryDependencies</code>と同じ書式だけどこっちに書いちゃダメなのかなあ。書いてみよう！」←動かず</p>
+
+<p>ぼく「てかそもそも<code>project/plugins.sbt</code>とか<code>project/Build.scala</code>とか<code>Build.sbt</code>とかなんなんだっけ？どういう関係だっけ？調べてみよう！」</p>
+
+<!-- more -->
+
+
+<h2><a href="http://scalajp.github.io/sbt-getting-started-guide-ja/">ここ</a>に全て書いてあるけど自分なりにまとめたよ！</h2>
+
+<p>SBTのビルド定義やらライブラリの依存性やら何度勉強しても忘れるのでここで一発まとめちゃおうと思います！！</p>
+
+<p>今回は以下のディレクトリ構造を想定します。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hello/
+</span><span class='line'> build.sbt
+</span><span class='line'>
+</span><span class='line'> project/
+</span><span class='line'>  Build.scala
+</span><span class='line'>  plugins.sbt</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ライブラリ？プラグイン？</h3>
+
+<p>そもそも今回の問題は自分の中でライブラリとプラグインの定義が曖昧だったことが始まりでした。SBTで言うところのプラグインの追加とは、</p>
+
+<blockquote><p><strong>ビルド定義にライブラリ依存性を追加することを意味する。</strong></p></blockquote>
+
+<p>らしいです。</p>
+
+<p>SBTではプロジェクト(上記のhelloとします)のビルド定義は<code>build.sbt</code>と<code>project/Build.scala</code>に記述します。各ファイルにプロジェクト名やScalaのバージョンやビルドスルために必要なライブラリを書いてあげることをビルド定義と呼ぶわけです。</p>
+
+<p>そしてプラグインとはこのビルド定義の拡張に他なりません。他ならないそうです。</p>
+
+<p>ですので、<strong>このビルド定義に対してまたビルド定義</strong>してあげることがプラグインの追加になるそうです。</p>
+
+<h2>SBTの再帰構造</h2>
+
+<p>SBTではビルド定義自体をまたプロジェクトとして扱うことができます。つまり、</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>hello/
+</span><span class='line'> build.sbt
+</span><span class='line'>
+</span><span class='line'> project/
+</span><span class='line'>  Build.scala
+</span><span class='line'>  plugins.sbt
+</span><span class='line'>  project/
+</span><span class='line'>   Build.scala
+</span><span class='line'>   plugins.sbt   
+</span><span class='line'>   project/
+</span><span class='line'>    Build.scala
+</span><span class='line'>    plugins.sbt   
+</span><span class='line'>      ...</span></code></pre></td></tr></table></div></figure>
+
+
+<p>な感じでビルド定義のビルド定義のビルド定義の&hellip;みたいなことができちゃうわけです。</p>
+
+<p>ようは<code>build.sbt</code>と<code>plugins.sbt</code>は役割的には同じなわけです。ただ、対象とするプロジェクトが異なりますということです。</p>
+
+<h2>まとめ</h2>
+
+<p>書いてたら眠くなったのでこの辺にしときます！</p>
+
+<p>SBTプロジェクト内のファイル関係はこれである程度頭に入ったはず！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Scala + akka]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/04/02/scala-akka/"/>
+    <updated>2014-04-02T01:10:16+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/04/02/scala-akka</id>
+    <content type="html"><![CDATA[<h1>Scalaのakkaを試してみた</h1>
+
+<p><img src="http://r-nmt000.github.io/images/akka.jpg" alt="akka" /></p>
+
+<p>そういやScala始めてしばらくになるけどakka触ったことなかったなあこれはやばいなあということでちょっと勉強してみました。</p>
+
+<!-- more -->
+
+
+<h2>akkaって？</h2>
+
+<p>Scala2.10から公式に標準装備された並列分散処理のためのScala, Java用フレームワークだそうです。</p>
+
+<p><a href="http://akka.io/">akka公式サイト</a></p>
+
+<h2>じゃあ使ってみよう</h2>
+
+<p><a href="http://akka.io/docs/">akka公式サイト</a>によると最新バージョンは2.3.1だそうな、ふむふむ&hellip;さっそく<a href="http://doc.akka.io/docs/akka/2.3.1/intro/getting-started.html">Gettinng Started</a>をやってみるか</p>
+
+<p>Akka 「Akkaを勉強する一番いい方法はTypesafe Activatorをダウンロードしてテンプレートを試すことだよ^^ 」</p>
+
+<p>ぼく 「あ、そうなの？じゃあそれ試してみよう」</p>
+
+<p>一時間後&hellip;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>　　　　　　　 ＿＿＿_
+</span><span class='line'>　　　　　　／　　 　 　＼　
+</span><span class='line'>　　　　 ／　　─　 　 ─   ＼  全然わからねえ...
+</span><span class='line'>　　　／ 　　 （○） 　（○） ＼
+</span><span class='line'>　 　 |　 　　 　 （__人__） |　　 ＿＿＿＿＿＿＿＿＿__
+</span><span class='line'>　　　＼　　　 　 ｀ ⌒´　　,／　.| |　　　　　　　 　　|
+</span><span class='line'>　　　ノ　　　　　　　　　　　＼ .| |　　　　　　　 　　|
+</span><span class='line'>.　／´　　　　　　　　 　 　 　  | |　　　　    　  　 |
+</span><span class='line'>　|　　　　ｌ　　　　　　　　　   | |　　　　　　　 　　|
+</span><span class='line'>　ヽ　　　 -一ー_~､⌒)^),-､　　  .|_|_＿＿＿＿_＿＿＿＿_|
+</span><span class='line'>　　ヽ ＿＿＿＿,ノγ⌒ヽ)ニニニニ　   　 ＿|_|＿_|＿</span></code></pre></td></tr></table></div></figure>
+
+
+<p>なんだよソースだけ渡されてもわかんねーよ！！もっと言葉で伝えてくれなきゃわかんねーよオレを誰だと思ってんだ！！ヾ(<em>｀Д´</em>)ﾉ&#8221;</p>
+
+<p>てな感じで悪戦苦闘してググるも、なかなかよい情報が見つからず&hellip;</p>
+
+<p>で、よくよくみたら<a href="http://doc.akka.io/docs/akka/2.0.2/intro/getting-started-first-scala.html">akka 2.0.2</a>ではπを求める計算をサンプルに非常に丁寧に説明されていた&hellip;このチュートリアルでいいじゃん&hellip;なんでTypesafe Activatorとかいうのインストールさせたんだよクソが&hellip;</p>
+
+<p>とか思いつつバージョンが微妙に古いので上手く行かなかったりで適宜書き換えつつ、サンプルを使ってお勉強しました。なるほど、大まかな流れはつかめたぞ！</p>
+
+<p>個人的にポイントだなと感じたのは以下の点です！<a href="http://doc.akka.io/docs/akka/2.0.2/intro/getting-started-first-scala.html">akka 2.0.2</a>を読みながら(むしろそちらメインで)読んでいただくと非常にわかりやすいかと！</p>
+
+<ol>
+<li>Actor</li>
+<li>メッセージパッシング</li>
+<li>ルータ</li>
+</ol>
+
+
+<h2>Actor</h2>
+
+<p>akkaの並列処理では<code>Actor</code>というものを使うそうです。Actorとは、Javaの並列処理というで使うスレッドをイメージしてもらえればオッケーかと思います。ただしActorを特徴づけるのが、Actorがお互いにメッセージのやりとりをして処理を進めていく点です。</p>
+
+<h2>メッセージパッシング</h2>
+
+<p>Actorはメッセージのやりとりをして処理を進めていくと書きましたが、そのための仕組みがメッセージパッシングです。ちょっとサンプルソースを見てみましょう。(今気づいたけどPiApproximationはPiMessage継承してないけどいいのかな&hellip;一応動いちゃいるけども)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">object</span> <span class="nc">Calculate</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">Work</span><span class="o">(</span><span class="n">start</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">Result</span><span class="o">(</span><span class="n">value</span><span class="k">:</span> <span class="kt">Double</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">PiApproximation</span><span class="o">(</span><span class="n">pi</span><span class="k">:</span> <span class="kt">Double</span><span class="o">,</span> <span class="n">duration</span><span class="k">:</span> <span class="kt">Duration</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記ではπの計算に使うメッセージを定義しています。パターンマッチで使うので<code>case class</code>で宣言しているようです。
+それぞれのメッセージはそれぞれ次のActor間で使用されます。</p>
+
+<table>
+<thead>
+<tr>
+<th> </th>
+<th> Actor        </th>
+<th align="center"> 役割           </th>
+<th> </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> </td>
+<td> Worker      </td>
+<td align="center"> 実際に計算を行なう</td>
+<td></td>
+</tr>
+<tr>
+<td> </td>
+<td> Master      </td>
+<td align="center"> 処理の起点、Workerの計算結果をまとめる</td>
+<td>  </td>
+</tr>
+<tr>
+<td> </td>
+<td> Listener    </td>
+<td align="center"> 結果をprintする      </td>
+<td>  </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>こちらがActorの定義です。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">class</span> <span class="nc">Worker</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="n">calculatePiFor</span><span class="o">(</span><span class="n">start</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span><span class="k">:</span><span class="kt">Double</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>   <span class="k">var</span> <span class="n">acc</span> <span class="k">=</span> <span class="mf">0.0</span>
+</span><span class='line'>   <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="n">start</span> <span class="n">until</span> <span class="o">(</span><span class="n">start</span><span class="o">+</span><span class="n">nrOfElements</span><span class="o">))</span>
+</span><span class='line'>     <span class="n">acc</span> <span class="o">+=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="o">(</span><span class="mi">1</span><span class="o">-</span> <span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">)</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+</span><span class='line'>   <span class="n">acc</span>
+</span><span class='line'> <span class="o">}</span>
+</span><span class='line'> <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">case</span> <span class="nc">Work</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>   <span class="n">sender</span> <span class="o">!</span> <span class="nc">Result</span><span class="o">(</span><span class="n">calculatePiFor</span><span class="o">(</span><span class="n">start</span><span class="o">,</span><span class="n">nrOfElements</span><span class="o">))</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>各ActorはActorクラスを継承して定義します。
+注目して欲しいのがreceiveメソッドです。receiveメソッドはそのActorがなんらかのメッセージを受け取った時に呼ばれるメソッドです。パターンマッチを使用でき、
+メッセージの種類に応じて処理を変えることができます。</p>
+
+<p>メッセージの送信は、<code>!</code>を使って</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">master</span> <span class="o">!</span> <span class="n">culculate</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>のように行います。master Actorにculculateメッセージを送るという意味です。</p>
+
+<p>メッセージを受け取ってから処理を送信者へ返す場合は<code>sender</code>が予約されているのでそれを使いましょう。</p>
+
+<p>ちなみにメッセージは無理に定義しなくてもIntとかStringとかも使えるようです。</p>
+
+<h2>ルータ</h2>
+
+<p>Master内でこのルータを宣言しています。ルータはそれぞれのWorkerに等しい量のタスクを振り分けるのに使われているようです。</p>
+
+<p>この辺はもうちょっと勉強がいりますが、要はMasterがWorkerを作り各Workerに処理を振り分けているということだと思います。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">class</span> <span class="nc">Master</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfMessages</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">listener</span><span class="k">:</span> <span class="kt">ActorRef</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">var</span> <span class="n">pi</span><span class="k">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="k">_</span>
+</span><span class='line'>  <span class="k">var</span> <span class="n">nrOfResults</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="k">_</span>
+</span><span class='line'>  <span class="k">val</span> <span class="n">start</span><span class="k">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="k">val</span> <span class="n">workerRouter</span> <span class="k">=</span> <span class="n">context</span><span class="o">.</span><span class="n">actorOf</span><span class="o">(</span><span class="nc">Props</span><span class="o">[</span><span class="kt">Worker</span><span class="o">].</span><span class="n">withRouter</span><span class="o">(</span><span class="nc">RoundRobinRouter</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="o">)),</span> <span class="n">name</span> <span class="k">=</span> <span class="s">&quot;workerRouter&quot;</span><span class="o">)</span>
+</span><span class='line'>              
+</span><span class='line'>  <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// handle messages ...</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>                                  
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>全体の流れ</h2>
+
+<p>全体の流れはこんな感じです。</p>
+
+<ol>
+<li>処理に必要なActorを定義する(今回はMaster,Worker,Listener)</li>
+<li>Actor間のやりとりに必要なメッセージを定義する</li>
+<li>Masterが処理の起点、各Workerの処理を割り振る</li>
+<li>Workerの処理が全て終わったら結果をマージ、Listenerへ投げる</li>
+<li>Listenerで結果表示(Listenerってなんでいるんだろう&hellip;?）</li>
+</ol>
+
+
+<p>以下が全ソースコードです。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">akka.actor._</span>
+</span><span class='line'><span class="k">import</span> <span class="nn">akka.routing._</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">sealed</span> <span class="k">trait</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">object</span> <span class="nc">Calculate</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">Work</span><span class="o">(</span><span class="n">start</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">Result</span><span class="o">(</span><span class="n">value</span><span class="k">:</span><span class="kt">Double</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">PiMessage</span>
+</span><span class='line'><span class="k">case</span> <span class="k">class</span> <span class="nc">PiApproximation</span><span class="o">(</span><span class="n">pi</span><span class="k">:</span><span class="kt">Double</span><span class="o">,</span> <span class="n">duration</span><span class="k">:</span><span class="kt">Long</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Worker</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">calculatePiFor</span><span class="o">(</span><span class="n">start</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span><span class="k">:</span><span class="kt">Double</span> <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">var</span> <span class="n">acc</span> <span class="k">=</span> <span class="mf">0.0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="n">start</span> <span class="n">until</span> <span class="o">(</span><span class="n">start</span><span class="o">+</span><span class="n">nrOfElements</span><span class="o">))</span>
+</span><span class='line'>      <span class="n">acc</span> <span class="o">+=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="o">(</span><span class="mi">1</span><span class="o">-</span> <span class="o">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">)</span> <span class="o">*</span> <span class="mi">2</span><span class="o">)</span> <span class="o">/</span> <span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span>
+</span><span class='line'>    <span class="n">acc</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">case</span> <span class="nc">Work</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>      <span class="n">sender</span> <span class="o">!</span> <span class="nc">Result</span><span class="o">(</span><span class="n">calculatePiFor</span><span class="o">(</span><span class="n">start</span><span class="o">,</span><span class="n">nrOfElements</span><span class="o">))</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Master</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span><span class="n">nrOfMessages</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="nc">Listener</span><span class="k">:</span><span class="kt">ActorRef</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">var</span> <span class="n">pi</span><span class="k">:</span><span class="kt">Double</span> <span class="o">=</span> <span class="k">_</span>
+</span><span class='line'>  <span class="k">var</span> <span class="n">nrOfResults</span><span class="k">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="k">_</span>
+</span><span class='line'>  <span class="k">val</span> <span class="n">start</span><span class="k">:</span><span class="kt">Long</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">val</span> <span class="n">workersRouter</span> <span class="k">=</span> <span class="n">context</span><span class="o">.</span><span class="n">actorOf</span><span class="o">(</span><span class="nc">Props</span><span class="o">[</span><span class="kt">Worker</span><span class="o">].</span><span class="n">withRouter</span><span class="o">(</span><span class="nc">RoundRobinRouter</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="o">)),</span> <span class="n">name</span> <span class="k">=</span> <span class="s">&quot;workersRouter&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">case</span> <span class="nc">Calculate</span> <span class="k">=&gt;</span>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="mi">0</span> <span class="n">until</span> <span class="n">nrOfMessages</span><span class="o">)</span> <span class="n">workersRouter</span> <span class="o">!</span> <span class="nc">Work</span><span class="o">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">nrOfElements</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">case</span> <span class="nc">Result</span><span class="o">(</span><span class="n">value</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>      <span class="n">pi</span> <span class="o">+=</span> <span class="n">value</span>
+</span><span class='line'>      <span class="n">nrOfResults</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">nrOfResults</span> <span class="o">==</span> <span class="n">nrOfMessages</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="nc">Listener</span> <span class="o">!</span> <span class="nc">PiApproximation</span><span class="o">(</span><span class="n">pi</span><span class="o">,</span> <span class="n">duration</span> <span class="k">=</span> <span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="n">currentTimeMillis</span><span class="o">-</span> <span class="n">start</span><span class="o">))</span>
+</span><span class='line'>        <span class="n">context</span><span class="o">.</span><span class="n">stop</span><span class="o">(</span><span class="n">self</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Listener</span> <span class="k">extends</span> <span class="nc">Actor</span> <span class="o">{</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">receive</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">case</span> <span class="nc">PiApproximation</span><span class="o">(</span><span class="n">pi</span><span class="o">,</span> <span class="n">duration</span><span class="o">)</span> <span class="k">=&gt;</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;Pi approximation: %s\nCalculation time: %s&quot;</span><span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="n">pi</span><span class="o">,</span><span class="n">duration</span><span class="o">))</span>
+</span><span class='line'>      <span class="n">context</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">shutdown</span><span class="o">()</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">object</span> <span class="nc">AkkatestApp</span><span class="o">{</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span><span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span><span class="kt">Unit</span>  <span class="o">=</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">val</span> <span class="n">input</span> <span class="k">=</span> <span class="n">readLine</span><span class="o">(</span><span class="s">&quot;1:sequence 2:parallel\n&quot;</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">input</span> <span class="o">==</span> <span class="s">&quot;1&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="n">calculate</span><span class="o">(</span><span class="n">nrOfWorkers</span> <span class="k">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">nrOfElements</span> <span class="k">=</span> <span class="mi">10000</span><span class="o">,</span> <span class="n">nrOfMessages</span> <span class="k">=</span> <span class="mi">10000</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">input</span> <span class="o">==</span> <span class="s">&quot;2&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="n">calculate</span><span class="o">(</span><span class="n">nrOfWorkers</span> <span class="k">=</span> <span class="mi">4</span><span class="o">,</span> <span class="n">nrOfElements</span> <span class="k">=</span> <span class="mi">10000</span><span class="o">,</span> <span class="n">nrOfMessages</span> <span class="k">=</span> <span class="mi">10000</span><span class="o">)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;wrong num&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="k">def</span> <span class="n">calculate</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="k">:</span><span class="kt">Int</span><span class="o">,</span> <span class="n">nrOfMessages</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">val</span> <span class="n">system</span> <span class="k">=</span> <span class="nc">ActorSystem</span><span class="o">(</span><span class="s">&quot;PiSystem&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">val</span> <span class="n">listener</span> <span class="k">=</span> <span class="n">system</span><span class="o">.</span><span class="n">actorOf</span><span class="o">(</span><span class="nc">Props</span><span class="o">[</span><span class="kt">Listener</span><span class="o">],</span> <span class="n">name</span> <span class="k">=</span> <span class="s">&quot;listener&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">val</span> <span class="n">master</span> <span class="k">=</span> <span class="n">system</span><span class="o">.</span><span class="n">actorOf</span><span class="o">(</span><span class="nc">Props</span><span class="o">(</span><span class="k">new</span> <span class="nc">Master</span><span class="o">(</span><span class="n">nrOfWorkers</span><span class="o">,</span> <span class="n">nrOfMessages</span><span class="o">,</span> <span class="n">nrOfElements</span><span class="o">,</span> <span class="n">listener</span><span class="o">)),</span> <span class="n">name</span> <span class="k">=</span> <span class="s">&quot;master&quot;</span><span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">master</span> <span class="o">!</span> <span class="nc">Calculate</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>まとめ</h2>
+
+<p>こちらが今回参考にさせていただいたサイトです。</p>
+
+<p><a href="http://labs.enrapt.jp/2013/03/scalaakka.html">SclaのAkka入門</a></p>
+
+<p><a href="http://www.atmarkit.co.jp/ait/articles/1209/06/news134.html">Scalaの並行処理とアクター、並列コレクション</a></p>
+
+<p><a href="http://www.atmarkit.co.jp/ait/articles/1209/06/news134.html">Scala + akka で簡単なチャットサーバを書いてみたので開設してみるよ</a></p>
+
+<p><a href="http://tuvistavie.com/posts/6-getting-started-with-scala-akka-actors?locale=ja">Scalaのakka actorsを使いはじめる</a></p>
+
+<p>まだまだakkaの入り口に立った程度ですがこの程度のことでも情報がなくてかなり時間がかかってしまった&hellip;</p>
+
+<p>もっと頑張って勉強します！！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[未来を感じるインタフェースを作るスタートアップ7つ]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/01/25/interface-startup/"/>
+    <updated>2014-01-25T13:45:19+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/01/25/interface-startup</id>
+    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/future.jpg" alt="future" /></p>
+
+<p>近年はwebだけでなく実際にデバイスを作っているスタートアップも増えています。
+ここではそうしたスタートアップの中でも未来を感じるインタフェースで世界を変えようとしているスタートアップを紹介します。</p>
+
+<!-- more -->
+
+
+<h2>ジェスチャー</h2>
+
+<h3>Ring</h3>
+
+<p><img src="http://r-nmt000.github.io/images/ring.jpg" alt="Ring" /></p>
+
+<iframe src="http://r-nmt000.github.io//player.vimeo.com/video/74626545" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+<p> <p><a href="http://vimeo.com/74626545">Ring -Shorcut Everything-</a> from <a href="http://vimeo.com/user7740853">Logbar</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p>
+
+<p>&ldquo;Shortcut Everything&#8221;を表題にジェスチャーで全てを操作しようというデバイスがRing。
+日本発のベンチャーでスタートアップの祭典SF JapanNightで優勝しました。
+動画を見ていただければわかりますが、すごい&hellip; カーテン、テレビ、音楽のボリューム、連絡先の交換までショートカットしてしまっています。
+この動画の未来が訪れたらと考えるだけでワクワクしますね！</p>
+
+<ul>
+<li>コンセプトムービー <a href="http://vimeo.com/74626545">http://vimeo.com/74626545</a></li>
+</ul>
+
+
+<h3>MYO</h3>
+
+<p><img src="http://r-nmt000.github.io/images/myo.jpg" alt="MYO" /></p>
+
+<iframe src="http://player.vimeo.com/video/37562944" width="560" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+
+<p>MYOは指ではなく、腕に取り付けるタイプのジェスチャーデバイスです。
+筋肉の動きを読み取ることでジェスチャーを認識しています。
+Ringと決定的に違うのは、Ringがショートカットコマンドと対応する動きを覚える必要があるのに対し、
+MYOは筋肉の動きを読み取っているのでより柔軟なジェスチャー操作が可能という点です。
+FPSにおける銃の上げ下ろしといった操作をナチュラルに再現することができます。</p>
+
+<ul>
+<li>公式サイト <a href="https://www.thalmic.com/en/myo/">https://www.thalmic.com/en/myo/</a></li>
+</ul>
+
+
+<h3>mycestro</h3>
+
+<p><img src="http://r-nmt000.github.io/images/mycestro.jpg" alt="mycestro" /></p>
+
+<iframe width="480" height="360" src="https://www.kickstarter.com/projects/mycestro/mycestrotm-the-next-generation-3d-mouse/widget/video.html" frameborder="0" scrolling="no"> </iframe>
+
+
+<p>キーボードとマウスの移動が煩わしいと思ったことはありませんか？
+mycestroはあなたのそんな悩みを解決します。
+指につけるタイプのこのデバイスは、空中でまるで指揮者のように手を振るだけでカーソルを操作することができます。
+できることはカーソルの操作に限られているので、上記2つと比べると夢がないかもしれませんが実用性は抜群だと思います。</p>
+
+<ul>
+<li>公式サイト <a href="http://www.mycestro.com/">http://www.mycestro.com/</a></li>
+</ul>
+
+
+<h2>脳波</h2>
+
+<h3>Muse</h3>
+
+<p><img src="http://r-nmt000.github.io/images/muse.jpg" alt="muse" /></p>
+
+<iframe src="http://player.vimeo.com/video/37562944" width="560" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+
+<p>museはなんとユーザの脳をセンシングすることができるデバイスです。
+ヘッドバンドタイプのこのデバイスは脳の活動を読み取り、集中度や興奮度を計測してスマホからそれらを確認することができます。
+更に将来は脳内で思考するだけでスマホや家電といったデバイスを操作することも目指しているそうです。
+もしそんなことが可能になったらかなり捗りますね&hellip; 現状音声やジェスチャーが最先端のインタフェースと言えそうですが、これが実現すればもはや身体を動かす必要すらないわけです。
+個人的にはmuseを使ってテレパシーの様に人と人のコミュニケーションができたらなあ&hellip; と思っています。</p>
+
+<ul>
+<li>公式サイト <a href="http://www.interaxon.ca/">http://www.interaxon.ca/</a></li>
+</ul>
+
+
+<h2>ホログラム</h2>
+
+<h3>Displair</h3>
+
+<p><img src="http://r-nmt000.github.io/images/displair.jpg" alt="displair" /></p>
+
+<iframe width="560" height="315" src="http://r-nmt000.github.io//www.youtube.com/embed/yEP7JewA2C8" frameborder="0" allowfullscreen></iframe>
+
+
+<p>SFのように空中に浮かんだ仮想オブジェクトを操作することは人類の(少なくとも僕の)夢ですが、displairの登場で人類はその夢に一歩近づきました。
+空気中に散出した蒸気に対して映像を照射することで仮想オブジェクトを表示し、手の動きをセンシングすることであたかも仮想オブジェクトを触って動かしているような操作感を実現しています。
+動画を見てみるとかなりの精度のようです。
+ホログラム系のデバイスは手へのフィードバック(実際に触った感覚)が現状課題となっているので、それを解決できればより素晴らしい製品になると思います。</p>
+
+<ul>
+<li>公式サイト<a href="http://displair.com/">http://displair.com/</a></li>
+</ul>
+
+
+<h2>その他</h2>
+
+<h3>Oculus Rift</h3>
+
+<p><img src="http://r-nmt000.github.io/images/oculus.jpg" alt="oculus" /></p>
+
+<iframe width="560" height="315" src="http://r-nmt000.github.io//www.youtube.com/embed/GoQ0OXJCbaE" frameborder="0" allowfullscreen></iframe>
+
+
+<p>Oculus Riftは没入感が半端ないHMDです。
+視野角110度(通常のHMDは30~45度), 3D映像, 頭の動きとVR内の視点が連動して動くことでまさに仮想世界にいるような錯覚に陥ります。
+僕もOculusでジェットコースターのVRを体験したことがありますが、普通に怖いです。ジェットコースターが下降しているときは本当に落ちているかのような錯覚に陥ります。</p>
+
+<ul>
+<li><a href="http://www.oculusvr.com/">http://www.oculusvr.com/</a></li>
+</ul>
+
+
+<h3>ARヘルメット</h3>
+
+<p><img src="http://r-nmt000.github.io/images/helmet.jpg" alt="helmet" /></p>
+
+<iframe src='http://player.cnevids.com/embed/525d923b4ffb60655000000b/5176e89e68f9daff42000013' width='560' height='390' frameBorder='0' allowfullscreen webkitallowfullscreen mozallowfullscreen allowtransparency='true'></iframe>
+
+
+<p>ARヘルメットはバイカーのための道案内ARヘルメットです。
+ヘルメットのシールド部分に道案内の標識が表示されます。</p>
+
+<ul>
+<li>公式サイト <a href="http://nilmo.net/news/2_gadjet/2013/20130701_1.html">http://nilmo.net/news/2_gadjet/2013/20130701_1.html</a></li>
+</ul>
+
+
+<h2>近未来のコミュニケーション</h2>
+
+<p>どのスタートアップも非常に未来的ですね。
+ここでは6例紹介しましたが、市場に出ているデバイスはDisplairだけです。
+こうした未来的デバイスが今後市場に出てくることにより、これから更に大きなムーブメントとなっていくことでしょう。</p>
+
+<p>そして、デバイスが魅力的なことはもちろんですが、こうした製品を作っているスタートアップの方達は20代の方が多いです。
+技術がなくても、面白いアイデアを持ち、実現させる情熱があればあなたにもこうした未来を作れるかもしれません。</p>
+
+<p>あなたも新しい未来を作ってみませんか？</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Study abroad 1]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/01/14/english-canada/"/>
+    <updated>2014-01-14T02:08:59+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/01/14/english-canada</id>
+    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/vancouver.jpg" alt="vancouver" /></p>
+
+<h1>最小の費用で最大の効果を得る留学 1</h1>
+
+<p>自分は2012年の10月から2013年の9月までカナダのバンクーバーってところで働いてました。
+語学留学ってやつです。そのときの経験をここに記録して少しでも語学留学を考えている人の役に立てたらなと思います。</p>
+
+<!-- more -->
+
+
+<h4>注意1</h4>
+
+<p>この記事では自分の考えや思いをなるべく<strong>本音</strong>で<strong>歯に衣着せぬ形</strong>で書いています。かなり<strong>主観的</strong>になっている箇所もあると思います。
+読んでいて不快になる人がいたらごめんなさい。なにか意見があったらコメント欄に書いて貰えると嬉しいです。</p>
+
+<h4>注意2</h4>
+
+<p>この記事では</p>
+
+<ol>
+<li>いかに安く</li>
+<li>いかに語学力の向上を最大化できるか</li>
+</ol>
+
+
+<p>を、主目的としています。海外に行く目的は様々です。異なる文化に触れたり、世界中に友達を作ったり、海外の大学で勉強したり色々あると思います。
+ですので、上記の目的に沿わない人はもしかしたらこの記事は見当違いなことを言っているように感じるかもしれません。</p>
+
+<h2>留学前の自分のスペック</h2>
+
+<p>この記事はもちろん自分の経験を参考に書いているので、まずは自分が留学前にどの程度の英語力を持っていたかをここに示しておきます。</p>
+
+<p><strong>TOEIC</strong>
+730</p>
+
+<p><strong>会話力</strong>
+Skype英会話で3ヶ月くらい会話の練習してた。自己紹介はできる程度</p>
+
+<p><strong>その他</strong></p>
+
+<ul>
+<li>英単語帳(Duo)を2周終わらせた。</li>
+<li>大学受験でいうと恐らくMARCH入学程度の英語力はあったかと思う。</li>
+</ul>
+
+
+<p>留学は勿論会話力の向上が目的になるのですが、センター試験レベルのリスニング力と単語、文法力は日本で身につけていたほうがいいです。(逆にセンター以上のレベルは日常レベルでは出てこないので勉強しても無駄になるかもしれません)
+海外にいる時間は限られているので、単語や文法を向こうで勉強するのはものすごい時間の無駄です。スタートダッシュするためにもやれることはやっときましょう。</p>
+
+<p>個人的には<strong>Real英会話</strong>というiPhoneアプリがオススメです。このアプリでは日常会話で使われるフレーズを学習することができます。フレーズリストは毎日更新され、どんどん増えていきます。(2014年1月現在で3500前後あります)</p>
+
+<p>なによりこのアプリが素晴らしいのは、それぞれのフレーズを会話の中でどのように使われるかを学べる点です。会話ベースで学べるので、ネイティブの会話のノリを学習できるのです。これは非常に大きいです。
+自分は留学中にこのアプリを使い始めたのですが、留学前にやれば良かったと後悔しています。</p>
+
+<iframe src="http://spsns.net/tools/app.php?url=https://itunes.apple.com/jp/app/real-ying-hui-hua/id373563219?mt=8" width="720" height="220" frameborder="0"></iframe>
+
+
+<h2>なんでカナダか</h2>
+
+<p>自分はせっかくならバッチリ英語を喋れるようになりたかったので1年休学することにしました。
+短期ならフィリピンとかもいいと思います。安いし！</p>
+
+<p>そんなわけで1年いくことにしたんですが、1年間語学学校に行くような金はありません。つまり、現地で労働する必要があったので<strong>ワーキングホリデービザ</strong>が取れる国に行く必要がありました。</p>
+
+<h4>ワーキングホリデービザとは</h4>
+
+<ul>
+<li>1年間限定で学生にも労働者にもニートにもなれるビザ</li>
+<li>ワークビザを取るのは基本的にはめっちゃ大変だがワーホリは簡単に取れる</li>
+<li>しかも安い。確か1万円くらい</li>
+<li>すなわち、最強のビザ</li>
+</ul>
+
+
+<p>このビザが無いと、基本的に僕のような留学生が働くことはできません。
+日本から英語圏の国でワーホリが取れる国は、当時はカナダ、オーストラリア、ニュージーランド、イギリスでした(たぶんね)。
+で、シリコンバレーにかなり憧れを抱いていた僕は帰りにアメリカ旅行して帰ろうと思ってカナダを選びました。</p>
+
+<p>現地で働けば、</p>
+
+<ol>
+<li>学校ではない現地人のリアルな英語を学べる</li>
+<li>ネイティブの友達ができる</li>
+<li>仕事にもよるが生活費は全てペイできるので留学の初期費用だけ心配すれば良い</li>
+</ol>
+
+
+<p>といった恩恵を受けることができます。主観ですが、<strong>恋人を作る以外でこれ以上の英語学習法はないと思ってます</strong></p>
+
+<h2>なに準備すればいいんだ？</h2>
+
+<p>そうです。留学するぜ！ってなってもなにをどーすればいいかわかりません。そこで<strong>留学エージェント</strong>を使いましょう。
+留学までに必要なものを色々教えてくれたり準備してくれたりします。便利！！</p>
+
+<p>ただ、ここで問題があります。このエージェントには無料のところと有料のところがあるのです。
+ここで僕の<strong>独断と偏見による</strong>無料と有料のエージェントの長所と短所を見てみましょう</p>
+
+<p><strong>無料</strong></p>
+
+<p>&lt;長所> なんといってもタダ。</p>
+
+<p>&lt;短所> すげー<strong>インターンシップ</strong>を押してくる</p>
+
+<p><strong>有料</strong></p>
+
+<p>&lt;長所> <strong>無駄に</strong>サービスが手厚い, 結構本音で相談に乗ってくれるとこが多かった気がする。</p>
+
+<p>&lt;短所> 手数料を取る。高い。なめてる。</p>
+
+<p>ん？無料の短所のとこになんか書いてありますね。インターンシップ？</p>
+
+<h4>インターンシップとは</h4>
+
+<p>就業体験のこと。現地のオフィスでビジネス英語を学ぶことができる。たいてい無給。</p>
+
+<p>最安で英語力アップを目指すには給料をもらう必要があるので、ここではインターンは選択肢から除外します</p>
+
+<p>が、インターンを考えている人たちへ向けて少し。</p>
+
+<p>恐らくエージェントは&#8221;ビジネス&#8221;や&#8221;オフィス&#8221;という言葉でインターンの素晴らしさを語りますが、大半は英語を使わない仕事になると思います。PCを使った書類整理等の雑用です。
+あまりネガキャンはしたくないので多くは語りませんが、彼らがなぜインターンを強く押すのかと言うと<strong>インターン紹介料のため、金のためです。</strong>
+そのことを頭においてインターンをするか考えてください。</p>
+
+<p>エージェントについて話を戻します。</p>
+
+<p>どうやってエージェントを使えばよいかということですが、いくつかのエージェントを回って相談してみてください。カウンセリングはタダですから。絶対一つじゃダメです。
+そして、有料エージェントで色々相談して無料エージェントで実際に申し込むことをオススメします。</p>
+
+<p>有料エージェントは有料だけあって結構親身に相談に乗ってくれるところも多いです。ありがたいですね。
+そして自分の考えが固まったら<strong>無料エージェントで実際に申し込みましょう</strong>
+こうすることで無料と有料のいいとこ取りをすることができます。</p>
+
+<p><strong>大切なのはエージェント任せに絶対にしないことです。</strong>搾取されたくなければ自分のことは自分で決めましょう</p>
+
+<h2>個人的に最安だと思う留学プラン(カナダ編)</h2>
+
+<ul>
+<li>語学学校1ヶ月        $700</li>
+<li>ホームステイ1ヶ月  $700</li>
+<li>海外保険                 $2000</li>
+<li>航空券(片道)           $800</li>
+<li>ワーホリビザ          $100</li>
+<li>合計　　　　　　　$4300</li>
+</ul>
+
+
+<p>わお！安い！！まあこれはもちろん最低限必要な金額なので、生活費, 予備のお金等も必要になってきます。しかしそれを計算に入れても、初期費用で<strong>100万円</strong>あれば十分に1年間カナダで暮らせます。<strong>仕事が見つかればね＼(^o^)／</strong></p>
+
+<p>語学学校とホームステイが1ヶ月なのは1ヶ月で十分慣れるからです。マジかよと思うかもしれないけどマジです。
+そもそも足りないと思えば現地で期間は伸ばせるんだから1ヶ月でマジで十分です。</p>
+
+<p>住居に関しては最初の1ヶ月はホームステイ、次月からはルームシェアが良いと思います。このへんに関してはまた改めて記事を書きます。</p>
+
+<p>要するに、100万円というのは<strong>仕事が見つかるまでに必要な費用</strong>ということになります。</p>
+
+<p>ここで試しに無料エージェント行って見積もりもらってきてみてください。多分語学学校とホームステイはもっと長期間のプランを薦めてくるはずです。
+なぜなら学校とホームステイが長ければ長い程彼らは儲かるから。僕の周りには学校を半年や1年申し込んで2ヶ月くらいで学校行かなくなってお金を無駄にする人がたくさんいました。
+エージェントはあの手この手であなたを説得し(割引等)長期間の契約を結ぼうとしますが、<strong>これ以上僕の友人のような犠牲者を出してはいけません</strong></p>
+
+<p>長いんでちょっとこの辺で切ります。次回は学校、ホームステイ、現地に行ったあとの話から始めます。</p>
+
+<h2>まとめ</h2>
+
+<ol>
+<li>ワーホリ熱いよ</li>
+<li>インターンより働け</li>
+<li>有料エージェントで相談し無料エージェントで申し込む</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Moaning Programming Language]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/28/programming-scala-brainfuck/"/>
+    <updated>2013-12-28T23:52:07+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/28/programming-scala-brainfuck</id>
+    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/woman.jpg" alt="woman" /></p>
+
+<h1>喘ぐプログラミング言語</h1>
+
+<p>喘いでプログラミングするための言語です。</p>
+
+<!-- more -->
+
+
+<h2>言語仕様</h2>
+
+<p>Brainfuckの派生言語です。</p>
+
+<p>命令は次のとおり</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center"> 命令      </th>
+<th align="center">  Brainfuck </th>
+<th align="left"> 説明 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td align="center"> yeah!     </td>
+<td align="center">  >         </td>
+<td align="left"> ポインタをインクリメントする                         </td>
+</tr>
+<tr>
+<td></td>
+<td align="center"> f**k!     </td>
+<td align="center">  &lt;         </td>
+<td align="left"> ポインタをデクリメントする                           </td>
+</tr>
+<tr>
+<td></td>
+<td align="center"> ah,       </td>
+<td align="center">  +         </td>
+<td align="left"> ポインタが指す値をインクリメントする                 </td>
+</tr>
+<tr>
+<td></td>
+<td align="center"> oh,       </td>
+<td align="center">  &ndash;         </td>
+<td align="left"> ポインタが指す値をデクリメントする                   </td>
+</tr>
+<tr>
+<td></td>
+<td align="center"> comeon!   </td>
+<td align="center">  .         </td>
+<td align="left"> ポインタが指す値を出力する                           </td>
+</tr>
+<tr>
+<td></td>
+<td align="center"> mm&hellip;     </td>
+<td align="center">  ,         </td>
+<td align="left"> 入力から1バイトポインタが指す先に読み込む            </td>
+</tr>
+<tr>
+<td></td>
+<td align="center"> ohmygod!  </td>
+<td align="center">  [         </td>
+<td align="left"> ポインタが指す値が0なら対応する]の直後にジャンプ     </td>
+</tr>
+<tr>
+<td></td>
+<td align="center"> god!      </td>
+<td align="center">  ]         </td>
+<td align="left"> ポインタが指す値が0でないなら対応する[の直後にジャンプ </td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>喘ぎ方</h2>
+
+<p><a href="http://r-nmt000.github.io/downloads/MPL.jar">こちら</a>からjarをダウンロードしてください。(重くてごめんなさい)</p>
+
+<p>テキストファイルに喘ぎ声をプログラムし、以下のコマンドを実行してください。(Java実行環境が必要)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar MPL.jar &lt;filename&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>hello world</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ah,ah,ah,ah,ah,ah,ah,ah,ah,ohmygod!yeah!ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,f**k!f**k!f**k!oh,god!yeah!comeon!yeah!ah,ah,comeon!ah,ah,ah,ah,ah,ah,ah,comeon!comeon!ah,ah,ah,comeon!yeah!oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,comeon!f**k!ah,ah,ah,ah,ah,ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!yeah!ah,comeon!</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>まとめ</h2>
+
+<p>もっといい喘ぎ方があったら教えて下さい。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Importatnt things when you choose a company]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/17/jobhunting/"/>
+    <updated>2013-12-17T13:17:52+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/17/jobhunting</id>
+    <content type="html"><![CDATA[<h2>会社を選ぶ上で重要なこと</h2>
+
+<p>こないだ行ったセミナーで聞いたお話がとても印象深くて自分の考えにも合致していたので、自分なりに解釈してここにまとめてみました。</p>
+
+<!-- more -->
+
+
+<h2>日本はなぜ衰えたか</h2>
+
+<ul>
+<li>実は、衰退したわけではなく他国が追いついただけ</li>
+<li>行動成長期の後人口減少が始まるのはどの国でも起こる自然なことで、日本の現状は至極当然</li>
+<li>価格競争では他国に勝てないが、かと言って今まで通りのものの作り方(ピュアに高品質を目指す作り方)では世界で勝てない</li>
+<li>尖ったモノを作らなければ勝てないが、大企業にはそれができない。リスクを取れないから。</li>
+</ul>
+
+
+<h2>アメリカはなぜ強いか</h2>
+
+<p>かつて日本はアメリカと肩を並べる経済力を持っていましたが今では他国に追いぬかれてしまいました。
+しかしアメリカは世界一の経済力を有しています。それにはいくつかの理由があります。</p>
+
+<p><strong>1. 成功を尊ぶ文化</strong></p>
+
+<ul>
+<li>アメリカでは新しいことを成すことを尊ぶ文化がある。</li>
+<li>リスクを取り、新しいことをして成功しようという空気ができあがっている。</li>
+</ul>
+
+
+<p><strong>2. 移民を受け入れている</strong></p>
+
+<ul>
+<li>通常の国では経済成長の後人口が減少していくが、アメリカは移民で人口を増加させている。</li>
+<li>特別な技能を持つ人間を迎え入れる体制が法律で整えられている。</li>
+</ul>
+
+
+<p><strong>3. 英語が母国語</strong></p>
+
+<ul>
+<li>母国語がグローバルスタンダードであるのは大きい。</li>
+<li>全世界へ向けてビジネスを展開しやすく、全世界から人が集まりやすい。</li>
+</ul>
+
+
+<h2>僕達の生きる道は２つある。</h2>
+
+<p>今の日本で生きる道は２つあります。それは</p>
+
+<p><strong>業界トップの企業に行って会社にぶら下がる道</strong></p>
+
+<p>もう一つは</p>
+
+<p><strong>キャリア形成を行ってどこへ行っても通用する力をつける道</strong></p>
+
+<p>日本経済の衰退、終身雇用の崩壊、外資企業の進出から将来多くの人が好む好まざるに関わらず転職を余儀なくされるでしょう。
+そうなった時労働者は大きく分けて上記２つの道を歩まざるを得なくなります。</p>
+
+<h2>キャリア形成を考える上でどういった企業がいいのか</h2>
+
+<p>自分の成長に都合の良い会社を選びましょう。特に下記の条件を満たす企業が良いでしょう。</p>
+
+<p><strong>1. 創業経営者がいること</strong></p>
+
+<ul>
+<li>２代目、３代目の経営者ではリスクを取る経営はできません。彼らは既に大きくなった会社を危険に晒すことなどできないからです。</li>
+<li>リスクが取れないということは、会社全体がきちんと管理されているということです。あなたに大きな裁量権が与えられることは少ないでしょう。</li>
+</ul>
+
+
+<p><strong>2. できれば小さい方がいい</strong></p>
+
+<ul>
+<li>小さい会社ではあなたは若い時から大きな裁量権を得られ、自由に動くことができます。０から自分で物事を考えなければなりません。</li>
+<li>会社の将来などあなたには関係ありません。若い内に経験を積むことが重要なのです。</li>
+</ul>
+
+
+<p><strong>3. グローバルに通用することをやっているか</strong></p>
+
+<ul>
+<li>業務内容は重要です。国内のみに通用する事業ではいずれグローバルな競合他者に飲み込まれるでしょう。</li>
+</ul>
+
+
+<p><strong>4. 同期が8-9割優秀かどうか</strong></p>
+
+<ul>
+<li>環境は重要です。1割では足りません。選考の段階で周囲を見渡してどんな人がいるかチェックしてみましょう。</li>
+</ul>
+
+
+<h2>まとめ</h2>
+
+<p>なかなかそんな会社見つけるの難しいよなーというのが正直なところですよね^^;</p>
+
+<p>でも、今まで大手を中心に(というか大手だけ)見ていたので、このセミナーのおかげでベンチャーも見てみようという気になりました。</p>
+
+<p>頑張っていきましょう。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android with Scala]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/"/>
+    <updated>2013-12-17T11:20:42+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala</id>
+    <content type="html"><![CDATA[<h1>ScalaでAndroid</h1>
+
+<p>こちらを参考にしました！
+<a href="http://shogogg.hatenablog.jp/entry/2013/12/06/000039">Scala + sbt-android + IntelliJ で快適Androidアプリ開発</a></p>
+
+<p>以下に僕が詰まったところをまとめました！</p>
+
+<!-- more -->
+
+
+<h2>詰まったところ</h2>
+
+<ol>
+<li>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</li>
+<li>ensime関連のエラーが出る</li>
+<li>OutOfMemoryのエラーが出る</li>
+</ol>
+
+
+<h3>compatibility-v4とcompatibility-v7-appcompatでエラーが出る</h3>
+
+<p>参考にしたサイトの手順に沿ってソースをコンパイルしようとすると</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+</span><span class='line'>[warn]      ::          UNRESOLVED DEPENDENCIES         ::
+</span><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+</span><span class='line'>[warn]      :: android.support#compatibility-v4;19: not found
+</span><span class='line'>[warn]      :: android.support#compatibility-v7-appcompat;19: not found
+</span><span class='line'>[warn]      ::::::::::::::::::::::::::::::::::::::::::::::</span></code></pre></td></tr></table></div></figure>
+
+
+<p>となってコンパイルできません。</p>
+
+<p>自分の環境では&lt;project_dir>/project/build.scalaの</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>// ======================================================================                                                                                                                             
+</span><span class='line'>34   // 依存関係
+</span><span class='line'>35   // ======================================================================
+</span><span class='line'>36   val libraryDependencies = Seq(
+</span><span class='line'>37
+</span><span class='line'>38     // Android Support Library v4 (jar)
+</span><span class='line'>39     "android.support" % "compatibility-v4" % "19",
+</span><span class='line'>40
+</span><span class='line'>41     // Android Support Library v7 (jar & apklib)
+</span><span class='line'>42     "android.support" % "compatibility-v7-appcompat" % "19",
+</span><span class='line'>43     apklib("android.support" % "compatibility-v7-appcompat" % "19")
+</span><span class='line'>44
+</span><span class='line'>45   )</span></code></pre></td></tr></table></div></figure>
+
+
+<p>の&#8221;19&#8221;の部分を&#8221;19.0.0&#8221;に変更したらうまくいきました。</p>
+
+<h3>ensime関連のエラーが出る</h3>
+
+<p>上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
+これに関しては調べても解決策が見つからず、恐らく以前に入れたensimeがなにか悪さをしてるんだろーなーと思い
+sbtとscalaをインストールし直したところ直りました。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew uninstall sbt
+</span><span class='line'>brew uninstall scala
+</span><span class='line'>rm -rf ~/.sbt
+</span><span class='line'>rm -rf ~/.ivy2
+</span><span class='line'>brew install sbt
+</span><span class='line'>brew instalo scala</span></code></pre></td></tr></table></div></figure>
+
+
+<p>わけわからなくなったら全部入れ替えちゃうのも手ですね。</p>
+
+<h3>OutOfMemoryのエラーが出る</h3>
+
+<p>これはeclipseでjavaやってたときもみたことあるエラーでした。
+eclipseのときはeclipse.iniにメモリサイズを明示することで解決しましたがscalaでは~/.sbtconfigに</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SBT_OPTS="-Dfile.encoding=UTF-8 -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。</p>
+
+<h3>IntelliJ IDEA 13でandroid support libraryの解決がうまくいかない</h3>
+
+<p>参考にしたサイトではIntelliJ 12を使っているようですが最新が13なので僕は13を使いました。</p>
+
+<p>13はsbtのプロジェクトをそのままimportする機能があり<code>sbt gen-idea</code>する必要がないのですが、今回の構成に限ってはIntelliJの機能でimport
+するのではなく<code>sbt gen-idea</code>してからIntelliJでopenするのが無難です。</p>
+
+<h3>まとめ</h3>
+
+<p>僕が詰まったのはこんなところです。
+みなさん素晴らしいscalaライフを!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ASR/TTS API for smartphone]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/06/smartphone-speechrecognition/"/>
+    <updated>2013-12-06T08:55:59+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/06/smartphone-speechrecognition</id>
+    <content type="html"><![CDATA[<h2>スマートフォンで使える音声認識・合成APIまとめ(無料)(13年12月現在)</h2>
+
+<p>音声認識・合成機能が必要になったので調べました。
+さっと調査しただけなので間違ってたらごめんなさい。
+こんなのあるんだ！ってくらいに見ていただけるとありがたいです。</p>
+
+<!-- more -->
+
+
+<hr />
+
+<h3>OpenEars</h3>
+
+<ul>
+<li>iOS向け</li>
+<li>日本語には対応してないっぽい&hellip;?(公式ページで対応言語が見つけられなかった)</li>
+<li>ASR/TTS対応</li>
+<li>使い方 : <a href="http://d.hatena.ne.jp/shu223/20130810/1376105883">フリーのiOS向け音声認識/音声合成ライブラリ&#8221;OpenEars&#8221;の使い方</a></li>
+<li>公式 : <a href="http://www.politepix.com/openears/">OpenEars</a></li>
+</ul>
+
+
+<h3>UIDictationController</h3>
+
+<ul>
+<li>iOS向け</li>
+<li>iOSの非公式クラス</li>
+<li>ASRのみ</li>
+<li>Siriの音声認識機能がそのまま使えるのは魅力</li>
+<li>でも非公式だからこれを使ってアプリ作っても公開できない</li>
+<li>使い方 : <a href="http://d.hatena.ne.jp/KishikawaKatsumi/20120310/1331335893">iOS5.1の音声入力を使ってアプリケーションを操作してみる</a></li>
+</ul>
+
+
+<h3>Google 音声認識API</h3>
+
+<ul>
+<li>Android向け</li>
+<li>日本語対応(各種言語に対応)</li>
+<li>ASR/TTS対応(ただしTTSは日本語対応してないらしい)</li>
+<li>Google公式、Androidだけでいいならこれでいいかもしれない</li>
+</ul>
+
+
+<h3>iSpeech Mobile SDK</h3>
+
+<ul>
+<li>iOS &amp; Android &amp; BlackBerry対応</li>
+<li>日本語対応(各種言語に対応)</li>
+<li>ASR/TTS対応</li>
+<li>Google翻訳の読み上げ機能の内何言語かはiSpeechが使われているらしい</li>
+<li>webサービスに実装する場合は有料</li>
+<li>公式 : <a href="http://www.ispeech.org/">iSpeech</a></li>
+</ul>
+
+
+<h3>Dragon Mobile SDK</h3>
+
+<ul>
+<li>iOS &amp; Android対応</li>
+<li>日本語対応(各種言語に対応)</li>
+<li>ASR/TTS対応</li>
+<li>Dragon Dictationを出している会社のAPI</li>
+<li>有料版もあり</li>
+<li>公式 : <a href="http://dragonmobile.nuancemobiledeveloper.com/public/index.php?task=home">NDEV nuance mobile</a></li>
+</ul>
+
+
+<h3>Lexee</h3>
+
+<ul>
+<li>iOS向け、Android対応予定</li>
+<li>(多分)英語のみ</li>
+<li>ASR/TTS対応</li>
+<li>まだベータ版</li>
+<li>Siriのような音声アシスタントを想定して作られているらしい</li>
+<li>今のところ無料</li>
+<li>今後の動向が気になる</li>
+<li>公式 : <a href="http://www.angel.com/labs/lexee.php">Lexee</a></li>
+</ul>
+
+
+<h2>まとめ</h2>
+
+<p>色んなスマートフォン、色んな言語に対応するならiSpeechかDragonかなあという感じですね。</p>
+
+<p>細かくはまだ見てないので精度やライセンスその他諸々確認しつつ使いやつを決めたいです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Last Starbucks]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/05/others/"/>
+    <updated>2013-12-05T16:09:40+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/05/others</id>
+    <content type="html"><![CDATA[<h2>前回までのあらすじ</h2>
+
+<ul>
+<li>スタバにめっちゃアプライしまくった</li>
+<li>受からない</li>
+<li>友人の助けを経てラストチャンスに挑む</li>
+<li>そして結果が返ってきた</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h3>遂にメールが届いた&hellip;同じメールを何通受け取ったことだろうか&hellip;</h3>
+
+<p><img src="http://r-nmt000.github.io/images/posts/mailtitle.jpg" alt="mailtitle" /></p>
+
+<h3>今から地獄の門を開くぜ&hellip;</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>　     　　　　＿＿＿＿＿ 
+</span><span class='line'>　  　　 　／　＼　 　 ／＼ 
+</span><span class='line'>　　  　／ し （＞） 　（＜）＼　　頼む受かっててくれ！　
+</span><span class='line'>　　　　|　∪　  （__人__）　J |  　＿＿＿＿＿＿＿_ 
+</span><span class='line'>　 　　 ＼　u　　 ｀⌒´　  　／　  | |　　　　　　　| 
+</span><span class='line'>　　　　ノ　　　　 　　  　　＼ 　　| |　　　　　　　|　 
+</span><span class='line'>　    ／´　　　　　　　　　　　   | |　　 　　 　　| 
+</span><span class='line'>　   |　　　　ｌ　　　　　　    　| |　　 　　 　　| 
+</span><span class='line'>               　　　　　 　　　＿＿＿_ 
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>             ＿＿＿＿
+</span><span class='line'>　　　　　／　　 　u　＼ 
+</span><span class='line'>　　 　／　　＼ 　  　 ─＼　　　チラッ 
+</span><span class='line'>　　　／し （＞）  　（●）＼ 
+</span><span class='line'>　　　|　∪　  （__人__） J|  ＿＿＿＿＿＿＿_ 
+</span><span class='line'>　　 ＼　　u　　 ｀⌒´　 　／ | | 　　　　　　　| 
+</span><span class='line'>　　　　ノ　　　　　 　　　＼ | |　 　　　　　　|　 
+</span><span class='line'>　 ／´　　　　　 　　　 　　 | |　　　　 　　　|　 
+</span><span class='line'>　|　　　　ｌ　 　  　　　　　| | 　　　　　　　|                     </span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://r-nmt000.github.io/images/posts/mailcontents.jpg" alt="mailcontents" /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>
+</span><span class='line'>　　　　　　／￣￣￣￣￣＼ 
+</span><span class='line'>　　　　　/;::　　　　 　;ヽ 
+</span><span class='line'>　　　　　|;:: ｨ●ｧ　　ｨ●ｧ::| 
+</span><span class='line'>　　　　　|;::　　 　　　:;| 
+</span><span class='line'>　　　　　|;:: 　c{　っ　:;|　　　 
+</span><span class='line'>　　　　  |;::　　＿＿　:;;| 
+</span><span class='line'>　　　 　 ヽ;::　　ー　::;／ 
+</span><span class='line'>　　　　　　＼;;:　　:;;／ 
+</span><span class='line'>　　　　　　 |;::　 ::;| 
+</span><span class='line'>　　　　　　 |;::　 ::;| 
+</span><span class='line'>　　　／￣￣￣　　　　 ￣￣￣＼ 
+</span><span class='line'>　　　|;;::　　　　　　　　::;;| 
+</span><span class='line'>　　　|;;::　　　　　　　　::;;| 
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse keybind's setting]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips/"/>
+    <updated>2013-12-04T23:56:20+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips</id>
+    <content type="html"><![CDATA[<h2>Eclipseでキーバインドの設定をインポート、エクスポートする</h2>
+
+<p>Eclipseの嫌いな機能のひとつ、キーバインドがワークスペースと結びつく機能
+こいつのせいでワークスペース切り替えるたびにいちいちキーバインドの設定をインポートしなくちゃいけない。</p>
+
+<!-- more -->
+
+
+<h1>How to</h1>
+
+<ol>
+<li>File->ExportからPreferenceを選択し、Nextボタン押下</li>
+<li>Keys Preferencesを選択、To preference fileから出先を指定</li>
+<li>Finish</li>
+</ol>
+
+
+<p>できたepfファイルを他のワークスペースでインポートすれば使えます。
+この設定ファイルはよく使うと思うのでクラウドにでもあげとくといいかも。
+僕は設定ファイルの類はgithubに置いといて違う環境に移った時にすぐ使えるようにしています。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[TagCloud]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud/"/>
+    <updated>2013-12-04T20:18:00+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud</id>
+    <content type="html"><![CDATA[<h2>タグクラウド導入してみました。</h2>
+
+<p>参考にしたサイトはこちら</p>
+
+<ul>
+<li><p><a href="http://rcmdnk.github.io/blog/2013/04/12/blog-octopress/">Octopressでのタグの運用</a></p></li>
+<li><p><a href="http://blog.digital-bot.com/blog/2013/09/03/octopress-tips/">Octopressのカスタマイズ</a></p></li>
+</ul>
+
+
+<p>ありがとうございました。</p>
+
+<!-- more -->
+
+
+<h2>タグクラウドって？</h2>
+
+<ul>
+<li>各記事の内容を端的に表す&#8221;タグ&#8221;</li>
+<li>そのタグのリストを<strong>おされ</strong>(重要)に表示したもの(主観)</li>
+<li>昔はSEO対策で意味あったっぽい。</li>
+<li>今は対策されて意味ないっぽい。</li>
+</ul>
+
+
+<h2>導入</h2>
+
+<p>上記サイトの手順をそのまま実行するだけでおっけーでした。
+なので僕がここに書くことはありません笑</p>
+
+<p>ただ、自分のRubyの知識不足とファイルの置換ミスで割と手間取ってしまったので、
+結果として結構時間がかかってしまいました。変更箇所は割と多いので細かくブランチを切って作業することをおすすめします。</p>
+
+<p>Ruby勉強しなきゃなあ&hellip;</p>
 ]]></content>
   </entry>
   

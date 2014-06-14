@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Eclipse | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/categories/eclipse/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-14T21:19:19+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Eclipse keybind's setting]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips/"/>
+    <updated>2013-12-04T23:56:20+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips</id>
+    <content type="html"><![CDATA[##Eclipseでキーバインドの設定をインポート、エクスポートする
+Eclipseの嫌いな機能のひとつ、キーバインドがワークスペースと結びつく機能
+こいつのせいでワークスペース切り替えるたびにいちいちキーバインドの設定をインポートしなくちゃいけない。
+<!-- more -->
+#How to
+
+1. File->ExportからPreferenceを選択し、Nextボタン押下
+2. Keys Preferencesを選択、To preference fileから出先を指定
+3. Finish
+
+できたepfファイルを他のワークスペースでインポートすれば使えます。
+この設定ファイルはよく使うと思うのでクラウドにでもあげとくといいかも。
+僕は設定ファイルの類はgithubに置いといて違う環境に移った時にすぐ使えるようにしています。
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

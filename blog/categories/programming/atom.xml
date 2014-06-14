@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Programming | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-14T21:19:19+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Moaning Programming Language]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/28/programming-scala-brainfuck/"/>
+    <updated>2013-12-28T23:52:07+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/28/programming-scala-brainfuck</id>
+    <content type="html"><![CDATA[![woman](/images/woman.jpg)
+
+
+#喘ぐプログラミング言語
+喘いでプログラミングするための言語です。
+
+
+<!-- more -->
+##言語仕様
+Brainfuckの派生言語です。
+
+命令は次のとおり
+
+| 命令      |  Brainfuck | 説明 |
+| :-------: | :--------: | :------------- |
+| yeah!     |  >         | ポインタをインクリメントする                         
+| f**k!     |  <         | ポインタをデクリメントする                           
+| ah,       |  +         | ポインタが指す値をインクリメントする                 
+| oh,       |  -         | ポインタが指す値をデクリメントする                   
+| comeon!   |  .         | ポインタが指す値を出力する                           
+| mm...     |  ,         | 入力から1バイトポインタが指す先に読み込む            
+| ohmygod!  |  [         | ポインタが指す値が0なら対応する]の直後にジャンプ     
+| god!      |  ]         | ポインタが指す値が0でないなら対応する[の直後にジャンプ 
+
+##喘ぎ方
+
+[こちら](/downloads/MPL.jar)からjarをダウンロードしてください。(重くてごめんなさい)
+
+テキストファイルに喘ぎ声をプログラムし、以下のコマンドを実行してください。(Java実行環境が必要)
+
+```
+java -jar MPL.jar <filename>
+```
+
+##hello world
+
+```
+ah,ah,ah,ah,ah,ah,ah,ah,ah,ohmygod!yeah!ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,f**k!f**k!f**k!oh,god!yeah!comeon!yeah!ah,ah,comeon!ah,ah,ah,ah,ah,ah,ah,comeon!comeon!ah,ah,ah,comeon!yeah!oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,comeon!f**k!ah,ah,ah,ah,ah,ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!yeah!ah,comeon!
+```
+
+##まとめ
+もっといい喘ぎ方があったら教えて下さい。
+]]></content>
+  </entry>
+  
+</feed>

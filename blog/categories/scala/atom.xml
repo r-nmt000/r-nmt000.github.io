@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Scala | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/categories/scala/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-14T21:19:19+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SBT Libraries and Plugins]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/"/>
+    <updated>2014-04-08T00:10:53+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/04/08/scala-sbt</id>
+    <content type="html"><![CDATA[#ある日のぼく
+
+**ぼくはSBTのプラグインを入れようとしていました。**
+
+
+ぼく「sbteclipse-plugin入れたいなあ^^ なになに、`project/plugins.sbt`に
+
+```
+resolvers += Classpaths.typesafeResolver
+
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"
+```
+
+って書けばいいのかなるほど！」
+
+ぼく「でも`"com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"`って`project/Build.scala`の`LibraryDependencies`と同じ書式だけどこっちに書いちゃダメなのかなあ。書いてみよう！」←動かず
+
+
+ぼく「てかそもそも`project/plugins.sbt`とか`project/Build.scala`とか`Build.sbt`とかなんなんだっけ？どういう関係だっけ？調べてみよう！」
+
+
+<!-- more -->
+
+##[ここ](http://scalajp.github.io/sbt-getting-started-guide-ja/)に全て書いてあるけど自分なりにまとめたよ！
+
+SBTのビルド定義やらライブラリの依存性やら何度勉強しても忘れるのでここで一発まとめちゃおうと思います！！
+
+今回は以下のディレクトリ構造を想定します。
+
+```
+hello/
+ build.sbt
+
+ project/
+  Build.scala
+	plugins.sbt
+```
+
+###ライブラリ？プラグイン？
+
+そもそも今回の問題は自分の中でライブラリとプラグインの定義が曖昧だったことが始まりでした。SBTで言うところのプラグインの追加とは、
+
+> **ビルド定義にライブラリ依存性を追加することを意味する。**
+
+らしいです。
+
+SBTではプロジェクト(上記のhelloとします)のビルド定義は`build.sbt`と`project/Build.scala`に記述します。各ファイルにプロジェクト名やScalaのバージョンやビルドスルために必要なライブラリを書いてあげることをビルド定義と呼ぶわけです。
+
+そしてプラグインとはこのビルド定義の拡張に他なりません。他ならないそうです。
+
+ですので、**このビルド定義に対してまたビルド定義**してあげることがプラグインの追加になるそうです。
+
+##SBTの再帰構造
+
+SBTではビルド定義自体をまたプロジェクトとして扱うことができます。つまり、
+
+
+
+```
+hello/
+ build.sbt
+
+ project/
+  Build.scala
+	plugins.sbt
+  project/
+   Build.scala
+	 plugins.sbt   
+   project/
+    Build.scala
+	  plugins.sbt   
+		...
+```
+
+な感じでビルド定義のビルド定義のビルド定義の...みたいなことができちゃうわけです。
+
+ようは`build.sbt`と`plugins.sbt`は役割的には同じなわけです。ただ、対象とするプロジェクトが異なりますということです。
+
+
+##まとめ
+
+書いてたら眠くなったのでこの辺にしときます！
+
+SBTプロジェクト内のファイル関係はこれである程度頭に入ったはず！！
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Scala + akka]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/04/02/scala-akka/"/>
+    <updated>2014-04-02T01:10:16+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/04/02/scala-akka</id>
+    <content type="html"><![CDATA[#Scalaのakkaを試してみた
+
+![akka](/images/akka.jpg)
+
+そういやScala始めてしばらくになるけどakka触ったことなかったなあこれはやばいなあということでちょっと勉強してみました。
+
+<!-- more -->
+
+##akkaって？
+
+Scala2.10から公式に標準装備された並列分散処理のためのScala, Java用フレームワークだそうです。
+
+[akka公式サイト](http://akka.io/)
+
+##じゃあ使ってみよう
+
+[akka公式サイト](http://akka.io/docs/)によると最新バージョンは2.3.1だそうな、ふむふむ...さっそく[Gettinng Started](http://doc.akka.io/docs/akka/2.3.1/intro/getting-started.html)をやってみるか
+
+Akka 「Akkaを勉強する一番いい方法はTypesafe Activatorをダウンロードしてテンプレートを試すことだよ^^ 」
+
+ぼく 「あ、そうなの？じゃあそれ試してみよう」
+
+一時間後...
+
+```
+
+　　　　　　　 ＿＿＿_
+　　　　　　／　　 　 　＼　
+　　　　 ／　　─　 　 ─   ＼  全然わからねえ...
+　　　／ 　　 （○） 　（○） ＼
+　 　 |　 　　 　 （__人__） |　　 ＿＿＿＿＿＿＿＿＿__
+　　　＼　　　 　 ｀ ⌒´　　,／　.| |　　　　　　　 　　|
+　　　ノ　　　　　　　　　　　＼ .| |　　　　　　　 　　|
+.　／´　　　　　　　　 　 　 　  | |　　　　    　  　 |
+　|　　　　ｌ　　　　　　　　　   | |　　　　　　　 　　|
+　ヽ　　　 -一ー_~､⌒)^),-､　　  .|_|_＿＿＿＿_＿＿＿＿_|
+　　ヽ ＿＿＿＿,ノγ⌒ヽ)ニニニニ　   　 ＿|_|＿_|＿
+```
+
+なんだよソースだけ渡されてもわかんねーよ！！もっと言葉で伝えてくれなきゃわかんねーよオレを誰だと思ってんだ！！ヾ(*｀Д´*)ﾉ"
+
+てな感じで悪戦苦闘してググるも、なかなかよい情報が見つからず...
+
+で、よくよくみたら[akka 2.0.2](http://doc.akka.io/docs/akka/2.0.2/intro/getting-started-first-scala.html)ではπを求める計算をサンプルに非常に丁寧に説明されていた...このチュートリアルでいいじゃん...なんでTypesafe Activatorとかいうのインストールさせたんだよクソが...
+
+とか思いつつバージョンが微妙に古いので上手く行かなかったりで適宜書き換えつつ、サンプルを使ってお勉強しました。なるほど、大まかな流れはつかめたぞ！
+
+個人的にポイントだなと感じたのは以下の点です！[akka 2.0.2](http://doc.akka.io/docs/akka/2.0.2/intro/getting-started-first-scala.html)を読みながら(むしろそちらメインで)読んでいただくと非常にわかりやすいかと！
+
+1. Actor
+1. メッセージパッシング
+1. ルータ
+
+
+##Actor
+
+akkaの並列処理では`Actor`というものを使うそうです。Actorとは、Javaの並列処理というで使うスレッドをイメージしてもらえればオッケーかと思います。ただしActorを特徴づけるのが、Actorがお互いにメッセージのやりとりをして処理を進めていく点です。
+
+##メッセージパッシング
+
+Actorはメッセージのやりとりをして処理を進めていくと書きましたが、そのための仕組みがメッセージパッシングです。ちょっとサンプルソースを見てみましょう。(今気づいたけどPiApproximationはPiMessage継承してないけどいいのかな...一応動いちゃいるけども)
+
+
+```scala
+sealed trait PiMessage
+case object Calculate extends PiMessage
+case class Work(start: Int, nrOfElements: Int) extends PiMessage
+case class Result(value: Double) extends PiMessage
+case class PiApproximation(pi: Double, duration: Duration)
+```
+
+上記ではπの計算に使うメッセージを定義しています。パターンマッチで使うので`case class`で宣言しているようです。
+それぞれのメッセージはそれぞれ次のActor間で使用されます。
+
+
+ | Actor        | 役割           | 
+ | ------------- |:-------------:|
+ | Worker      | 実際に計算を行なう|
+ | Master      | 処理の起点、Workerの計算結果をまとめる|  
+ | Listener    | 結果をprintする      |  
+
+
+こちらがActorの定義です。
+
+```scala
+
+class Worker extends Actor {                                                                                                                                                                            
+
+ def calculatePiFor(start:Int, nrOfElements:Int):Double = {
+   var acc = 0.0
+   for (i <- start until (start+nrOfElements))
+     acc += 4.0 * (1- (i%2) * 2) / (2 * i + 1)
+   acc
+ }
+ def receive = {
+  case Work(start, nrOfElements) =>
+   sender ! Result(calculatePiFor(start,nrOfElements))
+  }
+}
+```
+
+各ActorはActorクラスを継承して定義します。
+注目して欲しいのがreceiveメソッドです。receiveメソッドはそのActorがなんらかのメッセージを受け取った時に呼ばれるメソッドです。パターンマッチを使用でき、
+メッセージの種類に応じて処理を変えることができます。
+
+メッセージの送信は、`!`を使って
+
+```scala
+master ! culculate
+```
+
+のように行います。master Actorにculculateメッセージを送るという意味です。
+
+メッセージを受け取ってから処理を送信者へ返す場合は`sender`が予約されているのでそれを使いましょう。
+
+
+ちなみにメッセージは無理に定義しなくてもIntとかStringとかも使えるようです。
+
+##ルータ
+
+Master内でこのルータを宣言しています。ルータはそれぞれのWorkerに等しい量のタスクを振り分けるのに使われているようです。
+
+この辺はもうちょっと勉強がいりますが、要はMasterがWorkerを作り各Workerに処理を振り分けているということだと思います。
+
+```scala
+class Master(nrOfWorkers: Int, nrOfMessages: Int, nrOfElements: Int, listener: ActorRef) extends Actor {
+  var pi: Double = _
+  var nrOfResults: Int = _
+  val start: Long = System.currentTimeMillis
+		  
+  val workerRouter = context.actorOf(Props[Worker].withRouter(RoundRobinRouter(nrOfWorkers)), name = "workerRouter")
+				 
+	def receive = {
+    // handle messages ...
+  }
+									  
+}
+
+```
+
+##全体の流れ
+
+全体の流れはこんな感じです。
+
+
+1. 処理に必要なActorを定義する(今回はMaster,Worker,Listener)
+1. Actor間のやりとりに必要なメッセージを定義する
+1. Masterが処理の起点、各Workerの処理を割り振る
+1. Workerの処理が全て終わったら結果をマージ、Listenerへ投げる
+1. Listenerで結果表示(Listenerってなんでいるんだろう...?）
+
+以下が全ソースコードです。
+
+```scala
+
+import akka.actor._
+import akka.routing._
+
+sealed trait PiMessage
+case object Calculate extends PiMessage
+case class Work(start:Int, nrOfElements:Int) extends PiMessage
+case class Result(value:Double) extends PiMessage
+case class PiApproximation(pi:Double, duration:Long)
+
+class Worker extends Actor {
+
+  def calculatePiFor(start:Int, nrOfElements:Int):Double = {
+    var acc = 0.0
+    for (i <- start until (start+nrOfElements))
+      acc += 4.0 * (1- (i%2) * 2) / (2 * i + 1)
+    acc
+  }
+  def receive = {
+    case Work(start, nrOfElements) =>
+      sender ! Result(calculatePiFor(start,nrOfElements))
+  }
+}
+
+class Master(nrOfWorkers:Int,nrOfMessages:Int, nrOfElements:Int, Listener:ActorRef) extends Actor {
+  var pi:Double = _
+  var nrOfResults:Int = _
+  val start:Long = System.currentTimeMillis
+
+  val workersRouter = context.actorOf(Props[Worker].withRouter(RoundRobinRouter(nrOfWorkers)), name = "workersRouter")
+
+  def receive = {
+    case Calculate =>
+      for (i <- 0 until nrOfMessages) workersRouter ! Work(i * nrOfElements, nrOfElements)
+    case Result(value) =>
+      pi += value
+      nrOfResults += 1
+      if (nrOfResults == nrOfMessages) {
+        Listener ! PiApproximation(pi, duration = (System.currentTimeMillis- start))
+        context.stop(self)
+      }
+  }
+}
+
+class Listener extends Actor {
+  def receive = {
+    case PiApproximation(pi, duration) =>
+      println("Pi approximation: %s\nCalculation time: %s".format(pi,duration))
+      context.system.shutdown()
+  }
+}
+object AkkatestApp{
+  def main(args:Array[String]):Unit  = {
+    val input = readLine("1:sequence 2:parallel\n")
+    if (input == "1")
+      calculate(nrOfWorkers = 1, nrOfElements = 10000, nrOfMessages = 10000)
+    else if (input == "2")
+      calculate(nrOfWorkers = 4, nrOfElements = 10000, nrOfMessages = 10000)
+    else 
+      println("wrong num")
+
+  }
+  def calculate(nrOfWorkers:Int, nrOfElements:Int, nrOfMessages:Int) {
+    val system = ActorSystem("PiSystem")
+
+    val listener = system.actorOf(Props[Listener], name = "listener")
+
+    val master = system.actorOf(Props(new Master(nrOfWorkers, nrOfMessages, nrOfElements, listener)), name = "master")
+
+    master ! Calculate
+  }
+}
+
+```
+
+##まとめ
+
+こちらが今回参考にさせていただいたサイトです。
+
+[SclaのAkka入門](http://labs.enrapt.jp/2013/03/scalaakka.html)
+
+[Scalaの並行処理とアクター、並列コレクション](http://www.atmarkit.co.jp/ait/articles/1209/06/news134.html)
+
+[Scala + akka で簡単なチャットサーバを書いてみたので開設してみるよ](http://www.atmarkit.co.jp/ait/articles/1209/06/news134.html)
+
+[Scalaのakka actorsを使いはじめる](http://tuvistavie.com/posts/6-getting-started-with-scala-akka-actors?locale=ja)
+
+
+まだまだakkaの入り口に立った程度ですがこの程度のことでも情報がなくてかなり時間がかかってしまった...
+
+もっと頑張って勉強します！！
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android with Scala]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/"/>
+    <updated>2013-12-17T11:20:42+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala</id>
+    <content type="html"><![CDATA[#ScalaでAndroid
+こちらを参考にしました！
+[Scala + sbt-android + IntelliJ で快適Androidアプリ開発](http://shogogg.hatenablog.jp/entry/2013/12/06/000039)
+
+以下に僕が詰まったところをまとめました！
+<!-- more -->
+
+ 
+##詰まったところ
+
+1. compatibility-v4とcompatibility-v7-appcompatでエラーが出る
+2. ensime関連のエラーが出る
+3. OutOfMemoryのエラーが出る
+
+###compatibility-v4とcompatibility-v7-appcompatでエラーが出る
+参考にしたサイトの手順に沿ってソースをコンパイルしようとすると
+```
+[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+[warn]      ::          UNRESOLVED DEPENDENCIES         ::
+[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+[warn]      :: android.support#compatibility-v4;19: not found
+[warn]      :: android.support#compatibility-v7-appcompat;19: not found
+[warn]      ::::::::::::::::::::::::::::::::::::::::::::::
+```
+となってコンパイルできません。
+
+自分の環境では<project_dir>/project/build.scalaの
+```
+// ======================================================================                                                                                                                             
+34   // 依存関係
+35   // ======================================================================
+36   val libraryDependencies = Seq(
+37
+38     // Android Support Library v4 (jar)
+39     "android.support" % "compatibility-v4" % "19",
+40
+41     // Android Support Library v7 (jar & apklib)
+42     "android.support" % "compatibility-v7-appcompat" % "19",
+43     apklib("android.support" % "compatibility-v7-appcompat" % "19")
+44
+45   )
+```
+の"19"の部分を"19.0.0"に変更したらうまくいきました。
+
+
+###ensime関連のエラーが出る
+上記のエラーと似たような感じで、ensimeが見つからねえよ！と怒られるエラーが起きました。
+これに関しては調べても解決策が見つからず、恐らく以前に入れたensimeがなにか悪さをしてるんだろーなーと思い
+sbtとscalaをインストールし直したところ直りました。
+```
+brew uninstall sbt
+brew uninstall scala
+rm -rf ~/.sbt
+rm -rf ~/.ivy2
+brew install sbt
+brew instalo scala
+```
+わけわからなくなったら全部入れ替えちゃうのも手ですね。
+
+###OutOfMemoryのエラーが出る
+これはeclipseでjavaやってたときもみたことあるエラーでした。
+eclipseのときはeclipse.iniにメモリサイズを明示することで解決しましたがscalaでは~/.sbtconfigに
+```
+SBT_OPTS="-Dfile.encoding=UTF-8 -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256m"  
+```
+とすることで解決しました。先頭のUTF-8のオプションは元々ついていたもので、後からCMSClassUnloadingとMaxPermSizeを追加しました。 
+
+###IntelliJ IDEA 13でandroid support libraryの解決がうまくいかない
+参考にしたサイトではIntelliJ 12を使っているようですが最新が13なので僕は13を使いました。
+
+13はsbtのプロジェクトをそのままimportする機能があり`sbt gen-idea`する必要がないのですが、今回の構成に限ってはIntelliJの機能でimport
+するのではなく`sbt gen-idea`してからIntelliJでopenするのが無難です。
+###まとめ
+僕が詰まったのはこんなところです。
+みなさん素晴らしいscalaライフを!
+]]></content>
+  </entry>
+  
+</feed>

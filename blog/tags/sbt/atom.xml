@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: SBT | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/tags/sbt/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-14T21:19:19+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SBT Libraries and Plugins]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/"/>
+    <updated>2014-04-08T00:10:53+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/04/08/scala-sbt</id>
+    <content type="html"><![CDATA[#ある日のぼく
+
+**ぼくはSBTのプラグインを入れようとしていました。**
+
+
+ぼく「sbteclipse-plugin入れたいなあ^^ なになに、`project/plugins.sbt`に
+
+```
+resolvers += Classpaths.typesafeResolver
+
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"
+```
+
+って書けばいいのかなるほど！」
+
+ぼく「でも`"com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"`って`project/Build.scala`の`LibraryDependencies`と同じ書式だけどこっちに書いちゃダメなのかなあ。書いてみよう！」←動かず
+
+
+ぼく「てかそもそも`project/plugins.sbt`とか`project/Build.scala`とか`Build.sbt`とかなんなんだっけ？どういう関係だっけ？調べてみよう！」
+
+
+<!-- more -->
+
+##[ここ](http://scalajp.github.io/sbt-getting-started-guide-ja/)に全て書いてあるけど自分なりにまとめたよ！
+
+SBTのビルド定義やらライブラリの依存性やら何度勉強しても忘れるのでここで一発まとめちゃおうと思います！！
+
+今回は以下のディレクトリ構造を想定します。
+
+```
+hello/
+ build.sbt
+
+ project/
+  Build.scala
+	plugins.sbt
+```
+
+###ライブラリ？プラグイン？
+
+そもそも今回の問題は自分の中でライブラリとプラグインの定義が曖昧だったことが始まりでした。SBTで言うところのプラグインの追加とは、
+
+> **ビルド定義にライブラリ依存性を追加することを意味する。**
+
+らしいです。
+
+SBTではプロジェクト(上記のhelloとします)のビルド定義は`build.sbt`と`project/Build.scala`に記述します。各ファイルにプロジェクト名やScalaのバージョンやビルドスルために必要なライブラリを書いてあげることをビルド定義と呼ぶわけです。
+
+そしてプラグインとはこのビルド定義の拡張に他なりません。他ならないそうです。
+
+ですので、**このビルド定義に対してまたビルド定義**してあげることがプラグインの追加になるそうです。
+
+##SBTの再帰構造
+
+SBTではビルド定義自体をまたプロジェクトとして扱うことができます。つまり、
+
+
+
+```
+hello/
+ build.sbt
+
+ project/
+  Build.scala
+	plugins.sbt
+  project/
+   Build.scala
+	 plugins.sbt   
+   project/
+    Build.scala
+	  plugins.sbt   
+		...
+```
+
+な感じでビルド定義のビルド定義のビルド定義の...みたいなことができちゃうわけです。
+
+ようは`build.sbt`と`plugins.sbt`は役割的には同じなわけです。ただ、対象とするプロジェクトが異なりますということです。
+
+
+##まとめ
+
+書いてたら眠くなったのでこの辺にしときます！
+
+SBTプロジェクト内のファイル関係はこれである程度頭に入ったはず！！
+
+
+]]></content>
+  </entry>
+  
+</feed>

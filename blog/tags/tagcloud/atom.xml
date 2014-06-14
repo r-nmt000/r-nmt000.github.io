@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: TagCloud | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/tags/tagcloud/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-14T21:19:19+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[TagCloud]]></title>
+    <link href="http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud/"/>
+    <updated>2013-12-04T20:18:00+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud</id>
+    <content type="html"><![CDATA[##タグクラウド導入してみました。
+参考にしたサイトはこちら
+
+ - [Octopressでのタグの運用](http://rcmdnk.github.io/blog/2013/04/12/blog-octopress/)
+
+ - [Octopressのカスタマイズ](http://blog.digital-bot.com/blog/2013/09/03/octopress-tips/)
+
+ありがとうございました。
+<!-- more -->
+
+##タグクラウドって？
+
+ - 各記事の内容を端的に表す"タグ"
+ - そのタグのリストを**おされ**(重要)に表示したもの(主観)
+ - 昔はSEO対策で意味あったっぽい。
+ - 今は対策されて意味ないっぽい。
+
+##導入
+上記サイトの手順をそのまま実行するだけでおっけーでした。
+なので僕がここに書くことはありません笑
+
+ただ、自分のRubyの知識不足とファイルの置換ミスで割と手間取ってしまったので、
+結果として結構時間がかかってしまいました。変更箇所は割と多いので細かくブランチを切って作業することをおすすめします。
+
+Ruby勉強しなきゃなあ...
+
+]]></content>
+  </entry>
+  
+</feed>
