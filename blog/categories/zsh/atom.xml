@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Zsh | NomoLog]]></title>
+  <link href="http://r-nmt000.github.io/blog/categories/zsh/atom.xml" rel="self"/>
+  <link href="http://r-nmt000.github.io/"/>
+  <updated>2014-06-14T21:14:04+09:00</updated>
+  <id>http://r-nmt000.github.io/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Dotfiles]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/14/zsh-vim/"/>
+    <updated>2014-06-14T20:42:39+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/14/zsh-vim</id>
+    <content type="html"><![CDATA[いつも使ってるvimやzshの設定をgitリポジトリにあげて、新しい環境で`make`するだけで導入できるようにしました。
+
+作業中につまづいたところをまとめておきます。
+
+<!-- more -->
+
+ちなみにレポジトリはこちら
+
+* [r-nmt000/dotfiles](https://github.com/r-nmt000/dotfiles)
+
+基本的な流れはREADMEに書いてありますが、
+
+1. vim, git, zshインストール
+2. git clone 上記リポジトリ
+3. make
+4. vimprocをmake
+5. NeoBundleInstall
+
+となります。
+
+##git submodule
+
+永遠の宿敵git submodule。あまり使わないからいつもどうやって使うか忘れてしまう。
+
+自分はvimのプラグインをNeoBundleで管理しているのですが、NeoBundleでgithubから取ってきたプラグインは
+submodule扱いになるようです。
+
+ですので.gitignoreでNeoBundleとVimproc以外のプラグインは無視するようにしました。
+あとからNeoBundleInstallでまとめて入れます。
+
+Vimprocだけは`NeoBundleInstall`を実行するのに必要なのでsubmoduleとして入れておきます。
+
+
+##vimprocをわざわざmakeしなきゃいけない
+
+dotfilesの`make`から`make -d .vim/bundle/vimproc`のようにmakefileを探すディレクトリを指定して
+vimprocの`make`ができないかとやってみましたができませんでした。
+
+このあたりも参考にしたのですが、結局わざわざvimproc直下まで移動して`make`してます...何かいい手はないものか...
+
+[NeoBundleでVimprocを自動インストールする方法](http://mba-hack.blogspot.jp/2013/03/neobundlevimproc.htmあとからNeoBundleInstallでまとめて入れます。)
+
+
+##まとめ
+
+ひとまずこれでいろんな端末(Unix系)でいつものzsh, vimが使えるようになりました。
+
+
+
+
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

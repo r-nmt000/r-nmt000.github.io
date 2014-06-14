@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>NomoLog</title>
+  <title>Dotfiles - NomoLog</title>
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="いつも使ってるvimやzshの設定をgitリポジトリにあげて、新しい環境でmakeするだけで導入できるようにしました。 作業中につまづいたところをまとめておきます。 ">
-  
+  <meta name="description" content="いつも使ってるvimやzshの設定をgitリポジトリにあげて、新しい環境でmakeするだけで導入できるようにしました。 作業中につまづいたところをまとめておきます。 ちなみにレポジトリはこちら r-nmt000/dotfiles 基本的な流れはREADMEに書いてありますが、 vim, git, &hellip;">
+  <meta name="keywords" content="Zsh, Vim">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://r-nmt000.github.io/">
+  <link rel="canonical" href="http://r-nmt000.github.io/blog/2014/06/14/zsh-vim/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,15 +76,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/06/14/zsh-vim/">Dotfiles</a></h1>
+      <h1 class="entry-title">Dotfiles</h1>
     
     
       <p class="meta">
@@ -127,27 +124,137 @@
   </header>
 
 
-  <div class="entry-content"><p>いつも使ってるvimやzshの設定をgitリポジトリにあげて、新しい環境で<code>make</code>するだけで導入できるようにしました。</p>
+<div class="entry-content"><p>いつも使ってるvimやzshの設定をgitリポジトリにあげて、新しい環境で<code>make</code>するだけで導入できるようにしました。</p>
 
 <p>作業中につまづいたところをまとめておきます。</p>
 
+<!-- more -->
+
+
+<p>ちなみにレポジトリはこちら</p>
+
+<ul>
+<li><a href="https://github.com/r-nmt000/dotfiles">r-nmt000/dotfiles</a></li>
+</ul>
+
+
+<p>基本的な流れはREADMEに書いてありますが、</p>
+
+<ol>
+<li>vim, git, zshインストール</li>
+<li>git clone 上記リポジトリ</li>
+<li>make</li>
+<li>vimprocをmake</li>
+<li>NeoBundleInstall</li>
+</ol>
+
+
+<p>となります。</p>
+
+<h2>git submodule</h2>
+
+<p>永遠の宿敵git submodule。あまり使わないからいつもどうやって使うか忘れてしまう。</p>
+
+<p>自分はvimのプラグインをNeoBundleで管理しているのですが、NeoBundleでgithubから取ってきたプラグインは
+submodule扱いになるようです。</p>
+
+<p>ですので.gitignoreでNeoBundleとVimproc以外のプラグインは無視するようにしました。
+あとからNeoBundleInstallでまとめて入れます。</p>
+
+<p>Vimprocだけは<code>NeoBundleInstall</code>を実行するのに必要なのでsubmoduleとして入れておきます。</p>
+
+<h2>vimprocをわざわざmakeしなきゃいけない</h2>
+
+<p>dotfilesの<code>make</code>から<code>make -d .vim/bundle/vimproc</code>のようにmakefileを探すディレクトリを指定して
+vimprocの<code>make</code>ができないかとやってみましたができませんでした。</p>
+
+<p>このあたりも参考にしたのですが、結局わざわざvimproc直下まで移動して<code>make</code>してます&hellip;何かいい手はないものか&hellip;</p>
+
+<p><a href="http://mba-hack.blogspot.jp/2013/03/neobundlevimproc.htm%E3%81%82%E3%81%A8%E3%81%8B%E3%82%89NeoBundleInstall%E3%81%A7%E3%81%BE%E3%81%A8%E3%82%81%E3%81%A6%E5%85%A5%E3%82%8C%E3%81%BE%E3%81%99%E3%80%82">NeoBundleでVimprocを自動インストールする方法</a></p>
+
+<h2>まとめ</h2>
+
+<p>ひとまずこれでいろんな端末(Unix系)でいつものzsh, vimが使えるようになりました。</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/14/zsh-vim/">Read on &rarr;</a>
-    </footer>
+
+<span class="byline author vcard">Posted by <span class="fn">r-nmt000</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2014-06-14T20:42:39+09:00" pubdate data-updated="true">Jun 14<span>th</span>, 2014</time>
+			
+
+<span class="categories">
+	Posted in
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/zsh/'>Zsh</a>
+  
+</span>
+
+
+			
+
+<span class="tags">
+	Tagged as
+  
+    <a class='tag' href='/blog/tags/vim/'>Vim</a>, <a class='tag' href='/blog/tags/zsh/'>Zsh</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2014/06/14/zsh-vim/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2014/06/14/zsh-vim/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+		</p>
+		
+		<div class="related_posts">
+<h3>You may also like...</h3>
+<ul>
+	
+</ul>
+</div>
+
+		
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -176,7 +283,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/r-nmt000">@r-nmt000</a> on GitHub
@@ -209,6 +316,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -223,7 +331,10 @@
       var disqus_shortname = 'nomolog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://r-nmt000.github.io/blog/2014/06/14/zsh-vim/';
+        var disqus_url = 'http://r-nmt000.github.io/blog/2014/06/14/zsh-vim/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
