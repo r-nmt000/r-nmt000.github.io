@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-15T17:51:04+09:00</updated>
+  <updated>2014-06-15T19:37:03+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -190,10 +190,20 @@ virtualenvwrapperはvirtualenvを使いやすくするためのツール。
 
 基本的には`mkvirtualenv <env_name>`
 で新しい仮想環境が構築される。
+
 `workon`で現在使用できるpython環境を一覧表示、
+
 `workon <env_name>`で環境の切り替えができる。
+
 `mkvirtualenv <env_name> -p path/to/python`
 でどのpythonを仮想環境で使うか指定できる。
+
+`mkvirtualenv <env_name> --no-site-packages`
+で元環境のsite-packagesを使わずにすむ。
+
+ていうかこのオプションがないと元環境のpythonの方のライブラリを参照・追加してしまう。
+これはデフォルトでこうなってるべきじゃないのか...
+
 
 python3.3以降ではvenvっていうvirtualenv的なものが公式でサポートされたみたいだけど、virtualenvwrapperがある分まだvirtualenvのが使いやすそうな印象を受けた。
 

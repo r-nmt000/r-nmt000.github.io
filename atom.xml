@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-15T17:51:04+09:00</updated>
+  <updated>2014-06-15T19:37:03+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -528,11 +528,20 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
 
 
 <p>基本的には<code>mkvirtualenv &lt;env_name&gt;</code>
-で新しい仮想環境が構築される。
-<code>workon</code>で現在使用できるpython環境を一覧表示、
-<code>workon &lt;env_name&gt;</code>で環境の切り替えができる。
-<code>mkvirtualenv &lt;env_name&gt; -p path/to/python</code>
+で新しい仮想環境が構築される。</p>
+
+<p><code>workon</code>で現在使用できるpython環境を一覧表示、</p>
+
+<p><code>workon &lt;env_name&gt;</code>で環境の切り替えができる。</p>
+
+<p><code>mkvirtualenv &lt;env_name&gt; -p path/to/python</code>
 でどのpythonを仮想環境で使うか指定できる。</p>
+
+<p><code>mkvirtualenv &lt;env_name&gt; --no-site-packages</code>
+で元環境のsite-packagesを使わずにすむ。</p>
+
+<p>ていうかこのオプションがないと元環境のpythonの方のライブラリを参照・追加してしまう。
+これはデフォルトでこうなってるべきじゃないのか&hellip;</p>
 
 <p>python3.3以降ではvenvっていうvirtualenv的なものが公式でサポートされたみたいだけど、virtualenvwrapperがある分まだvirtualenvのが使いやすそうな印象を受けた。</p>
 
