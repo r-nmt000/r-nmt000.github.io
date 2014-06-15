@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-14T21:19:19+09:00</updated>
+  <updated>2014-06-15T17:51:04+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -486,7 +486,7 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
 <p>次に</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pip</span> <span class="n">virtualenv</span> <span class="n">virtualenvwrapper</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span> <span class="n">virtualenvwrapper</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
