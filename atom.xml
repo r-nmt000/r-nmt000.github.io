@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-15T19:37:03+09:00</updated>
+  <updated>2014-06-19T20:42:28+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NeoBundleInstallでjedi-vimがインストールされない問題]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/19/vim-python/"/>
+    <updated>2014-06-19T20:26:06+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/19/vim-python</id>
+    <content type="html"><![CDATA[<p><code>.vimrc</code>に<code>NeoBundleInstal 'davidhalter/jedi-vim'</code>を書き加えて<code>:NeoBundleInstall</code>しても<code>HTTP request failed</code>と怒られてインストール出来ませんでした。</p>
+
+<!-- more -->
+
+
+<p>原因がよくわからなかったので、手動でjedi-vim入れて解決しました。手順は以下。</p>
+
+<hr />
+
+<p><strong> 1.  <code>bundle</code>フォルダ以下に<code>git clone</code>でjedi-vimを取ってくる </strong></p>
+
+<p><code>NeoBundleInstall</code>で本来インストールされるべき場所に手動でjedi-vimを入れます。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd .vim/bundle
+</span><span class='line'>git clone https://github.com/davidhalter/jedi-vim.git</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong> 2. <code>jedi-vim</code>フォルダ内で<code>git submodule</code> </strong></p>
+
+<p>jedi-vimはjediをsubmoduleとして持っているので<code>git submodule</code>でjediを更新してあげます。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd jedi-vim
+</span><span class='line'>git submodule update --init</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong> 3. <code>:NeoBundleUpdate</code>する </strong></p>
+
+<p><code>.vimrc</code>で<code>:NeoBundleUpdate</code>してみます。インストールし直しますか？と聞かれるのでNoを選択します</p>
+
+<p><strong> 4. <code>:h jedi</code>で動作確認 </strong></p>
+
+<p>ちゃんとjedi-vimが動いていれば<code>:h jedi</code>でjediのヘルプが見れます。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pyhton Django]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/15/pyhton-django/"/>
+    <updated>2014-06-15T20:11:46+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/15/pyhton-django</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dotfiles]]></title>
@@ -2503,76 +2559,6 @@ eclipseのときはeclipse.iniにメモリサイズを明示することで解�
 </span><span class='line'>　　　|;;::　　　　　　　　::;;| 
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Eclipse keybind's setting]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips/"/>
-    <updated>2013-12-04T23:56:20+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/04/eclipse-tips</id>
-    <content type="html"><![CDATA[<h2>Eclipseでキーバインドの設定をインポート、エクスポートする</h2>
-
-<p>Eclipseの嫌いな機能のひとつ、キーバインドがワークスペースと結びつく機能
-こいつのせいでワークスペース切り替えるたびにいちいちキーバインドの設定をインポートしなくちゃいけない。</p>
-
-<!-- more -->
-
-
-<h1>How to</h1>
-
-<ol>
-<li>File->ExportからPreferenceを選択し、Nextボタン押下</li>
-<li>Keys Preferencesを選択、To preference fileから出先を指定</li>
-<li>Finish</li>
-</ol>
-
-
-<p>できたepfファイルを他のワークスペースでインポートすれば使えます。
-この設定ファイルはよく使うと思うのでクラウドにでもあげとくといいかも。
-僕は設定ファイルの類はgithubに置いといて違う環境に移った時にすぐ使えるようにしています。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[TagCloud]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud/"/>
-    <updated>2013-12-04T20:18:00+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/04/octopress-tagcloud</id>
-    <content type="html"><![CDATA[<h2>タグクラウド導入してみました。</h2>
-
-<p>参考にしたサイトはこちら</p>
-
-<ul>
-<li><p><a href="http://rcmdnk.github.io/blog/2013/04/12/blog-octopress/">Octopressでのタグの運用</a></p></li>
-<li><p><a href="http://blog.digital-bot.com/blog/2013/09/03/octopress-tips/">Octopressのカスタマイズ</a></p></li>
-</ul>
-
-
-<p>ありがとうございました。</p>
-
-<!-- more -->
-
-
-<h2>タグクラウドって？</h2>
-
-<ul>
-<li>各記事の内容を端的に表す&#8221;タグ&#8221;</li>
-<li>そのタグのリストを<strong>おされ</strong>(重要)に表示したもの(主観)</li>
-<li>昔はSEO対策で意味あったっぽい。</li>
-<li>今は対策されて意味ないっぽい。</li>
-</ul>
-
-
-<h2>導入</h2>
-
-<p>上記サイトの手順をそのまま実行するだけでおっけーでした。
-なので僕がここに書くことはありません笑</p>
-
-<p>ただ、自分のRubyの知識不足とファイルの置換ミスで割と手間取ってしまったので、
-結果として結構時間がかかってしまいました。変更箇所は割と多いので細かくブランチを切って作業することをおすすめします。</p>
-
-<p>Ruby勉強しなきゃなあ&hellip;</p>
 ]]></content>
   </entry>
   

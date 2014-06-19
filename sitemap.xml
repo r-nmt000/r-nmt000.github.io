@@ -74,7 +74,7 @@
     </url>
     <url>
         <loc>http://r-nmt000.github.io/blog/2014/06/09/python3/</loc>
-        <lastmod>2014-06-15T19:36:35+09:00</lastmod>
+        <lastmod>2014-06-15T20:11:10+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/blog/2014/06/10/octopress/</loc>
@@ -87,6 +87,14 @@
     <url>
         <loc>http://r-nmt000.github.io/blog/2014/06/14/zsh-vim/</loc>
         <lastmod>2014-06-14T21:14:03+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://r-nmt000.github.io/blog/2014/06/15/pyhton-django/</loc>
+        <lastmod>2014-06-15T20:11:46+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://r-nmt000.github.io/blog/2014/06/19/vim-python/</loc>
+        <lastmod>2014-06-19T20:41:54+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/assets/bootstrap/about.html</loc>
@@ -110,7 +118,7 @@
     </url>
     <url>
         <loc>http://r-nmt000.github.io/assets/bootstrap/</loc>
-        <lastmod>2014-06-15T19:36:35+09:00</lastmod>
+        <lastmod>2014-06-19T20:41:54+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/assets/bootstrap/javascript.html</loc>
@@ -118,11 +126,11 @@
     </url>
     <url>
         <loc>http://r-nmt000.github.io/blog/archives/</loc>
-        <lastmod>2014-06-15T19:36:35+09:00</lastmod>
+        <lastmod>2014-06-19T20:41:54+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/</loc>
-        <lastmod>2014-06-15T19:36:35+09:00</lastmod>
+        <lastmod>2014-06-19T20:41:54+09:00</lastmod>
     </url>
     <url>
         <loc>http://r-nmt000.github.io/robots.txt</loc>

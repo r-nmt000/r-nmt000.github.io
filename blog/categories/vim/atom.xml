@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vim | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/categories/vim/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-15T19:37:03+09:00</updated>
+  <updated>2014-06-19T20:42:28+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NeoBundleInstallでjedi-vimがインストールされない問題]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/06/19/vim-python/"/>
+    <updated>2014-06-19T20:26:06+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/06/19/vim-python</id>
+    <content type="html"><![CDATA[`.vimrc`に`NeoBundleInstal 'davidhalter/jedi-vim'`を書き加えて`:NeoBundleInstall`しても`HTTP request failed`と怒られてインストール出来ませんでした。
+<!-- more -->
+
+原因がよくわからなかったので、手動でjedi-vim入れて解決しました。手順は以下。
+
+---
+
+** 1.  `bundle`フォルダ以下に`git clone`でjedi-vimを取ってくる **
+
+`NeoBundleInstall`で本来インストールされるべき場所に手動でjedi-vimを入れます。
+ 
+```
+cd .vim/bundle
+git clone https://github.com/davidhalter/jedi-vim.git
+```
+
+** 2. `jedi-vim`フォルダ内で`git submodule` **
+
+jedi-vimはjediをsubmoduleとして持っているので`git submodule`でjediを更新してあげます。
+
+```
+cd jedi-vim
+git submodule update --init
+```
+
+** 3. `:NeoBundleUpdate`する **
+
+`.vimrc`で`:NeoBundleUpdate`してみます。インストールし直しますか？と聞かれるのでNoを選択します
+
+** 4. `:h jedi`で動作確認 **
+
+ちゃんとjedi-vimが動いていれば`:h jedi`でjediのヘルプが見れます。
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[TerminalからiTerm2に乗り換えたらVimの色表示が狂った話]]></title>
