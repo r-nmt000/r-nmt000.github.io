@@ -9,7 +9,8 @@
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content=" ">
+  <meta name="description" content="PythonのWebフレームワークであるDjangoを勉強しました。
+こちらのチュートリアルを進めていく上で引っかかったところをまとめました。 h2. apple wireless keyboardの導入 使いやすいようにキーバインドを調整 changekey.exeによるキーバインドの変更 &hellip;">
   <meta name="keywords" content="Pyhton, Django">
 
   <!-- http://t.co/dKP3o1e -->
@@ -124,10 +125,283 @@
   </header>
 
 
-<div class="entry-content"><!-- more -->
+<div class="entry-content"><p>PythonのWebフレームワークであるDjangoを勉強しました。
+<a href="http://docs.djangoproject.jp/en/latest/intro/tutorial01.html">こちらのチュートリアル</a>を進めていく上で引っかかったところをまとめました。</p>
+
+<!-- more -->
+
+
+<p>h2. apple wireless keyboardの導入</p>
+
+<p> 使いやすいようにキーバインドを調整</p>
+
+<ul>
+<li>changekey.exeによるキーバインドの変更</li>
+<li>Apple Wireless Keyboard Helper for Windowsを入れてFnキー等を有効化</li>
+</ul>
+
+
+<p> h2. キーバインドの入れ替え</p>
+
+<ul>
+<li><p>Google日本語入力を導入</p></li>
+<li><p>コマンドキーで日本語・英語入力を切り替えられるように変更</p></li>
+</ul>
+
+
+<p>h2. Djangoの学習</p>
+
+<p>h3. Djangoの導入</p>
+
+<ul>
+<li>virtualenvを導入 (<a href="http://blog.r-nmt000.com/blog/2014/06/09/python3/">http://blog.r-nmt000.com/blog/2014/06/09/python3/</a>)</li>
+<li>以下の手順でpython仮想環境を構築、Djangoをインストール</li>
+</ul>
+
+
+<p><strong>注意！！</strong></p>
+
+<p><strong>sudo</strong> pip installしてしまうと元環境のpythonのsite-packagesにインストールされてしまう模様！！</p>
+
+<pre>
+mkvirtualenv --no-site-packages necomend (python仮想環境側でライブラリを管理するためのオプション)
+pip install django
 
 
 
+以下djangoが入ったことの確認
+python
+>> import django
+>> print django.get_version()
+>> 1.6.5
+</pre>
+
+
+<p>h3. Djangoでweb serverを立ち上げた時ホストからアクセスできない問題</p>
+
+<ul>
+<li>まずvagrantのport forwardを設定する</li>
+</ul>
+
+
+<pre>
+config.vm.network "forwarded_port", guest: 8000, host: 8800
+</pre>
+
+
+<ul>
+<li>次にゲストOSのファイアウォールの設定(ポート8000を開ける)</li>
+</ul>
+
+
+<pre>
+sudo vi /etc/sysconfig/iptables
+
+＃以下を追記
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8000 -j ACCEPT
+</pre>
+
+
+<ul>
+<li>ipアドレス0.0.0.0を指定しweb serverを起動</li>
+</ul>
+
+
+<pre>
+python manage.py runserver 0.0.0.0:8000
+</pre>
+
+
+<ul>
+<li>ホストからlocalhost:8800でアクセスできる</li>
+</ul>
+
+
+<p>h2. DBの設定</p>
+
+<ul>
+<li>MySQLでDBを作成</li>
+</ul>
+
+
+<pre>
+mysql -u root -p <- ログイン
+>> create table necommend;
+>> exit;
+</pre>
+
+
+<ul>
+<li>settings.pyにDB設定を記述</li>
+</ul>
+
+
+<pre>
+DATABASE = {
+    'default' : {
+    'ENGINE' : 'django.db.backends.mysql',
+    'NAME' : 'necommend',
+    'USER' : 'root',
+    'PASSWORD' : '',
+    'HOST' : '',
+    'PORT' : '',
+     }
+
+}
+
+</pre>
+
+
+<ul>
+<li>settings.pyでタイムゾーン、文字コードを変更</li>
+</ul>
+
+
+<pre>
+TIME_ZONE = 'Asia/Tokyo'
+
+LANGUAGE_CODE = 'utf-8'
+</pre>
+
+
+<ul>
+<li><p>最低限必要なテーブルを上で設定したDBに作成</p></li>
+<li><p>pythonに付属のappsを使うのに必要なテーブルが作られる。</p></li>
+<li>詳細は <a href="http://docs.djangoproject.jp/en/latest/intro/tutorial01.html">http://docs.djangoproject.jp/en/latest/intro/tutorial01.html</a></li>
+</ul>
+
+
+<pre>
+python manage.py syncdb
+</pre>
+
+
+<ul>
+<li>ここでエラー。MySQLdbなるモジュールがないと怒られる。対応策は以下</li>
+</ul>
+
+
+<pre>
+#まずpython-develとmysql-develをyumで入れる
+yum -y install python-devel mysql-devel
+
+#次にpipでmysql-pythonを入れる
+pip install mysql-python
+</pre>
+
+
+<ul>
+<li>これでpython manage.py syncdbが動く</li>
+<li>Djangoの認証ユーザ？の作成を求められるので作成</li>
+</ul>
+
+
+<pre>
+Username: nomoto
+e-mail: ryusuke.nomoto@brainpad.co.jp
+password: いつもの
+</pre>
+
+
+<p>h2. DjangoにおけるRDB多対多の関係</p>
+
+<p>チュートリアルにはなかったので補足</p>
+
+<p>例えばBlogとTagという多対多の関係を実現するときは次のようにする。</p>
+
+<p>models:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Tag</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Blog</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">tags</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Tag</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>shell:<code>python manage.py shell</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="err">それぞれブログとタグを作り保存する。</span>
+</span><span class='line'><span class="n">b1</span> <span class="o">=</span> <span class="n">Blog</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;blog1&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">b2</span> <span class="o">=</span> <span class="n">Blog</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;blog2&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">b3</span> <span class="o">=</span> <span class="n">Blog</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;blog3&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">t1</span> <span class="o">=</span> <span class="n">Tag</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;pyton&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">t2</span> <span class="o">=</span> <span class="n">Tag</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;django&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">保存しないとブログとタグを結びつけることができない</span>
+</span><span class='line'><span class="n">b1</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span><span class='line'><span class="n">b2</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span><span class='line'><span class="n">b3</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span><span class='line'><span class="n">t1</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span><span class='line'><span class="n">t2</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">ブログとタグを結びつける。</span>
+</span><span class='line'><span class="n">b1</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+</span><span class='line'><span class="n">b2</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">)</span>
+</span><span class='line'><span class="err">新しくタグを生成</span><span class="p">,</span> <span class="err">ブログと結びつける</span>
+</span><span class='line'><span class="n">t3</span> <span class="o">=</span> <span class="n">b3</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;ruby&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="err">ブログと結びついているタグを全て表示</span>
+</span><span class='line'><span class="n">b1</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class='line'><span class="p">[</span><span class="o">&lt;</span><span class="n">Tags</span><span class="p">:</span> <span class="n">python</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class='line'><span class="n">b2</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class='line'><span class="p">[</span><span class="o">&lt;</span><span class="n">Tags</span><span class="p">:</span> <span class="n">python</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Tags</span><span class="p">:</span> <span class="n">django</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class='line'><span class="err">タグと結びついているブログを全て表示</span>
+</span><span class='line'><span class="n">t1</span><span class="o">.</span><span class="n">blog_set</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</span><span class='line'><span class="p">[</span><span class="o">&lt;</span><span class="n">Blog</span><span class="p">:</span> <span class="n">blog1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Blog</span><span class="p">:</span> <span class="n">blog2</span><span class="o">&gt;</span><span class="p">]</span>
+</span><span class='line'><span class="err">タグとブログを結びつける</span>
+</span><span class='line'><span class="n">t1</span><span class="o">.</span><span class="n">blog_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">b3</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>h2. DBへデータを登録</p>
+
+<p><a href="http://docs.djangoproject.jp/en/latest/intro/tutorial01.html">チュートリアルにある通り</a>シェルからぽちぽちDBへデータを追加してもよいが、面倒なのでCSVから一気に登録する方法を探した。</p>
+
+<p><a href="http://bty.sakura.ne.jp/wp/archives/1088">こちら</a>を参考にした。</p>
 </div>
 
 
@@ -223,6 +497,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/06/22/jobhunting/">ぼくのかんがえたさいきょうのしゅうかつ(｀･ω･´)ゞ</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/06/19/vim-python/">NeoBundleInstallでjedi-vimがインストールされない問題</a>
       </li>
     
@@ -238,15 +516,11 @@
         <a href="/blog/2014/06/11/vagrant-chef/">Vagrant & Chef</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/06/10/octopress/">post_urlでLiquid Exception</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (1)</a></li><li><a href='/blog/categories/interface/'>interface (1)</a></li><li><a href='/blog/categories/jobhunting/'>JobHunting (1)</a></li><li><a href='/blog/categories/lifelog/'>Lifelog (1)</a></li><li><a href='/blog/categories/octopress/'>Octopress (4)</a></li><li><a href='/blog/categories/others/'>Others (2)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/pyhton/'>Pyhton (1)</a></li><li><a href='/blog/categories/python/'>Python (3)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (2)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (1)</a></li><li><a href='/blog/categories/interface/'>interface (1)</a></li><li><a href='/blog/categories/jobhunting/'>JobHunting (2)</a></li><li><a href='/blog/categories/lifelog/'>Lifelog (1)</a></li><li><a href='/blog/categories/octopress/'>Octopress (4)</a></li><li><a href='/blog/categories/others/'>Others (2)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/pyhton/'>Pyhton (1)</a></li><li><a href='/blog/categories/python/'>Python (3)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (2)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>

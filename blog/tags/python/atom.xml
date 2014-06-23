@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Python | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/tags/python/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-06-19T20:42:28+09:00</updated>
+  <updated>2014-06-23T22:13:27+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -437,6 +437,14 @@ from dir1.dir2 import sub2
 一応`sys.path.append('dir1/dir2')`としたり`PYTHONPATH`に`dir1/dir2/`を追加することで対応できたけど、いちいちそんなことするのめんどくさすぎる。
 
 なにか他に解決策はないものか...
+
+
+**追記**
+
+上記の上手くインポート出来ない原因はvimの`quickrun`プラグインによるものだった。
+
+通常のpythonコマンドを使った実行ならば正常に動作した
+
 
 
 ## if__name__=="__main__"
