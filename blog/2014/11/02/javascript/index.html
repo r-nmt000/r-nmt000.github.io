@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>週末を2048に費やした結果... - NomoLog</title>
+  <meta name="author" content="r-nmt000">
+
+  
+  <meta name="description" content="おらあああああ！！見ろやああああ！！！！ わけわからないと思うので説明します。 2048とは？ 鬼シンプルで中毒性の高いゲーム。
+ルールを説明するのが面倒臭いので詳細はこちらをご参照くだせえ。 ちなみにこのゲームはオープンソースで公開されていて、 &hellip;">
+  <meta name="keywords" content="JavaScript">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://r-nmt000.github.io/blog/2014/11/02/javascript/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+	<link href="/atom.xml" rel="alternate" title="NomoLog" type="application/atom+xml">
+	<!-- <link href="/stylesheets/data&#45;table.css" media="screen, projection" rel="stylesheet" type="text/css" /> -->
+	
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46636133-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner" style="padding-top: 80px; padding-bottom: 80px;"><hgroup>
+  <h1><a href="/">NomoLog</a></h1>
+  
+    <h2>Log of my life and program</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:r-nmt000.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">週末を2048に費やした結果...</h1>
+    
+    
+      <p class="meta">
+			
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-02T22:03:07+09:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2014</time>
+			
+
+<span class="categories">
+	Posted in
+  
+    <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+  
+</span>
+
+
+			
+
+<span class="tags">
+	Tagged as
+  
+    
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>おらあああああ！！見ろやああああ！！！！</h1>
+
+<p><img src="/images/2048.png" alt="2048" /></p>
+
+<p>わけわからないと思うので説明します。</p>
+
+<!-- more -->
+
+
+<h2>2048とは？</h2>
+
+<p>鬼シンプルで中毒性の高いゲーム。
+ルールを説明するのが面倒臭いので詳細は<a href="http://http://www.web2048.com/jp/">こちら</a>をご参照くだせえ。</p>
+
+<p><strong>ちなみにこのゲームはオープンソースで公開されていて、だれでも自由に改変してオリジナルの2048を創ることができるのだ。</strong></p>
+
+<h2>これまでの経緯</h2>
+
+<p>上でも書いたとおり2048は中毒度MAXなとっても面白いゲームである。僕も例にもれず2ヶ月くらい前に知ってからすきま時間を見つけてはポチポチ遊んでいた。</p>
+
+<p>さて、この週末僕は風邪を引いてしまってダウンしていた。熱は引いてきているもののまだ<strong>ゲリピー状態</strong>である。
+そんな状態であるから特にやることもないため、布団の中で一人2048に勤しんでいたのである。
+必死こいてハイスコアを目指すがなかなか取ることができない。大体4096のパネルを作って頭打ちである。
+しかもこのゲームは作業ゲーかつ運ゲーである。かなりいい感じに進めていてもタイルの出現場所が悪いとそこで積むし、
+ゲームオーバーしたらまた何度も作った4096タイルを長時間かけて作りなおす作業の繰り返しである。
+途中経過を保存しておけたらこんな無駄な苦労しなくて済むのになあ&hellip;イライラしながらそんなことを考えていたら、悪魔が僕に囁いた。</p>
+
+<h4>僕悪魔「だったらよ、付けちまおうぜセーブボタンとロードボタン」</h4>
+
+<h4>僕天使「いやいやそんなんダメだろちゃんと同じルールの元で解かなきゃ」</h4>
+
+<h4>僕悪魔「いいんだよ何も結果をでっち上げるわけじゃないお前が進めたとこまでを保存するだけさ」</h4>
+
+<h4>僕天使「しかしそんなことしたらゲームがつまらなk</h4>
+
+<h3>僕悪魔「黙れ下痢便野郎」</h3>
+
+<p>僕は悪魔と暗黒魔術の契約をした。</p>
+
+<h2>JavaScriptという名の暗黒魔術</h2>
+
+<p>そんなわけで早速取り掛かった。全部作るのは面倒臭いので既存のwebサービスの2048にJavaScriptで処理を加えてわっしょいする作戦で行くことにした。
+web版2048は全てフロント側で処理が完結しているため行けそうだった。当初はブックマークレットとして実装しようとしたが文字数制限があるしjQueryとかも使いたかったので(どちらもブックマークレットで解決可能ではあるが)やり慣れてるChromeExtensionとして実装することにした。
+まずはセーブ機能から取り掛かった。こっちはすぐにできた。HTMLからタイルの場所や数字、スコアはすぐにとれた。問題はロードである。</p>
+
+<p>web版2048ではGameManagerというクラスのインスタンスを立ててそこで全てのデータを管理しているのだが、そのインスタンスに外からだとアクセスできないのである！
+なぜもっと早くこのことに気づかなかったのか。アホである。</p>
+
+<p>僕は絶望の淵へと追いやられた。せっかくコード書いたのになんてことだ。もう一から2048作るしか無いのか&hellip;?</p>
+
+<p>いや諦めるのはまだ早い。多少強引ではあるが手は残っている。</p>
+
+<p><strong>DeveloperToolsで2048のJavaScriptの適当(GameManager.prototype.move()の冒頭らへんがよさげ)な箇所にブレークを貼り、止まったらコンソールからGameManagerのインスタンスを直接いじる</strong></p>
+
+<p>これだ！これこそがこの状況において残された最善手である！
+もちろんインスタンスをちまちま手でいじっていては日が暮れてしまうのでその部分はコードにまとめた。こんな感じ。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">self</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">cells</span><span class="o">=</span><span class="p">[];</span>
+</span><span class='line'><span class="nx">self</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">build</span><span class="p">();</span>
+</span><span class='line'><span class="nx">self</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tile</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="o">:</span><span class="mi">0</span><span class="p">},</span><span class="mi">4</span><span class="p">);</span>
+</span><span class='line'><span class="nx">self</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tile</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span><span class="mi">2</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(selfはGameManagerのインスタンスのこと)上の例だとグリッドに1行1列目に4, 2行1列目に2のタイルが現れる。だからこれを編集すればぶっちゃけ好きな様に好きなタイルを配置できてしまう。
+しかし僕はそんなことはしない、いくら悪魔と契約したとはいえ魂まで売り渡すようなことはできない。</p>
+
+<p>上で実装したセーブ機能で保存した内容をこの形式で出力してやればめでたくロードができるようになったので僕はこの途中経過保存機能を用いて2048を楽しむことにした。その結果&hellip;</p>
+
+<h2>最強の果てに待っていたもの</h2>
+
+<h3>うぉぉぉおおおおお！！！</h3>
+
+<p><img src="/images/2048.png" alt="2048" /></p>
+
+<p>これである。まあぶっちゃけやればやるほど上がっていく。もう超楽しい。ドーピング状態。向かう所敵なし。唯我独尊。</p>
+
+<p>この時僕は完全に調子に乗っていた。そして僕は, ここでも悪魔の囁きに耳を傾けてしまった。</p>
+
+<h4>僕悪魔「そういえば世界記録ってどれくらいなのかな？」</h4>
+
+<p>確かにそうだ、ていうか今の俺なら世界記録とか全然目じゃない、ぶっ倒して俺がギネスに載ってやる！</p>
+
+<p>(チートしておいて何を言っているんだという感じだが、当時の僕はあくまでルールは守った上でゲームをしているつもりだった。このゲームの運要素による不幸を排除しているだけのつもりだった)</p>
+
+<p>僕「よーしぐぐってみよう！&#8217;2048 世界記録&#8217;&hellip;っと。ん？何だこのページは？」</p>
+
+<p><a href="http://qiita.com/amoO_O/items/743715e918c87d4c4930">2048の得点計算方法と理論上の最高得点</a></p>
+
+<p>上記サイトから引用</p>
+
+<p><img src="/images/2048max.png" alt="2048" /></p>
+
+<p>&hellip;</p>
+
+<p>台無しである。なんなのだろうか？それまで僕を包んでいた全能感は一気に消え去り、僕はぐったりとうなだれた。
+理論上の最高得点を示してくれたことは嬉しい、それはそれで有益な情報だった。しかしなんということだろう。2048がオープンソースなのをいいことに最高得点が出るようチューニングした2048をこの人は作ってしまったのである。この画像を見せられたら、誰だってチートだと思うだろう。誰も自力で解いたなんて思わない。でも、それは自分にも言えることだった。僕が冒頭でひけらかした画像も、所詮はチートなのである。いや、もはやチートかどうかなど関係ない。2048がオープンソースでいくらでも自分でチューニングできる以上、いかに画像が本物だと主張してもチートである可能性は排除できないのだ。</p>
+
+<p>それを悟ってしまった瞬間、このゲームはただの自己満足だったのだと気づいてしまった。そして僕は、そっとブラウザを閉じた&hellip;</p>
+
+<h2>出会い、そして別れ</h2>
+
+<p>子供の頃、なぜミュウツーを公式のバトルで使えないのか、なぜサンダーボルトが禁止カードなのか納得できなかった。だって両プレイヤーがそれらを使えればそれは不公平ではないのだから。</p>
+
+<p>僕は強いモンスターや珍しいモンスターが好きだった。だからそれらのモンスターを対戦で使えないのは不満だった。</p>
+
+<p>プロアクションリプレイを使って緑のミュウツーや青いミュウを作ったりした。最高にカッコ良かった。レベル５のミュウやミュウツーを大切に育てた。パラメータのドーピングはしなかった。だってそんなことしたらポケモンがつまらなくなっちゃうから。</p>
+
+<p>思えば今回の2048にも通ずる箇所があったように思う。僕は僕なりの正義を持ってチートしたのだ。決して2048の楽しみを損なうような真似はしていない。</p>
+
+<p>しかしそんなことは、全くチートをしていない人たちからすれば関係ないんだね。勝負は同じ土俵で戦うからみんな熱中するんだ。チートなんてドーピングと一緒だ。最強になった後の数瞬は気分がいいけど、その後はろくなもんじゃない。</p>
+
+<p>今回そのことが学べて本当に良かった。子供の頃と同じ過ちを再び繰り返すところだった。戒めとして、本日をもって2048は卒業するよ、この二度と破れないであろうハイスコアを思い出に&hellip;</p>
+
+<h2>まとめ</h2>
+
+<p>今月からはバージョンアップしたマリオカートをやるぞ！！新しいキャラとコースが増えてるので楽しみ！うひょ〜＼(^o^)／</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">r-nmt000</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-11-02T22:03:07+09:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2014</time>
+			
+
+<span class="categories">
+	Posted in
+  
+    <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+  
+</span>
+
+
+			
+
+<span class="tags">
+	Tagged as
+  
+    
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://r-nmt000.github.io/blog/2014/11/02/javascript/" data-via="" data-counturl="http://r-nmt000.github.io/blog/2014/11/02/javascript/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/22/jobhunting/" title="Previous Post: ぼくのかんがえたさいきょうのしゅうかつ(｀･ω･´)ゞ">&laquo; ぼくのかんがえたさいきょうのしゅうかつ(｀･ω･´)ゞ</a>
+      
+      
+		</p>
+		
+		<div class="related_posts">
+<h3>You may also like...</h3>
+<ul>
+	
+</ul>
+</div>
+
+		
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+	<h1>About Me</h1>
+	<p>I am Interested in<br>Freestyle Basketball<br>Ubiquitous Computing</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/02/javascript/">週末を2048に費やした結果...</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/22/jobhunting/">ぼくのかんがえたさいきょうのしゅうかつ(｀･ω･´)ゞ</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/19/vim-python/">NeoBundleInstallでjedi-vimがインストールされない問題</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/15/pyhton-django/">Pyhton Django</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/06/14/zsh-vim/">Dotfiles</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+    <ul id="category-list"><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (1)</a></li><li><a href='/blog/categories/interface/'>interface (1)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (1)</a></li><li><a href='/blog/categories/jobhunting/'>JobHunting (2)</a></li><li><a href='/blog/categories/lifelog/'>Lifelog (1)</a></li><li><a href='/blog/categories/octopress/'>Octopress (4)</a></li><li><a href='/blog/categories/others/'>Others (2)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/pyhton/'>Pyhton (1)</a></li><li><a href='/blog/categories/python/'>Python (3)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (2)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/tags/akka' style='font-size: 115.0%'>akka(1)</a> <a href='/blog/tags/android' style='font-size: 115.0%'>Android(1)</a> <a href='/blog/tags/brainfuck' style='font-size: 115.0%'>Brainfuck(1)</a> <a href='/blog/tags/canada' style='font-size: 115.0%'>Canada(1)</a> <a href='/blog/tags/chef' style='font-size: 115.0%'>Chef(1)</a> <a href='/blog/tags/django' style='font-size: 115.0%'>Django(1)</a> <a href='/blog/tags/kindle' style='font-size: 115.0%'>Kindle(1)</a> <a href='/blog/tags/octopress' style='font-size: 130.0%'>Octopress(2)</a> <a href='/blog/tags/others' style='font-size: 115.0%'>Others(1)</a> <a href='/blog/tags/python' style='font-size: 160.0%'>Python(4)</a> <a href='/blog/tags/sbt' style='font-size: 115.0%'>SBT(1)</a> <a href='/blog/tags/scala' style='font-size: 130.0%'>Scala(2)</a> <a href='/blog/tags/speechrecognition' style='font-size: 115.0%'>SpeechRecognition(1)</a> <a href='/blog/tags/startup' style='font-size: 115.0%'>startup(1)</a> <a href='/blog/tags/tagcloud' style='font-size: 115.0%'>TagCloud(1)</a> <a href='/blog/tags/tips' style='font-size: 115.0%'>Tips(1)</a> <a href='/blog/tags/vagrant' style='font-size: 115.0%'>Vagrant(1)</a> <a href='/blog/tags/vim' style='font-size: 115.0%'>Vim(1)</a> <a href='/blog/tags/zsh' style='font-size: 115.0%'>Zsh(1)</a> </span>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/r-nmt000">@r-nmt000</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'r-nmt000',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - r-nmt000 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>. Background image by <a href="https://www.facebook.com/media/set/?set=a.569378019774663.1073741826.420802014632265&type=1">CSON Photography </a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'nomolog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://r-nmt000.github.io/blog/2014/11/02/javascript/';
+        var disqus_url = 'http://r-nmt000.github.io/blog/2014/11/02/javascript/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-09-01T10:49:08+09:00</updated>
+  <updated>2014-11-03T16:54:11+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,135 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[週末を2048に費やした結果...]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/11/02/javascript/"/>
+    <updated>2014-11-02T22:03:07+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/11/02/javascript</id>
+    <content type="html"><![CDATA[<h1>おらあああああ！！見ろやああああ！！！！</h1>
+
+<p><img src="http://r-nmt000.github.io/images/2048.png" alt="2048" /></p>
+
+<p>わけわからないと思うので説明します。</p>
+
+<!-- more -->
+
+
+<h2>2048とは？</h2>
+
+<p>鬼シンプルで中毒性の高いゲーム。
+ルールを説明するのが面倒臭いので詳細は<a href="http://http://www.web2048.com/jp/">こちら</a>をご参照くだせえ。</p>
+
+<p><strong>ちなみにこのゲームはオープンソースで公開されていて、だれでも自由に改変してオリジナルの2048を創ることができるのだ。</strong></p>
+
+<h2>これまでの経緯</h2>
+
+<p>上でも書いたとおり2048は中毒度MAXなとっても面白いゲームである。僕も例にもれず2ヶ月くらい前に知ってからすきま時間を見つけてはポチポチ遊んでいた。</p>
+
+<p>さて、この週末僕は風邪を引いてしまってダウンしていた。熱は引いてきているもののまだ<strong>ゲリピー状態</strong>である。
+そんな状態であるから特にやることもないため、布団の中で一人2048に勤しんでいたのである。
+必死こいてハイスコアを目指すがなかなか取ることができない。大体4096のパネルを作って頭打ちである。
+しかもこのゲームは作業ゲーかつ運ゲーである。かなりいい感じに進めていてもタイルの出現場所が悪いとそこで積むし、
+ゲームオーバーしたらまた何度も作った4096タイルを長時間かけて作りなおす作業の繰り返しである。
+途中経過を保存しておけたらこんな無駄な苦労しなくて済むのになあ&hellip;イライラしながらそんなことを考えていたら、悪魔が僕に囁いた。</p>
+
+<h4>僕悪魔「だったらよ、付けちまおうぜセーブボタンとロードボタン」</h4>
+
+<h4>僕天使「いやいやそんなんダメだろちゃんと同じルールの元で解かなきゃ」</h4>
+
+<h4>僕悪魔「いいんだよ何も結果をでっち上げるわけじゃないお前が進めたとこまでを保存するだけさ」</h4>
+
+<h4>僕天使「しかしそんなことしたらゲームがつまらなk</h4>
+
+<h3>僕悪魔「黙れ下痢便野郎」</h3>
+
+<p>僕は悪魔と暗黒魔術の契約をした。</p>
+
+<h2>JavaScriptという名の暗黒魔術</h2>
+
+<p>そんなわけで早速取り掛かった。全部作るのは面倒臭いので既存のwebサービスの2048にJavaScriptで処理を加えてわっしょいする作戦で行くことにした。
+web版2048は全てフロント側で処理が完結しているため行けそうだった。当初はブックマークレットとして実装しようとしたが文字数制限があるしjQueryとかも使いたかったので(どちらもブックマークレットで解決可能ではあるが)やり慣れてるChromeExtensionとして実装することにした。
+まずはセーブ機能から取り掛かった。こっちはすぐにできた。HTMLからタイルの場所や数字、スコアはすぐにとれた。問題はロードである。</p>
+
+<p>web版2048ではGameManagerというクラスのインスタンスを立ててそこで全てのデータを管理しているのだが、そのインスタンスに外からだとアクセスできないのである！
+なぜもっと早くこのことに気づかなかったのか。アホである。</p>
+
+<p>僕は絶望の淵へと追いやられた。せっかくコード書いたのになんてことだ。もう一から2048作るしか無いのか&hellip;?</p>
+
+<p>いや諦めるのはまだ早い。多少強引ではあるが手は残っている。</p>
+
+<p><strong>DeveloperToolsで2048のJavaScriptの適当(GameManager.prototype.move()の冒頭らへんがよさげ)な箇所にブレークを貼り、止まったらコンソールからGameManagerのインスタンスを直接いじる</strong></p>
+
+<p>これだ！これこそがこの状況において残された最善手である！
+もちろんインスタンスをちまちま手でいじっていては日が暮れてしまうのでその部分はコードにまとめた。こんな感じ。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">self</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">cells</span><span class="o">=</span><span class="p">[];</span>
+</span><span class='line'><span class="nx">self</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">build</span><span class="p">();</span>
+</span><span class='line'><span class="nx">self</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tile</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="o">:</span><span class="mi">0</span><span class="p">},</span><span class="mi">4</span><span class="p">);</span>
+</span><span class='line'><span class="nx">self</span><span class="p">.</span><span class="nx">grid</span><span class="p">.</span><span class="nx">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tile</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span><span class="mi">2</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(selfはGameManagerのインスタンスのこと)上の例だとグリッドに1行1列目に4, 2行1列目に2のタイルが現れる。だからこれを編集すればぶっちゃけ好きな様に好きなタイルを配置できてしまう。
+しかし僕はそんなことはしない、いくら悪魔と契約したとはいえ魂まで売り渡すようなことはできない。</p>
+
+<p>上で実装したセーブ機能で保存した内容をこの形式で出力してやればめでたくロードができるようになったので僕はこの途中経過保存機能を用いて2048を楽しむことにした。その結果&hellip;</p>
+
+<h2>最強の果てに待っていたもの</h2>
+
+<h3>うぉぉぉおおおおお！！！</h3>
+
+<p><img src="http://r-nmt000.github.io/images/2048.png" alt="2048" /></p>
+
+<p>これである。まあぶっちゃけやればやるほど上がっていく。もう超楽しい。ドーピング状態。向かう所敵なし。唯我独尊。</p>
+
+<p>この時僕は完全に調子に乗っていた。そして僕は, ここでも悪魔の囁きに耳を傾けてしまった。</p>
+
+<h4>僕悪魔「そういえば世界記録ってどれくらいなのかな？」</h4>
+
+<p>確かにそうだ、ていうか今の俺なら世界記録とか全然目じゃない、ぶっ倒して俺がギネスに載ってやる！</p>
+
+<p>(チートしておいて何を言っているんだという感じだが、当時の僕はあくまでルールは守った上でゲームをしているつもりだった。このゲームの運要素による不幸を排除しているだけのつもりだった)</p>
+
+<p>僕「よーしぐぐってみよう！&#8217;2048 世界記録&#8217;&hellip;っと。ん？何だこのページは？」</p>
+
+<p><a href="http://qiita.com/amoO_O/items/743715e918c87d4c4930">2048の得点計算方法と理論上の最高得点</a></p>
+
+<p>上記サイトから引用</p>
+
+<p><img src="http://r-nmt000.github.io/images/2048max.png" alt="2048" /></p>
+
+<p>&hellip;</p>
+
+<p>台無しである。なんなのだろうか？それまで僕を包んでいた全能感は一気に消え去り、僕はぐったりとうなだれた。
+理論上の最高得点を示してくれたことは嬉しい、それはそれで有益な情報だった。しかしなんということだろう。2048がオープンソースなのをいいことに最高得点が出るようチューニングした2048をこの人は作ってしまったのである。この画像を見せられたら、誰だってチートだと思うだろう。誰も自力で解いたなんて思わない。でも、それは自分にも言えることだった。僕が冒頭でひけらかした画像も、所詮はチートなのである。いや、もはやチートかどうかなど関係ない。2048がオープンソースでいくらでも自分でチューニングできる以上、いかに画像が本物だと主張してもチートである可能性は排除できないのだ。</p>
+
+<p>それを悟ってしまった瞬間、このゲームはただの自己満足だったのだと気づいてしまった。そして僕は、そっとブラウザを閉じた&hellip;</p>
+
+<h2>出会い、そして別れ</h2>
+
+<p>子供の頃、なぜミュウツーを公式のバトルで使えないのか、なぜサンダーボルトが禁止カードなのか納得できなかった。だって両プレイヤーがそれらを使えればそれは不公平ではないのだから。</p>
+
+<p>僕は強いモンスターや珍しいモンスターが好きだった。だからそれらのモンスターを対戦で使えないのは不満だった。</p>
+
+<p>プロアクションリプレイを使って緑のミュウツーや青いミュウを作ったりした。最高にカッコ良かった。レベル５のミュウやミュウツーを大切に育てた。パラメータのドーピングはしなかった。だってそんなことしたらポケモンがつまらなくなっちゃうから。</p>
+
+<p>思えば今回の2048にも通ずる箇所があったように思う。僕は僕なりの正義を持ってチートしたのだ。決して2048の楽しみを損なうような真似はしていない。</p>
+
+<p>しかしそんなことは、全くチートをしていない人たちからすれば関係ないんだね。勝負は同じ土俵で戦うからみんな熱中するんだ。チートなんてドーピングと一緒だ。最強になった後の数瞬は気分がいいけど、その後はろくなもんじゃない。</p>
+
+<p>今回そのことが学べて本当に良かった。子供の頃と同じ過ちを再び繰り返すところだった。戒めとして、本日をもって2048は卒業するよ、この二度と破れないであろうハイスコアを思い出に&hellip;</p>
+
+<h2>まとめ</h2>
+
+<p>今月からはバージョンアップしたマリオカートをやるぞ！！新しいキャラとコースが増えてるので楽しみ！うひょ〜＼(^o^)／</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ぼくのかんがえたさいきょうのしゅうかつ(｀･ω･´)ゞ]]></title>
@@ -2794,101 +2923,6 @@ eclipseのときはeclipse.iniにメモリサイズを明示することで解�
 
 <p>僕が詰まったのはこんなところです。
 みなさん素晴らしいscalaライフを!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ASR/TTS API for smartphone]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/06/smartphone-speechrecognition/"/>
-    <updated>2013-12-06T08:55:59+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/06/smartphone-speechrecognition</id>
-    <content type="html"><![CDATA[<h2>スマートフォンで使える音声認識・合成APIまとめ(無料)(13年12月現在)</h2>
-
-<p>音声認識・合成機能が必要になったので調べました。
-さっと調査しただけなので間違ってたらごめんなさい。
-こんなのあるんだ！ってくらいに見ていただけるとありがたいです。</p>
-
-<!-- more -->
-
-
-<hr />
-
-<h3>OpenEars</h3>
-
-<ul>
-<li>iOS向け</li>
-<li>日本語には対応してないっぽい&hellip;?(公式ページで対応言語が見つけられなかった)</li>
-<li>ASR/TTS対応</li>
-<li>使い方 : <a href="http://d.hatena.ne.jp/shu223/20130810/1376105883">フリーのiOS向け音声認識/音声合成ライブラリ&#8221;OpenEars&#8221;の使い方</a></li>
-<li>公式 : <a href="http://www.politepix.com/openears/">OpenEars</a></li>
-</ul>
-
-
-<h3>UIDictationController</h3>
-
-<ul>
-<li>iOS向け</li>
-<li>iOSの非公式クラス</li>
-<li>ASRのみ</li>
-<li>Siriの音声認識機能がそのまま使えるのは魅力</li>
-<li>でも非公式だからこれを使ってアプリ作っても公開できない</li>
-<li>使い方 : <a href="http://d.hatena.ne.jp/KishikawaKatsumi/20120310/1331335893">iOS5.1の音声入力を使ってアプリケーションを操作してみる</a></li>
-</ul>
-
-
-<h3>Google 音声認識API</h3>
-
-<ul>
-<li>Android向け</li>
-<li>日本語対応(各種言語に対応)</li>
-<li>ASR/TTS対応(ただしTTSは日本語対応してないらしい)</li>
-<li>Google公式、Androidだけでいいならこれでいいかもしれない</li>
-</ul>
-
-
-<h3>iSpeech Mobile SDK</h3>
-
-<ul>
-<li>iOS &amp; Android &amp; BlackBerry対応</li>
-<li>日本語対応(各種言語に対応)</li>
-<li>ASR/TTS対応</li>
-<li>Google翻訳の読み上げ機能の内何言語かはiSpeechが使われているらしい</li>
-<li>webサービスに実装する場合は有料</li>
-<li>公式 : <a href="http://www.ispeech.org/">iSpeech</a></li>
-</ul>
-
-
-<h3>Dragon Mobile SDK</h3>
-
-<ul>
-<li>iOS &amp; Android対応</li>
-<li>日本語対応(各種言語に対応)</li>
-<li>ASR/TTS対応</li>
-<li>Dragon Dictationを出している会社のAPI</li>
-<li>有料版もあり</li>
-<li>公式 : <a href="http://dragonmobile.nuancemobiledeveloper.com/public/index.php?task=home">NDEV nuance mobile</a></li>
-</ul>
-
-
-<h3>Lexee</h3>
-
-<ul>
-<li>iOS向け、Android対応予定</li>
-<li>(多分)英語のみ</li>
-<li>ASR/TTS対応</li>
-<li>まだベータ版</li>
-<li>Siriのような音声アシスタントを想定して作られているらしい</li>
-<li>今のところ無料</li>
-<li>今後の動向が気になる</li>
-<li>公式 : <a href="http://www.angel.com/labs/lexee.php">Lexee</a></li>
-</ul>
-
-
-<h2>まとめ</h2>
-
-<p>色んなスマートフォン、色んな言語に対応するならiSpeechかDragonかなあという感じですね。</p>
-
-<p>細かくはまだ見てないので精度やライセンスその他諸々確認しつつ使いやつを決めたいです。</p>
 ]]></content>
   </entry>
   
