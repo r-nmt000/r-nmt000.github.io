@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Others | NomoLog]]></title>
+  <title><![CDATA[Category: others | NomoLog]]></title>
   <link href="http://r-nmt000.github.io/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-03T16:54:11+09:00</updated>
+  <updated>2014-11-25T16:55:59+09:00</updated>
   <id>http://r-nmt000.github.io/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -14,101 +14,153 @@
 
   
   <entry>
-    <title type="html"><![CDATA[My favorite mottoes]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/07/others/"/>
-    <updated>2014-06-07T00:39:14+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/07/others</id>
-    <content type="html"><![CDATA[# 座右の銘
+    <title type="html"><![CDATA[「アメリカのプログラマの給料が高い」は本当か？]]></title>
+    <link href="http://r-nmt000.github.io/blog/2014/11/24/others/"/>
+    <updated>2014-11-24T18:28:03+09:00</updated>
+    <id>http://r-nmt000.github.io/blog/2014/11/24/others</id>
+    <content type="html"><![CDATA[こんな記事を見つけました。
 
-エンジニアとして、いつも心に留めておこうと思う言葉。
+[アメリカのプログラマーの言語別年収wwwwwwwww](http://blog.livedoor.jp/kinisoku/archives/4239423.html)
+
+で、上の記事で引用されている表がこちら
+
+![salary_usa](/images/chart.png)
+
+1$=100円とすると、大体1000万円から800万円のレンジですね。
+
+で、こちらが日本のプログラマの言語別年収
+
+[プログラミング言語別!求人給与額ランキング](http://hrog.net/2014102910652.html)
+
+![salary_japan](/images/salary_japan.png)
+
+大体400万円から300万円のレンジですね。夢も希望もありません。
+
+度々こういう記事は目にしていたんで、アメリカのプログラマの給料が高いって話は知ってはいたんですけど、
+**いやでも本当にこんなに高いのか？なにか統計のマジックがあるんじゃないか...?**と思っていました。
+
+自分に関係のない話ではないですし、いい機会なので日本とアメリカの労働環境や給与について少し調べてみました。
 
 <!-- more -->
 
-> It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.
 
-> 生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。
+## まずは日米の給与分布から
 
-> (Charles Robert Darwin)
+**アメリカのプログラマが特別もらってるんじゃなくて、他の職業でもこれくらい稼げるんじゃないの？**
 
-そして、
+というわけで、とりあえず日米の平均給与や分布を調べてみました。それがこちら。
 
+図1. 日本の年収別人口分布 2013年版
+![日本の年収別人口分布](/images/populationdistributionjapan.png)
 
+図2. アメリカの年収別人口分布 2013年版
+![アメリカの年収別人口分布](/images/populationdistributionusa.png)
 
+図1は国税庁が出している[民間給与実体統計調査](https://drive.google.com/viewerng/viewer?url=https://www.nta.go.jp/kohyo/tokei/kokuzeicho/minkan2013/pdf/001.pdf)を元に、
+図2はUnited States Censusが出している[Selected Characteristics of People 15 Years Old and Over, by Total Money Income in 2013, Work Experience in 2013, Race, Hispanic Origin, and Sex](http://www.census.gov/hhes/www/cpstables/032014/perinc/toc.htm)を元に作成しました。
 
-> Shut the fxxk up and write some code.
+こうして見てみるとアメリカの格差社会っぷりがわかります。日本のグラフと比較するとアメリカはまず年収$20,000以下の人たちがめちゃめちゃ多い。そして$100,000以上稼ぐ人たちの割合もなかなかぶっちぎっています。
 
-> ぐだぐだ言ってないでコードを書けよ、ハゲ。
+さて、プログラマの年収とこれらの分布を比較してみるとどうでしょう？日本の場合は大体平均値あたりに収まっていますね。
+アメリカではなんと！トップ10%に食い込んでいます。
 
-> (ゆーすけべー)
+**プログラマが他の職業よりも稼げるというのはどうやら間違いではないようです。**
 
-どっちも大切なことだね。
+## 他の職業と比較してみると？
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Last Starbucks]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/05/others/"/>
-    <updated>2013-12-05T16:09:40+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/05/others</id>
-    <content type="html"><![CDATA[##前回までのあらすじ
- - スタバにめっちゃアプライしまくった
- - 受からない
- - 友人の助けを経てラストチャンスに挑む
- - そして結果が返ってきた
-<!-- more -->
+アメリカではどのような職業がお金を稼いでいるのでしょうか？
+以下がアメリカで一番たくさん給料をもらっている職業トップ10です。
 
-###遂にメールが届いた...同じメールを何通受け取ったことだろうか...
+[The 10 Best Paying jobs of 2014](http://www.forbes.com/pictures/gfii45jij/the-10-best-paying-jobs-of-2014/)
 
-![mailtitle](/images/posts/mailtitle.jpg)
-
-###今から地獄の門を開くぜ...
-
-
-```
-　     　　　　＿＿＿＿＿ 
-　  　　 　／　＼　 　 ／＼ 
-　　  　／ し （＞） 　（＜）＼　　頼む受かっててくれ！　
-　　　　|　∪　  （__人__）　J |  　＿＿＿＿＿＿＿_ 
-　 　　 ＼　u　　 ｀⌒´　  　／　  | |　　　　　　　| 
-　　　　ノ　　　　 　　  　　＼ 　　| |　　　　　　　|　 
-　    ／´　　　　　　　　　　　   | |　　 　　 　　| 
-　   |　　　　ｌ　　　　　　    　| |　　 　　 　　| 
-				 　　　　　 　　　＿＿＿_ 
+1. 外科医($233,150)
+1. 一般診療医($187,200)
+1. 精神科医($178,950)
+1. 歯医者($146,340)
+1. 石油エンジニア($13,280)
+1. 管制官($122,530)
+1. 薬剤師($116,670)
+1. 足病医($116,440)
+1. 弁護士($116,440)
 
 
-             ＿＿＿＿
-　　　　　／　　 　u　＼ 
-　　 　／　　＼ 　  　 ─＼　　　チラッ 
-　　　／し （＞）  　（●）＼ 
-　　　|　∪　  （__人__） J|  ＿＿＿＿＿＿＿_ 
-　　 ＼　　u　　 ｀⌒´　 　／ | | 　　　　　　　| 
-　　　　ノ　　　　　 　　　＼ | |　 　　　　　　|　 
-　 ／´　　　　　 　　　 　　 | |　　　　 　　　|　 
-　|　　　　ｌ　 　  　　　　　| | 　　　　　　　| 					
-```
+医療関係者一色ですね、この辺は日本と似ています。
+
+肝心のプログラマはというと、[こちら](http://www.bizjournals.com/bizjournals/on-numbers/scott-thomas/2013/04/these-are-the-100-jobs-that-bring-the.html?page=all)によると
+46位($102,550)となっています。
+
+なんだやっぱり他にも稼げる職業たくさんあるじゃん！確かにそうかもしれません。余談ですが、今回調べてみてアメリカでは年収$100,000以上稼げる職業の多さにビビりました。
+[このランキング](http://www.bizjournals.com/bizjournals/on-numbers/scott-thomas/2013/04/these-are-the-100-jobs-that-bring-the.html?page=all)によると
+その数なんと53！日本では年収1000万円を超える職業はたったの3つです。([公式情報から職業別の平均年収・給料を調べる](http://nenshushare.com/koTop/))
+そもそも日本は職業の分類がアメリカに比べると非常にざっくりしています。(例えばアメリカは"医者"でまとめずに専門ごとに細かく分けています)
+そして検索してみるとわかりますが、年収ランキングを調べると日本は職種別よりもまず会社別のランキングが多く目につきます。
+この辺りに日米間の仕事に対する意識の違いが見て取れました。日本人では何の仕事をするかよりどの会社で働くかに大きく力点を置いている印象を受けます。
+稼ぐ職業に就くというより、稼げる会社に就くといった感じでしょうか。
+
+話が逸れました、プログラマの話に戻しましょう。
+こちらをご覧ください。この記事では年収、将来性、ライフワークバランス、ストレス等を元に各職業をスコアリングしランキングしています。
+その中でSoftware Developerは1位になっています！
+
+[The 100 Best Jobs](http://money.usnews.com/careers/best-jobs/rankings/the-100-best-jobs)
+
+1. ソフトウェアデベロッパー
+1. コンピュータシステムアナリスト
+1. 歯医者
+1. ナースプラクティショナー
+1. 薬剤師
+1. レジスタードナース
+1. フィジカルセラピスト
+1. 外科医
+1. webデベロッパー
+1. 歯科矯正技師
+
+確かにプログラマより稼げる仕事は多くあるようですが、その中でもプログラマは将来性やライフワークバランスを考えると良い地位にいるようです。
+(少なくとも日本のプログラマとは比べるべくもないようです。)
 
 
-![mailcontents](/images/posts/mailcontents.jpg)
+## プログラマ内での年収格差について
+
+**いや、どうせシリコンバレーの天才共が年収を釣り上げているんだろ？オレは騙されねえよ**
+
+次に気になるのはプログラマ内での格差ですね。これはどうなんでしょうか？
+
+図3. プログラマの地理的分布と平均年収
+![Average Salary of Software Application Developers by Metropolitan Area, 2013](/images/metro.png)
+
+図3は[The Silicon Valley Wage Premium](http://www.brookings.edu/blogs/the-avenue/posts/2014/08/06-the-silicon-valley-wage-premium-rothwell)
+から引用しました。
+
+図3では円の位置と大きさによってプログラマがどこで、どのような給料をもらっているかを示しています。
+この図を見てみると、なるほど確かにシリコンバレーやニューヨークと言った中心地では大勢のエンジニアが良い給料をもらっているようです。
+
+なんだ！やっぱり格差あるんじゃないか！...ちょっと待ってください。ここで図3に示されている一番小さい円の表す給料を確認してみましょう。
+$53,850 - $70,000となっています。2014年11月25日現在の為替で、635万円~826万円です。大切なことなのでもう一度確認しますが、これは図3に描かれている
+**一番小さい円(一番安い給料)が表す年収**です。
+
+以下は[The Silicon Valley Wage Premium](http://www.brookings.edu/blogs/the-avenue/posts/2014/08/06-the-silicon-valley-wage-premium-rothwell)
+からの引用です。
+
+> As the map below shows, there is a huge amount of variation in earnings for software application developers across regional labor markets.
+> In large metropolitan areas like New York, they earn $105,000, but in Louisville, they earn just $72,000.
+
+訳すとこんなことを言っています。
+
+> 下図が示すように、ソフトウェアデベロッパの給料は地域によって大きく異る。ニューヨークのような大都市では彼らは$105,000もの大金を稼ぎ出すが、ルイビルではたったの$72,000だ。
+
+>たったの$72,000だ
+
+> **たったの$72,000だ**
 
 
-```
+## 結論
 
-　　　　　　／￣￣￣￣￣＼ 
-　　　　　/;::　　　　 　;ヽ 
-　　　　　|;:: ｨ●ｧ　　ｨ●ｧ::| 
-　　　　　|;::　　 　　　:;| 
-　　　　　|;:: 　c{　っ　:;|　　　 
-　　　　  |;::　　＿＿　:;;| 
-　　　 　 ヽ;::　　ー　::;／ 
-　　　　　　＼;;:　　:;;／ 
-　　　　　　 |;::　 ::;| 
-　　　　　　 |;::　 ::;| 
-　　　／￣￣￣　　　　 ￣￣￣＼ 
-　　　|;;::　　　　　　　　::;;| 
-　　　|;;::　　　　　　　　::;;| 
+**アメリカのプログラマの給料が高いというのは、どうやら本当らしい。**
 
-```
+**少なくとも日本よりは良さそうである。**
+
+今回はざっくりと"プログラマ"としてまとめて調べたので、
+次回はITとWebといった異なる業界でのプログラマやSE間の格差を調べてみようと思います。
+
 ]]></content>
   </entry>
   
