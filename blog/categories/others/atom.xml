@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: others | NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/blog/categories/others/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/blog/categories/others/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[「アメリカのプログラマの給料が高い」は本当か？]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/11/24/others/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/11/24/others/"/>
     <updated>2014-11-24T18:28:03+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/11/24/others</id>
+    <id>http://blog.r-nmt000.com/blog/2014/11/24/others</id>
     <content type="html"><![CDATA[こんな記事を見つけました。
 
 [アメリカのプログラマーの言語別年収wwwwwwwww](http://blog.livedoor.jp/kinisoku/archives/4239423.html)

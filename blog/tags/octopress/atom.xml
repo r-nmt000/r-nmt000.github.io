@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Octopress | NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/blog/tags/octopress/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/blog/tags/octopress/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[post_urlでLiquid Exception]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/10/octopress/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/10/octopress/"/>
     <updated>2014-06-10T00:20:34+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/10/octopress</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/10/octopress</id>
     <content type="html"><![CDATA[[post_url](http://www.drurly.com/blog/2012/06/01/octopress-linking-to-other-posts)を導入したら、Liquid Exceptionしてしまった話
 
 <!-- more -->
@@ -39,9 +39,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopressで謎のLiquid Exception]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/07/octopress/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/07/octopress/"/>
     <updated>2014-06-07T01:13:24+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/07/octopress</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/07/octopress</id>
     <content type="html"><![CDATA[久しぶりにブログ書いて`rake generate`したら
 ```
 Liquid Exception: undefined method `sort!' for nil:NilClass in ... 

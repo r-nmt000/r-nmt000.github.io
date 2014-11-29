@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: SpeechRecognition | NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/blog/tags/speechrecognition/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/blog/tags/speechrecognition/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ASR/TTS API for smartphone]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/06/smartphone-speechrecognition/"/>
+    <link href="http://blog.r-nmt000.com/blog/2013/12/06/smartphone-speechrecognition/"/>
     <updated>2013-12-06T08:55:59+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/06/smartphone-speechrecognition</id>
+    <id>http://blog.r-nmt000.com/blog/2013/12/06/smartphone-speechrecognition</id>
     <content type="html"><![CDATA[##スマートフォンで使える音声認識・合成APIまとめ(無料)(13年12月現在)
 音声認識・合成機能が必要になったので調べました。
 さっと調査しただけなので間違ってたらごめんなさい。

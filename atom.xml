@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -14,17 +14,158 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Kindleのハイライト同期がうまくいかない問題の解決策]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/11/29/others-python/"/>
+    <updated>2014-11-29T12:13:44+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/11/29/others-python</id>
+    <content type="html"><![CDATA[<p>最近読書にハマっています。特にKindleを使った読書が本当に便利で捗りまくりです。
+素晴らしいよKindle(^^)</p>
+
+<p>Kindleには「ハイライト同期機能」というものがついており、Kindle端末上で本にハイライトした箇所を
+他の端末と同期したり<a href="https://kindle.amazon.co.jp">Kindleのページ</a>から参照できたりします。</p>
+
+<p><img src="http://blog.r-nmt000.com/images/kindle_highlight.png" alt="kindle_highlight" /></p>
+
+<p>こんな感じです。凄く便利。</p>
+
+<p>当初僕はこのページをEvernoteのWebクリップを使ってEvernoteに保存して本の概要としてまとめようと考えていました。
+しかしここで一つ問題にぶつかります。</p>
+
+<!-- more -->
+
+
+<h2>正しく同期されない&hellip;?</h2>
+
+<p>そうなんです。本によって正しく同期されたりされなかったりするんですね。
+いくつか解決策も探してみました。</p>
+
+<p><a href="http://tanisuke.net/entry/1582">「KindleのハイライトがPCで表示・同期されない」の解決方法</a></p>
+
+<p>こちらの記事によると</p>
+
+<ol>
+<li>Kindleがネットワークに繋がった状態で</li>
+<li>「同期してアイテムをチェック」をクリック</li>
+</ol>
+
+
+<p><img src="http://tanisuke.net/wp-content/uploads/Kindle.jpg" alt="同期してアイテムをチェック" /></p>
+
+<p>で全てのハイライトがKindleページでチェックできるとあります。
+しかし僕の環境では上手くいきませんでした。</p>
+
+<p>また、このような記事も見つけました。</p>
+
+<p><a href="http://yoshichiha.com/2013/02/12/kindle-your-highlights-is-not-supported-in-japan">KindleのYour Highlightsは日本ではサポート外らしい&hellip;</a></p>
+
+<p>なんと、そもそもこのハイライト同期機能はAmazon.co.jpではサポート対象外だそうです。
+(1年前の記事ですが、現在もうまく動いてないのできっと今も対象外なのでしょう。)
+こちらの記事でも「しょうがないね、ちゃんちゃん」で終わってしまっています。
+なんということだ&hellip;せっかくこんな素晴らしい機能があるのに使えないだなんて&hellip;</p>
+
+<p>(余談ですが、検索してみるとこの「ハイライト機能」について書かれている記事はたくさんあるのですが、
+「ハイライト同期問題」について言及している記事はあまりありませんでした。
+みんなハイライト機能最高！ハイライト機能かっけー！って記事ばかりです。
+問題が発生している人は少数派なのでしょうか？)</p>
+
+<p>しかし僕は諦めませんでした。なんとかハイライトをEvernoteへ送る方法を探し続けます。そして&hellip;</p>
+
+<h2>Clippings.io</h2>
+
+<p>見つけました。素晴らしいWebサービス。<a href="https://www.clippings.io/">Clippings.io</a>です。</p>
+
+<p>このサービスではKindle端末内に保存されている&#8221;My Clippings.txt&#8221;をインポートすることでハイライトをいい感じにまとめてくれます。
+そしてそのハイライトをExcel,Word,PDFといった各種形式、更にEvernoteへ出力することができるのです！！</p>
+
+<p>以下使い方の手順です。</p>
+
+<ul>
+<li>まずはKindle端末をPCへ繋ぎましょう。</li>
+<li>Clippings.ioにログインします(事前に会員登録しましょう)</li>
+</ul>
+
+
+<p><img src="http://blog.r-nmt000.com/images/clippings.io_home.png" alt="clippings.io_home" /></p>
+
+<ul>
+<li>ログインしたら左上のIMPORTボタンをクリックしましょう</li>
+</ul>
+
+
+<p><img src="http://blog.r-nmt000.com/images/clippings.io_explorer.png" alt="clippings.io_explorer" /></p>
+
+<ul>
+<li>Click to uploadボタンを押すとファイル選択画面が開くので、接続したKindle内にある&#8221;My Clippings.txt&#8221;を選択しましょう。
+ハイライトがClippings.ioにインポートされます。</li>
+</ul>
+
+
+<p><img src="http://blog.r-nmt000.com/images/clippings.io_import.png" alt="clippings.io_import" /></p>
+
+<ul>
+<li>続いてEvernoteへエクスポートします。右上のエクスポートをクリックし、Evernoteを選択しましょう。</li>
+</ul>
+
+
+<p><img src="http://blog.r-nmt000.com/images/evernote.png" alt="evernote" /></p>
+
+<ul>
+<li><p>どのような形でハイライトをEvernoteへ出力するか選択する画面が出ますので、そのままの設定でいい人はStart Exportを押しましょう。
+僕の場合は</p>
+
+<ul>
+<li>Create one note for each book(１冊の本単位でノートを作成し、その中にハイライトをまとめます)</li>
+<li>Include attached notes(ハイライトに自分のメモを書いてある時は、それも一緒にエクスポートします)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>の２つを選択しています。</p>
+
+<ul>
+<li><p>僕はさらにエクスポートするノートにタグ付けしたいので、Evernote pageをクリックします。</p></li>
+<li><p>Additional tagsの欄に追加したいタグを入力します。僕は本関連のノートには&#8221;books&#8221;をつけているので&#8221;books&#8221;と入力しました。
+先ほどの画面に戻り、Start Exportをクリックしましょう。</p></li>
+</ul>
+
+
+<p><img src="http://blog.r-nmt000.com/images/evernote_settings.png" alt="evernote_settings" /></p>
+
+<p>以上がClippings.ioを使ったKindleのハイライトをEvernoteへ送る方法です。
+Evernote以外にもExcelやWordといった形式でもエクスポートできるので、英語学習に役立てている方もいるようです。</p>
+
+<p><a href="http://mandarinnote.hotcom-cafe.com/kindle%E3%81%AE%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88xweblio%E3%81%A7%E5%8D%98%E8%AA%9E%E5%B8%B3%E4%BD%9C%E6%88%90/">Kindleのハイライトx Weblioで単語帳作成</a></p>
+
+<h2>本当は&hellip;</h2>
+
+<p>実はこの記事を書き始めた時はClippings.ioを見つけておらず、自分でプログラム書いてハイライトをEvernoteへ送ろうとしてました。</p>
+
+<p><a href="https://github.com/r-nmt000/KindleHighlightGenerator.git">Kindle Highlight Generator</a></p>
+
+<p>できたのでよし！と思ってブログ書き始めて、引用のために少しWebブラウジングしてたら見つけてしまいました。Clippings.ioを。
+悔しいですがClippings.ioの方が全然素晴らしかったので、僕の書いたプログラムの使い方について書く予定を急遽変更してClippings.ioを紹介した次第です。</p>
+
+<p>僕の３時間を返して欲しいです。</p>
+
+<h2>まとめ</h2>
+
+<p><strong>なにかアクションを起こす前に、きちんと調べてから動き出しましょう</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[「アメリカのプログラマの給料が高い」は本当か？]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/11/24/others/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/11/24/others/"/>
     <updated>2014-11-24T18:28:03+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/11/24/others</id>
+    <id>http://blog.r-nmt000.com/blog/2014/11/24/others</id>
     <content type="html"><![CDATA[<p>こんな記事を見つけました。</p>
 
 <p><a href="http://blog.livedoor.jp/kinisoku/archives/4239423.html">アメリカのプログラマーの言語別年収wwwwwwwww</a></p>
 
 <p>で、上の記事で引用されている表がこちら</p>
 
-<p><img src="http://r-nmt000.github.io/images/chart.png" alt="salary_usa" /></p>
+<p><img src="http://blog.r-nmt000.com/images/chart.png" alt="salary_usa" /></p>
 
 <p>1$=100円とすると、大体1000万円から800万円のレンジですね。</p>
 
@@ -32,7 +173,7 @@
 
 <p><a href="http://hrog.net/2014102910652.html">プログラミング言語別!求人給与額ランキング</a></p>
 
-<p><img src="http://r-nmt000.github.io/images/salary_japan.png" alt="salary_japan" /></p>
+<p><img src="http://blog.r-nmt000.com/images/salary_japan.png" alt="salary_japan" /></p>
 
 <p>大体400万円から300万円のレンジですね。夢も希望もありません。</p>
 
@@ -51,10 +192,10 @@
 <p>というわけで、とりあえず日米の平均給与や分布を調べてみました。それがこちら。</p>
 
 <p>図1. 日本の年収別人口分布 2013年版
-<img src="http://r-nmt000.github.io/images/populationdistributionjapan.png" alt="日本の年収別人口分布" /></p>
+<img src="http://blog.r-nmt000.com/images/populationdistributionjapan.png" alt="日本の年収別人口分布" /></p>
 
 <p>図2. アメリカの年収別人口分布 2013年版
-<img src="http://r-nmt000.github.io/images/populationdistributionusa.png" alt="アメリカの年収別人口分布" /></p>
+<img src="http://blog.r-nmt000.com/images/populationdistributionusa.png" alt="アメリカの年収別人口分布" /></p>
 
 <p>図1は国税庁が出している<a href="https://drive.google.com/viewerng/viewer?url=https://www.nta.go.jp/kohyo/tokei/kokuzeicho/minkan2013/pdf/001.pdf">民間給与実体統計調査</a>を元に、
 図2はUnited States Censusが出している<a href="http://www.census.gov/hhes/www/cpstables/032014/perinc/toc.htm">Selected Characteristics of People 15 Years Old and Over, by Total Money Income in 2013, Work Experience in 2013, Race, Hispanic Origin, and Sex</a>を元に作成しました。</p>
@@ -129,7 +270,7 @@
 <p>次に気になるのはプログラマ内での格差ですね。これはどうなんでしょうか？</p>
 
 <p>図3. プログラマの地理的分布と平均年収
-<img src="http://r-nmt000.github.io/images/metro.png" alt="Average Salary of Software Application Developers by Metropolitan Area, 2013" /></p>
+<img src="http://blog.r-nmt000.com/images/metro.png" alt="Average Salary of Software Application Developers by Metropolitan Area, 2013" /></p>
 
 <p>図3は<a href="http://www.brookings.edu/blogs/the-avenue/posts/2014/08/06-the-silicon-valley-wage-premium-rothwell">The Silicon Valley Wage Premium</a>
 から引用しました。</p>
@@ -168,12 +309,12 @@ In large metropolitan areas like New York, they earn $105,000, but in Louisville
   
   <entry>
     <title type="html"><![CDATA[週末を2048に費やした結果...]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/11/02/javascript/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/11/02/javascript/"/>
     <updated>2014-11-02T22:03:07+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/11/02/javascript</id>
+    <id>http://blog.r-nmt000.com/blog/2014/11/02/javascript</id>
     <content type="html"><![CDATA[<h1>おらあああああ！！見ろやああああ！！！！</h1>
 
-<p><img src="http://r-nmt000.github.io/images/2048.png" alt="2048" /></p>
+<p><img src="http://blog.r-nmt000.com/images/2048.png" alt="2048" /></p>
 
 <p>わけわからないと思うので説明します。</p>
 
@@ -248,7 +389,7 @@ web版2048は全てフロント側で処理が完結しているため行けそ�
 
 <h3>うぉぉぉおおおおお！！！</h3>
 
-<p><img src="http://r-nmt000.github.io/images/2048.png" alt="2048" /></p>
+<p><img src="http://blog.r-nmt000.com/images/2048.png" alt="2048" /></p>
 
 <p>これである。まあぶっちゃけやればやるほど上がっていく。もう超楽しい。ドーピング状態。向かう所敵なし。唯我独尊。</p>
 
@@ -266,7 +407,7 @@ web版2048は全てフロント側で処理が完結しているため行けそ�
 
 <p>上記サイトから引用</p>
 
-<p><img src="http://r-nmt000.github.io/images/2048max.png" alt="2048" /></p>
+<p><img src="http://blog.r-nmt000.com/images/2048max.png" alt="2048" /></p>
 
 <p>&hellip;</p>
 
@@ -297,10 +438,10 @@ web版2048は全てフロント側で処理が完結しているため行けそ�
   
   <entry>
     <title type="html"><![CDATA[ぼくのかんがえたさいきょうのしゅうかつ(｀･ω･´)ゞ]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/22/jobhunting/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/22/jobhunting/"/>
     <updated>2014-06-22T22:59:05+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/22/jobhunting</id>
-    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/job.jpg" alt="jobhunting" /></p>
+    <id>http://blog.r-nmt000.com/blog/2014/06/22/jobhunting</id>
+    <content type="html"><![CDATA[<p><img src="http://blog.r-nmt000.com/images/job.jpg" alt="jobhunting" /></p>
 
 <p>就活、終わりました。終わったので後輩たちそして将来自分がこの時期を振り返った時の為に記録を残しておきます。</p>
 
@@ -449,9 +590,9 @@ web版2048は全てフロント側で処理が完結しているため行けそ�
   
   <entry>
     <title type="html"><![CDATA[NeoBundleInstallでjedi-vimがインストールされない問題]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/19/vim-python/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/19/vim-python/"/>
     <updated>2014-06-19T20:26:06+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/19/vim-python</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/19/vim-python</id>
     <content type="html"><![CDATA[<p><code>.vimrc</code>に<code>NeoBundleInstal 'davidhalter/jedi-vim'</code>を書き加えて<code>:NeoBundleInstall</code>しても<code>HTTP request failed</code>と怒られてインストール出来ませんでした。</p>
 
 <!-- more -->
@@ -493,9 +634,9 @@ web版2048は全てフロント側で処理が完結しているため行けそ�
   
   <entry>
     <title type="html"><![CDATA[Pyhton Django]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/15/pyhton-django/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/15/pyhton-django/"/>
     <updated>2014-06-15T20:11:46+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/15/pyhton-django</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/15/pyhton-django</id>
     <content type="html"><![CDATA[<p>PythonのWebフレームワークであるDjangoを勉強しました。
 <a href="http://docs.djangoproject.jp/en/latest/intro/tutorial01.html">こちらのチュートリアル</a>を進めていく上で引っかかったところをまとめました。</p>
 
@@ -778,9 +919,9 @@ password: いつもの
   
   <entry>
     <title type="html"><![CDATA[Dotfiles]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/14/zsh-vim/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/14/zsh-vim/"/>
     <updated>2014-06-14T20:42:39+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/14/zsh-vim</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/14/zsh-vim</id>
     <content type="html"><![CDATA[<p>いつも使ってるvimやzshの設定をgitリポジトリにあげて、新しい環境で<code>make</code>するだけで導入できるようにしました。</p>
 
 <p>作業中につまづいたところをまとめておきます。</p>
@@ -837,9 +978,9 @@ vimprocの<code>make</code>ができないかとやってみましたができ�
   
   <entry>
     <title type="html"><![CDATA[Vagrant & Chef]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/11/vagrant-chef/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/11/vagrant-chef/"/>
     <updated>2014-06-11T22:00:24+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/11/vagrant-chef</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/11/vagrant-chef</id>
     <content type="html"><![CDATA[<p>Vagrantを使う機会があったのでVagrant+Chef Soloでの開発環境構築をやってみました。</p>
 
 <p>その時の備忘録です。</p>
@@ -878,7 +1019,7 @@ vimprocの<code>make</code>ができないかとやってみましたができ�
 
 <p>今までは<a href="http://www.vagrantbox.es/">Vagrantbox.es</a>(下画像)とかから欲しいboxをリストから探して、URLをいちいちコピってきて</p>
 
-<p><img src="http://r-nmt000.github.io/images/vagrantcloud.png" alt="vagrantcloud" /></p>
+<p><img src="http://blog.r-nmt000.com/images/vagrantcloud.png" alt="vagrantcloud" /></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>vagrant box add &lt;box_name&gt; &lt;url&gt;</span></code></pre></td></tr></table></div></figure>
@@ -987,9 +1128,9 @@ vimprocの<code>make</code>ができないかとやってみましたができ�
   
   <entry>
     <title type="html"><![CDATA[post_urlでLiquid Exception]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/10/octopress/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/10/octopress/"/>
     <updated>2014-06-10T00:20:34+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/10/octopress</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/10/octopress</id>
     <content type="html"><![CDATA[<p><a href="http://www.drurly.com/blog/2012/06/01/octopress-linking-to-other-posts">post_url</a>を導入したら、Liquid Exceptionしてしまった話</p>
 
 <!-- more -->
@@ -1010,12 +1151,12 @@ vimprocの<code>make</code>ができないかとやってみましたができ�
   
   <entry>
     <title type="html"><![CDATA[俺的Python気になった所まとめ3]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/09/python3/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/09/python3/"/>
     <updated>2014-06-09T22:27:37+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/09/python3</id>
-    <content type="html"><![CDATA[<p><img class="center" src="http://r-nmt000.github.io/images/python.png"></p>
+    <id>http://blog.r-nmt000.com/blog/2014/06/09/python3</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://blog.r-nmt000.com/images/python.png"></p>
 
-<p><a href="http://r-nmt000.github.io/blog/2014/06/09/python3/"> 俺的Python気になった所まとめ2の続きです。 </a></p>
+<p><a href="http://blog.r-nmt000.com/blog/2014/06/09/python3/"> 俺的Python気になった所まとめ2の続きです。 </a></p>
 
 <!-- more -->
 
@@ -1318,15 +1459,15 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
   
   <entry>
     <title type="html"><![CDATA[俺的Python気になった所まとめ2]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/09/python2/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/09/python2/"/>
     <updated>2014-06-09T21:59:30+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/09/python2</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/09/python2</id>
     <content type="html"><![CDATA[<p>
-<img class="center" src="http://r-nmt000.github.io/images/python.png">
+<img class="center" src="http://blog.r-nmt000.com/images/python.png">
 </p>
 
 
-<p><a href="http://r-nmt000.github.io/blog/2014/06/09/python1/"> 俺的Python気になった所まとめ1の続き </a></p>
+<p><a href="http://blog.r-nmt000.com/blog/2014/06/09/python1/"> 俺的Python気になった所まとめ1の続き </a></p>
 
 <!-- more -->
 
@@ -1596,17 +1737,17 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
 
 <hr />
 
-<p><a href="http://r-nmt000.github.io/blog/2014/06/09/python3/">俺的Python気になった所まとめ3</a>へ続く&hellip;</p>
+<p><a href="http://blog.r-nmt000.com/blog/2014/06/09/python3/">俺的Python気になった所まとめ3</a>へ続く&hellip;</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[俺的Python気になった所まとめ1]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/09/python1/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/09/python1/"/>
     <updated>2014-06-09T21:26:47+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/09/python1</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/09/python1</id>
     <content type="html"><![CDATA[<p>
-<img class="center" src="http://r-nmt000.github.io/images/python.png" >
+<img class="center" src="http://blog.r-nmt000.com/images/python.png" >
 </p>
 
 
@@ -1824,15 +1965,15 @@ IndentationErrorになってしまう。エディタでオートインデント�
 
 <p>ちょっと長くなるので記事を区切る。</p>
 
-<p><a href="http://r-nmt000.github.io/blog/2014/06/09/python2/">俺的Python気になった所まとめ2</a>へ</p>
+<p><a href="http://blog.r-nmt000.com/blog/2014/06/09/python2/">俺的Python気になった所まとめ2</a>へ</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopressで謎のLiquid Exception]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/07/octopress/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/07/octopress/"/>
     <updated>2014-06-07T01:13:24+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/07/octopress</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/07/octopress</id>
     <content type="html"><![CDATA[<p>久しぶりにブログ書いて<code>rake generate</code>したら</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1854,9 +1995,9 @@ IndentationErrorになってしまう。エディタでオートインデント�
   
   <entry>
     <title type="html"><![CDATA[My favorite mottoes]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/07/others/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/07/others/"/>
     <updated>2014-06-07T00:39:14+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/07/others</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/07/others</id>
     <content type="html"><![CDATA[<h1>座右の銘</h1>
 
 <p>エンジニアとして、いつも心に留めておこうと思う言葉。</p>
@@ -1884,10 +2025,10 @@ IndentationErrorになってしまう。エディタでオートインデント�
   
   <entry>
     <title type="html"><![CDATA[TerminalからiTerm2に乗り換えたらVimの色表示が狂った話]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/04/10/vim/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/04/10/vim/"/>
     <updated>2014-04-10T13:45:17+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/04/10/vim</id>
-    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/iterm2.jpg" alt="iterm2" /></p>
+    <id>http://blog.r-nmt000.com/blog/2014/04/10/vim</id>
+    <content type="html"><![CDATA[<p><img src="http://blog.r-nmt000.com/images/iterm2.jpg" alt="iterm2" /></p>
 
 <p>iTerm2は縦にウィンドウ分割できてアツい！って聞いたので乗り換えたところ
 Vimの背景が白っぽくなってすごい見づらくなってしまった問題を解決したときの備忘録です。</p>
@@ -1910,7 +2051,7 @@ Vimの背景が白っぽくなってすごい見づらくなってしまった�
 
 <p>iTerm2の<code>Preference</code>→<code>Colors</code>の画像の部分の色を調整することで修正できました。</p>
 
-<p><img src="http://r-nmt000.github.io/images/iterm.jpg" alt="iTerm2" /></p>
+<p><img src="http://blog.r-nmt000.com/images/iterm.jpg" alt="iTerm2" /></p>
 
 <p>普通だったら背景のところには<code>Background</code>に指定してある色がくるはずなのですが、
 vimでは反映されず代わりに<code>Black</code>で指定されている色が反映されているようでした。</p>
@@ -1921,9 +2062,9 @@ vimでは反映されず代わりに<code>Black</code>で指定されている�
   
   <entry>
     <title type="html"><![CDATA[SBT Libraries and Plugins]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/04/08/scala-sbt/"/>
     <updated>2014-04-08T00:10:53+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/04/08/scala-sbt</id>
+    <id>http://blog.r-nmt000.com/blog/2014/04/08/scala-sbt</id>
     <content type="html"><![CDATA[<h1>ある日のぼく</h1>
 
 <p><strong>ぼくはSBTのプラグインを入れようとしていました。</strong></p>
@@ -2027,12 +2168,12 @@ vimでは反映されず代わりに<code>Black</code>で指定されている�
   
   <entry>
     <title type="html"><![CDATA[Scala + akka]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/04/02/scala-akka/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/04/02/scala-akka/"/>
     <updated>2014-04-02T01:10:16+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/04/02/scala-akka</id>
+    <id>http://blog.r-nmt000.com/blog/2014/04/02/scala-akka</id>
     <content type="html"><![CDATA[<h1>Scalaのakkaを試してみた</h1>
 
-<p><img src="http://r-nmt000.github.io/images/akka.jpg" alt="akka" /></p>
+<p><img src="http://blog.r-nmt000.com/images/akka.jpg" alt="akka" /></p>
 
 <p>そういやScala始めてしばらくになるけどakka触ったことなかったなあこれはやばいなあということでちょっと勉強してみました。</p>
 
@@ -2415,10 +2556,10 @@ vimでは反映されず代わりに<code>Black</code>で指定されている�
   
   <entry>
     <title type="html"><![CDATA[未来を感じるインタフェースを作るスタートアップ7つ]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/01/25/interface-startup/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/01/25/interface-startup/"/>
     <updated>2014-01-25T13:45:19+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/01/25/interface-startup</id>
-    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/future.jpg" alt="future" /></p>
+    <id>http://blog.r-nmt000.com/blog/2014/01/25/interface-startup</id>
+    <content type="html"><![CDATA[<p><img src="http://blog.r-nmt000.com/images/future.jpg" alt="future" /></p>
 
 <p>近年はwebだけでなく実際にデバイスを作っているスタートアップも増えています。
 ここではそうしたスタートアップの中でも未来を感じるインタフェースで世界を変えようとしているスタートアップを紹介します。</p>
@@ -2430,9 +2571,9 @@ vimでは反映されず代わりに<code>Black</code>で指定されている�
 
 <h3>Ring</h3>
 
-<p><img src="http://r-nmt000.github.io/images/ring.jpg" alt="Ring" /></p>
+<p><img src="http://blog.r-nmt000.com/images/ring.jpg" alt="Ring" /></p>
 
-<iframe src="http://r-nmt000.github.io//player.vimeo.com/video/74626545" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="http://blog.r-nmt000.com//player.vimeo.com/video/74626545" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 
 <p> <p><a href="http://vimeo.com/74626545">Ring -Shorcut Everything-</a> from <a href="http://vimeo.com/user7740853">Logbar</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p>
@@ -2449,7 +2590,7 @@ vimでは反映されず代わりに<code>Black</code>で指定されている�
 
 <h3>MYO</h3>
 
-<p><img src="http://r-nmt000.github.io/images/myo.jpg" alt="MYO" /></p>
+<p><img src="http://blog.r-nmt000.com/images/myo.jpg" alt="MYO" /></p>
 
 <iframe src="http://player.vimeo.com/video/37562944" width="560" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
 
@@ -2467,7 +2608,7 @@ FPSにおける銃の上げ下ろしといった操作をナチュラルに再�
 
 <h3>mycestro</h3>
 
-<p><img src="http://r-nmt000.github.io/images/mycestro.jpg" alt="mycestro" /></p>
+<p><img src="http://blog.r-nmt000.com/images/mycestro.jpg" alt="mycestro" /></p>
 
 <iframe width="480" height="360" src="https://www.kickstarter.com/projects/mycestro/mycestrotm-the-next-generation-3d-mouse/widget/video.html" frameborder="0" scrolling="no"> </iframe>
 
@@ -2486,7 +2627,7 @@ mycestroはあなたのそんな悩みを解決します。
 
 <h3>Muse</h3>
 
-<p><img src="http://r-nmt000.github.io/images/muse.jpg" alt="muse" /></p>
+<p><img src="http://blog.r-nmt000.com/images/muse.jpg" alt="muse" /></p>
 
 <iframe src="http://player.vimeo.com/video/37562944" width="560" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
 
@@ -2506,9 +2647,9 @@ mycestroはあなたのそんな悩みを解決します。
 
 <h3>Displair</h3>
 
-<p><img src="http://r-nmt000.github.io/images/displair.jpg" alt="displair" /></p>
+<p><img src="http://blog.r-nmt000.com/images/displair.jpg" alt="displair" /></p>
 
-<iframe width="560" height="315" src="http://r-nmt000.github.io//www.youtube.com/embed/yEP7JewA2C8" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="http://blog.r-nmt000.com//www.youtube.com/embed/yEP7JewA2C8" frameborder="0" allowfullscreen></iframe>
 
 
 <p>SFのように空中に浮かんだ仮想オブジェクトを操作することは人類の(少なくとも僕の)夢ですが、displairの登場で人類はその夢に一歩近づきました。
@@ -2525,9 +2666,9 @@ mycestroはあなたのそんな悩みを解決します。
 
 <h3>Oculus Rift</h3>
 
-<p><img src="http://r-nmt000.github.io/images/oculus.jpg" alt="oculus" /></p>
+<p><img src="http://blog.r-nmt000.com/images/oculus.jpg" alt="oculus" /></p>
 
-<iframe width="560" height="315" src="http://r-nmt000.github.io//www.youtube.com/embed/GoQ0OXJCbaE" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="http://blog.r-nmt000.com//www.youtube.com/embed/GoQ0OXJCbaE" frameborder="0" allowfullscreen></iframe>
 
 
 <p>Oculus Riftは没入感が半端ないHMDです。
@@ -2541,7 +2682,7 @@ mycestroはあなたのそんな悩みを解決します。
 
 <h3>ARヘルメット</h3>
 
-<p><img src="http://r-nmt000.github.io/images/helmet.jpg" alt="helmet" /></p>
+<p><img src="http://blog.r-nmt000.com/images/helmet.jpg" alt="helmet" /></p>
 
 <iframe src='http://player.cnevids.com/embed/525d923b4ffb60655000000b/5176e89e68f9daff42000013' width='560' height='390' frameBorder='0' allowfullscreen webkitallowfullscreen mozallowfullscreen allowtransparency='true'></iframe>
 
@@ -2569,10 +2710,10 @@ mycestroはあなたのそんな悩みを解決します。
   
   <entry>
     <title type="html"><![CDATA[Study abroad 1]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/01/14/english-canada/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/01/14/english-canada/"/>
     <updated>2014-01-14T02:08:59+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/01/14/english-canada</id>
-    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/vancouver.jpg" alt="vancouver" /></p>
+    <id>http://blog.r-nmt000.com/blog/2014/01/14/english-canada</id>
+    <content type="html"><![CDATA[<p><img src="http://blog.r-nmt000.com/images/vancouver.jpg" alt="vancouver" /></p>
 
 <h1>最小の費用で最大の効果を得る留学 1</h1>
 
@@ -2746,10 +2887,10 @@ Skype英会話で3ヶ月くらい会話の練習してた。自己紹介はで�
   
   <entry>
     <title type="html"><![CDATA[Moaning Programming Language]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/28/programming-scala-brainfuck/"/>
+    <link href="http://blog.r-nmt000.com/blog/2013/12/28/programming-scala-brainfuck/"/>
     <updated>2013-12-28T23:52:07+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/28/programming-scala-brainfuck</id>
-    <content type="html"><![CDATA[<p><img src="http://r-nmt000.github.io/images/woman.jpg" alt="woman" /></p>
+    <id>http://blog.r-nmt000.com/blog/2013/12/28/programming-scala-brainfuck</id>
+    <content type="html"><![CDATA[<p><img src="http://blog.r-nmt000.com/images/woman.jpg" alt="woman" /></p>
 
 <h1>喘ぐプログラミング言語</h1>
 
@@ -2828,7 +2969,7 @@ Skype英会話で3ヶ月くらい会話の練習してた。自己紹介はで�
 
 <h2>喘ぎ方</h2>
 
-<p><a href="http://r-nmt000.github.io/downloads/MPL.jar">こちら</a>からjarをダウンロードしてください。(重くてごめんなさい)</p>
+<p><a href="http://blog.r-nmt000.com/downloads/MPL.jar">こちら</a>からjarをダウンロードしてください。(重くてごめんなさい)</p>
 
 <p>テキストファイルに喘ぎ声をプログラムし、以下のコマンドを実行してください。(Java実行環境が必要)</p>
 
@@ -2845,114 +2986,6 @@ Skype英会話で3ヶ月くらい会話の練習してた。自己紹介はで�
 <h2>まとめ</h2>
 
 <p>もっといい喘ぎ方があったら教えて下さい。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Importatnt things when you choose a company]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/17/jobhunting/"/>
-    <updated>2013-12-17T13:17:52+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/17/jobhunting</id>
-    <content type="html"><![CDATA[<h2>会社を選ぶ上で重要なこと</h2>
-
-<p>こないだ行ったセミナーで聞いたお話がとても印象深くて自分の考えにも合致していたので、自分なりに解釈してここにまとめてみました。</p>
-
-<!-- more -->
-
-
-<h2>日本はなぜ衰えたか</h2>
-
-<ul>
-<li>実は、衰退したわけではなく他国が追いついただけ</li>
-<li>行動成長期の後人口減少が始まるのはどの国でも起こる自然なことで、日本の現状は至極当然</li>
-<li>価格競争では他国に勝てないが、かと言って今まで通りのものの作り方(ピュアに高品質を目指す作り方)では世界で勝てない</li>
-<li>尖ったモノを作らなければ勝てないが、大企業にはそれができない。リスクを取れないから。</li>
-</ul>
-
-
-<h2>アメリカはなぜ強いか</h2>
-
-<p>かつて日本はアメリカと肩を並べる経済力を持っていましたが今では他国に追いぬかれてしまいました。
-しかしアメリカは世界一の経済力を有しています。それにはいくつかの理由があります。</p>
-
-<p><strong>1. 成功を尊ぶ文化</strong></p>
-
-<ul>
-<li>アメリカでは新しいことを成すことを尊ぶ文化がある。</li>
-<li>リスクを取り、新しいことをして成功しようという空気ができあがっている。</li>
-</ul>
-
-
-<p><strong>2. 移民を受け入れている</strong></p>
-
-<ul>
-<li>通常の国では経済成長の後人口が減少していくが、アメリカは移民で人口を増加させている。</li>
-<li>特別な技能を持つ人間を迎え入れる体制が法律で整えられている。</li>
-</ul>
-
-
-<p><strong>3. 英語が母国語</strong></p>
-
-<ul>
-<li>母国語がグローバルスタンダードであるのは大きい。</li>
-<li>全世界へ向けてビジネスを展開しやすく、全世界から人が集まりやすい。</li>
-</ul>
-
-
-<h2>僕達の生きる道は２つある。</h2>
-
-<p>今の日本で生きる道は２つあります。それは</p>
-
-<p><strong>業界トップの企業に行って会社にぶら下がる道</strong></p>
-
-<p>もう一つは</p>
-
-<p><strong>キャリア形成を行ってどこへ行っても通用する力をつける道</strong></p>
-
-<p>日本経済の衰退、終身雇用の崩壊、外資企業の進出から将来多くの人が好む好まざるに関わらず転職を余儀なくされるでしょう。
-そうなった時労働者は大きく分けて上記２つの道を歩まざるを得なくなります。</p>
-
-<h2>キャリア形成を考える上でどういった企業がいいのか</h2>
-
-<p>自分の成長に都合の良い会社を選びましょう。特に下記の条件を満たす企業が良いでしょう。</p>
-
-<p><strong>1. 創業経営者がいること</strong></p>
-
-<ul>
-<li>２代目、３代目の経営者ではリスクを取る経営はできません。彼らは既に大きくなった会社を危険に晒すことなどできないからです。</li>
-<li>リスクが取れないということは、会社全体がきちんと管理されているということです。あなたに大きな裁量権が与えられることは少ないでしょう。</li>
-</ul>
-
-
-<p><strong>2. できれば小さい方がいい</strong></p>
-
-<ul>
-<li>小さい会社ではあなたは若い時から大きな裁量権を得られ、自由に動くことができます。０から自分で物事を考えなければなりません。</li>
-<li>会社の将来などあなたには関係ありません。若い内に経験を積むことが重要なのです。</li>
-</ul>
-
-
-<p><strong>3. グローバルに通用することをやっているか</strong></p>
-
-<ul>
-<li>業務内容は重要です。国内のみに通用する事業ではいずれグローバルな競合他者に飲み込まれるでしょう。</li>
-</ul>
-
-
-<p><strong>4. 同期が8-9割優秀かどうか</strong></p>
-
-<ul>
-<li>環境は重要です。1割では足りません。選考の段階で周囲を見渡してどんな人がいるかチェックしてみましょう。</li>
-</ul>
-
-
-<h2>まとめ</h2>
-
-<p>なかなかそんな会社見つけるの難しいよなーというのが正直なところですよね^^;</p>
-
-<p>でも、今まで大手を中心に(というか大手だけ)見ていたので、このセミナーのおかげでベンチャーも見てみようという気になりました。</p>
-
-<p>頑張っていきましょう。</p>
 ]]></content>
   </entry>
   

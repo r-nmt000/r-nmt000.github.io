@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: startup | NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/blog/tags/startup/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/blog/tags/startup/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[未来を感じるインタフェースを作るスタートアップ7つ]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/01/25/interface-startup/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/01/25/interface-startup/"/>
     <updated>2014-01-25T13:45:19+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/01/25/interface-startup</id>
+    <id>http://blog.r-nmt000.com/blog/2014/01/25/interface-startup</id>
     <content type="html"><![CDATA[![future](/images/future.jpg)
 
 近年はwebだけでなく実際にデバイスを作っているスタートアップも増えています。
@@ -37,7 +37,7 @@
 
 ![Ring](/images/ring.jpg)
 
-<iframe src="http://r-nmt000.github.io//player.vimeo.com/video/74626545" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/74626545">Ring -Shorcut Everything-</a> from <a href="http://vimeo.com/user7740853">Logbar</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<iframe src="http://blog.r-nmt000.com//player.vimeo.com/video/74626545" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/74626545">Ring -Shorcut Everything-</a> from <a href="http://vimeo.com/user7740853">Logbar</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 
 "Shortcut Everything"を表題にジェスチャーで全てを操作しようというデバイスがRing。
@@ -108,7 +108,7 @@ museはなんとユーザの脳をセンシングすることができるデバ�
 
 ![displair](/images/displair.jpg)
 
-<iframe width="560" height="315" src="http://r-nmt000.github.io//www.youtube.com/embed/yEP7JewA2C8" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="http://blog.r-nmt000.com//www.youtube.com/embed/yEP7JewA2C8" frameborder="0" allowfullscreen></iframe>
 
 
 SFのように空中に浮かんだ仮想オブジェクトを操作することは人類の(少なくとも僕の)夢ですが、displairの登場で人類はその夢に一歩近づきました。
@@ -125,7 +125,7 @@ SFのように空中に浮かんだ仮想オブジェクトを操作すること
 
 ![oculus](/images/oculus.jpg)
 
-<iframe width="560" height="315" src="http://r-nmt000.github.io//www.youtube.com/embed/GoQ0OXJCbaE" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="http://blog.r-nmt000.com//www.youtube.com/embed/GoQ0OXJCbaE" frameborder="0" allowfullscreen></iframe>
 
 
 Oculus Riftは没入感が半端ないHMDです。

@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>TagCloud - NomoLog</title>
+  <title>Kindleのハイライト同期がうまくいかない問題の解決策 - NomoLog</title>
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="タグクラウド導入してみました。 参考にしたサイトはこちら Octopressでのタグの運用
-Octopressのカスタマイズ ありがとうございました。 タグクラウドって？ 各記事の内容を端的に表す&#8221;タグ&#8221;
-そのタグのリストをおされ(重要)に表示したもの(主観) &hellip;">
-  <meta name="keywords" content="Octopress, TagCloud">
+  <meta name="description" content="最近読書にハマっています。特にKindleを使った読書が本当に便利で捗りまくりです。
+素晴らしいよKindle(^^) Kindleには「ハイライト同期機能」というものがついており、Kindle端末上で本にハイライトした箇所を
+他の端末と同期したりKindleのページから参照できたりします。 &hellip;">
+  <meta name="keywords" content="Others, Python, Kindle">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.r-nmt000.com/blog/2013/12/04/octopress-tagcloud/">
+  <link rel="canonical" href="http://blog.r-nmt000.com/blog/2014/11/29/others-python/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,7 +83,7 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
   
   <header>
     
-      <h1 class="entry-title">TagCloud</h1>
+      <h1 class="entry-title">Kindleのハイライト同期がうまくいかない問題の解決策</h1>
     
     
       <p class="meta">
@@ -99,13 +99,13 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
   
 
 
-<time datetime="2013-12-04T20:18:00+09:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time>
+<time datetime="2014-11-29T12:13:44+09:00" pubdate data-updated="true">Nov 29<span>th</span>, 2014</time>
 			
 
 <span class="categories">
 	Posted in
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/others/'>Others</a>
   
 </span>
 
@@ -115,7 +115,7 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
 <span class="tags">
 	Tagged as
   
-    <a class='tag' href='/blog/tags/tagcloud/'>TagCloud</a>
+    <a class='tag' href='/blog/tags/kindle/'>Kindle</a>
   
 </span>
 
@@ -126,40 +126,139 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
   </header>
 
 
-<div class="entry-content"><h2>タグクラウド導入してみました。</h2>
+<div class="entry-content"><p>最近読書にハマっています。特にKindleを使った読書が本当に便利で捗りまくりです。
+素晴らしいよKindle(^^)</p>
 
-<p>参考にしたサイトはこちら</p>
+<p>Kindleには「ハイライト同期機能」というものがついており、Kindle端末上で本にハイライトした箇所を
+他の端末と同期したり<a href="https://kindle.amazon.co.jp">Kindleのページ</a>から参照できたりします。</p>
 
-<ul>
-<li><p><a href="http://rcmdnk.github.io/blog/2013/04/12/blog-octopress/">Octopressでのタグの運用</a></p></li>
-<li><p><a href="http://blog.digital-bot.com/blog/2013/09/03/octopress-tips/">Octopressのカスタマイズ</a></p></li>
-</ul>
+<p><img src="/images/kindle_highlight.png" alt="kindle_highlight" /></p>
 
+<p>こんな感じです。凄く便利。</p>
 
-<p>ありがとうございました。</p>
+<p>当初僕はこのページをEvernoteのWebクリップを使ってEvernoteに保存して本の概要としてまとめようと考えていました。
+しかしここで一つ問題にぶつかります。</p>
 
 <!-- more -->
 
 
-<h2>タグクラウドって？</h2>
+<h2>正しく同期されない&hellip;?</h2>
+
+<p>そうなんです。本によって正しく同期されたりされなかったりするんですね。
+いくつか解決策も探してみました。</p>
+
+<p><a href="http://tanisuke.net/entry/1582">「KindleのハイライトがPCで表示・同期されない」の解決方法</a></p>
+
+<p>こちらの記事によると</p>
+
+<ol>
+<li>Kindleがネットワークに繋がった状態で</li>
+<li>「同期してアイテムをチェック」をクリック</li>
+</ol>
+
+
+<p><img src="http://tanisuke.net/wp-content/uploads/Kindle.jpg" alt="同期してアイテムをチェック" /></p>
+
+<p>で全てのハイライトがKindleページでチェックできるとあります。
+しかし僕の環境では上手くいきませんでした。</p>
+
+<p>また、このような記事も見つけました。</p>
+
+<p><a href="http://yoshichiha.com/2013/02/12/kindle-your-highlights-is-not-supported-in-japan">KindleのYour Highlightsは日本ではサポート外らしい&hellip;</a></p>
+
+<p>なんと、そもそもこのハイライト同期機能はAmazon.co.jpではサポート対象外だそうです。
+(1年前の記事ですが、現在もうまく動いてないのできっと今も対象外なのでしょう。)
+こちらの記事でも「しょうがないね、ちゃんちゃん」で終わってしまっています。
+なんということだ&hellip;せっかくこんな素晴らしい機能があるのに使えないだなんて&hellip;</p>
+
+<p>(余談ですが、検索してみるとこの「ハイライト機能」について書かれている記事はたくさんあるのですが、
+「ハイライト同期問題」について言及している記事はあまりありませんでした。
+みんなハイライト機能最高！ハイライト機能かっけー！って記事ばかりです。
+問題が発生している人は少数派なのでしょうか？)</p>
+
+<p>しかし僕は諦めませんでした。なんとかハイライトをEvernoteへ送る方法を探し続けます。そして&hellip;</p>
+
+<h2>Clippings.io</h2>
+
+<p>見つけました。素晴らしいWebサービス。<a href="https://www.clippings.io/">Clippings.io</a>です。</p>
+
+<p>このサービスではKindle端末内に保存されている&#8221;My Clippings.txt&#8221;をインポートすることでハイライトをいい感じにまとめてくれます。
+そしてそのハイライトをExcel,Word,PDFといった各種形式、更にEvernoteへ出力することができるのです！！</p>
+
+<p>以下使い方の手順です。</p>
 
 <ul>
-<li>各記事の内容を端的に表す&#8221;タグ&#8221;</li>
-<li>そのタグのリストを<strong>おされ</strong>(重要)に表示したもの(主観)</li>
-<li>昔はSEO対策で意味あったっぽい。</li>
-<li>今は対策されて意味ないっぽい。</li>
+<li>まずはKindle端末をPCへ繋ぎましょう。</li>
+<li>Clippings.ioにログインします(事前に会員登録しましょう)</li>
 </ul>
 
 
-<h2>導入</h2>
+<p><img src="/images/clippings.io_home.png" alt="clippings.io_home" /></p>
 
-<p>上記サイトの手順をそのまま実行するだけでおっけーでした。
-なので僕がここに書くことはありません笑</p>
+<ul>
+<li>ログインしたら左上のIMPORTボタンをクリックしましょう</li>
+</ul>
 
-<p>ただ、自分のRubyの知識不足とファイルの置換ミスで割と手間取ってしまったので、
-結果として結構時間がかかってしまいました。変更箇所は割と多いので細かくブランチを切って作業することをおすすめします。</p>
 
-<p>Ruby勉強しなきゃなあ&hellip;</p>
+<p><img src="/images/clippings.io_explorer.png" alt="clippings.io_explorer" /></p>
+
+<ul>
+<li>Click to uploadボタンを押すとファイル選択画面が開くので、接続したKindle内にある&#8221;My Clippings.txt&#8221;を選択しましょう。
+ハイライトがClippings.ioにインポートされます。</li>
+</ul>
+
+
+<p><img src="/images/clippings.io_import.png" alt="clippings.io_import" /></p>
+
+<ul>
+<li>続いてEvernoteへエクスポートします。右上のエクスポートをクリックし、Evernoteを選択しましょう。</li>
+</ul>
+
+
+<p><img src="/images/evernote.png" alt="evernote" /></p>
+
+<ul>
+<li><p>どのような形でハイライトをEvernoteへ出力するか選択する画面が出ますので、そのままの設定でいい人はStart Exportを押しましょう。
+僕の場合は</p>
+
+<ul>
+<li>Create one note for each book(１冊の本単位でノートを作成し、その中にハイライトをまとめます)</li>
+<li>Include attached notes(ハイライトに自分のメモを書いてある時は、それも一緒にエクスポートします)</li>
+</ul>
+</li>
+</ul>
+
+
+<p>の２つを選択しています。</p>
+
+<ul>
+<li><p>僕はさらにエクスポートするノートにタグ付けしたいので、Evernote pageをクリックします。</p></li>
+<li><p>Additional tagsの欄に追加したいタグを入力します。僕は本関連のノートには&#8221;books&#8221;をつけているので&#8221;books&#8221;と入力しました。
+先ほどの画面に戻り、Start Exportをクリックしましょう。</p></li>
+</ul>
+
+
+<p><img src="/images/evernote_settings.png" alt="evernote_settings" /></p>
+
+<p>以上がClippings.ioを使ったKindleのハイライトをEvernoteへ送る方法です。
+Evernote以外にもExcelやWordといった形式でもエクスポートできるので、英語学習に役立てている方もいるようです。</p>
+
+<p><a href="http://mandarinnote.hotcom-cafe.com/kindle%E3%81%AE%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88xweblio%E3%81%A7%E5%8D%98%E8%AA%9E%E5%B8%B3%E4%BD%9C%E6%88%90/">Kindleのハイライトx Weblioで単語帳作成</a></p>
+
+<h2>本当は&hellip;</h2>
+
+<p>実はこの記事を書き始めた時はClippings.ioを見つけておらず、自分でプログラム書いてハイライトをEvernoteへ送ろうとしてました。</p>
+
+<p><a href="https://github.com/r-nmt000/KindleHighlightGenerator.git">Kindle Highlight Generator</a></p>
+
+<p>できたのでよし！と思ってブログ書き始めて、引用のために少しWebブラウジングしてたら見つけてしまいました。Clippings.ioを。
+悔しいですがClippings.ioの方が全然素晴らしかったので、僕の書いたプログラムの使い方について書く予定を急遽変更してClippings.ioを紹介した次第です。</p>
+
+<p>僕の３時間を返して欲しいです。</p>
+
+<h2>まとめ</h2>
+
+<p><strong>なにかアクションを起こす前に、きちんと調べてから動き出しましょう</strong></p>
 </div>
 
 
@@ -182,13 +281,13 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
   
 
 
-<time datetime="2013-12-04T20:18:00+09:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time>
+<time datetime="2014-11-29T12:13:44+09:00" pubdate data-updated="true">Nov 29<span>th</span>, 2014</time>
 			
 
 <span class="categories">
 	Posted in
   
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/blog/categories/others/'>Others</a>
   
 </span>
 
@@ -198,7 +297,7 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
 <span class="tags">
 	Tagged as
   
-    <a class='tag' href='/blog/tags/tagcloud/'>TagCloud</a>
+    <a class='tag' href='/blog/tags/kindle/'>Kindle</a>
   
 </span>
 
@@ -208,7 +307,7 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
       <div class="sharing">
   <ul>
     <li class="hatena">
-  <a href="http://b.hatena.ne.jp/entry/http://blog.r-nmt000.com/blog/2013/12/04/octopress-tagcloud/"
+  <a href="http://b.hatena.ne.jp/entry/http://blog.r-nmt000.com/blog/2014/11/29/others-python/"
     class="hatena-bookmark-button" data-hatena-bookmark-layout="standard"
     title="このエントリーをはてなブックマークに追加"><img
     src="http://b.st-hatena.com/images/entry-button/button-only.gif"
@@ -220,14 +319,14 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
   <li class="pocket">
   <a data-pocket-label="pocket" data-pocket-count="horizontal"
     class="pocket-btn" data-lang="en" data-pocket-align="left"
-    data-save-url="http://blog.r-nmt000.com/blog/2013/12/04/octopress-tagcloud/"></a>
+    data-save-url="http://blog.r-nmt000.com/blog/2014/11/29/others-python/"></a>
   <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var
     j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var
     w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
   </li>
   
   <li class="twitter">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.r-nmt000.com/blog/2013/12/04/octopress-tagcloud/" data-via="" data-counturl="http://blog.r-nmt000.com/blog/2013/12/04/octopress-tagcloud/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.r-nmt000.com/blog/2014/11/29/others-python/" data-via="" data-counturl="http://blog.r-nmt000.com/blog/2014/11/29/others-python/" >Tweet</a>
   </li>
   
   
@@ -241,16 +340,16 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/12/01/kindle/" title="Previous Post: Kindle paperwhite">&laquo; Kindle paperwhite</a>
+        <a class="basic-alignment left" href="/blog/2014/11/24/others/" title="Previous Post: 「アメリカのプログラマの給料が高い」は本当か？">&laquo; 「アメリカのプログラマの給料が高い」は本当か？</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/12/04/eclipse-tips/" title="Next Post: Eclipse keybind's setting">Eclipse keybind's setting &raquo;</a>
       
 		</p>
 		
 		<div class="related_posts">
 <h3>You may also like...</h3>
 <ul>
+	
+	<li><a href="/blog/2013/12/01/kindle/;">Kindle paperwhite</a></li>
 	
 </ul>
 </div>
@@ -360,8 +459,8 @@ Octopressのカスタマイズ ありがとうございました。 タグクラ
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.r-nmt000.com/blog/2013/12/04/octopress-tagcloud/';
-        var disqus_url = 'http://blog.r-nmt000.com/blog/2013/12/04/octopress-tagcloud/';
+        var disqus_identifier = 'http://blog.r-nmt000.com/blog/2014/11/29/others-python/';
+        var disqus_url = 'http://blog.r-nmt000.com/blog/2014/11/29/others-python/';
         var disqus_script = 'embed.js';
       
     (function () {

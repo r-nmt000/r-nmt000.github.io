@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Lifelog | NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/blog/categories/lifelog/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/blog/categories/lifelog/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Kindle paperwhite]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/01/kindle/"/>
+    <link href="http://blog.r-nmt000.com/blog/2013/12/01/kindle/"/>
     <updated>2013-12-01T18:29:48+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/01/kindle</id>
+    <id>http://blog.r-nmt000.com/blog/2013/12/01/kindle</id>
     <content type="html"><![CDATA[##買いました！
 
 

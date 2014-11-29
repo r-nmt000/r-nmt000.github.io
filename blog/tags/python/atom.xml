@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Python | NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/blog/tags/python/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/blog/tags/python/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[NeoBundleInstallでjedi-vimがインストールされない問題]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/19/vim-python/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/19/vim-python/"/>
     <updated>2014-06-19T20:26:06+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/19/vim-python</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/19/vim-python</id>
     <content type="html"><![CDATA[`.vimrc`に`NeoBundleInstal 'davidhalter/jedi-vim'`を書き加えて`:NeoBundleInstall`しても`HTTP request failed`と怒られてインストール出来ませんでした。
 <!-- more -->
 
@@ -58,10 +58,10 @@ git submodule update --init
   
   <entry>
     <title type="html"><![CDATA[俺的Python気になった所まとめ3]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/09/python3/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/09/python3/"/>
     <updated>2014-06-09T22:27:37+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/09/python3</id>
-    <content type="html"><![CDATA[<img class="center" src="http://r-nmt000.github.io/images/python.png">
+    <id>http://blog.r-nmt000.com/blog/2014/06/09/python3</id>
+    <content type="html"><![CDATA[<img class="center" src="http://blog.r-nmt000.com/images/python.png">
 
 [ 俺的Python気になった所まとめ2の続きです。 ](/blog/2014/06/09/python3/)
 
@@ -261,11 +261,11 @@ Pythonのバージョン管理でPythonzってのがあるらしいけど、今�
   
   <entry>
     <title type="html"><![CDATA[俺的Python気になった所まとめ2]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/09/python2/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/09/python2/"/>
     <updated>2014-06-09T21:59:30+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/09/python2</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/09/python2</id>
     <content type="html"><![CDATA[<p>
-<img class="center" src="http://r-nmt000.github.io/images/python.png">
+<img class="center" src="http://blog.r-nmt000.com/images/python.png">
 </p>
 
 [ 俺的Python気になった所まとめ1の続き ](/blog/2014/06/09/python1/)
@@ -462,11 +462,11 @@ from dir1.dir2 import sub2
   
   <entry>
     <title type="html"><![CDATA[俺的Python気になった所まとめ1]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/06/09/python1/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/09/python1/"/>
     <updated>2014-06-09T21:26:47+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/06/09/python1</id>
+    <id>http://blog.r-nmt000.com/blog/2014/06/09/python1</id>
     <content type="html"><![CDATA[<p>
-<img class="center" src="http://r-nmt000.github.io/images/python.png" >
+<img class="center" src="http://blog.r-nmt000.com/images/python.png" >
 </p>
 Python Tutoria(2.7)を終えて個人的に気になった、つまったところまとめ。
 <!-- more -->

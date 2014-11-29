@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://r-nmt000.github.io/sitemap.xml 
+Sitemap: http://blog.r-nmt000.com/sitemap.xml 

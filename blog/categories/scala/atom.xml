@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Scala | NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/blog/categories/scala/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/blog/categories/scala/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[SBT Libraries and Plugins]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/04/08/scala-sbt/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/04/08/scala-sbt/"/>
     <updated>2014-04-08T00:10:53+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/04/08/scala-sbt</id>
+    <id>http://blog.r-nmt000.com/blog/2014/04/08/scala-sbt</id>
     <content type="html"><![CDATA[#ある日のぼく
 
 **ぼくはSBTのプラグインを入れようとしていました。**
@@ -109,9 +109,9 @@ SBTプロジェクト内のファイル関係はこれである程度頭に入�
   
   <entry>
     <title type="html"><![CDATA[Scala + akka]]></title>
-    <link href="http://r-nmt000.github.io/blog/2014/04/02/scala-akka/"/>
+    <link href="http://blog.r-nmt000.com/blog/2014/04/02/scala-akka/"/>
     <updated>2014-04-02T01:10:16+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2014/04/02/scala-akka</id>
+    <id>http://blog.r-nmt000.com/blog/2014/04/02/scala-akka</id>
     <content type="html"><![CDATA[#Scalaのakkaを試してみた
 
 ![akka](/images/akka.jpg)
@@ -362,9 +362,9 @@ object AkkatestApp{
   
   <entry>
     <title type="html"><![CDATA[Android with Scala]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala/"/>
+    <link href="http://blog.r-nmt000.com/blog/2013/12/17/scala-android-scala/"/>
     <updated>2013-12-17T11:20:42+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/17/scala-android-scala</id>
+    <id>http://blog.r-nmt000.com/blog/2013/12/17/scala-android-scala</id>
     <content type="html"><![CDATA[#ScalaでAndroid
 こちらを参考にしました！
 [Scala + sbt-android + IntelliJ で快適Androidアプリ開発](http://shogogg.hatenablog.jp/entry/2013/12/06/000039)

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Tag: Kindle | NomoLog]]></title>
-  <link href="http://r-nmt000.github.io/blog/tags/kindle/atom.xml" rel="self"/>
-  <link href="http://r-nmt000.github.io/"/>
-  <updated>2014-11-25T18:18:58+09:00</updated>
-  <id>http://r-nmt000.github.io/</id>
+  <link href="http://blog.r-nmt000.com/blog/tags/kindle/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-11-29T15:35:07+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
     
@@ -14,10 +14,129 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Kindleのハイライト同期がうまくいかない問題の解決策]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/11/29/others-python/"/>
+    <updated>2014-11-29T12:13:44+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/11/29/others-python</id>
+    <content type="html"><![CDATA[最近読書にハマっています。特にKindleを使った読書が本当に便利で捗りまくりです。
+素晴らしいよKindle(^^)
+
+Kindleには「ハイライト同期機能」というものがついており、Kindle端末上で本にハイライトした箇所を
+他の端末と同期したり[Kindleのページ](https://kindle.amazon.co.jp)から参照できたりします。
+
+![kindle_highlight](/images/kindle_highlight.png)
+
+こんな感じです。凄く便利。
+
+当初僕はこのページをEvernoteのWebクリップを使ってEvernoteに保存して本の概要としてまとめようと考えていました。
+しかしここで一つ問題にぶつかります。
+
+<!-- more -->
+
+## 正しく同期されない...?
+
+そうなんです。本によって正しく同期されたりされなかったりするんですね。
+いくつか解決策も探してみました。
+
+[「KindleのハイライトがPCで表示・同期されない」の解決方法](http://tanisuke.net/entry/1582)
+
+こちらの記事によると
+
+1. Kindleがネットワークに繋がった状態で
+1. 「同期してアイテムをチェック」をクリック
+
+![同期してアイテムをチェック](http://tanisuke.net/wp-content/uploads/Kindle.jpg)
+
+で全てのハイライトがKindleページでチェックできるとあります。
+しかし僕の環境では上手くいきませんでした。
+
+また、このような記事も見つけました。
+
+[KindleのYour Highlightsは日本ではサポート外らしい...](http://yoshichiha.com/2013/02/12/kindle-your-highlights-is-not-supported-in-japan)
+
+なんと、そもそもこのハイライト同期機能はAmazon.co.jpではサポート対象外だそうです。
+(1年前の記事ですが、現在もうまく動いてないのできっと今も対象外なのでしょう。)
+こちらの記事でも「しょうがないね、ちゃんちゃん」で終わってしまっています。
+なんということだ...せっかくこんな素晴らしい機能があるのに使えないだなんて...
+
+(余談ですが、検索してみるとこの「ハイライト機能」について書かれている記事はたくさんあるのですが、
+「ハイライト同期問題」について言及している記事はあまりありませんでした。
+みんなハイライト機能最高！ハイライト機能かっけー！って記事ばかりです。
+問題が発生している人は少数派なのでしょうか？)
+
+しかし僕は諦めませんでした。なんとかハイライトをEvernoteへ送る方法を探し続けます。そして...
+
+## Clippings.io
+
+見つけました。素晴らしいWebサービス。[Clippings.io](https://www.clippings.io/)です。
+
+このサービスではKindle端末内に保存されている"My Clippings.txt"をインポートすることでハイライトをいい感じにまとめてくれます。
+そしてそのハイライトをExcel,Word,PDFといった各種形式、更にEvernoteへ出力することができるのです！！
+
+以下使い方の手順です。
+
+* まずはKindle端末をPCへ繋ぎましょう。
+* Clippings.ioにログインします(事前に会員登録しましょう)
+
+![clippings.io_home](/images/clippings.io_home.png)
+
+* ログインしたら左上のIMPORTボタンをクリックしましょう
+
+![clippings.io_explorer](/images/clippings.io_explorer.png)
+
+* Click to uploadボタンを押すとファイル選択画面が開くので、接続したKindle内にある"My Clippings.txt"を選択しましょう。
+ハイライトがClippings.ioにインポートされます。
+
+![clippings.io_import](/images/clippings.io_import.png)
+
+* 続いてEvernoteへエクスポートします。右上のエクスポートをクリックし、Evernoteを選択しましょう。
+
+![evernote](/images/evernote.png)
+
+* どのような形でハイライトをEvernoteへ出力するか選択する画面が出ますので、そのままの設定でいい人はStart Exportを押しましょう。
+僕の場合は
+
+  - Create one note for each book(１冊の本単位でノートを作成し、その中にハイライトをまとめます)
+  - Include attached notes(ハイライトに自分のメモを書いてある時は、それも一緒にエクスポートします)
+
+の２つを選択しています。
+
+* 僕はさらにエクスポートするノートにタグ付けしたいので、Evernote pageをクリックします。
+
+* Additional tagsの欄に追加したいタグを入力します。僕は本関連のノートには"books"をつけているので"books"と入力しました。
+先ほどの画面に戻り、Start Exportをクリックしましょう。
+
+![evernote_settings](/images/evernote_settings.png)
+
+以上がClippings.ioを使ったKindleのハイライトをEvernoteへ送る方法です。
+Evernote以外にもExcelやWordといった形式でもエクスポートできるので、英語学習に役立てている方もいるようです。
+
+[Kindleのハイライトx Weblioで単語帳作成](http://mandarinnote.hotcom-cafe.com/kindle%E3%81%AE%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88xweblio%E3%81%A7%E5%8D%98%E8%AA%9E%E5%B8%B3%E4%BD%9C%E6%88%90/)
+
+## 本当は...
+
+実はこの記事を書き始めた時はClippings.ioを見つけておらず、自分でプログラム書いてハイライトをEvernoteへ送ろうとしてました。
+
+[Kindle Highlight Generator](https://github.com/r-nmt000/KindleHighlightGenerator.git)
+
+できたのでよし！と思ってブログ書き始めて、引用のために少しWebブラウジングしてたら見つけてしまいました。Clippings.ioを。
+悔しいですがClippings.ioの方が全然素晴らしかったので、僕の書いたプログラムの使い方について書く予定を急遽変更してClippings.ioを紹介した次第です。
+
+僕の３時間を返して欲しいです。
+
+## まとめ
+
+**なにかアクションを起こす前に、きちんと調べてから動き出しましょう**
+
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Kindle paperwhite]]></title>
-    <link href="http://r-nmt000.github.io/blog/2013/12/01/kindle/"/>
+    <link href="http://blog.r-nmt000.com/blog/2013/12/01/kindle/"/>
     <updated>2013-12-01T18:29:48+09:00</updated>
-    <id>http://r-nmt000.github.io/blog/2013/12/01/kindle</id>
+    <id>http://blog.r-nmt000.com/blog/2013/12/01/kindle</id>
     <content type="html"><![CDATA[##買いました！
 
 
