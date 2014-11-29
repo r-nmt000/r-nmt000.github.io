@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: others | NomoLog]]></title>
+  <title><![CDATA[Category: Others | NomoLog]]></title>
   <link href="http://blog.r-nmt000.com/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://blog.r-nmt000.com/"/>
-  <updated>2014-11-29T15:35:07+09:00</updated>
+  <updated>2014-11-29T17:49:50+09:00</updated>
   <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,125 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Kindleのハイライト同期がうまくいかない問題の解決策]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/11/29/others-python/"/>
+    <updated>2014-11-29T12:13:44+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/11/29/others-python</id>
+    <content type="html"><![CDATA[最近読書にハマっています。特にKindleを使った読書が本当に便利で捗りまくりです。
+素晴らしいよKindle(^^)
+
+Kindleには「ハイライト同期機能」というものがついており、Kindle端末上で本にハイライトした箇所を
+他の端末と同期したり[Kindleのページ](https://kindle.amazon.co.jp)から参照できたりします。
+
+![kindle_highlight](/images/kindle_highlight.png)
+
+こんな感じです。凄く便利。
+
+当初僕はこのページをEvernoteのWebクリップを使ってEvernoteに保存して本の概要としてまとめようと考えていました。
+しかしここで一つ問題にぶつかります。
+
+<!-- more -->
+
+## 正しく同期されない...?
+
+そうなんです。本によって正しく同期されたりされなかったりするんですね。
+いくつか解決策も探してみました。
+
+[「KindleのハイライトがPCで表示・同期されない」の解決方法](http://tanisuke.net/entry/1582)
+
+こちらの記事によると
+
+1. Kindleがネットワークに繋がった状態で
+1. 「同期してアイテムをチェック」をクリック
+
+![同期してアイテムをチェック](http://tanisuke.net/wp-content/uploads/Kindle.jpg)
+
+で全てのハイライトがKindleページでチェックできるとあります。
+しかし僕の環境では上手くいきませんでした。
+
+また、このような記事も見つけました。
+
+[KindleのYour Highlightsは日本ではサポート外らしい...](http://yoshichiha.com/2013/02/12/kindle-your-highlights-is-not-supported-in-japan)
+
+なんと、そもそもこのハイライト同期機能はAmazon.co.jpではサポート対象外だそうです。
+(1年前の記事ですが、現在もうまく動いてないのできっと今も対象外なのでしょう。)
+こちらの記事でも「しょうがないね、ちゃんちゃん」で終わってしまっています。
+なんということだ...せっかくこんな素晴らしい機能があるのに使えないだなんて...
+
+(余談ですが、検索してみるとこの「ハイライト機能」について書かれている記事はたくさんあるのですが、
+「ハイライト同期問題」について言及している記事はあまりありませんでした。
+みんなハイライト機能最高！ハイライト機能かっけー！って記事ばかりです。
+問題が発生している人は少数派なのでしょうか？)
+
+しかし僕は諦めませんでした。なんとかハイライトをEvernoteへ送る方法を探し続けます。そして...
+
+## Clippings.io
+
+見つけました。素晴らしいWebサービス。[Clippings.io](https://www.clippings.io/)です。
+
+このサービスではKindle端末内に保存されている"My Clippings.txt"をインポートすることでハイライトをいい感じにまとめてくれます。
+そしてそのハイライトをExcel,Word,PDFといった各種形式、更にEvernoteへ出力することができるのです！！
+
+以下使い方の手順です。
+
+* まずはKindle端末をPCへ繋ぎましょう。
+* Clippings.ioにログインします(事前に会員登録しましょう)
+
+![clippings.io_home](/images/clippings.io_home.png)
+
+* ログインしたら左上のIMPORTボタンをクリックしましょう
+
+![clippings.io_explorer](/images/clippings.io_explorer.png)
+
+* Click to uploadボタンを押すとファイル選択画面が開くので、接続したKindle内にある"My Clippings.txt"を選択しましょう。
+ハイライトがClippings.ioにインポートされます。
+
+![clippings.io_import](/images/clippings.io_import.png)
+
+* 続いてEvernoteへエクスポートします。右上のエクスポートをクリックし、Evernoteを選択しましょう。
+
+![evernote](/images/evernote.png)
+
+* どのような形でハイライトをEvernoteへ出力するか選択する画面が出ますので、そのままの設定でいい人はStart Exportを押しましょう。
+僕の場合は
+
+  - Create one note for each book(１冊の本単位でノートを作成し、その中にハイライトをまとめます)
+  - Include attached notes(ハイライトに自分のメモを書いてある時は、それも一緒にエクスポートします)
+
+の２つを選択しています。
+
+* 僕はさらにエクスポートするノートにタグ付けしたいので、Evernote pageをクリックします。
+
+* Additional tagsの欄に追加したいタグを入力します。僕は本関連のノートには"books"をつけているので"books"と入力しました。
+先ほどの画面に戻り、Start Exportをクリックしましょう。
+
+![evernote_settings](/images/evernote_settings.png)
+
+以上がClippings.ioを使ったKindleのハイライトをEvernoteへ送る方法です。
+Evernote以外にもExcelやWordといった形式でもエクスポートできるので、英語学習に役立てている方もいるようです。
+
+[Kindleのハイライトx Weblioで単語帳作成](http://mandarinnote.hotcom-cafe.com/kindle%E3%81%AE%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88xweblio%E3%81%A7%E5%8D%98%E8%AA%9E%E5%B8%B3%E4%BD%9C%E6%88%90/)
+
+## 本当は...
+
+実はこの記事を書き始めた時はClippings.ioを見つけておらず、自分でプログラム書いてハイライトをEvernoteへ送ろうとしてました。
+
+[Kindle Highlight Generator](https://github.com/r-nmt000/KindleHighlightGenerator.git)
+
+できたのでよし！と思ってブログ書き始めて、引用のために少しWebブラウジングしてたら見つけてしまいました。Clippings.ioを。
+悔しいですがClippings.ioの方が全然素晴らしかったので、僕の書いたプログラムの使い方について書く予定を急遽変更してClippings.ioを紹介した次第です。
+
+僕の３時間を返して欲しいです。
+
+## まとめ
+
+**なにかアクションを起こす前に、きちんと調べてから動き出しましょう**
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[「アメリカのプログラマの給料が高い」は本当か？]]></title>
@@ -35,6 +154,19 @@
 ![salary_japan](/images/salary_japan.png)
 
 大体400万円から300万円のレンジですね。夢も希望もありません。
+
+---
+
+**訂正**  
+[プログラミング言語別!求人給与額ランキング](http://hrog.net/2014102910652.html) *に表記してある給与は下限金額であるというご指摘を受けました。*
+*つまり、Pythonプログラマを雇う会社は平均して最低380万円程度払っているということです。私がソースをきちんと読んでいませんでした。大変申し訳ありませんでした。*
+*プログラミング言語別給与のソースは他に発見できませんでしたが、"プログラマ"として一括りにしたソースはいくつかありました。*  
+[プログラマーの平均年収](http://nensyu-labo.com/syokugyou_programer.htm)  
+[プログラマーの給料・年収](http://careergarden.jp/programmer/salary/)  
+*これらによると大体400~500万円が平均となるようです。*
+*訂正してお詫びいたします。*
+
+---
 
 度々こういう記事は目にしていたんで、アメリカのプログラマの給料が高いって話は知ってはいたんですけど、
 **いやでも本当にこんなに高いのか？なにか統計のマジックがあるんじゃないか...?**と思っていました。
@@ -76,8 +208,9 @@
 1. 外科医($233,150)
 1. 一般診療医($187,200)
 1. 精神科医($178,950)
+1. 歯科矯正医($149,310)
 1. 歯医者($146,340)
-1. 石油エンジニア($13,280)
+1. 石油エンジニア($130,280)
 1. 管制官($122,530)
 1. 薬剤師($116,670)
 1. 足病医($116,440)
@@ -161,6 +294,135 @@ $53,850 - $70,000となっています。2014年11月25日現在の為替で、6
 今回はざっくりと"プログラマ"としてまとめて調べたので、
 次回はITとWebといった異なる業界でのプログラマやSE間の格差を調べてみようと思います。
 
+---
+
+**追記**
+
+この記事に関して多くの反響がありましたので少し個人的な意見を述べさせてください。
+まずこの記事を書いた動機ですが、この記事を書いている段階で自分がまだ学生で、
+世のプログラマがどの程度の給与をもらっているかということに関してほとんど知識がなかったため
+その辺りの実情を知りたかったということがあります。
+
+そして「アメリカのプログラマは給料が高い」という情報に対し、自分が納得のいくソースを提示している
+日本語記事を見たことがなかったため今回自分なりにまとめました。
+
+この記事では日米の物価差、社会保障、福利厚生等には言及しておりませんが、それは自分が
+「アメリカのプログラマの給料が高い」という情報を納得する上で必要なかったからであり、
+本来であれば考慮すべきであったと思います。(考慮すると「やっぱり単純には比べられないよね」で終わってしまうと思いますが)
+
+データから単純に日米のプログラマの優劣をつけることは叶わないのかもしれませんが、
+それでも僕はアメリカのプログラマを推したいです。それはなぜなら、アメリカがソフトウェアの世界で最強の地だからです。
+給与や待遇を超えて、世界中から優秀な人材の集まる地で得られる物は非常に大きいと思います。
+そういう意味で全てのプログラマはアメリカ、もっと言えばシリコンバレーに挑戦すべきだと思います。
+日本でプログラマをやるということはイーストブルーで海賊をやるようなものです。
+どこの世界にワンピースを目指さない海賊がいるのでしょうか？
+学生の分際で生意気ですが、目指さないんだったら海賊なんかやるなと僕は言いたいです。
+
+話が逸れましたが、まあそんな感じで、アメリカのプログラマを推したいというのが僕の心情です。
+
+**追記の追記**
+
+次にこういう記事を書く時はもっとしっかりデータを集め、確認し、多くの方々に納得してもらえるような
+記事を書こうと思います。
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My favorite mottoes]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/07/others/"/>
+    <updated>2014-06-07T00:39:14+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/06/07/others</id>
+    <content type="html"><![CDATA[# 座右の銘
+
+エンジニアとして、いつも心に留めておこうと思う言葉。
+
+<!-- more -->
+
+> It is not the strongest of the species that survive, nor the most intelligent but the ones most responsive to change.
+
+> 生き残るのは最も強い者でも最も賢い者でもない。最も変化に適応できる者だ。
+
+> (Charles Robert Darwin)
+
+そして、
+
+
+
+
+> Shut the fxxk up and write some code.
+
+> ぐだぐだ言ってないでコードを書けよ、ハゲ。
+
+> (ゆーすけべー)
+
+どっちも大切なことだね。
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Last Starbucks]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2013/12/05/others/"/>
+    <updated>2013-12-05T16:09:40+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2013/12/05/others</id>
+    <content type="html"><![CDATA[##前回までのあらすじ
+ - スタバにめっちゃアプライしまくった
+ - 受からない
+ - 友人の助けを経てラストチャンスに挑む
+ - そして結果が返ってきた
+<!-- more -->
+
+###遂にメールが届いた...同じメールを何通受け取ったことだろうか...
+
+![mailtitle](/images/posts/mailtitle.jpg)
+
+###今から地獄の門を開くぜ...
+
+
+```
+　     　　　　＿＿＿＿＿ 
+　  　　 　／　＼　 　 ／＼ 
+　　  　／ し （＞） 　（＜）＼　　頼む受かっててくれ！　
+　　　　|　∪　  （__人__）　J |  　＿＿＿＿＿＿＿_ 
+　 　　 ＼　u　　 ｀⌒´　  　／　  | |　　　　　　　| 
+　　　　ノ　　　　 　　  　　＼ 　　| |　　　　　　　|　 
+　    ／´　　　　　　　　　　　   | |　　 　　 　　| 
+　   |　　　　ｌ　　　　　　    　| |　　 　　 　　| 
+				 　　　　　 　　　＿＿＿_ 
+
+
+             ＿＿＿＿
+　　　　　／　　 　u　＼ 
+　　 　／　　＼ 　  　 ─＼　　　チラッ 
+　　　／し （＞）  　（●）＼ 
+　　　|　∪　  （__人__） J|  ＿＿＿＿＿＿＿_ 
+　　 ＼　　u　　 ｀⌒´　 　／ | | 　　　　　　　| 
+　　　　ノ　　　　　 　　　＼ | |　 　　　　　　|　 
+　 ／´　　　　　 　　　 　　 | |　　　　 　　　|　 
+　|　　　　ｌ　 　  　　　　　| | 　　　　　　　| 					
+```
+
+
+![mailcontents](/images/posts/mailcontents.jpg)
+
+
+```
+
+　　　　　　／￣￣￣￣￣＼ 
+　　　　　/;::　　　　 　;ヽ 
+　　　　　|;:: ｨ●ｧ　　ｨ●ｧ::| 
+　　　　　|;::　　 　　　:;| 
+　　　　　|;:: 　c{　っ　:;|　　　 
+　　　　  |;::　　＿＿　:;;| 
+　　　 　 ヽ;::　　ー　::;／ 
+　　　　　　＼;;:　　:;;／ 
+　　　　　　 |;::　 ::;| 
+　　　　　　 |;::　 ::;| 
+　　　／￣￣￣　　　　 ￣￣￣＼ 
+　　　|;;::　　　　　　　　::;;| 
+　　　|;;::　　　　　　　　::;;| 
+
+```
 ]]></content>
   </entry>
   
