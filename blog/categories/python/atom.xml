@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | NomoLog]]></title>
   <link href="http://blog.r-nmt000.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://blog.r-nmt000.com/"/>
-  <updated>2014-11-29T17:49:50+09:00</updated>
+  <updated>2014-11-29T17:52:57+09:00</updated>
   <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,209 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Django チュートリアル]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/06/15/pyhton-django/"/>
+    <updated>2014-06-15T20:11:46+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/06/15/pyhton-django</id>
+    <content type="html"><![CDATA[PythonのWebフレームワークであるDjangoを勉強しました。
+[こちらのチュートリアル](http://docs.djangoproject.jp/en/latest/intro/tutorial01.html)を進めていく上で引っかかったところをまとめました。
+<!-- more -->
+
+
+h2. apple wireless keyboardの導入
+
+ 使いやすいようにキーバインドを調整
+
+* changekey.exeによるキーバインドの変更
+ * Apple Wireless Keyboard Helper for Windowsを入れてFnキー等を有効化
+
+ h2. キーバインドの入れ替え
+
+ * Google日本語入力を導入
+
+* コマンドキーで日本語・英語入力を切り替えられるように変更
+
+h2. Djangoの学習
+
+h3. Djangoの導入
+
+* virtualenvを導入 (http://blog.r-nmt000.com/blog/2014/06/09/python3/)
+* 以下の手順でpython仮想環境を構築、Djangoをインストール
+
+**注意！！**
+
+**sudo** pip installしてしまうと元環境のpythonのsite-packagesにインストールされてしまう模様！！
+
+<pre>
+mkvirtualenv --no-site-packages necomend (python仮想環境側でライブラリを管理するためのオプション)
+pip install django
+
+
+
+以下djangoが入ったことの確認
+python
+>> import django
+>> print django.get_version()
+>> 1.6.5
+</pre>
+
+
+
+
+h3. Djangoでweb serverを立ち上げた時ホストからアクセスできない問題
+
+* まずvagrantのport forwardを設定する
+
+<pre>
+config.vm.network "forwarded_port", guest: 8000, host: 8800
+</pre>
+
+* 次にゲストOSのファイアウォールの設定(ポート8000を開ける)
+
+<pre>
+sudo vi /etc/sysconfig/iptables
+
+＃以下を追記
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8000 -j ACCEPT
+</pre>
+
+* ipアドレス0.0.0.0を指定しweb serverを起動
+
+<pre>
+python manage.py runserver 0.0.0.0:8000
+</pre>
+
+* ホストからlocalhost:8800でアクセスできる
+
+h2. DBの設定
+
+* MySQLでDBを作成
+
+<pre>
+mysql -u root -p <- ログイン
+>> create table necommend;
+>> exit;
+</pre>
+
+* settings.pyにDB設定を記述
+
+<pre>
+DATABASE = {
+    'default' : {
+    'ENGINE' : 'django.db.backends.mysql',
+    'NAME' : 'necommend',
+    'USER' : 'root',
+    'PASSWORD' : '',
+    'HOST' : '',
+    'PORT' : '',
+     }
+
+}
+
+</pre>
+
+* settings.pyでタイムゾーン、文字コードを変更
+
+<pre>
+TIME_ZONE = 'Asia/Tokyo'
+
+LANGUAGE_CODE = 'utf-8'
+</pre>
+
+* 最低限必要なテーブルを上で設定したDBに作成
+
+* pythonに付属のappsを使うのに必要なテーブルが作られる。
+* 詳細は http://docs.djangoproject.jp/en/latest/intro/tutorial01.html
+
+<pre>
+python manage.py syncdb
+</pre>
+
+* ここでエラー。MySQLdbなるモジュールがないと怒られる。対応策は以下
+
+<pre>
+#まずpython-develとmysql-develをyumで入れる
+yum -y install python-devel mysql-devel
+
+#次にpipでmysql-pythonを入れる
+pip install mysql-python
+</pre>
+
+* これでpython manage.py syncdbが動く
+* Djangoの認証ユーザ？の作成を求められるので作成
+
+<pre>
+Username: nomoto
+e-mail: ryusuke.nomoto@brainpad.co.jp
+password: いつもの
+</pre>
+
+h2. DjangoにおけるRDB多対多の関係
+
+チュートリアルにはなかったので補足
+
+例えばBlogとTagという多対多の関係を実現するときは次のようにする。
+
+models:
+```python
+class Tag(models.Model):
+  name = models.CharField(max_length=200)
+  def __unicode__(self):
+    return self.name
+
+class Blog(models.Model):
+  title = models.CharField(max_length=200)
+  tags = models.ManyToManyField(Tag)
+  def __unicode__(self):
+    return self.title
+
+```
+
+shell:`python manage.py shell`
+```python
+それぞれブログとタグを作り保存する。
+b1 = Blog(title = "blog1")
+b2 = Blog(title = "blog2")
+b3 = Blog(title = "blog3")
+t1 = Tag(name="pyton")
+t2 = Tag(name="django")
+
+保存しないとブログとタグを結びつけることができない
+b1.save()
+b2.save()
+b3.save()
+t1.save()
+t2.save()
+
+ブログとタグを結びつける。
+b1.tags.add(t1)
+b2.tags.add(t1,t2)
+新しくタグを生成, ブログと結びつける
+t3 = b3.tags.create(name="ruby")
+ブログと結びついているタグを全て表示
+b1.tags.all()
+[<Tags: python>]
+b2.tags.all()
+[<Tags: python>, <Tags: django>]
+タグと結びついているブログを全て表示
+t1.blog_set.all()
+[<Blog: blog1>, <Blog: blog2>]
+タグとブログを結びつける
+t1.blog_set.add(b3)
+```
+
+
+h2. DBへデータを登録
+
+[チュートリアルにある通り](http://docs.djangoproject.jp/en/latest/intro/tutorial01.html)シェルからぽちぽちDBへデータを追加してもよいが、面倒なのでCSVから一気に登録する方法を探した。
+
+[こちら](http://bty.sakura.ne.jp/wp/archives/1088)を参考にした。
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[俺的Python気になった所まとめ3]]></title>
