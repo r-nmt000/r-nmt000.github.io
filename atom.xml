@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://blog.r-nmt000.com/atom.xml" rel="self"/>
   <link href="http://blog.r-nmt000.com/"/>
-  <updated>2014-11-29T17:52:57+09:00</updated>
+  <updated>2014-12-02T00:03:47+09:00</updated>
   <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ChromeエクステンションのGoogle Translateがマジで便利だった]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/12/01/lifehack-apps/"/>
+    <updated>2014-12-01T17:39:34+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/12/01/lifehack-apps</id>
+    <content type="html"><![CDATA[<p>というか僕が情弱だっただけなんですが。</p>
+
+<p>皆さんPCで英語などの分からない単語調べる時ってどうしてます？多分多くの人が文字を選択して文字の訳を調べるプラグインなりなんなり使ってると思うんですよね
+僕はWeblioというオンライン辞書サービスが大好きでして、Weblioと蜜月の関係だったためにずっとWeblioのChromeエクステンションを使っていたました</p>
+
+<iframe style="border:none;display:block;margin:0 0 1.7rem;overflow:hidden;height:155px;width:600px;max-width:100%;" title="Weblioポップアップ英和辞典 - Chrome ウェブストア" src="http://hatenablog.com/embed?url=https://chrome.google.com/webstore/detail/weblio%E3%83%9D%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97%E8%8B%B1%E5%92%8C%E8%BE%9E%E5%85%B8/oingodpdjohhkelnginmkagmkbplgema?hl=ja"></iframe>
+
+
+<p>このエクステンションのいいところは調べた単語をそのままWeblioが提供する単語帳にメモしておけるんですね、なので凄い重宝してました。
+ただ、センテンスの翻訳に関してはちょっと弱いところがありまして、ずっとどうにかならないかなあと感じていたわけです。</p>
+
+<!-- more -->
+
+
+<p>それで、今まで長文はどうしてたかというと、わざわざグーグルで「翻訳」って検索してグーグル翻訳開いて翻訳したい文章コピペしてたわけです。
+完全に思考停止野郎でした。</p>
+
+<p>そんな折、「あれ、もしかしてグーグル翻訳のエクステンションあるんじゃね？」と思って調べたところ、ありました。</p>
+
+<iframe style="border:none;display:block;margin:0 0 1.7rem;overflow:hidden;height:155px;width:640px;max-width:100%;" title="Google 翻訳 - Chrome ウェブストア" src="http://hatenablog.com/embed?url=https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=ja"></iframe>
+
+
+<p>もう、超ベンリです。&mdash;
+使い方はカンタン。翻訳したい文章を選択して、出てくるポップアップアイコンをクリックするだけ。</p>
+
+<p><img src="http://blog.r-nmt000.com/images/google_translate.png" alt="google_translate" /></p>
+
+<p>これだけでいい感じに翻訳してくれます！</p>
+
+<p>是非試してみてください！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Kindleのハイライト同期がうまくいかない問題の解決策]]></title>
@@ -2927,110 +2965,6 @@ Skype英会話で3ヶ月くらい会話の練習してた。自己紹介はで�
 <li>有料エージェントで相談し無料エージェントで申し込む</li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Moaning Programming Language]]></title>
-    <link href="http://blog.r-nmt000.com/blog/2013/12/28/programming-scala-brainfuck/"/>
-    <updated>2013-12-28T23:52:07+09:00</updated>
-    <id>http://blog.r-nmt000.com/blog/2013/12/28/programming-scala-brainfuck</id>
-    <content type="html"><![CDATA[<p><img src="http://blog.r-nmt000.com/images/woman.jpg" alt="woman" /></p>
-
-<h1>喘ぐプログラミング言語</h1>
-
-<p>喘いでプログラミングするための言語です。</p>
-
-<!-- more -->
-
-
-<h2>言語仕様</h2>
-
-<p>Brainfuckの派生言語です。</p>
-
-<p>命令は次のとおり</p>
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th align="center"> 命令      </th>
-<th align="center">  Brainfuck </th>
-<th align="left"> 説明 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td align="center"> yeah!     </td>
-<td align="center">  >         </td>
-<td align="left"> ポインタをインクリメントする                         </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> f**k!     </td>
-<td align="center">  &lt;         </td>
-<td align="left"> ポインタをデクリメントする                           </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> ah,       </td>
-<td align="center">  +         </td>
-<td align="left"> ポインタが指す値をインクリメントする                 </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> oh,       </td>
-<td align="center">  &ndash;         </td>
-<td align="left"> ポインタが指す値をデクリメントする                   </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> comeon!   </td>
-<td align="center">  .         </td>
-<td align="left"> ポインタが指す値を出力する                           </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> mm&hellip;     </td>
-<td align="center">  ,         </td>
-<td align="left"> 入力から1バイトポインタが指す先に読み込む            </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> ohmygod!  </td>
-<td align="center">  [         </td>
-<td align="left"> ポインタが指す値が0なら対応する]の直後にジャンプ     </td>
-</tr>
-<tr>
-<td></td>
-<td align="center"> god!      </td>
-<td align="center">  ]         </td>
-<td align="left"> ポインタが指す値が0でないなら対応する[の直後にジャンプ </td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>喘ぎ方</h2>
-
-<p><a href="http://blog.r-nmt000.com/downloads/MPL.jar">こちら</a>からjarをダウンロードしてください。(重くてごめんなさい)</p>
-
-<p>テキストファイルに喘ぎ声をプログラムし、以下のコマンドを実行してください。(Java実行環境が必要)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar MPL.jar &lt;filename&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>hello world</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ah,ah,ah,ah,ah,ah,ah,ah,ah,ohmygod!yeah!ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,f**k!f**k!f**k!oh,god!yeah!comeon!yeah!ah,ah,comeon!ah,ah,ah,ah,ah,ah,ah,comeon!comeon!ah,ah,ah,comeon!yeah!oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,comeon!f**k!ah,ah,ah,ah,ah,ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!yeah!ah,comeon!</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>まとめ</h2>
-
-<p>もっといい喘ぎ方があったら教えて下さい。</p>
 ]]></content>
   </entry>
   

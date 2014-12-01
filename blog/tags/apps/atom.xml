@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Apps | NomoLog]]></title>
+  <link href="http://blog.r-nmt000.com/blog/tags/apps/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-12-02T00:03:47+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ChromeエクステンションのGoogle Translateがマジで便利だった]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/12/01/lifehack-apps/"/>
+    <updated>2014-12-01T17:39:34+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/12/01/lifehack-apps</id>
+    <content type="html"><![CDATA[というか僕が情弱だっただけなんですが。
+
+皆さんPCで英語などの分からない単語調べる時ってどうしてます？多分多くの人が文字を選択して文字の訳を調べるプラグインなりなんなり使ってると思うんですよね
+僕はWeblioというオンライン辞書サービスが大好きでして、Weblioと蜜月の関係だったためにずっとWeblioのChromeエクステンションを使っていたました
+
+<iframe style="border:none;display:block;margin:0 0 1.7rem;overflow:hidden;height:155px;width:600px;max-width:100%;" title="Weblioポップアップ英和辞典 - Chrome ウェブストア" src="http://hatenablog.com/embed?url=https://chrome.google.com/webstore/detail/weblio%E3%83%9D%E3%83%83%E3%83%97%E3%82%A2%E3%83%83%E3%83%97%E8%8B%B1%E5%92%8C%E8%BE%9E%E5%85%B8/oingodpdjohhkelnginmkagmkbplgema?hl=ja"></iframe>
+
+このエクステンションのいいところは調べた単語をそのままWeblioが提供する単語帳にメモしておけるんですね、なので凄い重宝してました。
+ただ、センテンスの翻訳に関してはちょっと弱いところがありまして、ずっとどうにかならないかなあと感じていたわけです。
+
+<!-- more -->
+
+それで、今まで長文はどうしてたかというと、わざわざグーグルで「翻訳」って検索してグーグル翻訳開いて翻訳したい文章コピペしてたわけです。
+完全に思考停止野郎でした。
+
+そんな折、「あれ、もしかしてグーグル翻訳のエクステンションあるんじゃね？」と思って調べたところ、ありました。
+
+<iframe style="border:none;display:block;margin:0 0 1.7rem;overflow:hidden;height:155px;width:640px;max-width:100%;" title="Google 翻訳 - Chrome ウェブストア" src="http://hatenablog.com/embed?url=https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=ja"></iframe>
+
+もう、超ベンリです。--
+使い方はカンタン。翻訳したい文章を選択して、出てくるポップアップアイコンをクリックするだけ。
+
+![google_translate](/images/google_translate.png)
+
+これだけでいい感じに翻訳してくれます！
+
+是非試してみてください！
+]]></content>
+  </entry>
+  
+</feed>
