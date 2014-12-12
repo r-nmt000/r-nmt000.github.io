@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://blog.r-nmt000.com/atom.xml" rel="self"/>
   <link href="http://blog.r-nmt000.com/"/>
-  <updated>2014-12-12T13:08:42+09:00</updated>
+  <updated>2014-12-12T14:58:12+09:00</updated>
   <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -83,21 +83,15 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">text</span>  <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.title, .highlight&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.yourHighlight&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
 </span><span class='line'>    <span class="kd">var</span> <span class="nx">cn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">);</span>
 </span><span class='line'>    <span class="kd">var</span> <span class="nx">line</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">cn</span> <span class="o">==</span><span class="s1">&#39;title&#39;</span><span class="p">){</span>
-</span><span class='line'>      <span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">cn</span> <span class="o">==</span> <span class="s1">&#39;highlight&#39;</span><span class="p">){</span>
-</span><span class='line'>      <span class="nx">line</span> <span class="o">+=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;</span>
-</span><span class='line'>      <span class="nx">line</span> <span class="o">+=</span> <span class="nx">title</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">prevAll</span><span class="p">(</span><span class="s1">&#39;.yourHighlightsHeader:first &gt; .title&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">line</span> <span class="o">+=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.highlight&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">line</span> <span class="o">+=</span> <span class="nx">title</span><span class="p">;</span>
 </span><span class='line'>    <span class="nx">text</span> <span class="o">+=</span> <span class="nx">line</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/,$/</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;\r\n&#39;</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">});</span>
 </span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">text</span><span class="p">){</span>

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Anki | NomoLog]]></title>
   <link href="http://blog.r-nmt000.com/blog/tags/anki/atom.xml" rel="self"/>
   <link href="http://blog.r-nmt000.com/"/>
-  <updated>2014-12-12T13:08:42+09:00</updated>
+  <updated>2014-12-12T14:58:12+09:00</updated>
   <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -39,15 +39,12 @@
 javascript:(function(){
   var text  = '';
   var title = '';
-  $('.title, .highlight').each(function(){
+  $('.yourHighlight').each(function(){
     var cn = $(this).attr('class');
     var line = '';
-    if(cn =='title'){
-      title = '"'+$(this).text().replace(/\"/g,'\"\"')+'";';
-    }else if(cn == 'highlight'){
-      line += '"'+$(this).text().replace(/\"/g,'\"\"')+'";';
-      line += title;
-    }
+    title = '"'+$(this).prevAll('.yourHighlightsHeader:first > .title').text().replace(/\"/g,'\"\"')+'";';
+    line += '"'+$(this).find('.highlight').text().replace(/\"/g,'\"\"')+'";';
+    line += title;
     text += line.replace(/,$/,'')+'\r\n';
   });
   if(text){
