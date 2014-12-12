@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://blog.r-nmt000.com/atom.xml" rel="self"/>
   <link href="http://blog.r-nmt000.com/"/>
-  <updated>2014-12-02T00:03:47+09:00</updated>
+  <updated>2014-12-12T13:08:42+09:00</updated>
   <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,116 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopressで'Liquid Exception: undefined method `sort!'`'しちゃう問題]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/12/12/octopress/"/>
+    <updated>2014-12-12T12:48:08+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/12/12/octopress</id>
+    <content type="html"><![CDATA[<p>ブログを書いていていつもどおり<code>rake generate</code>したところ、次のようなエラーが発生しました。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake generate
+</span><span class='line'><span class="c">## Generating Site with Jekyll                                                                                                          │/Users/nomoto/.rbenv/versions/1.9.3-p448/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/convertible.rb:101:in `do_layout&#39;</span>
+</span><span class='line'>unchanged sass/screen.scss                                                                                                              │/Users/nomoto/repos/r-nmt000.github.io/plugins/post_filters.rb:167:in <span class="sb">`</span>do_layout<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">Configuration from /Users/nomoto/repos/r-nmt000.github.io/_config.yml                                                                   │/Users/nomoto/.rbenv/versions/1.9.3-p448/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/page.rb:100:in `render&#39;</span>
+</span><span class='line'>/Users/nomoto/repos/r-nmt000.github.io/plugins/post_url.rb:4: warning: already initialized constant MATCHER                             │/Users/nomoto/.rbenv/versions/1.9.3-p448/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/site.rb:204:in <span class="sb">`</span>block in render<span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">Building site: source -&gt; public                                                                                                         │/Users/nomoto/.rbenv/versions/1.9.3-p448/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/site.rb:203:in `each&#39;</span>
+</span><span class='line'>Liquid Exception: undefined method <span class="sb">`</span>sort!<span class="err">&#39;</span> <span class="k">for </span>nil:NilClass in post
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<p>このエラーが出る主な原因はOctopressのテンプレートに使われているLiquidのソースを記事へ埋め込むことのようですが、僕の場合は少しちがいました。<br/>
+僕の場合は作成途中の記事を一時的に<code>source/tmp</code>フォルダ内に移していたことが原因でした。どうやら記事のMarkdownファイルをsourceフォルダ以下の_post以外の場所へ格納しているとこのエラーが起きてしまうようです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[KindleハイライトをAnkiへ移すためのブックマークレット作ったよ]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/12/12/javascript-kindle-anki/"/>
+    <updated>2014-12-12T11:56:42+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/12/12/javascript-kindle-anki</id>
+    <content type="html"><![CDATA[<p>タイトルの通りです。</p>
+
+<p>せっかくKindleで本読んでも結構内容を忘れちゃったりするし、せめてハイライトだけでも
+毎日少しずつ目に触れるようにしたら読んだ本が無駄にならないんじゃないかなあと思って作りました。</p>
+
+<!-- more -->
+
+
+<h2>前提</h2>
+
+<p>本記事はKindleやKindleアプリを所有していてハイライトの使い方を理解している、
+そしてAnkiを知っていることを前提に話を進めていきます。</p>
+
+<h2>使い方</h2>
+
+<p>まずはブックマークレットを作りましょう。ソースはこちらです。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">text</span>  <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.title, .highlight&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">cn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">line</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">cn</span> <span class="o">==</span><span class="s1">&#39;title&#39;</span><span class="p">){</span>
+</span><span class='line'>      <span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">cn</span> <span class="o">==</span> <span class="s1">&#39;highlight&#39;</span><span class="p">){</span>
+</span><span class='line'>      <span class="nx">line</span> <span class="o">+=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\&quot;/g</span><span class="p">,</span><span class="s1">&#39;\&quot;\&quot;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;;&#39;</span><span class="p">;</span>
+</span><span class='line'>      <span class="nx">line</span> <span class="o">+=</span> <span class="nx">title</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">text</span> <span class="o">+=</span> <span class="nx">line</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/,$/</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;\r\n&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">text</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#csv&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;&lt;textarea id=&quot;csv&quot;style=&quot;width:100%;height:10em;&quot;&gt;&lt;/textarea&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#csv&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">})()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ブックマークレットの作り方自体を書くのは面倒臭いので(ごめんなさい)、ググって調べてください。</p>
+
+<p>続いて<a href="https://kindle.amazon.co.jp/your_highlights">Kindle Your Highlights</a>へアクセスしましょう。
+Kindleで今まで貯めてきたハイライトが見れると思います。
+このページで上記ブックマークレットを使いましょう。セミコロン区切りのCSV形式でページ上部にハイライトが表示されると思います。
+(もしかしたら先頭に改行が入ってハイライトが表示されてないように見えるかもしれませんが、スクロールすれば下にいると思います)</p>
+
+<p>これをAnkiのCSVインポート機能を使ってインポートすれば、毎日少しずつハイライトを復習することができるようになります(^^)</p>
+
+<h2>まとめ</h2>
+
+<p>KindleとAnkiでより良い読書生活を！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ChromeエクステンションのGoogle Translateがマジで便利だった]]></title>
@@ -2634,337 +2744,6 @@ vimでは反映されず代わりに<code>Black</code>で指定されている�
 <p>まだまだakkaの入り口に立った程度ですがこの程度のことでも情報がなくてかなり時間がかかってしまった&hellip;</p>
 
 <p>もっと頑張って勉強します！！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[未来を感じるインタフェースを作るスタートアップ7つ]]></title>
-    <link href="http://blog.r-nmt000.com/blog/2014/01/25/interface-startup/"/>
-    <updated>2014-01-25T13:45:19+09:00</updated>
-    <id>http://blog.r-nmt000.com/blog/2014/01/25/interface-startup</id>
-    <content type="html"><![CDATA[<p><img src="http://blog.r-nmt000.com/images/future.jpg" alt="future" /></p>
-
-<p>近年はwebだけでなく実際にデバイスを作っているスタートアップも増えています。
-ここではそうしたスタートアップの中でも未来を感じるインタフェースで世界を変えようとしているスタートアップを紹介します。</p>
-
-<!-- more -->
-
-
-<h2>ジェスチャー</h2>
-
-<h3>Ring</h3>
-
-<p><img src="http://blog.r-nmt000.com/images/ring.jpg" alt="Ring" /></p>
-
-<iframe src="http://blog.r-nmt000.com//player.vimeo.com/video/74626545" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-
-<p> <p><a href="http://vimeo.com/74626545">Ring -Shorcut Everything-</a> from <a href="http://vimeo.com/user7740853">Logbar</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p>
-
-<p>&ldquo;Shortcut Everything&#8221;を表題にジェスチャーで全てを操作しようというデバイスがRing。
-日本発のベンチャーでスタートアップの祭典SF JapanNightで優勝しました。
-動画を見ていただければわかりますが、すごい&hellip; カーテン、テレビ、音楽のボリューム、連絡先の交換までショートカットしてしまっています。
-この動画の未来が訪れたらと考えるだけでワクワクしますね！</p>
-
-<ul>
-<li>コンセプトムービー <a href="http://vimeo.com/74626545">http://vimeo.com/74626545</a></li>
-</ul>
-
-
-<h3>MYO</h3>
-
-<p><img src="http://blog.r-nmt000.com/images/myo.jpg" alt="MYO" /></p>
-
-<iframe src="http://player.vimeo.com/video/37562944" width="560" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-
-
-<p>MYOは指ではなく、腕に取り付けるタイプのジェスチャーデバイスです。
-筋肉の動きを読み取ることでジェスチャーを認識しています。
-Ringと決定的に違うのは、Ringがショートカットコマンドと対応する動きを覚える必要があるのに対し、
-MYOは筋肉の動きを読み取っているのでより柔軟なジェスチャー操作が可能という点です。
-FPSにおける銃の上げ下ろしといった操作をナチュラルに再現することができます。</p>
-
-<ul>
-<li>公式サイト <a href="https://www.thalmic.com/en/myo/">https://www.thalmic.com/en/myo/</a></li>
-</ul>
-
-
-<h3>mycestro</h3>
-
-<p><img src="http://blog.r-nmt000.com/images/mycestro.jpg" alt="mycestro" /></p>
-
-<iframe width="480" height="360" src="https://www.kickstarter.com/projects/mycestro/mycestrotm-the-next-generation-3d-mouse/widget/video.html" frameborder="0" scrolling="no"> </iframe>
-
-
-<p>キーボードとマウスの移動が煩わしいと思ったことはありませんか？
-mycestroはあなたのそんな悩みを解決します。
-指につけるタイプのこのデバイスは、空中でまるで指揮者のように手を振るだけでカーソルを操作することができます。
-できることはカーソルの操作に限られているので、上記2つと比べると夢がないかもしれませんが実用性は抜群だと思います。</p>
-
-<ul>
-<li>公式サイト <a href="http://www.mycestro.com/">http://www.mycestro.com/</a></li>
-</ul>
-
-
-<h2>脳波</h2>
-
-<h3>Muse</h3>
-
-<p><img src="http://blog.r-nmt000.com/images/muse.jpg" alt="muse" /></p>
-
-<iframe src="http://player.vimeo.com/video/37562944" width="560" height="315" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-
-
-<p>museはなんとユーザの脳をセンシングすることができるデバイスです。
-ヘッドバンドタイプのこのデバイスは脳の活動を読み取り、集中度や興奮度を計測してスマホからそれらを確認することができます。
-更に将来は脳内で思考するだけでスマホや家電といったデバイスを操作することも目指しているそうです。
-もしそんなことが可能になったらかなり捗りますね&hellip; 現状音声やジェスチャーが最先端のインタフェースと言えそうですが、これが実現すればもはや身体を動かす必要すらないわけです。
-個人的にはmuseを使ってテレパシーの様に人と人のコミュニケーションができたらなあ&hellip; と思っています。</p>
-
-<ul>
-<li>公式サイト <a href="http://www.interaxon.ca/">http://www.interaxon.ca/</a></li>
-</ul>
-
-
-<h2>ホログラム</h2>
-
-<h3>Displair</h3>
-
-<p><img src="http://blog.r-nmt000.com/images/displair.jpg" alt="displair" /></p>
-
-<iframe width="560" height="315" src="http://blog.r-nmt000.com//www.youtube.com/embed/yEP7JewA2C8" frameborder="0" allowfullscreen></iframe>
-
-
-<p>SFのように空中に浮かんだ仮想オブジェクトを操作することは人類の(少なくとも僕の)夢ですが、displairの登場で人類はその夢に一歩近づきました。
-空気中に散出した蒸気に対して映像を照射することで仮想オブジェクトを表示し、手の動きをセンシングすることであたかも仮想オブジェクトを触って動かしているような操作感を実現しています。
-動画を見てみるとかなりの精度のようです。
-ホログラム系のデバイスは手へのフィードバック(実際に触った感覚)が現状課題となっているので、それを解決できればより素晴らしい製品になると思います。</p>
-
-<ul>
-<li>公式サイト<a href="http://displair.com/">http://displair.com/</a></li>
-</ul>
-
-
-<h2>その他</h2>
-
-<h3>Oculus Rift</h3>
-
-<p><img src="http://blog.r-nmt000.com/images/oculus.jpg" alt="oculus" /></p>
-
-<iframe width="560" height="315" src="http://blog.r-nmt000.com//www.youtube.com/embed/GoQ0OXJCbaE" frameborder="0" allowfullscreen></iframe>
-
-
-<p>Oculus Riftは没入感が半端ないHMDです。
-視野角110度(通常のHMDは30~45度), 3D映像, 頭の動きとVR内の視点が連動して動くことでまさに仮想世界にいるような錯覚に陥ります。
-僕もOculusでジェットコースターのVRを体験したことがありますが、普通に怖いです。ジェットコースターが下降しているときは本当に落ちているかのような錯覚に陥ります。</p>
-
-<ul>
-<li><a href="http://www.oculusvr.com/">http://www.oculusvr.com/</a></li>
-</ul>
-
-
-<h3>ARヘルメット</h3>
-
-<p><img src="http://blog.r-nmt000.com/images/helmet.jpg" alt="helmet" /></p>
-
-<iframe src='http://player.cnevids.com/embed/525d923b4ffb60655000000b/5176e89e68f9daff42000013' width='560' height='390' frameBorder='0' allowfullscreen webkitallowfullscreen mozallowfullscreen allowtransparency='true'></iframe>
-
-
-<p>ARヘルメットはバイカーのための道案内ARヘルメットです。
-ヘルメットのシールド部分に道案内の標識が表示されます。</p>
-
-<ul>
-<li>公式サイト <a href="http://nilmo.net/news/2_gadjet/2013/20130701_1.html">http://nilmo.net/news/2_gadjet/2013/20130701_1.html</a></li>
-</ul>
-
-
-<h2>近未来のコミュニケーション</h2>
-
-<p>どのスタートアップも非常に未来的ですね。
-ここでは6例紹介しましたが、市場に出ているデバイスはDisplairだけです。
-こうした未来的デバイスが今後市場に出てくることにより、これから更に大きなムーブメントとなっていくことでしょう。</p>
-
-<p>そして、デバイスが魅力的なことはもちろんですが、こうした製品を作っているスタートアップの方達は20代の方が多いです。
-技術がなくても、面白いアイデアを持ち、実現させる情熱があればあなたにもこうした未来を作れるかもしれません。</p>
-
-<p>あなたも新しい未来を作ってみませんか？</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Study abroad 1]]></title>
-    <link href="http://blog.r-nmt000.com/blog/2014/01/14/english-canada/"/>
-    <updated>2014-01-14T02:08:59+09:00</updated>
-    <id>http://blog.r-nmt000.com/blog/2014/01/14/english-canada</id>
-    <content type="html"><![CDATA[<p><img src="http://blog.r-nmt000.com/images/vancouver.jpg" alt="vancouver" /></p>
-
-<h1>最小の費用で最大の効果を得る留学 1</h1>
-
-<p>自分は2012年の10月から2013年の9月までカナダのバンクーバーってところで働いてました。
-語学留学ってやつです。そのときの経験をここに記録して少しでも語学留学を考えている人の役に立てたらなと思います。</p>
-
-<!-- more -->
-
-
-<h4>注意1</h4>
-
-<p>この記事では自分の考えや思いをなるべく<strong>本音</strong>で<strong>歯に衣着せぬ形</strong>で書いています。かなり<strong>主観的</strong>になっている箇所もあると思います。
-読んでいて不快になる人がいたらごめんなさい。なにか意見があったらコメント欄に書いて貰えると嬉しいです。</p>
-
-<h4>注意2</h4>
-
-<p>この記事では</p>
-
-<ol>
-<li>いかに安く</li>
-<li>いかに語学力の向上を最大化できるか</li>
-</ol>
-
-
-<p>を、主目的としています。海外に行く目的は様々です。異なる文化に触れたり、世界中に友達を作ったり、海外の大学で勉強したり色々あると思います。
-ですので、上記の目的に沿わない人はもしかしたらこの記事は見当違いなことを言っているように感じるかもしれません。</p>
-
-<h2>留学前の自分のスペック</h2>
-
-<p>この記事はもちろん自分の経験を参考に書いているので、まずは自分が留学前にどの程度の英語力を持っていたかをここに示しておきます。</p>
-
-<p><strong>TOEIC</strong>
-730</p>
-
-<p><strong>会話力</strong>
-Skype英会話で3ヶ月くらい会話の練習してた。自己紹介はできる程度</p>
-
-<p><strong>その他</strong></p>
-
-<ul>
-<li>英単語帳(Duo)を2周終わらせた。</li>
-<li>大学受験でいうと恐らくMARCH入学程度の英語力はあったかと思う。</li>
-</ul>
-
-
-<p>留学は勿論会話力の向上が目的になるのですが、センター試験レベルのリスニング力と単語、文法力は日本で身につけていたほうがいいです。(逆にセンター以上のレベルは日常レベルでは出てこないので勉強しても無駄になるかもしれません)
-海外にいる時間は限られているので、単語や文法を向こうで勉強するのはものすごい時間の無駄です。スタートダッシュするためにもやれることはやっときましょう。</p>
-
-<p>個人的には<strong>Real英会話</strong>というiPhoneアプリがオススメです。このアプリでは日常会話で使われるフレーズを学習することができます。フレーズリストは毎日更新され、どんどん増えていきます。(2014年1月現在で3500前後あります)</p>
-
-<p>なによりこのアプリが素晴らしいのは、それぞれのフレーズを会話の中でどのように使われるかを学べる点です。会話ベースで学べるので、ネイティブの会話のノリを学習できるのです。これは非常に大きいです。
-自分は留学中にこのアプリを使い始めたのですが、留学前にやれば良かったと後悔しています。</p>
-
-<iframe src="http://spsns.net/tools/app.php?url=https://itunes.apple.com/jp/app/real-ying-hui-hua/id373563219?mt=8" width="720" height="220" frameborder="0"></iframe>
-
-
-<h2>なんでカナダか</h2>
-
-<p>自分はせっかくならバッチリ英語を喋れるようになりたかったので1年休学することにしました。
-短期ならフィリピンとかもいいと思います。安いし！</p>
-
-<p>そんなわけで1年いくことにしたんですが、1年間語学学校に行くような金はありません。つまり、現地で労働する必要があったので<strong>ワーキングホリデービザ</strong>が取れる国に行く必要がありました。</p>
-
-<h4>ワーキングホリデービザとは</h4>
-
-<ul>
-<li>1年間限定で学生にも労働者にもニートにもなれるビザ</li>
-<li>ワークビザを取るのは基本的にはめっちゃ大変だがワーホリは簡単に取れる</li>
-<li>しかも安い。確か1万円くらい</li>
-<li>すなわち、最強のビザ</li>
-</ul>
-
-
-<p>このビザが無いと、基本的に僕のような留学生が働くことはできません。
-日本から英語圏の国でワーホリが取れる国は、当時はカナダ、オーストラリア、ニュージーランド、イギリスでした(たぶんね)。
-で、シリコンバレーにかなり憧れを抱いていた僕は帰りにアメリカ旅行して帰ろうと思ってカナダを選びました。</p>
-
-<p>現地で働けば、</p>
-
-<ol>
-<li>学校ではない現地人のリアルな英語を学べる</li>
-<li>ネイティブの友達ができる</li>
-<li>仕事にもよるが生活費は全てペイできるので留学の初期費用だけ心配すれば良い</li>
-</ol>
-
-
-<p>といった恩恵を受けることができます。主観ですが、<strong>恋人を作る以外でこれ以上の英語学習法はないと思ってます</strong></p>
-
-<h2>なに準備すればいいんだ？</h2>
-
-<p>そうです。留学するぜ！ってなってもなにをどーすればいいかわかりません。そこで<strong>留学エージェント</strong>を使いましょう。
-留学までに必要なものを色々教えてくれたり準備してくれたりします。便利！！</p>
-
-<p>ただ、ここで問題があります。このエージェントには無料のところと有料のところがあるのです。
-ここで僕の<strong>独断と偏見による</strong>無料と有料のエージェントの長所と短所を見てみましょう</p>
-
-<p><strong>無料</strong></p>
-
-<p>&lt;長所> なんといってもタダ。</p>
-
-<p>&lt;短所> すげー<strong>インターンシップ</strong>を押してくる</p>
-
-<p><strong>有料</strong></p>
-
-<p>&lt;長所> <strong>無駄に</strong>サービスが手厚い, 結構本音で相談に乗ってくれるとこが多かった気がする。</p>
-
-<p>&lt;短所> 手数料を取る。高い。なめてる。</p>
-
-<p>ん？無料の短所のとこになんか書いてありますね。インターンシップ？</p>
-
-<h4>インターンシップとは</h4>
-
-<p>就業体験のこと。現地のオフィスでビジネス英語を学ぶことができる。たいてい無給。</p>
-
-<p>最安で英語力アップを目指すには給料をもらう必要があるので、ここではインターンは選択肢から除外します</p>
-
-<p>が、インターンを考えている人たちへ向けて少し。</p>
-
-<p>恐らくエージェントは&#8221;ビジネス&#8221;や&#8221;オフィス&#8221;という言葉でインターンの素晴らしさを語りますが、大半は英語を使わない仕事になると思います。PCを使った書類整理等の雑用です。
-あまりネガキャンはしたくないので多くは語りませんが、彼らがなぜインターンを強く押すのかと言うと<strong>インターン紹介料のため、金のためです。</strong>
-そのことを頭においてインターンをするか考えてください。</p>
-
-<p>エージェントについて話を戻します。</p>
-
-<p>どうやってエージェントを使えばよいかということですが、いくつかのエージェントを回って相談してみてください。カウンセリングはタダですから。絶対一つじゃダメです。
-そして、有料エージェントで色々相談して無料エージェントで実際に申し込むことをオススメします。</p>
-
-<p>有料エージェントは有料だけあって結構親身に相談に乗ってくれるところも多いです。ありがたいですね。
-そして自分の考えが固まったら<strong>無料エージェントで実際に申し込みましょう</strong>
-こうすることで無料と有料のいいとこ取りをすることができます。</p>
-
-<p><strong>大切なのはエージェント任せに絶対にしないことです。</strong>搾取されたくなければ自分のことは自分で決めましょう</p>
-
-<h2>個人的に最安だと思う留学プラン(カナダ編)</h2>
-
-<ul>
-<li>語学学校1ヶ月        $700</li>
-<li>ホームステイ1ヶ月  $700</li>
-<li>海外保険                 $2000</li>
-<li>航空券(片道)           $800</li>
-<li>ワーホリビザ          $100</li>
-<li>合計　　　　　　　$4300</li>
-</ul>
-
-
-<p>わお！安い！！まあこれはもちろん最低限必要な金額なので、生活費, 予備のお金等も必要になってきます。しかしそれを計算に入れても、初期費用で<strong>100万円</strong>あれば十分に1年間カナダで暮らせます。<strong>仕事が見つかればね＼(^o^)／</strong></p>
-
-<p>語学学校とホームステイが1ヶ月なのは1ヶ月で十分慣れるからです。マジかよと思うかもしれないけどマジです。
-そもそも足りないと思えば現地で期間は伸ばせるんだから1ヶ月でマジで十分です。</p>
-
-<p>住居に関しては最初の1ヶ月はホームステイ、次月からはルームシェアが良いと思います。このへんに関してはまた改めて記事を書きます。</p>
-
-<p>要するに、100万円というのは<strong>仕事が見つかるまでに必要な費用</strong>ということになります。</p>
-
-<p>ここで試しに無料エージェント行って見積もりもらってきてみてください。多分語学学校とホームステイはもっと長期間のプランを薦めてくるはずです。
-なぜなら学校とホームステイが長ければ長い程彼らは儲かるから。僕の周りには学校を半年や1年申し込んで2ヶ月くらいで学校行かなくなってお金を無駄にする人がたくさんいました。
-エージェントはあの手この手であなたを説得し(割引等)長期間の契約を結ぼうとしますが、<strong>これ以上僕の友人のような犠牲者を出してはいけません</strong></p>
-
-<p>長いんでちょっとこの辺で切ります。次回は学校、ホームステイ、現地に行ったあとの話から始めます。</p>
-
-<h2>まとめ</h2>
-
-<ol>
-<li>ワーホリ熱いよ</li>
-<li>インターンより働け</li>
-<li>有料エージェントで相談し無料エージェントで申し込む</li>
-</ol>
-
 ]]></content>
   </entry>
   

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Anki | NomoLog]]></title>
+  <link href="http://blog.r-nmt000.com/blog/tags/anki/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-12-12T13:08:42+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[KindleハイライトをAnkiへ移すためのブックマークレット作ったよ]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/12/12/javascript-kindle-anki/"/>
+    <updated>2014-12-12T11:56:42+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/12/12/javascript-kindle-anki</id>
+    <content type="html"><![CDATA[タイトルの通りです。
+
+せっかくKindleで本読んでも結構内容を忘れちゃったりするし、せめてハイライトだけでも
+毎日少しずつ目に触れるようにしたら読んだ本が無駄にならないんじゃないかなあと思って作りました。
+
+<!-- more -->
+
+## 前提
+
+本記事はKindleやKindleアプリを所有していてハイライトの使い方を理解している、
+そしてAnkiを知っていることを前提に話を進めていきます。
+
+
+## 使い方
+
+まずはブックマークレットを作りましょう。ソースはこちらです。
+
+```javascript
+javascript:(function(){
+  var text  = '';
+  var title = '';
+  $('.title, .highlight').each(function(){
+    var cn = $(this).attr('class');
+    var line = '';
+    if(cn =='title'){
+      title = '"'+$(this).text().replace(/\"/g,'\"\"')+'";';
+    }else if(cn == 'highlight'){
+      line += '"'+$(this).text().replace(/\"/g,'\"\"')+'";';
+      line += title;
+    }
+    text += line.replace(/,$/,'')+'\r\n';
+  });
+  if(text){
+    $('#csv').remove();$('body').prepend('<textarea id="csv"style="width:100%;height:10em;"></textarea>');
+    $('#csv').val(text);
+  }
+})()
+```
+
+ブックマークレットの作り方自体を書くのは面倒臭いので(ごめんなさい)、ググって調べてください。
+
+続いて[Kindle Your Highlights](https://kindle.amazon.co.jp/your_highlights)へアクセスしましょう。
+Kindleで今まで貯めてきたハイライトが見れると思います。
+このページで上記ブックマークレットを使いましょう。セミコロン区切りのCSV形式でページ上部にハイライトが表示されると思います。
+(もしかしたら先頭に改行が入ってハイライトが表示されてないように見えるかもしれませんが、スクロールすれば下にいると思います)
+
+これをAnkiのCSVインポート機能を使ってインポートすれば、毎日少しずつハイライトを復習することができるようになります(^^)
+
+
+## まとめ
+
+KindleとAnkiでより良い読書生活を！
+]]></content>
+  </entry>
+  
+</feed>
