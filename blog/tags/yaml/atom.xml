@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Yaml | NomoLog]]></title>
+  <link href="http://blog.r-nmt000.com/blog/tags/yaml/atom.xml" rel="self"/>
+  <link href="http://blog.r-nmt000.com/"/>
+  <updated>2014-12-14T13:21:13+09:00</updated>
+  <id>http://blog.r-nmt000.com/</id>
+  <author>
+    <name><![CDATA[r-nmt000]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vim7.4でyamlファイルを開くと死ぬほど遅い]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/"/>
+    <updated>2014-12-14T13:12:08+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml</id>
+    <content type="html"><![CDATA[ぱっと調べた感じ日本語記事がなかったので一応ここにメモしときますね。
+
+結論から言いますと、[vim-yaml](https://github.com/stephpy/vim-yaml)を入れることで解決します。
+
+[こちら](http://stackoverflow.com/questions/20663169/vim-really-slow-with-long-yaml)を参考にしました。
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

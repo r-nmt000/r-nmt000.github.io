@@ -5,12 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: Vim - NomoLog</title>
+  <title>Vim7.4でyamlファイルを開くと死ぬほど遅い - NomoLog</title>
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="Tag: Vim">
-  
+  <meta name="description" content="ぱっと調べた感じ日本語記事がなかったので一応ここにメモしときますね。 結論から言いますと、vim-yamlを入れることで解決します。 こちらを参考にしました。
+">
+  <meta name="keywords" content="Vim, Yaml">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.r-nmt000.comblog/tags/vim/">
+  <link rel="canonical" href="http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/data-table.css" rel="stylesheet" type="text/css" />
@@ -83,43 +84,193 @@ $(document).ready( function () {
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Tag: Vim</h1>
     
-  </header>
-  
-  <div id="blog-archives" class="tag">
-
-
-
-  
-  <h2>2014</h2>
-
-<article>
-  
-<h1><a href="/blog/2014/06/14/zsh-vim/">Dotfiles</a></h1>
-<time datetime="2014-06-14T20:42:39+09:00" pubdate><span class='month'>Jun</span> <span class='day'>14</span> <span class='year'>2014</span></time>
-
-<footer>
-
-<span class="categories">posted in <a class='category' href='/blog/categories/zsh/'>Zsh</a></span>
-
-
+      <h1 class="entry-title">Vim7.4でyamlファイルを開くと死ぬほど遅い</h1>
     
-		    <span class="tags">, tagged as <a class='tag' href='/blog/tags/vim/'>Vim</a>, <a class='tag' href='/blog/tags/zsh/'>Zsh</a></span>
-				    
-										  
-</footer>
-
-
-</article>
-
+    <div class="sharing">
+  <ul>
+    <li class="hatena">
+  <a href="http://b.hatena.ne.jp/entry/http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/"
+    class="hatena-bookmark-button" data-hatena-bookmark-layout="standard"
+    title="このエントリーをはてなブックマークに追加"><img
+    src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+    alt="このエントリーをはてなブックマークに追加" width="20" height="20"
+    style="border: none;" /></a><script type="text/javascript"
+    src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
+    async="async"></script>
+  </li>
+  <li class="pocket">
+  <a data-pocket-label="pocket" data-pocket-count="horizontal"
+    class="pocket-btn" data-lang="en" data-pocket-align="left"
+    data-save-url="http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/"></a>
+  <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var
+    j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var
+    w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </li>
+  
+  <li class="twitter">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/" data-via="r_nmt000" data-counturl="http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/" >Tweet</a>
+  </li>
+  
+  
+  
+  <li class="facebook">
+  <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  </li>
+  
 </div>
 
+    
+      <p class="meta">
+			
+
+
+
+
+
+
+
+
   
+
+
+<time datetime="2014-12-14T13:12:08+09:00" pubdate data-updated="true">Dec 14<span>th</span>, 2014</time>
+			
+
+<span class="categories">
+	Posted in
+  
+    <a class='category' href='/blog/categories/vim/'>Vim</a>
+  
+</span>
+
+
+			
+
+<span class="tags">
+	Tagged as
+  
+    <a class='tag' href='/blog/tags/yaml/'>Yaml</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>ぱっと調べた感じ日本語記事がなかったので一応ここにメモしときますね。</p>
+
+<p>結論から言いますと、<a href="https://github.com/stephpy/vim-yaml">vim-yaml</a>を入れることで解決します。</p>
+
+<p><a href="http://stackoverflow.com/questions/20663169/vim-really-slow-with-long-yaml">こちら</a>を参考にしました。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">r-nmt000</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-14T13:12:08+09:00" pubdate data-updated="true">Dec 14<span>th</span>, 2014</time>
+			
+
+<span class="categories">
+	Posted in
+  
+    <a class='category' href='/blog/categories/vim/'>Vim</a>
+  
+</span>
+
+
+			
+
+<span class="tags">
+	Tagged as
+  
+    <a class='tag' href='/blog/tags/yaml/'>Yaml</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  <ul>
+    <li class="hatena">
+  <a href="http://b.hatena.ne.jp/entry/http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/"
+    class="hatena-bookmark-button" data-hatena-bookmark-layout="standard"
+    title="このエントリーをはてなブックマークに追加"><img
+    src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+    alt="このエントリーをはてなブックマークに追加" width="20" height="20"
+    style="border: none;" /></a><script type="text/javascript"
+    src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8"
+    async="async"></script>
+  </li>
+  <li class="pocket">
+  <a data-pocket-label="pocket" data-pocket-count="horizontal"
+    class="pocket-btn" data-lang="en" data-pocket-align="left"
+    data-save-url="http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/"></a>
+  <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var
+    j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var
+    w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+  </li>
+  
+  <li class="twitter">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/" data-via="r_nmt000" data-counturl="http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/" >Tweet</a>
+  </li>
+  
+  
+  
+  <li class="facebook">
+  <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  </li>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/12/octopress/" title="Previous Post: Octopressで'Liquid Exception: undefined method `sort!'`'しちゃう問題">&laquo; Octopressで'Liquid Exception: undefined method `sort!'`'しちゃう問題</a>
+      
+      
+		</p>
+		
+		<div class="related_posts">
+<h3>You may also like...</h3>
+<ul>
+	
+</ul>
+</div>
+
+		
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -190,7 +341,10 @@ $(document).ready( function () {
       var disqus_shortname = 'nomolog';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/';
+        var disqus_url = 'http://blog.r-nmt000.com/blog/2014/12/14/vim-yaml/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
