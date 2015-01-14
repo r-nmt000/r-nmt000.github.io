@@ -9,10 +9,13 @@
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="俺的Python気になった所まとめ2の続きです。 with文 ファイル入出力のときはとりあえずこいつ使っとけって感じらしい。 1
-2
-3
-with open(&#39;/tmp/workfile/, &#39;r&#39;) as f: read_data = f.read() ... &hellip;">
+  <meta name="description" content="Contents 1 with文
+2 pickleモジュール
+3 プライベート変数
+4 pythonのイテレータ
+5 pythonのgenerator
+6 python仮想実行環境の構築
+7 終わりに 俺的Python気になった所まとめ2の続きです。 with文 &hellip;">
   <meta name="keywords" content="Python">
 
   <!-- http://t.co/dKP3o1e -->
@@ -34,11 +37,14 @@ with open(&#39;/tmp/workfile/, &#39;r&#39;) as f: read_data = f.read() ... &hell
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js" type="text/javascript"></script>
+<script src="/javascripts/footnote.js"></script>
 <script language="JavaScript">
 $(document).ready( function () {
    $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
 })
 </script>)
+
 
   
   <script type="text/javascript">
@@ -166,215 +172,245 @@ $(document).ready( function () {
   </header>
 
 
-<div class="entry-content"><p><img class="center" src="/images/python.png"></p>
+<div class="entry-content"><div id="toc-container"><table class="toc" id="toc"><tbody><tr><td>
+<div id="toctitle"><h3>Contents</h3></div>
+<ul>
+<li class="toc_level-1 toc_section-1"><a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">with文</span></a></li>
+<li class="toc_level-1 toc_section-2"><a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">pickleモジュール</span></a></li>
+<li class="toc_level-1 toc_section-3"><a href="#tocAnchor-1-3"><span class="tocnumber">3</span> <span class="toctext">プライベート変数</span></a></li>
+<li class="toc_level-1 toc_section-4"><a href="#tocAnchor-1-4"><span class="tocnumber">4</span> <span class="toctext">pythonのイテレータ</span></a></li>
+<li class="toc_level-1 toc_section-5"><a href="#tocAnchor-1-5"><span class="tocnumber">5</span> <span class="toctext">pythonのgenerator</span></a></li>
+<li class="toc_level-1 toc_section-6"><a href="#tocAnchor-1-6"><span class="tocnumber">6</span> <span class="toctext">python仮想実行環境の構築</span></a></li>
+<li class="toc_level-1 toc_section-7"><a href="#tocAnchor-1-7"><span class="tocnumber">7</span> <span class="toctext">終わりに</span></a></li>
+</ul>
+</td></tr></tbody></table></div>
+<p><img class="center" src="/images/python.png"></p>
 
 <p><a href="/blog/2014/06/09/python3/"> 俺的Python気になった所まとめ2の続きです。 </a></p>
 
 <!-- more -->
 
 
-<h2>with文</h2>
+<h2 id="tocAnchor-1-1">with文</h2>
 
 <p>ファイル入出力のときはとりあえずこいつ使っとけって感じらしい。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;/tmp/workfile/, &#39;r&#39;) as f:</span>
-</span><span class='line'>  <span class="n">read_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span class='line'>  <span class="o">...</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/tmp/workfile/, 'r') as f:</span>
+</span><span class="line">  <span class="n">read_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span class="line">  <span class="o">...</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>with文中で例外が発生してもf.closeしてくれる。try-except-finallyより簡単に書ける。</p>
 
-<h2>pickleモジュール</h2>
+<h2 id="tocAnchor-1-2">pickleモジュール</h2>
 
 <p>複雑なpythonのデータ型(リスト、辞書、クラスのインスタンス)を文字列表現に直してファイルへリード・ライトしてくれるいかしたモジュール</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="n">x</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>みたいに使う。</p>
 
-<h2>プライベート変数</h2>
+<h2 id="tocAnchor-1-3">プライベート変数</h2>
 
 <p>Pythonでは定義されていない。しかし、アンダースコアで始まる名前(ex. _spam)はプライベートな変数、関数、メソッドとして扱う慣習があるらしい。</p>
 
-<h2>pythonのイテレータ</h2>
+<h2 id="tocAnchor-1-4">pythonのイテレータ</h2>
 
 <p>リストや辞書など複数のデータがひとまとめにするデータ構造に対して、for文などで各要素にアクセスできる仕組み。こんな感じ。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">element</span>
-</span><span class='line'><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">element</span>
-</span><span class='line'><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s">&#39;one&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">key</span>
-</span><span class='line'><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s">&quot;123&quot;</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">char</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;myfile.txt&quot;</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">line</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+</span><span class="line">  <span class="k">print</span> <span class="n">element</span>
+</span><span class="line"><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+</span><span class="line">  <span class="k">print</span> <span class="n">element</span>
+</span><span class="line"><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s">'one'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s">'two'</span><span class="p">:</span><span class="mi">2</span><span class="p">}:</span>
+</span><span class="line">  <span class="k">print</span> <span class="n">key</span>
+</span><span class="line"><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s">"123"</span><span class="p">:</span>
+</span><span class="line">  <span class="k">print</span> <span class="n">char</span>
+</span><span class="line"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">"myfile.txt"</span><span class="p">):</span>
+</span><span class="line">  <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>クラスに対して独自にイテレータを実装してみる。PersonクラスをまとめるGroupクラスを作り、for文で各Personクラスにアクセスできるようにする。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nm</span><span class="p">):</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">nm</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Group</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">person</span><span class="p">):</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">return</span> <span class="bp">self</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">raise</span> <span class="ne">StopIteration</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
-</span><span class='line'><span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">person3</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>
-</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>
-</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person3</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nm</span><span class="p">):</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">nm</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Group</span><span class="p">:</span>
+</span><span class="line">  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">person</span><span class="p">):</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">self</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class="line">      <span class="k">raise</span> <span class="ne">StopIteration</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+</span><span class="line">
+</span><span class="line"><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
+</span><span class="line"><span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span>
+</span><span class="line"><span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">"b"</span><span class="p">)</span>
+</span><span class="line"><span class="n">person3</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">"c"</span><span class="p">)</span>
+</span><span class="line"><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>
+</span><span class="line"><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>
+</span><span class="line"><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person3</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+</span><span class="line">  <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>出力は以下</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">c</span>
-</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">b</span>
-</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="o">&gt;&gt;</span> <span class="n">c</span>
+</span><span class="line"><span class="o">&gt;&gt;</span> <span class="n">b</span>
+</span><span class="line"><span class="o">&gt;&gt;</span> <span class="n">a</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<h2>pythonのgenerator</h2>
+<h2 id="tocAnchor-1-5">pythonのgenerator</h2>
 
 <p>generatorを使うことで上記のiteratorを簡単に実装できる。</p>
 
 <p>以下のソースは上記iteratorの実装と同値</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nm</span><span class="p">):</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">nm</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Group</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">person</span><span class="p">):</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">yield</span> <span class="n">person</span>
-</span><span class='line'><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
-</span><span class='line'><span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;b&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">person3</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>
-</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>
-</span><span class='line'><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person3</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nm</span><span class="p">):</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">nm</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Group</span><span class="p">:</span>
+</span><span class="line">  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">person</span><span class="p">):</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class="line">    <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">    <span class="k">for</span> <span class="n">person</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">persons</span><span class="p">:</span>
+</span><span class="line">      <span class="k">yield</span> <span class="n">person</span>
+</span><span class="line"><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
+</span><span class="line"><span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span>
+</span><span class="line"><span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">"b"</span><span class="p">)</span>
+</span><span class="line"><span class="n">person3</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">"c"</span><span class="p">)</span>
+</span><span class="line"><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person1</span><span class="p">)</span>
+</span><span class="line"><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person2</span><span class="p">)</span>
+</span><span class="line"><span class="n">group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">person3</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+</span><span class="line">  <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>
 return文のかわりにyieldを使うとgenerator関数になるらしい。</p>
 
-<h2>python仮想実行環境の構築</h2>
+<h2 id="tocAnchor-1-6">python仮想実行環境の構築</h2>
 
 <p>古い記事を見てえらい目にあった。
 とりあえずこの辺を入れればいいらしい。</p>
@@ -390,9 +426,12 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
 
 <p>setuptoolsが入ったら</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">easy_install</span> <span class="n">pip</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">easy_install</span> <span class="n">pip</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>でpipを入れる。easy_installはuninstallコマンドが無いらしくpipがパッケージ管理ツールとして推奨されているらしい。</p>
@@ -401,9 +440,12 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
 
 <p>次に</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span> <span class="n">virtualenvwrapper</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">pip</span> <span class="n">install</span> <span class="n">virtualenv</span> <span class="n">virtualenvwrapper</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>でvirtualenvとvirtualenvwrapperを入れる。</p>
@@ -412,35 +454,38 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
 
 <p>こちらに従って導入</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="mf">1.</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">directory</span> <span class="n">to</span> <span class="n">hold</span> <span class="n">the</span> <span class="n">virtual</span> <span class="n">environments</span><span class="o">.</span>
-</span><span class='line'> <span class="p">(</span><span class="n">mkdir</span> <span class="err">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">virtualenvs</span><span class="p">)</span><span class="o">.</span>
-</span><span class='line'><span class="mf">2.</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">line</span> <span class="n">like</span> <span class="s">&quot;export WORKON_HOME=$HOME/.virtualenvs&quot;</span>
-</span><span class='line'>     <span class="n">to</span> <span class="n">your</span> <span class="o">.</span><span class="n">bashrc</span><span class="o">.</span>
-</span><span class='line'><span class="mf">3.</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">line</span> <span class="n">like</span> <span class="s">&quot;source /path/to/this/file/virtualenvwrapper.sh&quot;</span>
-</span><span class='line'> <span class="n">to</span> <span class="n">your</span> <span class="o">.</span><span class="n">bashrc</span><span class="o">.</span>
-</span><span class='line'><span class="mf">4.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
-</span><span class='line'><span class="mf">5.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span>
-</span><span class='line'><span class="mf">6.</span> <span class="n">A</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">environments</span><span class="p">,</span> <span class="n">empty</span><span class="p">,</span> <span class="ow">is</span> <span class="n">printed</span><span class="o">.</span>
-</span><span class='line'><span class="mf">7.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">mkvirtualenv</span> <span class="n">temp</span>
-</span><span class='line'><span class="mf">8.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span>
-</span><span class='line'><span class="mf">9.</span> <span class="n">This</span> <span class="n">time</span><span class="p">,</span> <span class="n">the</span> <span class="s">&quot;temp&quot;</span> <span class="n">environment</span> <span class="ow">is</span> <span class="n">included</span><span class="o">.</span>
-</span><span class='line'><span class="mf">10.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span> <span class="n">temp</span>
-</span><span class='line'><span class="mf">11.</span> <span class="n">The</span> <span class="n">virtual</span> <span class="n">environment</span> <span class="ow">is</span> <span class="n">activated</span><span class="o">.</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="mf">1.</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">directory</span> <span class="n">to</span> <span class="n">hold</span> <span class="n">the</span> <span class="n">virtual</span> <span class="n">environments</span><span class="o">.</span>
+</span><span class="line"> <span class="p">(</span><span class="n">mkdir</span> <span class="err">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">virtualenvs</span><span class="p">)</span><span class="o">.</span>
+</span><span class="line"><span class="mf">2.</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">line</span> <span class="n">like</span> <span class="s">"export WORKON_HOME=$HOME/.virtualenvs"</span>
+</span><span class="line">     <span class="n">to</span> <span class="n">your</span> <span class="o">.</span><span class="n">bashrc</span><span class="o">.</span>
+</span><span class="line"><span class="mf">3.</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">line</span> <span class="n">like</span> <span class="s">"source /path/to/this/file/virtualenvwrapper.sh"</span>
+</span><span class="line"> <span class="n">to</span> <span class="n">your</span> <span class="o">.</span><span class="n">bashrc</span><span class="o">.</span>
+</span><span class="line"><span class="mf">4.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</span><span class="line"><span class="mf">5.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span>
+</span><span class="line"><span class="mf">6.</span> <span class="n">A</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">environments</span><span class="p">,</span> <span class="n">empty</span><span class="p">,</span> <span class="ow">is</span> <span class="n">printed</span><span class="o">.</span>
+</span><span class="line"><span class="mf">7.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">mkvirtualenv</span> <span class="n">temp</span>
+</span><span class="line"><span class="mf">8.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span>
+</span><span class="line"><span class="mf">9.</span> <span class="n">This</span> <span class="n">time</span><span class="p">,</span> <span class="n">the</span> <span class="s">"temp"</span> <span class="n">environment</span> <span class="ow">is</span> <span class="n">included</span><span class="o">.</span>
+</span><span class="line"><span class="mf">10.</span> <span class="n">Run</span><span class="p">:</span> <span class="n">workon</span> <span class="n">temp</span>
+</span><span class="line"><span class="mf">11.</span> <span class="n">The</span> <span class="n">virtual</span> <span class="n">environment</span> <span class="ow">is</span> <span class="n">activated</span><span class="o">.</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>基本的には<code>mkvirtualenv &lt;env_name&gt;</code>
@@ -457,13 +502,13 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
 で元環境のsite-packagesを使わずにすむ。</p>
 
 <p>ていうかこのオプションがないと元環境のpythonの方のライブラリを参照・追加してしまう。
-これはデフォルトでこうなってるべきじゃないのか&hellip;</p>
+これはデフォルトでこうなってるべきじゃないのか…</p>
 
 <p>python3.3以降ではvenvっていうvirtualenv的なものが公式でサポートされたみたいだけど、virtualenvwrapperがある分まだvirtualenvのが使いやすそうな印象を受けた。</p>
 
 <p>Pythonのバージョン管理でPythonzってのがあるらしいけど、今のところはバージョン管理必要ないのでHomeBrewで元環境に直接2系と3系入れてそれをvirtualenvで指定して使うことにする。</p>
 
-<h2>終わりに</h2>
+<h2 id="tocAnchor-1-7">終わりに</h2>
 
 <p>こんな感じです！！これからPythonistとして精進していきます！！</p>
 </div>
@@ -590,6 +635,10 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/15/english/">'This video has been deleted.' で学ぶ現在完了形</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/14/vim-yaml/">Vim7.4でyamlファイルを開くと死ぬほど遅い</a>
       </li>
     
@@ -605,15 +654,11 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
         <a href="/blog/2014/12/01/lifehack-apps/">ChromeエクステンションのGoogle Translateがマジで便利だった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/11/29/others-python/">Kindleのハイライト同期がうまくいかない問題の解決策</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/career/'>Career (2)</a></li><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (1)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (2)</a></li><li><a href='/blog/categories/lifehack/'>Lifehack (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (5)</a></li><li><a href='/blog/categories/others/'>Others (5)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/python/'>Python (4)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (3)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/career/'>Career (2)</a></li><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (2)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (2)</a></li><li><a href='/blog/categories/lifehack/'>Lifehack (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (5)</a></li><li><a href='/blog/categories/others/'>Others (5)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/python/'>Python (4)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (3)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
@@ -635,7 +680,7 @@ SetupToolsの導入に関しては<a href="https://pypi.python.org/pypi/setuptoo
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - r-nmt000 -
+  Copyright &copy; 2015 - r-nmt000 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>. Background image by <a href="https://www.facebook.com/media/set/?set=a.569378019774663.1073741826.420802014632265&type=1">CSON Photography </a></span>
 </p>
 

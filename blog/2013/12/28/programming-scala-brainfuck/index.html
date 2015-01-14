@@ -9,7 +9,10 @@
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="喘ぐプログラミング言語 喘いでプログラミングするための言語です。 言語仕様 Brainfuckの派生言語です。 命令は次のとおり 命令 Brainfuck 説明 yeah! > ポインタをインクリメントする f**k! &lt; ポインタをデクリメントする ah, + &hellip;">
+  <meta name="description" content="Contents 1 言語仕様
+2 喘ぎ方
+3 hello world
+4 まとめ 喘ぐプログラミング言語 喘いでプログラミングするための言語です。 言語仕様 Brainfuckの派生言語です。 命令は次のとおり 命令 Brainfuck 説明 yeah! &gt; ポインタをインクリメントする &hellip;">
   <meta name="keywords" content="Programming, Scala, Brainfuck">
 
   <!-- http://t.co/dKP3o1e -->
@@ -31,11 +34,14 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js" type="text/javascript"></script>
+<script src="/javascripts/footnote.js"></script>
 <script language="JavaScript">
 $(document).ready( function () {
    $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
 })
 </script>)
+
 
   
   <script type="text/javascript">
@@ -163,7 +169,16 @@ $(document).ready( function () {
   </header>
 
 
-<div class="entry-content"><p><img src="/images/woman.jpg" alt="woman" /></p>
+<div class="entry-content"><div id="toc-container"><table class="toc" id="toc"><tbody><tr><td>
+<div id="toctitle"><h3>Contents</h3></div>
+<ul>
+<li class="toc_level-1 toc_section-1"><a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">言語仕様</span></a></li>
+<li class="toc_level-1 toc_section-2"><a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">喘ぎ方</span></a></li>
+<li class="toc_level-1 toc_section-3"><a href="#tocAnchor-1-3"><span class="tocnumber">3</span> <span class="toctext">hello world</span></a></li>
+<li class="toc_level-1 toc_section-4"><a href="#tocAnchor-1-4"><span class="tocnumber">4</span> <span class="toctext">まとめ</span></a></li>
+</ul>
+</td></tr></tbody></table></div>
+<p><img src="/images/woman.jpg" alt="woman"></p>
 
 <h1>喘ぐプログラミング言語</h1>
 
@@ -172,7 +187,7 @@ $(document).ready( function () {
 <!-- more -->
 
 
-<h2>言語仕様</h2>
+<h2 id="tocAnchor-1-1">言語仕様</h2>
 
 <p>Brainfuckの派生言語です。</p>
 
@@ -191,7 +206,7 @@ $(document).ready( function () {
 <tr>
 <td></td>
 <td align="center"> yeah!     </td>
-<td align="center">  >         </td>
+<td align="center">  &gt;         </td>
 <td align="left"> ポインタをインクリメントする                         </td>
 </tr>
 <tr>
@@ -209,7 +224,7 @@ $(document).ready( function () {
 <tr>
 <td></td>
 <td align="center"> oh,       </td>
-<td align="center">  &ndash;         </td>
+<td align="center">  –         </td>
 <td align="left"> ポインタが指す値をデクリメントする                   </td>
 </tr>
 <tr>
@@ -220,7 +235,7 @@ $(document).ready( function () {
 </tr>
 <tr>
 <td></td>
-<td align="center"> mm&hellip;     </td>
+<td align="center"> mm…     </td>
 <td align="center">  ,         </td>
 <td align="left"> 入力から1バイトポインタが指す先に読み込む            </td>
 </tr>
@@ -240,23 +255,29 @@ $(document).ready( function () {
 </table>
 
 
-<h2>喘ぎ方</h2>
+<h2 id="tocAnchor-1-2">喘ぎ方</h2>
 
 <p><a href="/downloads/MPL.jar">こちら</a>からjarをダウンロードしてください。(重くてごめんなさい)</p>
 
 <p>テキストファイルに喘ぎ声をプログラムし、以下のコマンドを実行してください。(Java実行環境が必要)</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>java -jar MPL.jar &lt;filename&gt;</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class=""><span class="line">java -jar MPL.jar &lt;filename&gt;</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<h2>hello world</h2>
+<h2 id="tocAnchor-1-3">hello world</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ah,ah,ah,ah,ah,ah,ah,ah,ah,ohmygod!yeah!ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,f**k!f**k!f**k!oh,god!yeah!comeon!yeah!ah,ah,comeon!ah,ah,ah,ah,ah,ah,ah,comeon!comeon!ah,ah,ah,comeon!yeah!oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,comeon!f**k!ah,ah,ah,ah,ah,ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!yeah!ah,comeon!</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class=""><span class="line">ah,ah,ah,ah,ah,ah,ah,ah,ah,ohmygod!yeah!ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,ah,yeah!ah,ah,ah,ah,ah,f**k!f**k!f**k!oh,god!yeah!comeon!yeah!ah,ah,comeon!ah,ah,ah,ah,ah,ah,ah,comeon!comeon!ah,ah,ah,comeon!yeah!oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,oh,comeon!f**k!ah,ah,ah,ah,ah,ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!ah,ah,ah,comeon!oh,oh,oh,oh,oh,oh,comeon!oh,oh,oh,oh,oh,oh,oh,oh,comeon!yeah!ah,comeon!</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<h2>まとめ</h2>
+<h2 id="tocAnchor-1-4">まとめ</h2>
 
 <p>もっといい喘ぎ方があったら教えて下さい。</p>
 </div>
@@ -379,6 +400,10 @@ $(document).ready( function () {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/15/english/">'This video has been deleted.' で学ぶ現在完了形</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/14/vim-yaml/">Vim7.4でyamlファイルを開くと死ぬほど遅い</a>
       </li>
     
@@ -394,15 +419,11 @@ $(document).ready( function () {
         <a href="/blog/2014/12/01/lifehack-apps/">ChromeエクステンションのGoogle Translateがマジで便利だった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/11/29/others-python/">Kindleのハイライト同期がうまくいかない問題の解決策</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/career/'>Career (2)</a></li><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (1)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (2)</a></li><li><a href='/blog/categories/lifehack/'>Lifehack (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (5)</a></li><li><a href='/blog/categories/others/'>Others (5)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/python/'>Python (4)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (3)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/career/'>Career (2)</a></li><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (2)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (2)</a></li><li><a href='/blog/categories/lifehack/'>Lifehack (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (5)</a></li><li><a href='/blog/categories/others/'>Others (5)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/python/'>Python (4)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (3)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
@@ -424,7 +445,7 @@ $(document).ready( function () {
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - r-nmt000 -
+  Copyright &copy; 2015 - r-nmt000 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>. Background image by <a href="https://www.facebook.com/media/set/?set=a.569378019774663.1073741826.420802014632265&type=1">CSON Photography </a></span>
 </p>
 

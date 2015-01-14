@@ -9,10 +9,8 @@
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="ある日のぼく ぼくはSBTのプラグインを入れようとしていました。 ぼく「sbteclipse-plugin入れたいなあ^^ なになに、project/plugins.sbtに 1
-2
-3
-resolvers += Classpaths.typesafeResolver addSbtPlugin(" &hellip;">
+  <meta name="description" content="Contents 1 ここに全て書いてあるけど自分なりにまとめたよ！1.1 ライブラリ？プラグイン？ 2 SBTの再帰構造
+3 まとめ ある日のぼく ぼくはSBTのプラグインを入れようとしていました。 ぼく「sbteclipse-plugin入れたいなあ^^ なになに、project/ &hellip;">
   <meta name="keywords" content="Scala, SBT">
 
   <!-- http://t.co/dKP3o1e -->
@@ -34,11 +32,14 @@ resolvers += Classpaths.typesafeResolver addSbtPlugin(" &hellip;">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js" type="text/javascript"></script>
+<script src="/javascripts/footnote.js"></script>
 <script language="JavaScript">
 $(document).ready( function () {
    $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
 })
 </script>)
+
 
   
   <script type="text/javascript">
@@ -166,18 +167,31 @@ $(document).ready( function () {
   </header>
 
 
-<div class="entry-content"><h1>ある日のぼく</h1>
+<div class="entry-content"><div id="toc-container"><table class="toc" id="toc"><tbody><tr><td>
+<div id="toctitle"><h3>Contents</h3></div>
+<ul>
+<li class="toc_level-1 toc_section-1">
+<a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">ここに全て書いてあるけど自分なりにまとめたよ！</span></a><ul><li class="toc_level-2 toc_section-2"><a href="#tocAnchor-1-1-1"><span class="tocnumber">1.1</span> <span class="toctext">ライブラリ？プラグイン？</span></a></li></ul>
+</li>
+<li class="toc_level-1 toc_section-3"><a href="#tocAnchor-1-3"><span class="tocnumber">2</span> <span class="toctext">SBTの再帰構造</span></a></li>
+<li class="toc_level-1 toc_section-4"><a href="#tocAnchor-1-4"><span class="tocnumber">3</span> <span class="toctext">まとめ</span></a></li>
+</ul>
+</td></tr></tbody></table></div>
+<h1>ある日のぼく</h1>
 
 <p><strong>ぼくはSBTのプラグインを入れようとしていました。</strong></p>
 
 <p>ぼく「sbteclipse-plugin入れたいなあ^^ なになに、<code>project/plugins.sbt</code>に</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>resolvers += Classpaths.typesafeResolver
-</span><span class='line'>
-</span><span class='line'>addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td>
+<td class="code"><pre><code class=""><span class="line">resolvers += Classpaths.typesafeResolver
+</span><span class="line">
+</span><span class="line">addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>って書けばいいのかなるほど！」</p>
@@ -189,27 +203,31 @@ $(document).ready( function () {
 <!-- more -->
 
 
-<h2><a href="http://scalajp.github.io/sbt-getting-started-guide-ja/">ここ</a>に全て書いてあるけど自分なりにまとめたよ！</h2>
+<h2 id="tocAnchor-1-1">
+<a href="http://scalajp.github.io/sbt-getting-started-guide-ja/">ここ</a>に全て書いてあるけど自分なりにまとめたよ！</h2>
 
 <p>SBTのビルド定義やらライブラリの依存性やら何度勉強しても忘れるのでここで一発まとめちゃおうと思います！！</p>
 
 <p>今回は以下のディレクトリ構造を想定します。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>hello/
-</span><span class='line'> build.sbt
-</span><span class='line'>
-</span><span class='line'> project/
-</span><span class='line'>  Build.scala
-</span><span class='line'>  plugins.sbt</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td>
+<td class="code"><pre><code class=""><span class="line">hello/
+</span><span class="line"> build.sbt
+</span><span class="line">
+</span><span class="line"> project/
+</span><span class="line">  Build.scala
+</span><span class="line">  plugins.sbt</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<h3>ライブラリ？プラグイン？</h3>
+<h3 id="tocAnchor-1-1-1">ライブラリ？プラグイン？</h3>
 
 <p>そもそも今回の問題は自分の中でライブラリとプラグインの定義が曖昧だったことが始まりでした。SBTで言うところのプラグインの追加とは、</p>
 
@@ -223,43 +241,46 @@ $(document).ready( function () {
 
 <p>ですので、<strong>このビルド定義に対してまたビルド定義</strong>してあげることがプラグインの追加になるそうです。</p>
 
-<h2>SBTの再帰構造</h2>
+<h2 id="tocAnchor-1-3">SBTの再帰構造</h2>
 
 <p>SBTではビルド定義自体をまたプロジェクトとして扱うことができます。つまり、</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>hello/
-</span><span class='line'> build.sbt
-</span><span class='line'>
-</span><span class='line'> project/
-</span><span class='line'>  Build.scala
-</span><span class='line'>  plugins.sbt
-</span><span class='line'>  project/
-</span><span class='line'>   Build.scala
-</span><span class='line'>   plugins.sbt   
-</span><span class='line'>   project/
-</span><span class='line'>    Build.scala
-</span><span class='line'>    plugins.sbt   
-</span><span class='line'>      ...</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td>
+<td class="code"><pre><code class=""><span class="line">hello/
+</span><span class="line"> build.sbt
+</span><span class="line">
+</span><span class="line"> project/
+</span><span class="line">  Build.scala
+</span><span class="line">  plugins.sbt
+</span><span class="line">  project/
+</span><span class="line">   Build.scala
+</span><span class="line">   plugins.sbt   
+</span><span class="line">   project/
+</span><span class="line">    Build.scala
+</span><span class="line">    plugins.sbt   
+</span><span class="line">      ...</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<p>な感じでビルド定義のビルド定義のビルド定義の&hellip;みたいなことができちゃうわけです。</p>
+<p>な感じでビルド定義のビルド定義のビルド定義の…みたいなことができちゃうわけです。</p>
 
 <p>ようは<code>build.sbt</code>と<code>plugins.sbt</code>は役割的には同じなわけです。ただ、対象とするプロジェクトが異なりますということです。</p>
 
-<h2>まとめ</h2>
+<h2 id="tocAnchor-1-4">まとめ</h2>
 
 <p>書いてたら眠くなったのでこの辺にしときます！</p>
 
@@ -382,6 +403,10 @@ $(document).ready( function () {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/15/english/">'This video has been deleted.' で学ぶ現在完了形</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/14/vim-yaml/">Vim7.4でyamlファイルを開くと死ぬほど遅い</a>
       </li>
     
@@ -397,15 +422,11 @@ $(document).ready( function () {
         <a href="/blog/2014/12/01/lifehack-apps/">ChromeエクステンションのGoogle Translateがマジで便利だった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/11/29/others-python/">Kindleのハイライト同期がうまくいかない問題の解決策</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/career/'>Career (2)</a></li><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (1)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (2)</a></li><li><a href='/blog/categories/lifehack/'>Lifehack (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (5)</a></li><li><a href='/blog/categories/others/'>Others (5)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/python/'>Python (4)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (3)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/career/'>Career (2)</a></li><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (2)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (2)</a></li><li><a href='/blog/categories/lifehack/'>Lifehack (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (5)</a></li><li><a href='/blog/categories/others/'>Others (5)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/python/'>Python (4)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (3)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
@@ -427,7 +448,7 @@ $(document).ready( function () {
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - r-nmt000 -
+  Copyright &copy; 2015 - r-nmt000 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>. Background image by <a href="https://www.facebook.com/media/set/?set=a.569378019774663.1073741826.420802014632265&type=1">CSON Photography </a></span>
 </p>
 

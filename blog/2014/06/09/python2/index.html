@@ -9,21 +9,14 @@
   <meta name="author" content="r-nmt000">
 
   
-  <meta name="description" content="俺的Python気になった所まとめ1の続き リストの内包表記 forとかifとかを使ってぴゃっ！とリストが作れるっぽい。
-こんな感じ 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-vec = [2,4,6]
-[3*x for x in vec if x &gt; 3]
-&gt; [12,18 &hellip;">
+  <meta name="description" content="Contents 1 リストの内包表記
+2 集合型
+3 辞書
+4 論理和論理積
+5 .pycファイル
+6 パッケージ
+7 モジュール、パッケージのインポート
+8 ifname==“main” 俺的Python気になった所まとめ1の続き リストの内包表記 forとかifとかを使ってぴゃっ！ &hellip;">
   <meta name="keywords" content="Python">
 
   <!-- http://t.co/dKP3o1e -->
@@ -45,11 +38,14 @@ vec = [2,4,6]
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js" type="text/javascript"></script>
+<script src="/javascripts/footnote.js"></script>
 <script language="JavaScript">
 $(document).ready( function () {
    $("a[href^='http']:not([href*='" + location.hostname + "'])").attr('target', '_blank');
 })
 </script>)
+
 
   
   <script type="text/javascript">
@@ -177,7 +173,20 @@ $(document).ready( function () {
   </header>
 
 
-<div class="entry-content"><p>
+<div class="entry-content"><div id="toc-container"><table class="toc" id="toc"><tbody><tr><td>
+<div id="toctitle"><h3>Contents</h3></div>
+<ul>
+<li class="toc_level-1 toc_section-1"><a href="#tocAnchor-1-1"><span class="tocnumber">1</span> <span class="toctext">リストの内包表記</span></a></li>
+<li class="toc_level-1 toc_section-2"><a href="#tocAnchor-1-2"><span class="tocnumber">2</span> <span class="toctext">集合型</span></a></li>
+<li class="toc_level-1 toc_section-3"><a href="#tocAnchor-1-3"><span class="tocnumber">3</span> <span class="toctext">辞書</span></a></li>
+<li class="toc_level-1 toc_section-4"><a href="#tocAnchor-1-4"><span class="tocnumber">4</span> <span class="toctext">論理和論理積</span></a></li>
+<li class="toc_level-1 toc_section-5"><a href="#tocAnchor-1-5"><span class="tocnumber">5</span> <span class="toctext">.pycファイル</span></a></li>
+<li class="toc_level-1 toc_section-6"><a href="#tocAnchor-1-6"><span class="tocnumber">6</span> <span class="toctext">パッケージ</span></a></li>
+<li class="toc_level-1 toc_section-7"><a href="#tocAnchor-1-7"><span class="tocnumber">7</span> <span class="toctext">モジュール、パッケージのインポート</span></a></li>
+<li class="toc_level-1 toc_section-8"><a href="#tocAnchor-1-8"><span class="tocnumber">8</span> <span class="toctext">ifname==“main”</span></a></li>
+</ul>
+</td></tr></tbody></table></div>
+<p>
 <img class="center" src="/images/python.png">
 </p>
 
@@ -187,71 +196,80 @@ $(document).ready( function () {
 <!-- more -->
 
 
-<h2>リストの内包表記</h2>
+<h2 id="tocAnchor-1-1">リストの内包表記</h2>
 
 <p>forとかifとかを使ってぴゃっ！とリストが作れるっぽい。
 こんな感じ</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">vec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
-</span><span class='line'><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">[[</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">16</span><span class="p">][</span><span class="mi">6</span><span class="p">,</span><span class="mi">36</span><span class="p">]]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">vec1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
-</span><span class='line'><span class="n">vec2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span>
-</span><span class='line'><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec1</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">vec2</span><span class="p">]</span>
-</span><span class='line'><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mi">36</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="o">-</span><span class="mi">54</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">vec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</span><span class="line"><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">]</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">]</span>
+</span><span class="line">
+</span><span class="line"><span class="p">[[</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">16</span><span class="p">][</span><span class="mi">6</span><span class="p">,</span><span class="mi">36</span><span class="p">]]</span>
+</span><span class="line">
+</span><span class="line"><span class="n">vec1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</span><span class="line"><span class="n">vec2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span>
+</span><span class="line"><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vec1</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">vec2</span><span class="p">]</span>
+</span><span class="line"><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="mi">18</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="o">-</span><span class="mi">36</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="o">-</span><span class="mi">54</span><span class="p">]</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>さらにネストしたリストの内包表記なんてのもある。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mat</span> <span class="o">=</span> <span class="p">[</span>
-</span><span class='line'>    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
-</span><span class='line'>    <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
-</span><span class='line'>    <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
-</span><span class='line'>  <span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">mat</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
-</span><span class='line'><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">mat</span> <span class="o">=</span> <span class="p">[</span>
+</span><span class="line">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+</span><span class="line">    <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+</span><span class="line">    <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+</span><span class="line">  <span class="p">]</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span> <span class="p">[[</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">mat</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</span><span class="line"><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>これはこのコードと同値らしい</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">mat</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-</span><span class='line'>  <span class="k">print</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+</span><span class="line">  <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">mat</span><span class="p">:</span>
+</span><span class="line">    <span class="k">print</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+</span><span class="line">  <span class="k">print</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<h2>集合型</h2>
+<h2 id="tocAnchor-1-2">集合型</h2>
 
 <ul>
 <li>重複する要素がない、順序づけられてない要素の集まり</li>
@@ -259,96 +277,105 @@ $(document).ready( function () {
 </ul>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">basket</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;pear&quot;</span><span class="p">,</span> <span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;banana&quot;</span><span class="p">]</span>
-</span><span class='line'><span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">basket</span><span class="p">)</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="nb">set</span><span class="p">([</span><span class="s">&quot;orange&quot;</span><span class="p">,</span> <span class="s">&quot;pear&quot;</span><span class="p">,</span> <span class="s">&quot;apple&quot;</span><span class="p">,</span> <span class="s">&quot;banana&quot;</span><span class="p">])</span>
-</span><span class='line'><span class="s">&#39;orange&#39;</span> <span class="ow">in</span> <span class="n">fruit</span>                 <span class="c"># 高速なメンバシップテスト</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="bp">True</span>
-</span><span class='line'> <span class="s">&#39;crabgrass&#39;</span> <span class="ow">in</span> <span class="n">fruit</span>
-</span><span class='line'> <span class="bp">False</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">basket</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"apple"</span><span class="p">,</span> <span class="s">"orange"</span><span class="p">,</span> <span class="s">"apple"</span><span class="p">,</span> <span class="s">"pear"</span><span class="p">,</span> <span class="s">"orange"</span><span class="p">,</span> <span class="s">"banana"</span><span class="p">]</span>
+</span><span class="line"><span class="n">fruit</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">basket</span><span class="p">)</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="nb">set</span><span class="p">([</span><span class="s">"orange"</span><span class="p">,</span> <span class="s">"pear"</span><span class="p">,</span> <span class="s">"apple"</span><span class="p">,</span> <span class="s">"banana"</span><span class="p">])</span>
+</span><span class="line"><span class="s">'orange'</span> <span class="ow">in</span> <span class="n">fruit</span>                 <span class="c"># 高速なメンバシップテスト</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="bp">True</span>
+</span><span class="line"> <span class="s">'crabgrass'</span> <span class="ow">in</span> <span class="n">fruit</span>
+</span><span class="line"> <span class="bp">False</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>二つの単語の文字を例にした集合間の演算</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s">&#39;abracadabra&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">b</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s">&#39;alacazam&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">a</span>                                  <span class="c"># a 内の一意な文字</span>
-</span><span class='line'><span class="o">&gt;</span><span class="nb">set</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">])</span>
-</span><span class='line'><span class="n">a</span> <span class="o">-</span> <span class="n">b</span>                              <span class="c"># a にあって b にない文字</span>
-</span><span class='line'><span class="o">&gt;</span><span class="nb">set</span><span class="p">([</span><span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">])</span>
-</span><span class='line'><span class="n">a</span> <span class="o">|</span> <span class="n">b</span>                              <span class="c"># a か b にある文字</span>
-</span><span class='line'><span class="nb">set</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="s">&#39;l&#39;</span><span class="p">])</span>
-</span><span class='line'><span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span>                              <span class="c"># a と b の双方にある文字</span>
-</span><span class='line'><span class="nb">set</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">])</span>
-</span><span class='line'><span class="n">a</span> <span class="o">^</span> <span class="n">b</span>                              <span class="c"># a または b の片方だけにある文字</span>
-</span><span class='line'><span class="nb">set</span><span class="p">([</span><span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="s">&#39;z&#39;</span><span class="p">,</span> <span class="s">&#39;l&#39;</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s">'abracadabra'</span><span class="p">)</span>
+</span><span class="line"><span class="n">b</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s">'alacazam'</span><span class="p">)</span>
+</span><span class="line"><span class="n">a</span>                                  <span class="c"># a 内の一意な文字</span>
+</span><span class="line"><span class="o">&gt;</span><span class="nb">set</span><span class="p">([</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="s">'c'</span><span class="p">,</span> <span class="s">'d'</span><span class="p">])</span>
+</span><span class="line"><span class="n">a</span> <span class="o">-</span> <span class="n">b</span>                              <span class="c"># a にあって b にない文字</span>
+</span><span class="line"><span class="o">&gt;</span><span class="nb">set</span><span class="p">([</span><span class="s">'r'</span><span class="p">,</span> <span class="s">'d'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">])</span>
+</span><span class="line"><span class="n">a</span> <span class="o">|</span> <span class="n">b</span>                              <span class="c"># a か b にある文字</span>
+</span><span class="line"><span class="nb">set</span><span class="p">([</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'c'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="s">'d'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="s">'m'</span><span class="p">,</span> <span class="s">'z'</span><span class="p">,</span> <span class="s">'l'</span><span class="p">])</span>
+</span><span class="line"><span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span>                              <span class="c"># a と b の双方にある文字</span>
+</span><span class="line"><span class="nb">set</span><span class="p">([</span><span class="s">'a'</span><span class="p">,</span> <span class="s">'c'</span><span class="p">])</span>
+</span><span class="line"><span class="n">a</span> <span class="o">^</span> <span class="n">b</span>                              <span class="c"># a または b の片方だけにある文字</span>
+</span><span class="line"><span class="nb">set</span><span class="p">([</span><span class="s">'r'</span><span class="p">,</span> <span class="s">'d'</span><span class="p">,</span> <span class="s">'b'</span><span class="p">,</span> <span class="s">'m'</span><span class="p">,</span> <span class="s">'z'</span><span class="p">,</span> <span class="s">'l'</span><span class="p">])</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<h2>辞書</h2>
+<h2 id="tocAnchor-1-3">辞書</h2>
 
 <p>おなじみkey-value型。keyは変更不可能な型になる。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">tel</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">,</span> <span class="s">&#39;sape&#39;</span><span class="p">:</span> <span class="mi">4139</span><span class="p">}</span>
-</span><span class='line'><span class="n">tel</span><span class="p">[</span><span class="s">&#39;guido&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span>
-</span><span class='line'><span class="n">tel</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="p">{</span><span class="s">&#39;sape&#39;</span><span class="p">:</span> <span class="mi">4139</span><span class="p">,</span> <span class="s">&#39;guido&#39;</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">}</span>
-</span><span class='line'><span class="n">tel</span><span class="p">[</span><span class="s">&#39;jack&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">4098</span>
-</span><span class='line'><span class="k">del</span> <span class="n">tel</span><span class="p">[</span><span class="s">&#39;sape&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="n">tel</span><span class="p">[</span><span class="s">&#39;irv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span>
-</span><span class='line'><span class="n">tel</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="p">{</span><span class="s">&#39;guido&#39;</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">&#39;irv&#39;</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">}</span>
-</span><span class='line'><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="p">[</span><span class="s">&#39;guido&#39;</span><span class="p">,</span> <span class="s">&#39;irv&#39;</span><span class="p">,</span> <span class="s">&#39;jack&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="s">&#39;guido&#39;</span> <span class="ow">in</span> <span class="n">tel</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="bp">True</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">tel</span> <span class="o">=</span> <span class="p">{</span><span class="s">'jack'</span><span class="p">:</span> <span class="mi">4098</span><span class="p">,</span> <span class="s">'sape'</span><span class="p">:</span> <span class="mi">4139</span><span class="p">}</span>
+</span><span class="line"><span class="n">tel</span><span class="p">[</span><span class="s">'guido'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span>
+</span><span class="line"><span class="n">tel</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="p">{</span><span class="s">'sape'</span><span class="p">:</span> <span class="mi">4139</span><span class="p">,</span> <span class="s">'guido'</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">'jack'</span><span class="p">:</span> <span class="mi">4098</span><span class="p">}</span>
+</span><span class="line"><span class="n">tel</span><span class="p">[</span><span class="s">'jack'</span><span class="p">]</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="mi">4098</span>
+</span><span class="line"><span class="k">del</span> <span class="n">tel</span><span class="p">[</span><span class="s">'sape'</span><span class="p">]</span>
+</span><span class="line"><span class="n">tel</span><span class="p">[</span><span class="s">'irv'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span>
+</span><span class="line"><span class="n">tel</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="p">{</span><span class="s">'guido'</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">'irv'</span><span class="p">:</span> <span class="mi">4127</span><span class="p">,</span> <span class="s">'jack'</span><span class="p">:</span> <span class="mi">4098</span><span class="p">}</span>
+</span><span class="line"><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="p">[</span><span class="s">'guido'</span><span class="p">,</span> <span class="s">'irv'</span><span class="p">,</span> <span class="s">'jack'</span><span class="p">]</span>
+</span><span class="line"><span class="s">'guido'</span> <span class="ow">in</span> <span class="n">tel</span>
+</span><span class="line"><span class="o">&gt;</span> <span class="bp">True</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<h2>論理和論理積</h2>
+<h2 id="tocAnchor-1-4">論理和論理積</h2>
 
 <p> &amp;, | とand, or が使える</p>
 
-<h2>.pycファイル</h2>
+<h2 id="tocAnchor-1-5">.pycファイル</h2>
 
 <p>バイトコンパイルされたpythonファイル</p>
 
-<h2>パッケージ</h2>
+<h2 id="tocAnchor-1-6">パッケージ</h2>
 
 <p>sysモジュールのpath内に記述されているサブディレクトリをパッケージと呼ぶらしい。
 ただし、ただpath内にディレクトリを置くだけではパッケージとしては認識されず、
@@ -356,86 +383,110 @@ $(document).ready( function () {
 
 <p>以下パッケージのディレクトリ構造例</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">sound</span><span class="o">/</span>
-</span><span class='line'>   <span class="n">effects</span><span class="o">/</span>
-</span><span class='line'>     <span class="n">echo</span><span class="o">.</span><span class="n">py</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="n">sound</span><span class="o">/</span>
+</span><span class="line">   <span class="n">effects</span><span class="o">/</span>
+</span><span class="line">     <span class="n">echo</span><span class="o">.</span><span class="n">py</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>次のようにimportし、使う</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sound.effects.echo</span>
-</span><span class='line'><span class="n">sound</span><span class="o">.</span><span class="n">effects</span><span class="o">.</span><span class="n">echo</span><span class="o">.</span><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">sound.effects.echo</span>
+</span><span class="line"><span class="n">sound</span><span class="o">.</span><span class="n">effects</span><span class="o">.</span><span class="n">echo</span><span class="o">.</span><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>もしくは</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sound.effects</span> <span class="kn">import</span> <span class="n">echo</span>
-</span><span class='line'><span class="n">echo</span><span class="o">.</span><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="kn">from</span> <span class="nn">sound.effects</span> <span class="kn">import</span> <span class="n">echo</span>
+</span><span class="line"><span class="n">echo</span><span class="o">.</span><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>もしくは</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sound.effects.echo</span> <span class="kn">import</span> <span class="n">echofilter</span>
-</span><span class='line'><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="kn">from</span> <span class="nn">sound.effects.echo</span> <span class="kn">import</span> <span class="n">echofilter</span>
+</span><span class="line"><span class="n">echofilter</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">atten</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<h2>モジュール、パッケージのインポート</h2>
+<h2 id="tocAnchor-1-7">モジュール、パッケージのインポート</h2>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">package</span> <span class="kn">import</span> <span class="n">module</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="kn">from</span> <span class="nn">package</span> <span class="kn">import</span> <span class="n">module</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>の形式で行える。が、</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">./</span>
-</span><span class='line'>  <span class="n">main</span><span class="o">.</span><span class="n">py</span>
-</span><span class='line'>  <span class="n">sub1</span><span class="o">.</span><span class="n">py</span>
-</span><span class='line'>  <span class="n">dir1</span>
-</span><span class='line'>    <span class="n">dir2</span>
-</span><span class='line'>      <span class="n">sub2</span><span class="o">.</span><span class="n">py</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="o">./</span>
+</span><span class="line">  <span class="n">main</span><span class="o">.</span><span class="n">py</span>
+</span><span class="line">  <span class="n">sub1</span><span class="o">.</span><span class="n">py</span>
+</span><span class="line">  <span class="n">dir1</span>
+</span><span class="line">    <span class="n">dir2</span>
+</span><span class="line">      <span class="n">sub2</span><span class="o">.</span><span class="n">py</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>のようなディレクトリ構造のときに
 <code>sub1.py</code>はmain.pyに</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sub1</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="kn">import</span> <span class="nn">sub1</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
 <p>と記述することででインポートできるが<code>sub2.py</code>は</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">dir1.dir2</span> <span class="kn">import</span> <span class="n">sub2</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr>
+<td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td>
+<td class="code"><pre><code class="python"><span class="line"><span class="kn">from</span> <span class="nn">dir1.dir2</span> <span class="kn">import</span> <span class="n">sub2</span>
+</span></code></pre></td>
+</tr></table></div></figure>
 
 
-<p>としてもインポートできない。なんでだろう&hellip;</p>
+<p>としてもインポートできない。なんでだろう…</p>
 
 <p>一応<code>sys.path.append('dir1/dir2')</code>としたり<code>PYTHONPATH</code>に<code>dir1/dir2/</code>を追加することで対応できたけど、いちいちそんなことするのめんどくさすぎる。</p>
 
-<p>なにか他に解決策はないものか&hellip;</p>
+<p>なにか他に解決策はないものか…</p>
 
 <p><strong>追記</strong></p>
 
@@ -443,16 +494,16 @@ $(document).ready( function () {
 
 <p>通常のpythonコマンドを使った実行ならば正常に動作した</p>
 
-<h2>if<strong>name</strong>==&ldquo;<strong>main</strong>&rdquo;</h2>
+<h2 id="tocAnchor-1-8">if<strong>name</strong>==“<strong>main</strong>”</h2>
 
 <p>そのpythonファイルがメインで実行された時、<code>if__name__=="__main__"</code>以下が実行される。
 そのpythonファイルがモジュールとして他のモジュールに取り込まれた時は実行されない。</p>
 
 <p><code>if__name__=="__main__"</code>以下をみればその関数をどのように動かせばよいかわかるので注釈としても便利</p>
 
-<hr />
+<hr>
 
-<p><a href="/blog/2014/06/09/python3/">俺的Python気になった所まとめ3</a>へ続く&hellip;</p>
+<p><a href="/blog/2014/06/09/python3/">俺的Python気になった所まとめ3</a>へ続く…</p>
 </div>
 
 
@@ -577,6 +628,10 @@ $(document).ready( function () {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/15/english/">'This video has been deleted.' で学ぶ現在完了形</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/12/14/vim-yaml/">Vim7.4でyamlファイルを開くと死ぬほど遅い</a>
       </li>
     
@@ -592,15 +647,11 @@ $(document).ready( function () {
         <a href="/blog/2014/12/01/lifehack-apps/">ChromeエクステンションのGoogle Translateがマジで便利だった</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/11/29/others-python/">Kindleのハイライト同期がうまくいかない問題の解決策</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/career/'>Career (2)</a></li><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (1)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (2)</a></li><li><a href='/blog/categories/lifehack/'>Lifehack (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (5)</a></li><li><a href='/blog/categories/others/'>Others (5)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/python/'>Python (4)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (3)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/career/'>Career (2)</a></li><li><a href='/blog/categories/eclipse/'>Eclipse (1)</a></li><li><a href='/blog/categories/english/'>English (2)</a></li><li><a href='/blog/categories/javascript/'>JavaScript (2)</a></li><li><a href='/blog/categories/lifehack/'>Lifehack (2)</a></li><li><a href='/blog/categories/octopress/'>Octopress (5)</a></li><li><a href='/blog/categories/others/'>Others (5)</a></li><li><a href='/blog/categories/programming/'>Programming (1)</a></li><li><a href='/blog/categories/python/'>Python (4)</a></li><li><a href='/blog/categories/scala/'>Scala (3)</a></li><li><a href='/blog/categories/serverbuilding/'>ServerBuilding (1)</a></li><li><a href='/blog/categories/smartphone/'>Smartphone (1)</a></li><li><a href='/blog/categories/vim/'>Vim (3)</a></li><li><a href='/blog/categories/zsh/'>Zsh (1)</a></li></ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
@@ -622,7 +673,7 @@ $(document).ready( function () {
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - r-nmt000 -
+  Copyright &copy; 2015 - r-nmt000 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>. Background image by <a href="https://www.facebook.com/media/set/?set=a.569378019774663.1073741826.420802014632265&type=1">CSON Photography </a></span>
 </p>
 

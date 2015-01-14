@@ -4,7 +4,7 @@
   <title><![CDATA[NomoLog]]></title>
   <link href="http://blog.r-nmt000.com/atom.xml" rel="self"/>
   <link href="http://blog.r-nmt000.com/"/>
-  <updated>2014-12-14T13:21:13+09:00</updated>
+  <updated>2015-01-15T01:34:30+09:00</updated>
   <id>http://blog.r-nmt000.com/</id>
   <author>
     <name><![CDATA[r-nmt000]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA['This video has been deleted.' で学ぶ現在完了形]]></title>
+    <link href="http://blog.r-nmt000.com/blog/2015/01/15/english/"/>
+    <updated>2015-01-15T01:00:10+09:00</updated>
+    <id>http://blog.r-nmt000.com/blog/2015/01/15/english</id>
+    <content type="html"><![CDATA[<p>過去形、現在完了形、過去完了形&hellip; 英語の時制に関する文法って、難しいですよね。
+そこで今日はみんな大好き&#8217;This video has been deleted.&lsquo;を使って過去形と現在完了形の違いを学びましょう。</p>
+
+<!-- more -->
+
+
+<h2>なぜ&#8217;This video was deleted.&lsquo;ではないのか？</h2>
+
+<p>さて、例題の<strong>&lsquo;This video has been deleted.&rsquo;</strong>ですが、もちろん皆さん意味は知っていますよね！</p>
+
+<blockquote><p>この動画は削除されました。</p></blockquote>
+
+<p>さてここで一つ疑問があります。この<code>この動画は削除されました</code>という日本語訳でいくと、</p>
+
+<blockquote><p>This video was deleted.</p></blockquote>
+
+<p>でいいような気がします。なぜ過去形ではないのでしょうか？なぜ現在完了形なのでしょうか？</p>
+
+<h2>現在完了形は過去と現在を同時に表すことができる</h2>
+
+<p>高校英語のおさらいですが、現在完了形には大きく3つの意味合いがあります。</p>
+
+<ol>
+<li>継続：過去の状態が今も続いている</li>
+<li>経験：過去にした経験を現在から振り返って話す</li>
+<li>完了：物事が完了している現在の状態を表す</li>
+</ol>
+
+
+<p>そして現在完了形には<strong>過去だけでなく現在の状態についても言及している</strong>という特徴があります。</p>
+
+<h2>残念だったな。お前が探している動画はもうないんだ</h2>
+
+<p>仮に<code>This video was deleted.</code>と書くとすると、これは</p>
+
+<blockquote><p>過去にこの動画が削除された</p></blockquote>
+
+<p>という事実を表すのみとなります。つまり、<code>This video was deleted.</code>だと<strong>現在動画が見れないことについては言及しておらず、
+</strong>今現在動画が見れないのは別の原因の可能性もあるということです(もちろん文脈から削除されたから見れないのは明らかですが)</p>
+
+<p>対して<code>This video has been deleted.</code>、これは</p>
+
+<blockquote><p>お前が探している動画、残念だったな、その動画はもう削除されたし、従ってお前はもうこの動画を見ることはできない。
+大人しく他の動画でも見るんだな、この変態野郎が。</p></blockquote>
+
+<p>という<strong>XVIDEOSからの挑戦とも取れるメッセージ</strong>になるわけです。</p>
+
+<h2>まとめ</h2>
+
+<p>このような自体を回避するためにも、お気に入りの動画は保存しておきましょうね！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Vim7.4でyamlファイルを開くと死ぬほど遅い]]></title>
@@ -2257,112 +2315,6 @@ Vimの背景が白っぽくなってすごい見づらくなってしまった�
 vimでは反映されず代わりに<code>Black</code>で指定されている色が反映されているようでした。</p>
 
 <p>そのため僕がiTerm2で設定したカラースキームでは薄い黒が<code>Black</code>に指定されていたので、今回のようなことが起きたようです。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[SBT Libraries and Plugins]]></title>
-    <link href="http://blog.r-nmt000.com/blog/2014/04/08/scala-sbt/"/>
-    <updated>2014-04-08T00:10:53+09:00</updated>
-    <id>http://blog.r-nmt000.com/blog/2014/04/08/scala-sbt</id>
-    <content type="html"><![CDATA[<h1>ある日のぼく</h1>
-
-<p><strong>ぼくはSBTのプラグインを入れようとしていました。</strong></p>
-
-<p>ぼく「sbteclipse-plugin入れたいなあ^^ なになに、<code>project/plugins.sbt</code>に</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>resolvers += Classpaths.typesafeResolver
-</span><span class='line'>
-</span><span class='line'>addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>って書けばいいのかなるほど！」</p>
-
-<p>ぼく「でも<code>"com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.4.0"</code>って<code>project/Build.scala</code>の<code>LibraryDependencies</code>と同じ書式だけどこっちに書いちゃダメなのかなあ。書いてみよう！」←動かず</p>
-
-<p>ぼく「てかそもそも<code>project/plugins.sbt</code>とか<code>project/Build.scala</code>とか<code>Build.sbt</code>とかなんなんだっけ？どういう関係だっけ？調べてみよう！」</p>
-
-<!-- more -->
-
-
-<h2><a href="http://scalajp.github.io/sbt-getting-started-guide-ja/">ここ</a>に全て書いてあるけど自分なりにまとめたよ！</h2>
-
-<p>SBTのビルド定義やらライブラリの依存性やら何度勉強しても忘れるのでここで一発まとめちゃおうと思います！！</p>
-
-<p>今回は以下のディレクトリ構造を想定します。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>hello/
-</span><span class='line'> build.sbt
-</span><span class='line'>
-</span><span class='line'> project/
-</span><span class='line'>  Build.scala
-</span><span class='line'>  plugins.sbt</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>ライブラリ？プラグイン？</h3>
-
-<p>そもそも今回の問題は自分の中でライブラリとプラグインの定義が曖昧だったことが始まりでした。SBTで言うところのプラグインの追加とは、</p>
-
-<blockquote><p><strong>ビルド定義にライブラリ依存性を追加することを意味する。</strong></p></blockquote>
-
-<p>らしいです。</p>
-
-<p>SBTではプロジェクト(上記のhelloとします)のビルド定義は<code>build.sbt</code>と<code>project/Build.scala</code>に記述します。各ファイルにプロジェクト名やScalaのバージョンやビルドスルために必要なライブラリを書いてあげることをビルド定義と呼ぶわけです。</p>
-
-<p>そしてプラグインとはこのビルド定義の拡張に他なりません。他ならないそうです。</p>
-
-<p>ですので、<strong>このビルド定義に対してまたビルド定義</strong>してあげることがプラグインの追加になるそうです。</p>
-
-<h2>SBTの再帰構造</h2>
-
-<p>SBTではビルド定義自体をまたプロジェクトとして扱うことができます。つまり、</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>hello/
-</span><span class='line'> build.sbt
-</span><span class='line'>
-</span><span class='line'> project/
-</span><span class='line'>  Build.scala
-</span><span class='line'>  plugins.sbt
-</span><span class='line'>  project/
-</span><span class='line'>   Build.scala
-</span><span class='line'>   plugins.sbt   
-</span><span class='line'>   project/
-</span><span class='line'>    Build.scala
-</span><span class='line'>    plugins.sbt   
-</span><span class='line'>      ...</span></code></pre></td></tr></table></div></figure>
-
-
-<p>な感じでビルド定義のビルド定義のビルド定義の&hellip;みたいなことができちゃうわけです。</p>
-
-<p>ようは<code>build.sbt</code>と<code>plugins.sbt</code>は役割的には同じなわけです。ただ、対象とするプロジェクトが異なりますということです。</p>
-
-<h2>まとめ</h2>
-
-<p>書いてたら眠くなったのでこの辺にしときます！</p>
-
-<p>SBTプロジェクト内のファイル関係はこれである程度頭に入ったはず！！</p>
 ]]></content>
   </entry>
   
